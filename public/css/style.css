@@ -1,0 +1,170 @@
+/* Basic Style */
+body {
+    font-family: "Lato", sans-serif;
+    color: #42484D;
+    font-size: 20px;
+}
+
+/* Font Family */
+h1, h2, h3, p, footer {
+    font-family: "Lato", sans-serif;
+}
+
+/* Nav bar */
+nav {
+    background-color: #6C757D;
+    font-weight: bold;
+    font-family: "Lato", sans-serif;
+    color: #fff;
+}
+
+nav a {
+    font-family: "Lato", sans-serif;
+    font-size: inherit;
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Font Size */
+.caption {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 35px;
+}
+
+h3 {
+    font-size: 27px;
+}
+
+/* Action Buttons */
+.btn-submit {
+    border-radius: 10px;
+    background-color: #6BB7F6;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+}
+
+.btn-save {
+    border-radius: 10px;
+    background-color: #6BB7F6;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+}
+
+.btn-edit {
+    background-color: #fff;
+    /* border-color: #5DAEF2; */
+    color: #5DAEF2;
+    border: 2px solid #5DAEF2;
+    /* outline-color: #5DAEF2; */
+    /* border-color: #5DAEF2; */
+    /* box-shadow: none; */
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-family: "Lato", sans-serif;
+
+}
+.btn-delete {
+    background-color: #FF6BA0;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+}
+.btn-hide {
+    background-color: #FF6BA0;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+}
+.btn-cancel {
+    background-color: #6f7172;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    /* text-shadow: rgba(0,0,0,0.5) 2px 2px 0; */
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.04em;
+
+}
+.btn-home {
+    background-color: #fff;
+    color: #6c6c6c;
+    /* border-color: #BABEBF; */
+    /* border: none; */
+    border: 2px solid #6c6c6c;
+    width: 225px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+}
+.btn-contact {
+    background-color: #979a9b;
+    color: #494e51;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+    /* text-shadow: rgba(0,0,0,0.5) 2px 2px 0; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
