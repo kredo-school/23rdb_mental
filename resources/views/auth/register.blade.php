@@ -61,13 +61,13 @@
 @section('content')
 <div class="container-login" style="font-family: lato, sans-serif; color: #42484D;">
     <div class="row justify-content-center m-5">
-        <div class="col-md-7">
+        <div class="col">
             <div class="card p-5 shadow-lg">
                 {{-- <div class="card-header">{{ __('Register') }}</div> --}}
 
                 {{-- logo --}}
                 <div class="text-center">
-                    <img src="{{ asset('images/main/default_logo.png') }}" alt="logo" style="width: 290px;" class="mb-3">
+                    <img src="{{ asset('images/main/default_logo.png') }}" alt="logo" class="image-logo mb-3">
                 </div>
 
                 <div class="card-body">
@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="row mb-0 justify-content-center">
-                            <p class="text-sm text-center mb-0">Have an account already? &nbsp; &nbsp;<a href="" style="color: #5DAAEA;" class="text-decoration-none">Log in</a></p>
+                            <p class="text-sm text-center mb-0">Have an account already? &nbsp; &nbsp;<a href="#" class="link text-decoration-none">Log in</a></p>
                     </form>
                 </div>
             </div>
