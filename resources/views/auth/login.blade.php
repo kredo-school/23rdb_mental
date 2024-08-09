@@ -57,9 +57,9 @@
 
 @section('content')
 
-<div class="container" style="font-family: lato, sans-serif; color: #42484D;">
+<div class="container-login" style="font-family: lato, sans-serif; color: #42484D;">
     <div class="row justify-content-center m-5">
-        <div class="col-md-7">
+        <div class="col">
             <div class="card p-5 shadow-lg">
                 {{-- <div class="card-header">{{ __('Login') }}</div> --}}
 
@@ -134,7 +134,7 @@
 
 
                         <div class="row mb-0 justify-content-center">
-                            <p class="text-sm text-center mb-0">Don't you have an account? &nbsp; &nbsp;<a href="" style="color: #5DAAEA;" class="text-decoration-none">Sign up now</a></p>
+                            <p class="link text-sm text-center mb-0">Don't you have an account? &nbsp; &nbsp;<a href="" style="color: #5DAAEA;" class="text-decoration-none">Sign up now</a></p>
                         </div>
                     </form>
                 </div>

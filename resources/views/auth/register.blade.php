@@ -59,7 +59,7 @@
 @section('title', 'Register')
 
 @section('content')
-<div class="container" style="font-family: lato, sans-serif; color: #42484D;">
+<div class="container-login" style="font-family: lato, sans-serif; color: #42484D;">
     <div class="row justify-content-center m-5">
         <div class="col-md-7">
             <div class="card p-5 shadow-lg">

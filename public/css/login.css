@@ -4,12 +4,14 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    /* position: relative; */
 }
 
-.container {
-    width: auto;
+  .container-login {
+    width: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    font-family: 'lato', sans-serif;
   }
