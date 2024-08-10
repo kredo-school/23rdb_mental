@@ -17,7 +17,7 @@
                         </div>
                         <div class="col my-auto">
                             <h2>Hi #Username</h2>
-                            <p>Thank you for registering! First, let's set your profile!</p>
+                            <p class="small">Thank you for registering! First, let's set your profile!</p>
                         </div>
                     </div>
 
@@ -128,3 +128,5 @@
 @section('scripts')
     <script src="{{ asset('js/profile.js') }}"></script>
 @endsection
+
+

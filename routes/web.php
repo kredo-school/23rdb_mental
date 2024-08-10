@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\MoodController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 // admin
 use App\Http\Controllers\Admin\QuotesController;
@@ -16,10 +18,15 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    // PROFILE
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/setting', [ProfileController::class, 'setting'])->name('profile.setting');
+
+    // MOOD
+    Route::get('/mood/create1', [MoodController::class, 'create1'])->name('mood.save1');
+    Route::get('/mood/create', [MoodController::class, 'create'])->name('mood.create');
 });
 
 
@@ -33,7 +40,7 @@ Route::get('/test', [TestController::class, 'index']);
 
 
     //quotes
-    Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
+    // Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
 
 
 // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' =>'admin'], function(){
