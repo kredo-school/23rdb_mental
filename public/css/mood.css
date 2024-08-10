@@ -1,0 +1,89 @@
+body {
+    background-image: url(../images/background/register_clouds.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    /* position: relative; */
+}
+
+  .container-mood {
+    width: 50%;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'lato', sans-serif;
+    color: #42484D;
+  }
+
+  .remi img {
+    width: 160px;
+    height: auto;
+  }
+
+/* selectors */
+.selectors input {
+    margin:0;
+    padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.great {
+    background-image: url('../images/moods/great.png');
+}
+
+.good {
+    background-image: url('../images/moods/good.png');
+}
+
+.ok {
+    background-image: url('../images/moods/ok.png');
+}
+
+.notgood {
+    background-image: url('../images/moods/notgood.png');
+}
+
+.bad {
+    background-image: url('../images/moods/bad.png');
+}
+
+.selectors input:active +.selector {
+    opacity: .9;
+}
+
+.selectors input:checked +.selector {
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+
+    width: 120px;
+    height: 120px;
+}
+
+.selector{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    /* display:inline-block; */
+    width: 100px; height:100px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1) grayscale(0) opacity(.9);
+       -moz-filter: brightness(1) grayscale(0) opacity(.9);
+            filter: brightness(1) grayscale(0) opacity(.9);
+}
+
+.selector:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(1);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(1);
+            filter: brightness(1.2) grayscale(.5) opacity(1);
+}
+
+.fa-circle-xmark {
+    color: #FF6BA0;
+}
