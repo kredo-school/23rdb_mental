@@ -27,3 +27,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('input[name="selector"]:checked').dispatchEvent(new Event('change'));
 });
+
