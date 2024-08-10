@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\MoodController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 // admin
 use App\Http\Controllers\Admin\QuotesController;
@@ -39,7 +40,7 @@ Route::get('/test', [TestController::class, 'index']);
 
 
     //quotes
-    Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
+    // Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
 
 
 // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' =>'admin'], function(){
