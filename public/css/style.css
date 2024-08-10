@@ -11,7 +11,7 @@ h1, h2, h3, p, footer {
 }
 
 /* Nav bar */
-nav {
+.navbar {
     background-color: #6C757D;
     font-weight: bold;
     font-family: "Lato", sans-serif;
@@ -19,12 +19,14 @@ nav {
     position: relative;
 }
 
-nav a {
+.nav-link {
     font-family: "Lato", sans-serif;
     font-size: inherit;
     font-weight: bold;
     color: inherit;
     text-decoration: none;
+    color: #fff;
+
 }
 
 .container {
