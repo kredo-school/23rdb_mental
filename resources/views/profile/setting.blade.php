@@ -128,3 +128,5 @@
 @section('scripts')
     <script src="{{ asset('js/profile.js') }}"></script>
 @endsection
+
+

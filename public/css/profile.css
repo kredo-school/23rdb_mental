@@ -93,3 +93,41 @@ body {
        -moz-filter: brightness(1.2) grayscale(.5) opacity(1);
             filter: brightness(1.2) grayscale(.5) opacity(1);
 }
+
+.image-switcher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.images {
+    margin-bottom: 10px;
+}
+
+/* Hide all images by default */
+.images img {
+    /* display: none; */
+    width: 300px;
+    height: auto;
+}
+
+.hide-images {
+    display: none;
+    /* width: 300px; */
+    /* height: auto; */
+}
+
+
+/* Display the image corresponding to the checked radio button */
+#img1:checked ~ .selectors ~ .images #image1,
+#img2:checked ~ .selectors ~ .images #image2,
+#img3:checked ~ .selectors ~ .images #image3,
+#img4:checked ~ .selectors ~ .images #image4,
+#img5:checked ~ .selectors ~ .images #image5,
+#img6:checked ~ .selectors ~ .images #image6 {
+    display: block;
+}
+
+
+
+
