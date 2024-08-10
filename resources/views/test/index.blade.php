@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Welcome')
+@section('title', 'Test')
 @section('content')
     {{-- <section> --}}
         <h1>MEntal</h1>
@@ -37,6 +37,15 @@
         <br><br>
         Contact Us<br>
         <button class="btn-contact">Contact Us</button>
+
+        <br><br>
+        Logout<br>
+        <button class="btn-logout">Logout</button>
+
+        <br><br>
+        Register<br>
+        <button class="btn-register">Register</button>
+
     {{-- </section> --}}
     <br><br>
 
