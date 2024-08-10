@@ -1,5 +1,5 @@
 body {
-    background-image: url(../images/background/register_remichan.png);
+    background-image: url(../images/background/register_clouds.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -7,8 +7,8 @@ body {
     /* position: relative; */
 }
 
-.container-profile {
-    /* width: 50%; */
+  .container-mood {
+    width: 50%;
     position: absolute;
     top: 55%;
     left: 50%;
@@ -17,19 +17,13 @@ body {
     color: #42484D;
   }
 
-.avatar {
-    font-size: 10rem;
-    color: #CED3D5;
-
-}
-
-.divider {
-    display: grid;
-    place-content: center;
+  .remi img {
+    width: 160px;
+    height: auto;
   }
 
 /* selectors */
-  .selector input {
+.selectors input {
     margin:0;
     padding:0;
     -webkit-appearance:none;
@@ -37,49 +31,45 @@ body {
             appearance:none;
 }
 
-.default {
-    background-image: url('../images/selectors/default.png');
+.great {
+    background-image: url('../images/moods/great.png');
 }
 
-.green {
-    background-image: url('../images/selectors/green.png');
+.good {
+    background-image: url('../images/moods/good.png');
 }
 
-.blue {
-    background-image: url('../images/selectors/blue.png');
+.ok {
+    background-image: url('../images/moods/ok.png');
 }
 
-.pink {
-    background-image: url('../images/selectors/pink.png');
+.notgood {
+    background-image: url('../images/moods/notgood.png');
 }
 
-.yellow {
-    background-image: url('../images/selectors/yellow.png');
+.bad {
+    background-image: url('../images/moods/bad.png');
 }
 
-.dark {
-    background-image: url('../images/selectors/dark.png');
-}
-
-.selector input:active +.colors{
+.selectors input:active +.selector {
     opacity: .9;
 }
 
-.selector input:checked +.colors {
+.selectors input:checked +.selector {
     -webkit-filter: none;
        -moz-filter: none;
             filter: none;
 
-    width: 40px;
-    height: 40px;
+    width: 120px;
+    height: 120px;
 }
 
-.colors{
+.selector{
     cursor:pointer;
     background-size:contain;
     background-repeat:no-repeat;
     /* display:inline-block; */
-    width:32px;height:32px;
+    width: 100px; height:100px;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
@@ -88,8 +78,12 @@ body {
             filter: brightness(1) grayscale(0) opacity(.9);
 }
 
-.colors:hover{
+.selector:hover{
     -webkit-filter: brightness(1.2) grayscale(.5) opacity(1);
        -moz-filter: brightness(1.2) grayscale(.5) opacity(1);
             filter: brightness(1.2) grayscale(.5) opacity(1);
+}
+
+.fa-circle-xmark {
+    color: #FF6BA0;
 }

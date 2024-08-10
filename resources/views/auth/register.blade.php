@@ -6,7 +6,7 @@
 @section('title', 'Register')
 
 @section('content')
-<div class="container-login" style="font-family: lato, sans-serif; color: #42484D;">
+<div class="container-login">
     <div class="row justify-content-center m-5">
         <div class="col">
             <div class="card p-5 shadow-lg">
