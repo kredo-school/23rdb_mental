@@ -134,7 +134,7 @@
 
 
                         <div class="row mb-0 justify-content-center">
-                            <p class="link text-sm text-center mb-0">Don't you have an account? &nbsp; &nbsp;<a href="#" class="link text-decoration-none">Sign up now</a></p>
+                            <p class="text-sm text-center mb-0">Don't you have an account? &nbsp; &nbsp;<a href="#" class="link text-decoration-none">Sign up now</a></p>
                         </div>
                     </form>
                 </div>
