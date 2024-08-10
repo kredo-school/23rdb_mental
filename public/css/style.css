@@ -68,7 +68,6 @@ h3 {
     font-family: "Lato", sans-serif;
 
 }
-
 .btn-save {
     border-radius: 10px;
     background-color: #6BB7F6;
@@ -82,7 +81,6 @@ h3 {
     font-family: "Lato", sans-serif;
 
 }
-
 .btn-edit {
     background-color: #fff;
     /* border-color: #5DAEF2; */
@@ -165,7 +163,6 @@ h3 {
 
     /* text-shadow: rgba(0,0,0,0.5) 2px 2px 0; */
 }
-
 .btn-login {
     background-color: transparent;
     color: #e1e1e1;
@@ -177,7 +174,6 @@ h3 {
     font-family: "Lato", sans-serif;
 
 }
-
 .btn-logout {
     background-color: transparent;
     color: #e1e1e1;
@@ -189,7 +185,6 @@ h3 {
     font-family: "Lato", sans-serif;
 
 }
-
 .btn-register {
     background-color: transparent;
     color: #e1e1e1;
