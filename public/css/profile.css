@@ -1,0 +1,95 @@
+body {
+    background-image: url(../images/background/register_remichan.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    /* position: relative; */
+}
+
+.container-profile {
+    /* width: 50%; */
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'lato', sans-serif;
+    color: #42484D;
+  }
+
+.avatar {
+    font-size: 10rem;
+    color: #CED3D5;
+
+}
+
+.divider {
+    display: grid;
+    place-content: center;
+  }
+
+/* selectors */
+  .selector input {
+    margin:0;
+    padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.default {
+    background-image: url('../images/selectors/default.png');
+}
+
+.green {
+    background-image: url('../images/selectors/green.png');
+}
+
+.blue {
+    background-image: url('../images/selectors/blue.png');
+}
+
+.pink {
+    background-image: url('../images/selectors/pink.png');
+}
+
+.yellow {
+    background-image: url('../images/selectors/yellow.png');
+}
+
+.dark {
+    background-image: url('../images/selectors/dark.png');
+}
+
+.selector input:active +.colors{
+    opacity: .9;
+}
+
+.selector input:checked +.colors {
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+
+    width: 40px;
+    height: 40px;
+}
+
+.colors{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    /* display:inline-block; */
+    width:32px;height:32px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1) grayscale(0) opacity(.9);
+       -moz-filter: brightness(1) grayscale(0) opacity(.9);
+            filter: brightness(1) grayscale(0) opacity(.9);
+}
+
+.colors:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(1);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(1);
+            filter: brightness(1.2) grayscale(.5) opacity(1);
+}
