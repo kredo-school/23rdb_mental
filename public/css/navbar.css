@@ -1,0 +1,119 @@
+.navbar {
+    background-color: #6C757D;
+    font-weight: bold;
+    font-family: "Lato", sans-serif;
+    color: #fff;
+    position: relative;
+    height: 79px;
+    align-items: center;
+    width: 100%!important;
+}
+
+.nav_logo {
+    width: 160px;
+    height: 30px;
+    margin-left: 5px; 
+    display: flex;
+    justify-content: center;
+}
+
+.nav_logo:hover {
+    opacity: 0.3;
+}
+
+.nav_inner {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    margin-top: 6px;
+}
+
+.nav_icon {
+    margin: 0 auto;
+    max-width: 600px;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.7px;
+    color: #fff;
+    justify-content: center;
+    text-align: center;
+}
+
+.nav_icon:hover {
+    opacity: 0.3;
+}
+
+
+.nav_pageTitle {
+    font-size: 33px;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.7px;
+    font-weight: 390;
+    color: #fff;
+    justify-content: center;
+    margin-left: -55px; 
+    margin-top: 5px;
+}
+
+.nav_avatar {
+    font-size: 45px;
+    outline: 4px solid #4945455f;
+    border-radius: 100%;
+    color: #fff;
+}
+
+.nav_avatar_link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav_avatar_link:hover {
+    opacity: 0.3;
+}
+
+.btn-login {
+    background-color: #6C757D;
+    color: #e1e1e1;
+    border: 1.5px solid #e1e1e1;
+    width: 95px;
+    height: 40px;
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    font-weight: 430;
+    letter-spacing: 0.7px;
+    border-radius: 7px;
+    margin-left: 20px;
+}
+
+.btn-logout {
+    background-color: #6C757D;
+    color: #e1e1e1;
+    border: 1.5px solid #e1e1e1;
+    width: 95px;
+    height: 40px;
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    font-weight: 430;
+    letter-spacing: 0.7px;
+    border-radius: 7px;
+    margin-left: 20px;
+}
+
+.btn-logout:hover {
+    opacity: 0.3;
+}
+
+.btn-register {
+    background-color: #6C757D;
+    color: #e1e1e1;
+    border: 1.5px solid #e1e1e1;
+    width: 95px;
+    height: 40px;
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    font-weight: 430;
+    letter-spacing: 0.7px;
+    border-radius: 7px;
+    margin-left: 20px;
+}

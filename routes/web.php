@@ -34,6 +34,9 @@ require __DIR__.'/auth.php';
 
 // Test Page
 Route::get('/test', [TestController::class, 'index']);
+Route::get('/test/navbar', function () {
+    return view('test.navbar');
+});
 
 
 //admin route
