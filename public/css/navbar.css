@@ -86,6 +86,10 @@
     margin-left: 20px;
 }
 
+.btn-login:hover {
+    opacity: 0.3;
+}
+
 .btn-logout {
     background-color: #6C757D;
     color: #e1e1e1;
@@ -117,3 +121,29 @@
     border-radius: 7px;
     margin-left: 20px;
 }
+
+.btn-register:hover {
+    opacity: 0.3;
+}
+
+.btn-contact {
+    background-color: #979a9b;
+    color: #494e51;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+}
+
+.btn-contact:hover {
+    opacity: 0.7;
+}
+
+.bg-footer {
+    background-color: #D9D9D9;
+    opacity: 0.5;
+}
+
