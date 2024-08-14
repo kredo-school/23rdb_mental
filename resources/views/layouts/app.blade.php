@@ -45,8 +45,13 @@
                     <ul class="navbar-nav ms-auto">
                         @guest
                             @if (Route::has('login'))
-                                <button class="btn-logout">Logout</button>
+                                <a href="{{ route('login') }}" class="btn-login">Login</a>
                             @endif
+                        @else
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn-logout">Logout</button>
+                            </form>
                         @endguest
                     </ul>
                 </div>
