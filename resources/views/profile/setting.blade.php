@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <form method="#" action="#" class="mb-0" autocomplete="off">
+                    <form method="#" action="#" class="mb-0" autocomplete="off" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mt-5">
