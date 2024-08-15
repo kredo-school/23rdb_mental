@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <form method="#" action="#" class="mb-0" autocomplete="off">
+                    <form method="#" action="#" class="mb-0" autocomplete="off" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mt-5">
@@ -128,3 +128,5 @@
 @section('scripts')
     <script src="{{ asset('js/profile.js') }}"></script>
 @endsection
+
+

@@ -18,6 +18,10 @@ class ProfileController extends Controller
         return view('profile.setting');
     }
 
+    public function show() {
+        return view('profile.show');
+    }
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [

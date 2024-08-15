@@ -1,5 +1,6 @@
+
 body {
-    background-image: url(../images/background/register_remichan.png);
+    background-image: url(../images/background/default.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -7,33 +8,40 @@ body {
     /* position: relative; */
 }
 
-.container-profile {
-    /* width: 50%; */
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'lato', sans-serif;
-    color: #42484D;
-  }
-
-.avatar {
-    font-size: 10rem;
-    color: #CED3D5;
+.card {
+    width: 800px;
 
 }
 
-.divider {
-    display: grid;
-    place-content: center;
-  }
+div .btn-delete-account {
+    color: #FF6BA0;
+}
 
-.vr {
-    height: 300px;
+.avatar {
+    font-size: 180px;
+    color: #CED3D5;
+}
+
+img.selector {
+    width: 20px;
+    height: 20px;
+}
+
+.table .quote-column {
+    width: 75%; /* Adjust as needed */
+}
+
+.table .author-column {
+    width: 25%; /* Adjust as needed */
+}
+
+div .btn-dismiss {
+    color: #FF6BA0;
+    margin-left: auto;
 }
 
 /* selectors */
-  .selectors input {
+.selectors input {
     margin:0;
     padding:0;
     -webkit-appearance:none;
@@ -74,8 +82,8 @@ body {
        -moz-filter: none;
             filter: none;
 
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
 }
 
 .selector{
@@ -83,7 +91,7 @@ body {
     background-size:contain;
     background-repeat:no-repeat;
     /* display:inline-block; */
-    width:32px;height:32px;
+    width:80px;height:80px;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
@@ -98,39 +106,9 @@ body {
             filter: brightness(1.2) grayscale(.5) opacity(1);
 }
 
-.image-switcher {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.expanded-input {
+    height: 60px; /* Adjust the height as needed */
+    padding: 10px; /* Adjust padding for a better visual appearance */
+    box-sizing: border-box; /* Ensure padding and border are included in the height */
 }
-
-.images {
-    margin-bottom: 10px;
-}
-
-/* Hide all images by default */
-.images img {
-    /* display: none; */
-    width: 300px;
-    height: auto;
-}
-
-.hide-images {
-    display: none;
-    /* width: 300px; */
-    /* height: auto; */
-}
-
-
-/* Display the image corresponding to the checked radio button */
-#img1:checked ~ .selectors ~ .images #image1,
-#img2:checked ~ .selectors ~ .images #image2,
-#img3:checked ~ .selectors ~ .images #image3,
-#img4:checked ~ .selectors ~ .images #image4,
-#img5:checked ~ .selectors ~ .images #image5,
-#img6:checked ~ .selectors ~ .images #image6 {
-    display: block;
-}
-
-
 

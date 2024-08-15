@@ -1,0 +1,208 @@
+/* Background Settings */
+body {
+    background-image: url(../images/background/default.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    /* position: relative; */
+}
+
+/* Styling of this page */
+.card {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Quote */
+.bubblespeech {
+    width: 50px;
+    height: auto;
+}
+
+/* Refresh, bookmark, copy buttons */
+.fa-arrows-rotate,
+.fa-bookmark,
+.fa-clone {
+    color: #6BB7F6;
+}
+
+/* Journaling */
+.remichan_circle img {
+    width: 150px;
+    height: auto;
+}
+
+input {
+    height: 80px;
+}
+
+/* Link "See All" */
+.container-journaling a {
+    color: #6BB7F6;
+}
+
+/* Create Journaling */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 1rem);
+    width: 800px;
+}
+
+.custom-placeholder::placeholder {
+    font-size: 20px; /* Adjust the font size as needed */
+    font-family: "lato", sans-serif;
+}
+
+/* Mood */
+.container-mood h3 {
+    text-align: center;
+    background-color: D9D9D9;
+    border-radius: 20px;
+    border-style: none;
+}
+
+a.mood {
+    color: #6BB7F6;
+    text-decoration: none;
+}
+
+/* Chat Room Links */
+a.btn-relationship {
+    border-radius: 10px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #F76F51;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+a.btn-career {
+    border-radius: 10px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #F1935E;
+    align-items: center;
+}
+
+a.btn-family {
+    border-radius: 10px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #F3B336;
+    align-items: center;
+
+}
+
+a.btn-health {
+    border-radius: 10px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #75CF73;
+    align-items: center;
+}
+
+a.btn-finance {
+    border-radius: 10px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #AF84F6;
+    align-items: center;
+}
+
+a.btn-others {
+    border-radius: 10px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #F588EA;
+    align-items: center;
+}
+
+a.btn-relationship:hover,
+a.btn-relationship:focus {
+    background-color: #ffbeaf;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+    text-decoration: none;
+    color: #F76F51;
+}
+
+a.btn-career:hover,
+a.btn-career:focus {
+    color: #F1935E;
+    background-color: #ffcfb6;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+    text-decoration: none;
+}
+
+a.btn-family:hover,
+a.btn-family:focus {
+    color: #F3B336;
+    background-color: #fff1d4;;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+    text-decoration: none;
+}
+
+a.btn-health:hover,
+a.btn-health:focus {
+    color: #75CF73;;
+    background-color: #c1f9c0;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+    text-decoration: none;
+}
+
+a.btn-finance:hover,
+a.btn-finance:focus {
+    color: #AF84F6;;
+    background-color: #e0cdff;;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+    text-decoration: none;
+}
+
+a.btn-others:hover,
+a.btn-others:focus {
+    color: #F588EA;
+    background-color: #ffd4fb;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+    text-decoration: none;
+}
+
+

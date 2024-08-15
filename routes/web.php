@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\MoodController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 // admin
 use App\Http\Controllers\Admin\QuotesController;
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/setting', [ProfileController::class, 'setting'])->name('profile.setting');
+    Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
 
     // MOOD
     Route::get('/mood/create1', [MoodController::class, 'create1'])->name('mood.save1');
@@ -33,13 +35,16 @@ require __DIR__.'/auth.php';
 
 // Test Page
 Route::get('/test', [TestController::class, 'index']);
+Route::get('/test/navbar', function () {
+    return view('test.navbar');
+});
 
 
 //admin route
 
 
     //quotes
-    Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
+    // Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
 
 
 // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' =>'admin'], function(){
