@@ -6,6 +6,7 @@ use App\Http\Controllers\MoodController;
 use App\Http\Controllers\BookmarkController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\JournalController;
 
 // admin
 use App\Http\Controllers\Admin\QuotesController;
@@ -67,3 +68,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
  */
 Route::post('/bookmark/{bookmark_id}/store', [BookmarkController::class, 'store'])->name('bookmark.store');
 Route::delete('/bookmark/{bookmark_id}/destroy', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
+
+// journal
+Route::get('/journals', [JournalController::class, 'index'])->name('journal.journals');
+Route::get('/journal/search', [JournalController::class, 'search'])->name('journal.search');
+Route::post('/journal/store', [JournalController::class, 'store'])->name('journal.store');
+Route::patch('/journal/{id}/update', [JournalController::class, 'update'])->name('journal.update');
+Route::patch('/journal/{id}/update_like', [JournalController::class, 'update_like'])->name('journal.update_like');
+Route::patch('/journal/{id}/reply', [JournalController::class, 'reply'])->name('journal.reply');
+Route::delete('/journal/{id}/destroy', [JournalController::class, 'destroy'])->name('journal.destroy');
