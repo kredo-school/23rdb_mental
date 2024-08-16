@@ -45,4 +45,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    
+    /**
+     * Use this method to get all the journals of a user
+     */
+    public function journals(){
+        return $this->hasMany(Journal::class);
+    }
 }
