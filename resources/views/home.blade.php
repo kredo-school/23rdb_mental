@@ -79,7 +79,6 @@
                                 {{-- Action buttons --}}
                                 <form action="#" method="post">
                                     @csrf
-                                    @method('PATCH')
                                     {{-- Cancel --}}
                                     <button type="button" class="btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
                                     {{-- Save --}}

@@ -13,4 +13,8 @@ class MoodController extends Controller
     public function create() {
         return view('mood.login');
     }
+
+    public function index() {
+        return view('mood.index');
+    }
 }

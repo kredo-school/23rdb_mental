@@ -1,3 +1,4 @@
+/* navbar as header */
 .navbar {
     background-color: #6C757D;
     font-weight: bold;
@@ -44,7 +45,6 @@
     opacity: 0.3;
 }
 
-
 .nav_pageTitle {
     font-size: 33px;
     font-family: "Lato", sans-serif;
@@ -76,8 +76,8 @@
     background-color: #6C757D;
     color: #e1e1e1;
     border: 1.5px solid #e1e1e1;
-    width: 95px;
-    height: 40px;
+    width: 90px;
+    height: 35px;
     font-family: "Lato", sans-serif;
     font-size: 20px;
     font-weight: 430;
@@ -94,8 +94,8 @@
     background-color: #6C757D;
     color: #e1e1e1;
     border: 1.5px solid #e1e1e1;
-    width: 95px;
-    height: 40px;
+    width: 90px;
+    height: 35px;
     font-family: "Lato", sans-serif;
     font-size: 20px;
     font-weight: 430;
@@ -112,8 +112,8 @@
     background-color: #6C757D;
     color: #e1e1e1;
     border: 1.5px solid #e1e1e1;
-    width: 95px;
-    height: 40px;
+    width: 90px;
+    height: 35px;
     font-family: "Lato", sans-serif;
     font-size: 20px;
     font-weight: 430;
@@ -126,6 +126,7 @@
     opacity: 0.3;
 }
 
+/* footer */
 .btn-contact {
     background-color: #979a9b;
     color: #494e51;
@@ -147,3 +148,75 @@
     opacity: 0.5;
 }
 
+
+/* sidebar */
+.body_sidebar {
+    display: block;
+    position: fixed;
+    background-color: rgba(206,211,213,0.7);
+    width: 280px;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.sidebar_inner {
+    color: #343A40;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.3px;
+    margin-top: 40px;
+    margin-left: 30px;
+}
+
+.sidebar_inner_bottom {
+    position: fixed;
+    left: 0;
+    bottom: 40px;
+    color: #343A40;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.3px;
+    margin-top: 40px;
+    margin-left: 30px;
+}
+
+.sidebar a {
+    color: #343A40;
+    font-size: 20px;
+    font-weight: 430; 
+    list-style: none;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    opacity: 0.3;
+}
+
+.sidebar_icon {
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.7px;
+    justify-content: left;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.sidebar_avatar {
+    font-size: 25px;
+    outline: 2px solid #4945455f;
+    border-radius: 100%;
+    color: #343A40;
+    margin-right: 8px;
+}
+
+.sidebar_avatar:hover {
+    opacity: 0.3;
+}
+
+.sidebar_hr{
+    border-width: 2px 0 0 0;
+    border-style: solid;
+    border-color: #4945455f; 
+    width: 150px;
+}

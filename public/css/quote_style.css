@@ -1,0 +1,127 @@
+
+.quote-edit-icon {
+    color: #6BB7F6;
+}
+
+.quote-delete-icon {
+    color: #FF6BA0;
+}
+
+
+.quote-body-size{
+    padding-right: 164px;
+    padding-left: 164px;
+}
+
+.quote-table{
+    border-color: #979a9b;
+    color: #42484D !important; 
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+}
+
+th {
+    color: #42484D !important; 
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+}
+
+td {
+    color: #42484D !important; 
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+}
+
+.quote-modal {
+    border-color: #42484D;
+    color: #42484D; 
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+}
+.modal-framebase {
+    width: 100%;
+    height: auto;
+    /* background-color: rgb(1, 232, 5); */
+    border: solid 1px #42484D;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.quote-frame1{
+    display: inline-block;
+    /* background-color: rgb(232, 1, 97); */
+    margin-top: 10px;
+    line-height: 150%;
+    height: 200px !important;
+} 
+
+.quote-frame2{
+    display: inline-block;
+    margin-top: 0;
+    /* background-color: green;  */
+}  
+
+
+
+.quote-content{
+    width: 800px;
+    background-color: white;
+    padding: 30px;
+    margin: 100px auto;
+}
+
+.quote-sort{
+    width: 200px;
+    border-color: #42484D;
+    color: #42484D; 
+    font-size: 20px;
+}
+
+.quote-hide-icon{
+    display: inline-block;
+}
+
+
+/* icon */
+
+.quote-box-icon{
+    font-size: 20px;
+    color: #6f7172;
+    text-align: left;
+    float:right; 
+    padding-top:15px;
+}
+
+.quote-other-btn{
+    color: #979a9b;
+    border: 1px solid #979a9b;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-family: "Lato", sans-serif;
+}
+
+.quote-switch{
+    display: inline-block !important;
+
+}
+
+.quote-bookmark-store{
+    display: inline-block !important;
+    color: rgb(255, 221, 0);
+    font-size: 20px;
+
+}
+
+.quote-bookmark-cancel{
+    display: inline-block !important;
+    color: #979a9b;
+    font-size: 20px;
+}
+
+
+
+.quote-button-wrapper{
+    height:40px !important;
+}
