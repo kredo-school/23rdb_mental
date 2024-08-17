@@ -48,7 +48,7 @@
             <h1 class="m-0 align-self-center float-start">Journaling</h1>
             <div class="align-self-center float-end">
                 {{-- Link to Journaling page --}}
-                <a href="#" class="small">
+                <a href="{{ route('journal.journals') }}" class="small">
                     See All
                 </a>
             </div>
@@ -126,8 +126,8 @@
                         </div>
                     </div>
                     <div class="body border-0 bg-white">
-                        <div class="w-100">
-
+                        <div class="w-100 text-center">
+                            <a href="{{ route('mood.index') }}">Calendar</a>
                         </div>
                     </div>
                     <div class="footer bg-white border-0">
