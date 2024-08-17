@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Navbar</title>
+@section('title', 'footer')
 
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -26,9 +20,8 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-</head>
 
-
+@section('content')
 <body>
     <footer class="bg-footer fixed-bottom">
         <div class="container-fluid p-3 p-md-5">

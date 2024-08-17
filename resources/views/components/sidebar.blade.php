@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>@yield('title')</title>
+@section('title', 'footer')
 
 <!-- Fonts -->
 <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -25,8 +20,8 @@
 
 <!-- CSS -->
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-</head>
 
+@section('content')
 <body>
     <div class="body_sidebar">
         <nav class="sidebar_inner">
