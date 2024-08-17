@@ -22,6 +22,11 @@
     opacity: 0.3;
 }
 
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")!important;
+}
+
 .nav_inner {
     display: flex;
     align-items: center;
@@ -214,9 +219,25 @@
     opacity: 0.3;
 }
 
-.sidebar_hr{
-    border-width: 2px 0 0 0;
+.sidebar_hr1{
+    border-width: 1px;
     border-style: solid;
     border-color: #4945455f; 
-    width: 150px;
+    width: 210px;
+    margin-left: -45px;
+}
+
+.sidebar_hr2{
+    border-width: 1px;
+    border-style: solid;
+    border-color: #4945455f; 
+    width: 200px;
+}
+
+.ls_sidebar_admin {
+    list-style: none;
+}
+
+.current_page_item {
+    background-color: #aeaeae;
 }
