@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     // MOOD
     Route::get('/mood/create1', [MoodController::class, 'create1'])->name('mood.save1');
     Route::get('/mood/create', [MoodController::class, 'create'])->name('mood.create');
+    Route::get('mood/index', [MoodController::class, 'index'])->name('mood.index');
 });
 
 

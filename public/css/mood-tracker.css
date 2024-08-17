@@ -1,0 +1,137 @@
+body {
+    background-image: url(../images/background/default.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.card {
+    width: 800px;
+
+}
+
+.icon-sm {
+    font-size: 3rem;
+    color: #CED3D5;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+}
+
+.avatar-sm {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+}
+
+input {
+    width: 800px;
+    border-radius: 40px;
+}
+
+.form-control {
+    flex: 1;
+}
+
+div .rounded-input {
+    border-radius: 25px;
+}
+
+.container-mood {
+    width: 800px;
+}
+
+div.button-edit,
+div.button-delete {
+    font-size: 3rem
+}
+
+button.button-edit {
+    color: #6BB7F6;
+
+}
+
+button.button-delete {
+    color: #FF6BA0;
+
+}
+
+p a {
+    color: #6BB7F6;
+
+}
+
+.remi img {
+    width: 160px;
+    height: auto;
+  }
+
+/* selectors */
+.selectors input {
+    margin:0;
+    padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.great {
+    background-image: url('../images/moods/great.png');
+}
+
+.good {
+    background-image: url('../images/moods/good.png');
+}
+
+.ok {
+    background-image: url('../images/moods/ok.png');
+}
+
+.notgood {
+    background-image: url('../images/moods/notgood.png');
+}
+
+.bad {
+    background-image: url('../images/moods/bad.png');
+}
+
+.selectors input:active +.selector {
+    opacity: .9;
+}
+
+.selectors input:checked +.selector {
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+
+    width: 120px;
+    height: 120px;
+}
+
+.selector{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    /* display:inline-block; */
+    width: 100px; height:100px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1) grayscale(0) opacity(.9);
+       -moz-filter: brightness(1) grayscale(0) opacity(.9);
+            filter: brightness(1) grayscale(0) opacity(.9);
+}
+
+.selector:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(1);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(1);
+            filter: brightness(1.2) grayscale(.5) opacity(1);
+}
+
+.fa-circle-xmark {
+    color: #FF6BA0;
+}
