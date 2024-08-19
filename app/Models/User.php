@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
 
+    const ADMIN_ROLE_ID = 1;
+    const USER_ROLE_ID = 2;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -45,12 +48,16 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
-    
+
+
     /**
      * Use this method to get all the journals of a user
      */
     public function journals(){
         return $this->hasMany(Journal::class);
+    }
+
+    public function moods() {
+        return $this->hasMany(Mood::class);
     }
 }

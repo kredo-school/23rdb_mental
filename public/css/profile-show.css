@@ -22,6 +22,11 @@ div .btn-delete-account {
     color: #CED3D5;
 }
 
+img.avatar {
+    width: 180px;
+}
+
+
 img.selector {
     width: 20px;
     height: 20px;

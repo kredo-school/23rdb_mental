@@ -5,6 +5,7 @@
 @section('title', 'Profile')
 
 @section('content')
+
     <div class="container-profile-show justify-content-center m-5">
 
         {{-- Profile Section --}}
@@ -15,23 +16,53 @@
             <div class="card-body bg-white">
                 <div class="row d-flex justify-content-center mb-3">
                     <div class="col-auto">
-                        <i class="fa-solid fa-circle-user avatar"></i>
+                        @if ($user->avatar)
+                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
+                        @else
+                            <i class="fa-solid fa-circle-user avatar"></i>
+                        @endif
                     </div>
 
                     <div class="col align-self-center">
-                        <p class="mb-0">Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Username</p>
+                        <p class="mb-0">Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $user->name }}</p>
                         <hr class="mt-0">
-                        <p class="mb-0">Email Address:&nbsp;&nbsp; user@mail.com</p>
+                        <p class="mb-0">Email Address:&nbsp;&nbsp; {{ $user->email }}</p>
                         <hr class="mt-0">
-                        <p class="mb-0">Theme Color:&nbsp;&nbsp; <img class="selector" src="{{ asset('images/selectors/default.png') }}" alt=""></p>
+                        <p class="mb-0">Theme Color:&nbsp;&nbsp;
+                            @if ($user->theme_color == 1)
+                                <img class="selector" src="{{ asset('images/selectors/default.png') }}" alt="">
+                            @elseif ($user->theme_color == 2)
+                                <img class="selector" src="{{ asset('images/selectors/green.png') }}" alt="">
+                            @elseif ($user->theme_color == 3)
+                                <img class="selector" src="{{ asset('images/selectors/blue.png') }}" alt="">
+                            @elseif ($user->theme_color == 4)
+                                <img class="selector" src="{{ asset('images/selectors/pink.png') }}" alt="">
+                            @elseif ($user->theme_color == 5)
+                                <img class="selector" src="{{ asset('images/selectors/yellow.png') }}" alt="">
+                            @else
+                                <img class="selector" src="{{ asset('images/selectors/dark.png') }}" alt="">
+                            @endif
+                        </p>
                         <hr class="mt-0">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <p class="mb-0 small">Birthday:&nbsp;&nbsp;&nbsp;Not Registered</p>
+                        <p class="mb-0 small">Birthday:&nbsp;&nbsp;&nbsp;
+                            @if ($user->birthday)
+                                {{ $user->birthday }}
+                            @else
+                            Not Registered
+                            @endif
+                        </p>
                         <hr class="mt-0">
-                        <p class="mb-0 small">Location:&nbsp;&nbsp;&nbsp;Not Registered</p>
+                        <p class="mb-0 small">Location:&nbsp;&nbsp;&nbsp;
+                            @if ($user->location)
+                                {{ $user->location }}
+                            @else
+                            Not Registered
+                            @endif
+                        </p>
                         <hr class="mt-0">
                     </div>
                     <div class="col-3"></div>
@@ -50,14 +81,18 @@
                                 </div>
 
                                 <div class="modal-body">
-                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('profile.update2') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PATCH')
                                         <div class="row d-flex justify-content-center mb-3">
                                             <div class="col-5">
                                                 <div class="row d-flex justify-content-center">
                                                     <div class="col-9">
-                                                        <i class="fa-solid fa-circle-user avatar text-center"></i>
+                                                        @if (Auth::user()->avatar)
+                                                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar text-center ">
+                                                        @else
+                                                            <i class="fa-solid fa-circle-user avatar text-center"></i>
+                                                        @endif
                                                     </div>
                                                 </div>
 
@@ -66,6 +101,9 @@
                                                         <label for="avatar" class="form-label">Avatar</label>
                                                         <input type="file" name="avatar" id="avatar" class="form-control">
                                                     </div>
+                                                    @error('avatar')
+                                                        <p class="text-danger small">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -75,32 +113,44 @@
                                                         <label for="name" class="form-label">Name</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="text" name="name" id="name" class="form-control">
+                                                        <input type="text" name="name" id="name" class="form-control" value="{{ old('name', Auth::user()->name) }}">
                                                     </div>
+                                                    @error('name')
+                                                        <p class="text-danger small">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-4">
-                                                        <label for="email" class="form-label">Email</label>
+                                                        <label for="email" class="form-label" >Email</label>
                                                     </div>
                                                     <div class="col-8">
-                                                        <input type="text" name="email" id="email" class="form-control">
+                                                        <input type="text" name="email" id="email" class="form-control" value="{{ old('email',Auth::user()->email) }}">
                                                     </div>
+                                                    @error('email')
+                                                        <p class="text-danger small">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-4">
                                                         <label for="birthday" class="form-label">Birthday</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="date" name="birthday" id="birthday" class="form-control">
+                                                        <input type="date" name="birthday" id="birthday" class="form-control" value="{{ old('birthday', Auth::user()->birthday) }}">
                                                     </div>
+                                                    @error('birthday')
+                                                        <p class="text-danger small">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                                 <div class="row mb-2">
                                                     <div class="col-4">
                                                         <label for="location" class="form-label">Location</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="text" name="location" id="location" class="form-control">
+                                                        <input type="text" name="location" id="location" class="form-control" value="{{ old('location', Auth::user()->location) }}">
                                                     </div>
+                                                    @error('location')
+                                                        <p class="text-danger small">{{ $message }}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -114,30 +164,33 @@
                                         <div class="row">
                                             <div class="selectors d-flex">
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img1" value="default" checked>
+                                                    <input type="radio" name="theme_color" id="img1" value="1" checked>
                                                     <label for="img1" class="selector default"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img2" value="green">
+                                                    <input type="radio" name="theme_color" id="img2" value="2">
                                                     <label for="img2" class="selector green"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img3" value="blue">
+                                                    <input type="radio" name="theme_color" id="img3" value="3">
                                                     <label for="img3" class="selector blue"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img4" value="pink">
+                                                    <input type="radio" name="theme_color" id="img4" value="4">
                                                     <label for="img4" class="selector pink"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img5" value="yellow">
+                                                    <input type="radio" name="theme_color" id="img5" value="5">
                                                     <label for="img5" class="selector yellow"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img6" value="dark">
+                                                    <input type="radio" name="theme_color" id="img6" value="6">
                                                     <label for="img6" class="selector dark"></label>
 
                                                 </div>
+                                                @error('theme_color')
+                                                        <p class="text-danger small">{{ $message }}</p>
+                                                @enderror
                                             </div>
                                         </div>
                                 </div>
@@ -177,7 +230,7 @@
 
                             <div class="modal-footer border-0 justify-content-center">
                                 {{-- Action buttons --}}
-                                <form action="#" method="post">
+                                <form action="{{ route('profile.destroy', Auth::user()->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     {{-- Cancel --}}

@@ -57,6 +57,8 @@
 
 @section('content')
 
+@extends('components.navbar-default')
+
 <div class="container-login">
     <div class="row justify-content-center m-5">
         <div class="col">

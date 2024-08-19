@@ -14,7 +14,7 @@
                 <div class="row mb-3">
                     <div class="col-11"></div>
                     <div class="col-auto ms-end">
-                        <i class="fa-regular fa-circle-xmark small"></i>
+                        <a href="{{ route('home') }}"><i class="fa-regular fa-circle-xmark small"></i></a>
                     </div>
                 </div>
                 <div class="row">
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="#" action="#">
+                    <form method="post" action="{{ route('mood.store') }}">
                         @csrf
 
                        {{-- radio buttons --}}
@@ -70,6 +70,9 @@
                                 </div>
                                 <div class="col-1"></div>
                             </div>
+                            @error('score')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
                        </div>
 
 

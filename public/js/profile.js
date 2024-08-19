@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const radioButtons = document.querySelectorAll('input[name="selector"]');
+    const radioButtons = document.querySelectorAll('input[name="theme_color"]');
 
 
     const images = document.querySelectorAll('.image');
@@ -25,5 +25,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    document.querySelector('input[name="selector"]:checked').dispatchEvent(new Event('change'));
+    document.querySelector('input[name="theme_color"]:checked').dispatchEvent(new Event('change'));
 });

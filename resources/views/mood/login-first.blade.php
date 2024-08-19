@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="#" action="#">
+                    <form method="post" action="{{ route('mood.store') }}">
                         @csrf
 
                        {{-- radio buttons --}}
@@ -42,27 +42,30 @@
                             <div class="selectors d-flex">
                                 <div class="col-1"></div>
                                 <div class="col-2">
-                                    <input type="radio" name="selector" id="img1" value="great" checked>
+                                    <input type="radio" name="score" id="img1" value="2" checked>
                                     <label for="img1" class="selector great"></label>
                                 </div>
                                 <div class="col-2">
-                                    <input type="radio" name="selector" id="img2" value="good">
+                                    <input type="radio" name="score" id="img2" value="1">
                                     <label for="img2" class="selector good"></label>
                                 </div>
                                 <div class="col-2">
-                                    <input type="radio" name="selector" id="img3" value="ok">
+                                    <input type="radio" name="score" id="img3" value="0">
                                     <label for="img3" class="selector ok"></label>
                                 </div>
                                 <div class="col-2">
-                                    <input type="radio" name="selector" id="img4" value="notgood">
+                                    <input type="radio" name="score" id="img4" value="-1">
                                     <label for="img4" class="selector notgood"></label>
                                 </div>
                                 <div class="col-2">
-                                    <input type="radio" name="selector" id="img5" value="bad">
+                                    <input type="radio" name="score" id="img5" value="-2">
                                     <label for="img5" class="selector bad"></label>
                                 </div>
                                 <div class="col-1"></div>
                             </div>
+                            @error('score')
+                                <p class="text-danger small">{{ $message }}</p>
+                            @enderror
                        </div>
 
 
