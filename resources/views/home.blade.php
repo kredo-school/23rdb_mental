@@ -208,4 +208,11 @@
         <p class="text-center">Option</p>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+console.log("test");
+})
+</script>
+
 @endsection

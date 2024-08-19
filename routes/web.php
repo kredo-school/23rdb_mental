@@ -4,12 +4,15 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\MoodController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\InquiryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\JournalController;
 
 // admin
 use App\Http\Controllers\Admin\QuotesController;
+use App\Http\Controllers\Admin\InquiriesController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,12 +57,13 @@ Route::get('/test/navbar', function () {
     Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
     Route::post('/quote/store',[QuotesController::class, 'store'])->name('quote.store');
 
+    
+    
+    // Contactus
+    Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
+    
 
-// Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' =>'admin'], function(){
 
-//     //quotes
-//     Route::get('/admin/quote', [QuotesController::class, 'index'])->name('quote'); // admin.quote
-// });
 
 Auth::routes();
 
@@ -80,3 +84,10 @@ Route::patch('/journal/{id}/update', [JournalController::class, 'update'])->name
 Route::patch('/journal/{id}/update_like', [JournalController::class, 'update_like'])->name('journal.update_like');
 Route::patch('/journal/{id}/reply', [JournalController::class, 'reply'])->name('journal.reply');
 Route::delete('/journal/{id}/destroy', [JournalController::class, 'destroy'])->name('journal.destroy');
+
+
+/**
+ * route related to contactus
+ */
+Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
+// Route::get('/contactus/complete', [InquiryController::class, 'show'])->name('inquiry.complete');

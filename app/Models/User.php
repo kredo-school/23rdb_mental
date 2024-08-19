@@ -60,4 +60,14 @@ class User extends Authenticatable
     public function moods() {
         return $this->hasMany(Mood::class);
     }
+
+
+
+    /**
+     *  use this method to get all the inquiries of a user
+     */
+    public function inquiries(){
+        return $this->hasMany(Inquiry::class);
+    }
+
 }

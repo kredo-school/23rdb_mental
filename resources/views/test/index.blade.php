@@ -32,11 +32,14 @@
 
         <br><br>
         Go Back to Home<br>
-        <button class="btn-home">Go Back to Home</button>
+        <button class="btn-home" data-bs-toggle="modal" data-bs-target="#">Go Back to Home</button>
 
         <br><br>
         Contact Us<br>
         <button class="btn-contact">Contact Us</button>
+
+        <button class="btn-contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</button>
+        
 
         <br><br>
         Logout<br>
@@ -53,6 +56,12 @@
     <img src="{{ asset('images/main/remichan.png') }}" style="width: 300px" alt="logo">
 
 
+    @include('contactus.modals.inquiry')
+    @include('contactus.modals.submitcomplete')
 
+@endsection
 
+@section('scripts')
+<script src="{{ asset('js/inquiry.js') }}">
+</script>
 @endsection
