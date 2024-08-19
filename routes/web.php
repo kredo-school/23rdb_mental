@@ -23,14 +23,16 @@ Route::middleware('auth')->group(function () {
     // PROFILE
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/profile/setting', [ProfileController::class, 'setting'])->name('profile.setting');
+    Route::patch('/profile/update2', [ProfileController::class, 'update2'])->name('profile.update2');
+    Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/{id}/setting', [ProfileController::class, 'setting'])->name('profile.setting');
     Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
 
     // MOOD
     Route::get('/mood/create1', [MoodController::class, 'create1'])->name('mood.save1');
     Route::get('/mood/create', [MoodController::class, 'create'])->name('mood.create');
     Route::get('mood/index', [MoodController::class, 'index'])->name('mood.index');
+    Route::post('/mood/store', [MoodController::class, 'store'])->name('mood.store');
 });
 
 
@@ -51,7 +53,7 @@ Route::get('/test/navbar', function () {
 
     Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
     Route::post('/quote/store',[QuotesController::class, 'store'])->name('quote.store');
-    
+
 
 // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' =>'admin'], function(){
 
@@ -64,7 +66,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-/** 
+/**
  * routes related to bookmarks
  */
 Route::post('/bookmark/{bookmark_id}/store', [BookmarkController::class, 'store'])->name('bookmark.store');

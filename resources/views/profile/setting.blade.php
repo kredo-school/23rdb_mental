@@ -16,7 +16,7 @@
                             <img src="{{ asset('images/main/remichan.png') }}" class="remichan" alt="remichan">
                         </div>
                         <div class="col my-auto">
-                            <h2>Hi #Username</h2>
+                            <h2>Hi {{ $user->name }}!</h2>
                             <p class="small">Thank you for registering! First, let's set your profile!</p>
                         </div>
                     </div>
@@ -24,9 +24,9 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <form method="#" action="#" class="mb-0" autocomplete="off" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('profile.update') }}" class="mb-0" enctype="multipart/form-data">
                         @csrf
-
+                        @method('PATCH')
                         <div class="row mt-5">
                             {{-- left column --}}
                             <div class="col-5">
@@ -39,6 +39,9 @@
                                 <div class="row mt-5">
                                     <label for="avatar" class="form-label">Upload your avatar</label>
                                     <input type="file" name="avatar" id="avatar" class="form-control">
+                                    @error('avatar')
+                                        <p class="mb-0 text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -77,31 +80,35 @@
                                         <div class="row">
                                             <div class="selectors d-flex">
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img1" value="default" checked>
+                                                    <input type="radio" name="theme_color" id="img1" value="1" checked>
                                                     <label for="img1" class="selector default"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img2" value="green">
+                                                    <input type="radio" name="theme_color" id="img2" value="2">
                                                     <label for="img2" class="selector green"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img3" value="blue">
+                                                    <input type="radio" name="theme_color" id="img3" value="3">
                                                     <label for="img3" class="selector blue"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img4" value="pink">
+                                                    <input type="radio" name="theme_color" id="img4" value="4">
                                                     <label for="img4" class="selector pink"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img5" value="yellow">
+                                                    <input type="radio" name="theme_color" id="img5" value="5">
                                                     <label for="img5" class="selector yellow"></label>
                                                 </div>
                                                 <div class="col-2">
-                                                    <input type="radio" name="selector" id="img6" value="dark">
+                                                    <input type="radio" name="theme_color" id="img6" value="6">
                                                     <label for="img6" class="selector dark"></label>
 
                                                 </div>
+
                                             </div>
+                                            @error('theme_color')
+                                                <p class="mb-0 text-danger small">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                     </div>
 
