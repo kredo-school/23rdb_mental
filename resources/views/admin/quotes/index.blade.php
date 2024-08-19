@@ -12,10 +12,15 @@
 
     <div class="container-fluid">
         <div class="row justify-content-center">
+
+            
             <div class="col-2 bg-warning">
                 <p></p>
                 
             </div>
+
+
+
             <div class="col-10 py-4 quote-body-size">
                 <div class="row">
                     <div class="col-1"></div>
@@ -168,7 +173,6 @@
             </div>
         </div>
     </div>
-
 
 
 

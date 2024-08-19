@@ -68,13 +68,6 @@ class QuotesController extends Controller
     }
 
   
-    // public function quoteAll(){
-    //     $quote_count = $this->quote;
-    //     return view('admin.quotes.index')
-    //         ->with('quote_count', $quote_count);
-    // }
-      
-
    
 
 
