@@ -34,35 +34,6 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-dark navbar-expand-md">
-            <div class="container-fluid">
-                    <!-- Left Side Of Navbar -->
-                    <a class="navbar-brand ms-5 justify-content-center" href="#">
-                        <img src="{{ asset('images/main/logo_sm.png') }}" alt="logo">
-                    </a>
-
-                    <!-- Toggler button for narrow view -->
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        @guest
-                            @if (Route::has('login'))
-                                <a href="{{ route('login') }}" class="btn-login">Login</a>
-                            @endif
-                        @else
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="btn-logout">Logout</button>
-                            </form>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
         <main>
             @yield('content')
         </main>

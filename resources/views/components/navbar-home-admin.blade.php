@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 @extends('layouts.app')
 
-@section('title', 'Home Navbar')
+@section('title', 'home-admin')
 
 @section('content')
 
 <nav class="navbar navbar-dark navbar-expand-md">
     <div class="container-fluid">
         <!-- Left Side Of Navbar -->
-        <a class="navbar-brand ms-5 justify-content-center" href="#">
+        <a class="navbar-brand ms-5 justify-content-center" href="{{ route('home') }}">
             <img src="{{ asset('images/main/logo_sm.png') }}" alt="logo">
         </a>
 
@@ -19,19 +19,19 @@
 
         <!-- Menu Icons -->
         <div class="nav_inner">
-            <a href="/index.php"><p class="nav_icon"><img src="{{ asset('images/navigation/home_icon.png') }}" alt="home"><br>Home</p></a>
-            <a href="/index.php"><p class="nav_icon"><img src="{{ asset('images/navigation/mood_icon.png') }}" alt="MoodTracking"><br>Mood_Tracking</p></a>
-            <a href="/index.php"><p class="nav_icon"><img src="{{ asset('images/navigation/journaling_icon.png') }}" alt="Journaling"><br>Journaling</p></a>
-            <a href="/index.php"><p class="nav_icon"><img src="{{ asset('images/navigation/quote_icon.png') }}" alt="Quote"><br>Quote</p></a>
-            <a href="/index.php"><p class="nav_icon"><img src="{{ asset('images/navigation/chat_icon.png') }}" alt="Chat"><br>Chat</p></a>
-            <a href="/index.php"><p class="nav_icon"><img src="{{ asset('images/navigation/admin_icon.png') }}" alt="Admin"><br>Admin</p></a>
+            <a href="{{ route('home') }}"><p class="nav_icon"><img src="{{ asset('images/navigation/home_icon.png') }}" alt="home"><br>Home</p></a>
+            <a href="{{ route('mood.index') }}><p class="nav_icon"><img src="{{ asset('images/navigation/mood_icon.png') }}" alt="MoodTracking"><br>Mood_Tracking</p></a>
+            <a href="{{ route('journal.journals') }}><p class="nav_icon"><img src="{{ asset('images/navigation/journaling_icon.png') }}" alt="Journaling"><br>Journaling</p></a>
+            <a href="{{ route('quotes.index') }}"><p class="nav_icon"><img src="{{ asset('images/navigation/quote_icon.png') }}" alt="Quote"><br>Quote</p></a>
+            <a href="{{ route('home') }}"><p class="nav_icon"><img src="{{ asset('images/navigation/chat_icon.png') }}" alt="Chat"><br>Chat</p></a>
+            <a href="{{ route('home') }}"><p class="nav_icon"><img src="{{ asset('images/navigation/admin_icon.png') }}" alt="Admin"><br>Admin</p></a>
         </div>
 
         <!-- Right Side Of Navbar -->
-        <div class="ml-auto">
+        <div class="ms-auto">
             <div class="collapse navbar-collapse">
-                <a href="/" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
-                <a href="/"><button class="btn-logout">Logout</button></a>
+                <a href="route('profile.show', Auth::user()->id)" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
+                <a href="{{ route('home') }}"><button class="btn-logout">Logout</button></a>
             </div>
         </div>
     </div>
