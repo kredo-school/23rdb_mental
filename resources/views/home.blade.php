@@ -58,38 +58,10 @@
             <div class="row ps-5">
                 <div class="col-8 align-self-center p-0">
                     {{-- Journaling create --}}
-                    <input type="text" name="journaling" id="journaling" class="form-control custom-placeholder shadow" placeholder="What's on your mind?" data-bs-toggle="modal" data-bs-target="#journaling-input">
-
+                    <input type="text" name="journaling" id="journaling" class="form-control custom-placeholder shadow" placeholder="What's on your mind?" data-bs-toggle="modal" data-bs-target="#add-post">
                 </div>
-                {{-- modal for journaling --}}
-                <div class="modal fade" id="journaling-input">
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                        <div class="modal-content">
+                @include('journals.contents.modals.add')
 
-                            <div class="modal-header border-0">
-                                {{-- title --}}
-                                <h1>Add Journaling</h1>
-                            </div>
-
-                            <div class="modal-body">
-                                {{-- input form --}}
-                                <input type="text" name="journaling" id="journaling" class="form-control custom-placeholder" placeholder="What's on your mind?" autofocus>
-                            </div>
-
-                            <div class="modal-footer border-0 justify-content-center">
-                                {{-- Action buttons --}}
-                                <form action="#" method="post">
-                                    @csrf
-                                    {{-- Cancel --}}
-                                    <button type="button" class="btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-                                    {{-- Save --}}
-                                    <button type="submit" class="btn-submit ms-2"><i class="fa-solid fa-circle-check"></i> Save</button>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
                 <div class="col p-0">
                     {{-- Remi-chan speaking --}}
                     <p class="small text-end p-0 m-0">

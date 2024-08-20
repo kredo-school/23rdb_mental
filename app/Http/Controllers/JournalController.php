@@ -18,13 +18,12 @@ class JournalController extends Controller
     }
 
     public function index(){
-        $all_journals = $this->journal->paginate(7);
+        $all_journals = $this->journal->where('user_id', Auth::user()->id)->get();
         return view('journals.index')->with('all_journals', $all_journals);
-        # SELECT * FROM journals ORDER BY CREATED_AT DESC;  ->latest()
     }
 
     public function search(Request $request){
-        $journals = $this->journal->where('body', 'like', '%' . $request->search . '%')->get();
+        $journals = $this->journal->where('user_id', Auth::user()->id)->where('body', 'like', '%' . $request->search . '%')->get();
         return view('journals.search')->with('journals', $journals)->with('search', $request->search);
     }
 
@@ -32,7 +31,7 @@ class JournalController extends Controller
         $request->validate([
             'journal_body' => 'required|min:1|max:1000'
         ]);
-        $this->journal->user_id = '1';//Auth::user()->id;
+        $this->journal->user_id = Auth::user()->id;
         $this->journal->body = $request->journal_body;
         $this->journal->save();
         return redirect()->back();
@@ -73,7 +72,7 @@ class JournalController extends Controller
      */
     public function destroy($id){
         $journal = $this->journal->findOrFail($id);
-        $journal->delete(); //delete entirely
+        $journal->delete();
         return redirect()->back();
     }
 }
