@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mood;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -36,5 +38,19 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        $today = now()->toDateString();
+        $moodSubmit = Mood::where('user_id', $user->id)
+                                  ->whereDate('created_at', $today)
+                                  ->exists();
+
+        if (!$moodSubmit) {
+            return redirect()->route('mood.save1');
+        }
+
+        return redirect()->route('mood.create');
     }
 }

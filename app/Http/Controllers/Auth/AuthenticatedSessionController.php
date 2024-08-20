@@ -8,6 +8,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
+
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -30,6 +34,35 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
+
+    // public function redirectTo(Request $request)
+    // {
+    //     Log::info('Start code');
+
+    //     try{
+    //     $user = Auth::user();
+
+    //     if (!$user) {
+    //         return redirect()->route('login'); // Redirect to login if no user is authenticated
+    //     }
+
+    //     if ($user->first_login) {
+    //         // Update the first_login field to false
+    //         $user->first_login == 0;
+    //         $user->save();
+
+    //         // Redirect to the first-time login page
+    //         return redirect()->route('profile.setting', Auth::user()->id);
+    //     } else {
+    //         return redirect()->intended('mood.save1');
+    //     }
+
+    //     } catch (\Exception $e) {
+    //         Log::error('Failed: ' . $e->getMessage());
+    //         return redirect()->back()->withErrors(['error' => 'Failed'])
+    //         ;
+    //     }
+    // }
 
     /**
      * Destroy an authenticated session.

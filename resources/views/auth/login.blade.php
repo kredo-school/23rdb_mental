@@ -51,7 +51,7 @@
 {{-- Style CSS --}}
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
 
 @section('title', 'Login')
 
@@ -136,7 +136,7 @@
 
 
                         <div class="row mb-0 justify-content-center">
-                            <p class="text-sm text-center mb-0">Don't you have an account? &nbsp; &nbsp;<a href="#" class="link text-decoration-none">Sign up now</a></p>
+                            <p class="text-sm text-center mb-0">Don't you have an account? &nbsp; &nbsp;<a href="{{ route('register') }}" class="link text-decoration-none">Sign up now</a></p>
                         </div>
                     </form>
                 </div>
