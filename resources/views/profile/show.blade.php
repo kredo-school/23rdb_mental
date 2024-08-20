@@ -1,12 +1,14 @@
 <link rel="stylesheet" href="{{ asset('css/profile-show.css') }}">
 
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
+@extends('components.navbar-each')
 
 @section('title', 'Profile')
 
 @section('content')
 
-    <div class="container-profile-show justify-content-center m-5">
+@extends('components.sidebar')
+    <div class="container-profile-show my-5">
 
         {{-- Profile Section --}}
         <div class="card card-profile mb-5 mx-auto py-3 px-5 bg-white">

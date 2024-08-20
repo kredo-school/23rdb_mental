@@ -80,7 +80,7 @@
                         </div>
 
                         <div class="row mb-0 justify-content-center">
-                            <p class="text-sm text-center mb-0">Have an account already? &nbsp; &nbsp;<a href="#" class="link text-decoration-none">Log in</a></p>
+                            <p class="text-sm text-center mb-0">Have an account already? &nbsp; &nbsp;<a href="{{ route('login') }}" class="link text-decoration-none">Log in</a></p>
                     </form>
                 </div>
             </div>

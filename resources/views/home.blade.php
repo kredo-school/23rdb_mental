@@ -5,6 +5,7 @@
 
 @section('content')
 
+
 {{-- Today's Quote Section--}}
 <div class="p-5 bg-white">
     <div class="container-quote">

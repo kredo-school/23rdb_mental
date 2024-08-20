@@ -8,7 +8,13 @@ body {
     /* position: relative; */
 }
 
+.container-profile-show {
+    margin-left: 444px;
+    margin-right: 164px;
+}
+
 .card {
+
     width: 800px;
 
 }
