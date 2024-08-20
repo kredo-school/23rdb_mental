@@ -46,6 +46,22 @@ Route::get('/test', [TestController::class, 'index']);
 Route::get('/test/navbar', function () {
     return view('test.navbar');
 });
+Route::get('/components/navbar-default', function () {
+    return view('components.navbar-default');
+});
+Route::get('/components/navbar-each', function () {
+    return view('components.navbar-each');
+});
+Route::get('/components/navbar-home', function () {
+    return view('components.navbar-home');
+});
+Route::get('/components/navbar-home-admin', function () {
+    return view('components.navbar-home-admin');
+});
+Route::get('/components/navbar-users', function () {
+    return view('components.navbar-users');
+});
+
 
 
 //admin route

@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 @extends('layouts.app')
 
-@section('title', 'Users Navbar')
+@section('title', 'users')
 
 @section('content')
 
 <nav class="navbar navbar-dark navbar-expand-md">
     <div class="container-fluid">
         <!-- Left Side Of Navbar -->
-        <a class="navbar-brand ms-5 justify-content-center" href="#">
+        <a class="navbar-brand ms-5 justify-content-center" href="{{ route('home') }}">
             <img src="{{ asset('images/main/logo_sm.png') }}" alt="logo">
         </a>
 
@@ -18,10 +18,10 @@
         </button>
 
         <!-- Right Side Of Navbar -->
-        <div class="ml-auto">
+        <div class="ms-auto">
             <div class="collapse navbar-collapse">
-                <a href="/" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
-                <a href="/"><button class="btn-logout">Logout</button></a>
+                <a href="route('profile.show', Auth::user()->id)" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
+                <a href="{{ route('home') }}"><button class="btn-logout">Logout</button></a>
             </div>
         </div>
     </div>
