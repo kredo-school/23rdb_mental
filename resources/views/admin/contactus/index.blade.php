@@ -56,9 +56,10 @@
                             <th class="text-center th-wssmall">#</th>
                             <th class="text-center th-wsmall">Avatar</th>
                             <th class="text-center th-wsmedium">Username</th>
-                            <th class="text-center">Email</th>
-                            <th class="text-center">Inquiry</th>
-                            <th class="text-center">Date</th>
+                            <th class="text-center th-wmedium">Email</th>
+                            <th class="text-center th-wlarge">Inquiry</th>
+                            <th class="text-center th-wsmedium">Date</th>
+
                         </tr>
 
                     </thead>
@@ -71,9 +72,9 @@
                             </td>
                             <td class="th-wsmall">
                                 @if ($inquiry->user->avatar)
-                                <img src="{{ $user->avatar }}" alt="" class="rounded-circle d-block mx-auto avatar-lg">
+                                <img src="{{ $user->avatar }}" alt="" class="rounded-circle d-block avatar-lg">
                             @else
-                                <i class="fa-solid fa-circle-user d-block text-center icon-md"></i>
+                            <i class="fa-solid fa-circle-user d-block text-center avatar-lg"></i>
                             @endif
                             </td>
             
@@ -85,13 +86,23 @@
                                 {{ $inquiry->user->email }}
                             </td>
 
-                            <td class="w-100 px-2">
-                                <a href="" class="text-decoration-none inquiry-detail-a text-truncate" data-bs-toggle="modal" data-bs-target="#inquiryDetail">{{ $inquiry->body }}</a>
+                            <td class="px-2 text-truncate">
+                                <div class="row">
+                                    <div class="col-10 align-items-center text-truncate inquiry-detail-a">
+                                    {{ $inquiry->body}}
+                                    </div>
+                                    <div class="col-2 justify-content-end">
+                                        <button type="button" class="btn btn-border-none text-decoration-underline td-details" data-bs-toggle="modal" data-bs-target="#inquiryDetail" data-id="{{ $inquiry->id }}" data-username="{{ $inquiry->user->name }}" data-email="{{ $inquiry->user->email }}" data-body="{{ $inquiry->body }}">more details</button>
+                                    </div>
+                                </div>
                              </td>
 
-                             <td class="text-center">
-                                {{ $inquiry->created_at }}
+                             <td class="text-center td-date">
+                                <p class="mb-0 px-0">
+                                {{ $inquiry->created_at }}</p>
                              </td>
+                             
+                             @include('admin.contactus.modals.details')
 
                         </tr>
 
@@ -102,7 +113,7 @@
 
                         @endforelse
                     </tbody>
-
+                    
                 </table>
 
                 <div class="d-flex justify-content-center">
@@ -112,13 +123,7 @@
             </div>
         </div>
     </div>
-
-    @include('admin.contactus.modals.details')
-
-
-
-
-    
+    <script src="{{ asset('js/inquiry-modal.js') }}"></script>
 </body>
 
 

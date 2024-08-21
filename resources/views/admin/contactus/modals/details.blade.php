@@ -8,7 +8,8 @@
             
                 <div class="modal-header mt-3 mb-4">
                     <h2 class="modal-title">
-                            Details
+                        Details - Quote # 
+                        <p id="modal-id" class="d-inline"></p>
                     </h2>
                 </div>
 
@@ -21,9 +22,10 @@
                             <label for="staticname" class="col-sm-2 col-form-label text-end">Username</label>
                             
                             <div class="col-sm-10 ps-5">
-                              <input type="text" readonly class="form-control-plaintext" id="staticname" value="{{ $inquiry->user_id }}">
+                                <p type="text" class="ms-1" readonly class="form-control-plaintext" id="modal-username"></p>
 
-                              @error('staticname')
+
+                              @error('modal-username')
                             <div class="text-danger small">{{ $message }}</div>  
                             @enderror
                             </div>
@@ -32,10 +34,11 @@
                         <div class="mb-3 row">
                             <label for="staticEmail" class="col-sm-2 col-form-label text-end">Email</label>
 
-                            <div class="col-sm-10 ps-5">
-                              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ $inquiry->user_id}}">
+                            <div class="col-sm-8 ps-5">
+                                <p type="text" class="ms-1" readonly class="form-control-plaintext" id="modal-email"></p>
+  
 
-                              @error('staticemail')
+                              @error('modal-email')
                             <div class="text-danger small">{{ $message }}</div>  
                             @enderror
                             </div>
@@ -44,13 +47,14 @@
                           <div class="mb-3 row">
 
                                 <label for="staticinquiry" class="col-sm-2 col-form-label text-end">Inquiry</label>
-                            
-                                <textarea class="col-sm-10 ms-5 form-control-lg border-0 inquiry-frame1 w-75" name="inquiry" id="inquiry">{{ $inquiry->body }}</textarea>
+                                <div class="col-sm-8 ps-5">
+                                <p class="col-sm-10 ms-1 form-control-lg border-0 inquiry-frame1 bg-warning w-75" id="modal-body"></p>
+
                                 
-                                @error('inquiry')
+                                @error('modal-body')
                                 <div class="text-danger small">{{ $message }}</div>  
                                 @enderror
-
+                            </div>
                             </div>
 
                         
@@ -65,6 +69,7 @@
                             </div>
                         </div>
                     </form>
+                       
         </div>
     </div>
  </div>
