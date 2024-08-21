@@ -5,13 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Inquiry;
+use App\Models\User;
+
 
 class InquiriesController extends Controller
 {
     private $inquiry;
+    private $users;
 
-    public function __construct(Inquiry $inquiry){
+
+    public function __construct(Inquiry $inquiry, User $user){
         $this->inquiry = $inquiry;
+        $this->user = $user;
+
     }
 
     public function index(){

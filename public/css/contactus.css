@@ -29,6 +29,14 @@ th {
 .th-wsmedium{
     width: 12%;
 }
+.th-wmedium{
+    width: 20%;
+}
+
+.th-wlarge{
+    width: 45%;
+}
+
 
 
 td {
@@ -36,6 +44,20 @@ td {
     font-family: "Lato", sans-serif;
     font-size: 20px;
 }
+.td-date{
+    color: #42484D !important; 
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+}
+
+.td-details{
+    color: #42484D !important; 
+    font-family: "Lato", sans-serif;
+    font-size: 13px;
+    color: #6BB7F6 !important;
+}
+
+
 
 
 .inquiry-modal {
@@ -91,4 +113,14 @@ td {
     line-height: 150%;
     color: #42484D; 
     font-size: 20px;
+    width: 400px;
+}
+
+.avatar-lg{
+    /* width: 2rem;
+    height: 2rem; */
+    object-fit: cover;
+    color: #979a9b;
+    font-size: 36px;
+
 }
