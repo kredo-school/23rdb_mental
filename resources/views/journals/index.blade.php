@@ -1,4 +1,5 @@
-@extends('layouts.app')
+@extends('components.navbar-each')
+@extends('components.sidebar')
 
 @section('title', 'Journal')
 
@@ -8,11 +9,8 @@
     <link rel="stylesheet" href="{{ asset('css/journal.css') }}">
 </head>
 
-<div class="row">
-    <div class="col-2 bg-secondary">
-        nav
-    </div>
-    <div class="col-10 mt-4">
+<div>
+    <div class="mt-4" style="margin-left:200px;">
         <div class="w-75 mx-auto">
 
             <div class="input-group mb-3" data-bs-toggle="modal" data-bs-target="#add-post">
@@ -54,7 +52,6 @@
                               </div>
 
                             <input type="text" class="form-control d-inline text-muted" style="width:150px;" name="search" placeholder="keyword" value="">
-                            <!-- <i class="fa-solid fa-magnifying-glass d-inline"></i> -->
                         </form>
                 </form>
             </div>
@@ -116,8 +113,8 @@
                     </div>
                 </div>
             @empty
-                <div colspan="7" class="lead text-muted text-center">
-                    No Jpurnal Found.
+                <div class="lead text-muted text-center">
+                    No Journal Found.
                 </div>
             @endforelse
         </div>
