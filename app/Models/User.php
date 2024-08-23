@@ -70,4 +70,9 @@ class User extends Authenticatable
         return $this->hasMany(Inquiry::class);
     }
 
+    public function deletionReason()
+    {
+        return $this->hasOne(DeletionReason::class);
+    }
+
 }

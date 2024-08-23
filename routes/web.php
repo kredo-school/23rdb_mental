@@ -27,7 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::patch('/profile/update2', [ProfileController::class, 'update2'])->name('profile.update2');
-    Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/deletion-reason/store', [ProfileController::class, 'deletionReason'])->name('deletion-reason.store');
+    // Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/{id}/setting', [ProfileController::class, 'setting'])->name('profile.setting');
     Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
 
@@ -73,11 +74,11 @@ Route::get('/components/navbar-users', function () {
     Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
     Route::post('/quote/store',[QuotesController::class, 'store'])->name('quote.store');
 
-    
-    
+
+
     // Contactus
     Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
-    
+
 
 
 
