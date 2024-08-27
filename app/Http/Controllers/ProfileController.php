@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
-use App\Models\DeletionReason;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -104,7 +102,6 @@ class ProfileController extends Controller
 
     public function update2(Request $request)
     {
-        try{
         $request->validate([
             'avatar'          => 'mimes:jpeg,jpg,png.gif',
             'name'            => 'required|max:50',
@@ -114,7 +111,7 @@ class ProfileController extends Controller
             'username'        => 'max:50',
             'theme_color'     => 'required|digits_between :1, 6',
             'location'        => 'max:50',
-            'birthday'        => 'nullable','date_format:Y-m-d'
+            'birthday'        => 'date_format:Y-m-d'
         ]);
 
         $user_a = $this->user->findOrFail(Auth::user()->id);
@@ -132,12 +129,6 @@ class ProfileController extends Controller
 
         $user_a->save();
         return redirect()->back();
-    } catch (\Exception $e) {
-        Log::error('Failed: ' . $e->getMessage());
-        return redirect()->back()->withErrors(['error' => 'Failed'])
-        ;
-
-};
     }
 
     /**
@@ -161,40 +152,12 @@ class ProfileController extends Controller
     //     return Redirect::to('/login');
     // }
 
-    public function deletionReason(Request $request)
+    public function destroy($id)
     {
-        try {
-            $request->validate([
-                'reason' => 'required|max:200'
-            ]);
+        $user_a = $this->user->findOrFail($id);
+        $user_a->forceDelete();
+        Auth::logout();
+        return redirect()->route('login');
 
-            $user = $request->user();
-            $reason = $request->input('reason');
-
-            // user_id is irrelevant, we just need the feedback from the users for application/service improvement, removal of the user_id in this function does not hinder the functionality, user_id may be replaced by 'name' or 'email' for future projects and the functionality should remain the same as long as the data type is consistent in the db and in the blade file (Form)
-
-            DB::table('deletion_reasons')->insert([
-                'user_id' => $user->id,
-                'reason' => $reason,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-
-            DB::table('users')->where('id', $user->id)->delete();
-
-            Auth::logout();
-
-            return redirect('/login')->with('status', 'Your account has been deleted successfully.');
-
-            // $this->user->deletion_reasons->reason = $request->reason;
-
-            // $this->user->deletion_reason->save();
-
-        } catch (\Exception $e) {
-            Log::error('Failed: ' . $e->getMessage());
-            return redirect()->back()->withErrors(['error' => 'Failed'])
-            ;
-        };
     }
-
 }

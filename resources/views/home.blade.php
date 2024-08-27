@@ -43,7 +43,7 @@
 
 {{-- Journaling section --}}
 <div class="container-journaling m-5">
-    <div class="card bg-white py-3 px-5 border-0">
+    <div class="card bg-white py-3 px-5">
         <div class="card-header bg-white">
             {{-- Title --}}
             <h1 class="m-0 align-self-center float-start">Journaling</h1>
@@ -142,7 +142,7 @@
 
 {{-- Chat Room Section --}}
 <div class="container-chat m-5">
-    <div class="card bg-white py-3 px-5 border-0">
+    <div class="card bg-white py-3 px-5">
 
         <div class="card-header bg-white mb-3 border-0">
             {{-- Title --}}
@@ -177,7 +177,7 @@
 
 {{-- Option --}}
 <div class="container-option m-5">
-    <div class="card bg-white py-3 px-5 border-0">
+    <div class="card bg-white py-3 px-5">
         <p class="text-center">Option</p>
     </div>
 </div>
