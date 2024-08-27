@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\ChatroomController;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\ChatroomController;
+use App\Http\Controllers\MessagesController;
 
 // admin
 use App\Http\Controllers\Admin\QuotesController;
