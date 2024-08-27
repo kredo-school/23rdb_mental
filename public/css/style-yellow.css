@@ -1,0 +1,276 @@
+/* Basic Style */
+body {
+    font-family: "Lato", sans-serif;
+    color: #42484D;
+    font-size: 20px;
+}
+
+/* Font Family */
+h1, h2, h3, p, footer {
+    font-family: "Lato", sans-serif;
+    color: #42484D;
+}
+
+/* Nav bar */
+.navbar {
+    background-color: #FBBC06;
+    font-weight: bold;
+    font-family: "Lato", sans-serif;
+    color: #fff;
+    position: relative;
+}
+
+.nav-link {
+    font-family: "Lato", sans-serif;
+    font-size: inherit;
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+    color: #fff;
+
+}
+
+/* Font Size */
+.caption {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 35px;
+}
+
+h3 {
+    font-size: 27px;
+}
+
+/* Action Buttons */
+.btn-submit {
+    border-radius: 10px;
+    background-color: #5D84F4;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+}
+
+.btn-submit:hover,
+.btn-submit:focus {
+    color: #5D84F4;
+    background-color: #DEE6FD;
+    text-decoration: none;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+}
+
+.btn-save {
+    border-radius: 10px;
+    background-color: #5D84F4;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+}
+
+.btn-save:hover,
+.btn-save:focus {
+    color: #5D84F4;
+    background-color: #DEE6FD;
+    text-decoration: none;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+}
+
+.btn-edit {
+    background-color: #fff;
+    color: #5D84F4;
+    border: 2px solid #5D84F4;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-family: "Lato", sans-serif;
+
+}
+
+.btn-edit:hover,
+.btn-edit:focus {
+    color: #bdcdff;
+    background-color: #5D84F4;
+    text-decoration: none;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+    border: none;
+
+}
+
+.btn-delete {
+    background-color: #FC6746;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+}
+
+.btn-delete:hover,
+.btn-delete:focus {
+    color: #fc6746b7;
+    background-color: #fc674654;
+    text-decoration: none;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+}
+
+.btn-hide {
+    background-color: #FC6746;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+}
+
+.btn-hide:hover,
+.btn-hide:focus {
+    color: #fc6746b7;
+    background-color: #fc674654;
+    text-decoration: none;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+}
+
+.btn-cancel {
+    background-color: #6f7172;
+    color: #fff;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    /* text-shadow: rgba(0,0,0,0.5) 2px 2px 0; */
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+    letter-spacing: 0.04em;
+
+}
+
+.btn-cancel:hover,
+.btn-cancel:focus {
+    color: #6f7172;
+    background-color: #dddddd;
+    text-decoration: none;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+
+}
+
+.btn-home {
+    background-color: #fff;
+    color: #6c6c6c;
+    /* border-color: #BABEBF; */
+    /* border: none; */
+    border: 2px solid #6c6c6c;
+    width: 225px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+
+}
+
+.btn-home:hover,
+.btn-home:focus {
+    color: #6c6c6c;
+    background-color: #dddddd;
+    text-decoration: none;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+
+}
+
+.btn-contact {
+    background-color: #979a9b;
+    color: #494e51;
+    border: none;
+    width: 160px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-weight: 650;
+    font-family: "Lato", sans-serif;
+}
+
+.btn-cancel:hover,
+.btn-cancel:focus {
+    color: #494e51;
+    background-color: #979a9b;
+    text-decoration: none;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+
+}
+
+.btn-login {
+    background-color: transparent;
+    color: #e1e1e1;
+    border: 1.5px solid #e1e1e1;
+    width: 85px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 7px;
+    font-family: "Lato", sans-serif;
+    margin-right: 20px;
+
+}
+
+.btn-login:hover,
+.btn-login:focus,
+.btn-logout:hover,
+.btn-logout:focus {
+    color: #6C757D;
+    background-color: #e1e1e1;
+    text-decoration: none;
+    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+    border: none;
+}
+
+.btn-logout {
+    background-color: transparent;
+    color: #e1e1e1;
+    border: 1.5px solid #e1e1e1;
+    width: 85px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 7px;
+    font-family: "Lato", sans-serif;
+    margin-right: 20px;
+
+}
+.btn-register {
+    background-color: transparent;
+    color: #e1e1e1;
+    border: 1.5px solid #e1e1e1;
+    width: 85px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 7px;
+    font-family: "Lato", sans-serif;
+    margin-right: 20px;
+}
+
