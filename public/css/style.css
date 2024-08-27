@@ -1,9 +1,18 @@
 /* Basic Style */
-body {
+
+.body-basic {
     font-family: "Lato", sans-serif;
     color: #42484D;
     font-size: 20px;
 }
+
+/* bodyが複数のcssファイルで使われいてるため、固有のものに変更しました。 */
+
+/* body {
+    font-family: "Lato", sans-serif;
+    color: #42484D;
+    font-size: 20px;
+} */
 
 /* Font Family */
 h1, h2, h3, p, footer {
