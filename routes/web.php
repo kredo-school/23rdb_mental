@@ -8,11 +8,13 @@ use App\Http\Controllers\InquiryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\JournalController;
+use App\Http\Controllers\ChatroomController;
+use App\Http\Controllers\MessagesController;
 
 // admin
 use App\Http\Controllers\Admin\QuotesController;
 use App\Http\Controllers\Admin\InquiriesController;
-
+use App\Http\Controllers\Admin\ChatsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,8 +45,11 @@ require __DIR__.'/auth.php';
 
 // Test Page
 Route::get('/test', [TestController::class, 'index']);
-Route::get('/test/navbar', function () {
-    return view('test.navbar');
+// Route::get('/test/navbar', function () {
+//     return view('test.navbar');
+// });
+Route::get('/test/test', function () {
+    return view('test.test');
 });
 Route::get('/components/navbar-default', function () {
     return view('components.navbar-default');
@@ -61,6 +66,17 @@ Route::get('/components/navbar-home-admin', function () {
 Route::get('/components/navbar-users', function () {
     return view('components.navbar-users');
 });
+Route::get('/components/sidebar', function () {
+    return view('components.sidebar');
+});
+Route::get('/components/sidebar-admin', function () {
+    return view('components.sidebar-admin');
+});
+Route::get('/components/footer', function () {
+    return view('components.footer');
+});
+
+
 
 
 
@@ -78,8 +94,11 @@ Route::get('/components/navbar-users', function () {
     // Contactus
     Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
     
-
-
+    // chats
+    Route::get('/admin/chats', [ChatsController::class, 'index'])->name('admin.chats.index');
+    Route::get('/admin/chats/search', [ChatsController::class, 'search'])->name('admin.chats.search');
+    Route::patch('/admin/chats/{id}/update', [ChatsController::class, 'update'])->name('admin.chats.update');
+    Route::delete('/admin/chats/{id}/destroy', [ChatsController::class, 'destroy'])->name('admin.chats.destroy');
 
 Auth::routes();
 
@@ -100,6 +119,15 @@ Route::patch('/journal/{id}/update', [JournalController::class, 'update'])->name
 Route::patch('/journal/{id}/update_like', [JournalController::class, 'update_like'])->name('journal.update_like');
 Route::patch('/journal/{id}/reply', [JournalController::class, 'reply'])->name('journal.reply');
 Route::delete('/journal/{id}/destroy', [JournalController::class, 'destroy'])->name('journal.destroy');
+
+// chatroom
+Route::get('/chatroom', [ChatroomController::class, 'index'])->name('chatroom.index');
+Route::get('/chatroom/search', [ChatroomController::class, 'search'])->name('chatroom.search');
+Route::post('/chatroom/store', [ChatroomController::class, 'store'])->name('chatroom.store');
+Route::patch('/chatroom/{id}/update', [ChatroomController::class, 'update'])->name('chatroom.update');
+Route::delete('/chatroom/{id}/destroy', [ChatroomController::class, 'destroy'])->name('chatroom.destroy');
+
+Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
 
 
 /**

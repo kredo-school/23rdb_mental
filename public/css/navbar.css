@@ -8,6 +8,7 @@
     height: 79px;
     align-items: center;
     width: 100%!important;
+    text-align: center;
 }
 
 .nav_logo {
@@ -37,17 +38,15 @@
 .nav_icon {
     margin: 0 auto;
     max-width: 600px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
-    font-family: "Lato", sans-serif;
     letter-spacing: 0.7px;
     color: #fff;
-    justify-content: center;
-    text-align: center;
+    text-decoration: none;
 }
 
 .nav_icon:hover {
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .nav_pageTitle {
@@ -90,10 +89,12 @@
     border-radius: 7px;
     margin-left: 20px;
     margin-right: 20px;
+    justify-items: center;
+    text-align: center;
 }
 
 .btn-login:hover {
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .btn-logout {
@@ -109,6 +110,8 @@
     border-radius: 7px;
     margin-left: 20px;
     margin-right: 20px;
+    justify-items: center;
+    text-align: center;
 }
 
 .btn-logout:hover {
@@ -128,6 +131,8 @@
     border-radius: 7px;
     margin-left: 20px;
     margin-right: 20px;
+    justify-items: center;
+    text-align: center;
 }
 
 .btn-register:hover {
@@ -135,17 +140,6 @@
 }
 
 /* footer */
-.btn-contact {
-    background-color: #979a9b;
-    color: #494e51;
-    border: none;
-    width: 160px;
-    height: 40px;
-    font-size: 20px;
-    border-radius: 10px;
-    font-weight: 650;
-    font-family: "Lato", sans-serif;
-}
 
 .btn-contact:hover {
     opacity: 0.7;
@@ -161,38 +155,37 @@
 .body_sidebar {
     display: block;
     position: fixed;
-    background-color: rgba(206,211,213,0.7);
     width: 280px;
     height: 100%;
-    top: 0;
+    top: 79px;
     left: 0;
+    background-color: rgba(206,211,213,0.3);
 }
 
 .sidebar_inner {
-    color: #343A40;
-    font-family: "Lato", sans-serif;
-    letter-spacing: 0.3px;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 30px;
+}
+
+.sidebar a {
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
 }
 
 .sidebar_inner_bottom {
     position: fixed;
     left: 0;
     bottom: 40px;
-    color: #343A40;
-    font-family: "Lato", sans-serif;
-    letter-spacing: 0.3px;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-left: 30px;
 }
 
-.sidebar a {
-    color: #343A40;
-    font-size: 20px;
-    font-weight: 430; 
-    list-style: none;
-    text-decoration: none;
+.sidebar_h1 {
+    font-size: 14px;
+    font-weight: 400; 
+    line-height: 1.5;
+    letter-spacing: 2px;
 }
 
 .sidebar a:hover {
@@ -200,18 +193,31 @@
 }
 
 .sidebar_icon {
+    display: flex;
+    align-items: center;
     margin: 0 auto;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
-    font-family: "Lato", sans-serif;
     letter-spacing: 0.7px;
     justify-content: left;
     text-align: left;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+}
+
+.sidebar_icon_admin {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    justify-content: left;
+    text-align: left;
+    margin-bottom: 5px;
 }
 
 .sidebar_avatar {
-    font-size: 25px;
+    font-size: 30px;
     outline: 2px solid #4945455f;
     border-radius: 100%;
     color: #343A40;
@@ -219,28 +225,41 @@
 }
 
 .sidebar_avatar:hover {
-    opacity: 0.3;
+    opacity: 0.4;
 }
 
 .sidebar_hr1{
-    border-width: 1px;
+    border-width: 2px;
     border-style: solid;
-    border-color: #4945455f; 
+    border-color: #2424245f; 
     width: 210px;
     margin-left: -45px;
 }
 
-.sidebar_hr2{
-    border-width: 1px;
-    border-style: solid;
-    border-color: #4945455f; 
-    width: 200px;
-}
-
 .ls_sidebar_admin {
     list-style: none;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.ls_sidebar_admin a{
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
+}
+
+.ls_sidebar_admin:hover{
+    background:  rgba(253, 253, 253, 0.5);
+    border-radius: 2px;
+    margin-right: 90px;
+    display: inline;
+	padding: 3px;
 }
 
 .current_page_item {
-    background-color: #aeaeae;
+    background:  rgba(253, 253, 253, 0.5);;
+    border-radius: 2px;
+    margin-right: 90px;
 }

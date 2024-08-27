@@ -188,4 +188,8 @@ console.log("test");
 })
 </script>
 
+{{-- Footer --}}
+
+
+
 @endsection
