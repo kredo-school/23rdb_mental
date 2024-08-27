@@ -23,12 +23,28 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/bootstrap.js'])
 
-
-
-    <!-- CSS -->
+    {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/default.css') }}">
-
+    {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    @if (Auth::user()->theme_color == 1)
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/default.css') }}">
+    @elseif (Auth::user()->theme_color == 2)
+        <link rel="stylesheet" href="{{ asset('css/style-green.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/green.css') }}">
+    @elseif (Auth::user()->theme_color == 3)
+        <link rel="stylesheet" href="{{ asset('css/style-blue.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/blue.css') }}">
+    @elseif (Auth::user()->theme_color == 4)
+        <link rel="stylesheet" href="{{ asset('css/style-pink.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/pink.css') }}">
+    @elseif (Auth::user()->theme_color == 5)
+        <link rel="stylesheet" href="{{ asset('css/style-yellow.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/yellow.css') }}">
+    @elseif (Auth::user()->theme_color == 6)
+        <link rel="stylesheet" href="{{ asset('css/style-dark.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/dark.css') }}">
+    @endif --}}
 
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
