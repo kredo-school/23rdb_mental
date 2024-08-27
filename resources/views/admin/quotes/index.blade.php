@@ -13,10 +13,10 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
 
-            
+
             <div class="col-2 bg-warning">
                 <p></p>
-                
+
             </div>
 
 
@@ -24,7 +24,7 @@
             <div class="col-10 py-4 quote-body-size">
                 <div class="row">
                     <div class="col-1"></div>
-                    
+
                     <div class="col-1">
                     <p class="text-primary text-end mt-1">Sort</p>
                     </div>
@@ -38,7 +38,7 @@
                               <li class="dropdown-item" href="#">Bookmarked</li>
                               <li class="dropdown-item" href="#">Hidden</li>
                             </ul>
-                       
+
 
                     </div>
 
@@ -48,13 +48,13 @@
 
                     <div class="col-3">
                         <form action="{{ route('quote.index') }}" method="get" class="input-group">
-                            <input type="text" class="form-control form-inline quote-other-btn w-75 shadow" name="search" placeholder="keywords"> 
+                            <input type="text" class="form-control form-inline quote-other-btn w-75 shadow" name="search" placeholder="keywords">
                             <span class="input-group-text quote-other-btn"><i class="fa-solid fa-magnifying-glass"></i></span>
                         {{-- value="{{ $search}}" --}}
                             {{-- @if($search)
                             @endif --}}
                         </form>
-                          
+
                     </div>
 
                     {{-- create a new quote button --}}
@@ -62,7 +62,7 @@
                         <button type="button" class="btn-submit" data-bs-toggle="modal" data-bs-target="#create-quote">
                             <i class="fa-solid fa-circle-check"></i> Add quote
                         </button>
- 
+
                     </div>
 
                     @include('admin.quotes.modals.action')
@@ -71,7 +71,7 @@
                 </div>
                 <div>
                     <p class="pb-0 mb-0 ms-4">
-                        Total : 
+                        Total :
                         <span>{{ $quotes_count->count() }}</span>
                          Quotes
                     </p>
@@ -96,17 +96,17 @@
                                 <h2 class="text-end">
                                     "
                                 </h2>
-                            
+
                             </td>
                             <td class="h2 text-center w-50">
                                 {{ $quote->quote }}
                             </td>
-                            
+
                             <td class="py-0 pe-0">
                                 <h2 class="text-start">
                                     "
                                 </h2>
-                            
+
                             </td>
 
                             <td class="text-center">
@@ -121,15 +121,15 @@
                                         @csrf
                                         @method('DELETE')
                                             <button type="submit" class="btn pe-3">
-                                            <i class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button> 
-                                        
+                                            <i class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button>
+
                                     @else
 
                                     <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
                                         @csrf
                                             <button type="submit" class="btn pe-3"><i class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
                                     </form>
-                                        
+
                                     @endif
                                 </div>
 
@@ -139,7 +139,7 @@
                                         <i class="fa-regular fa-pen-to-square pe-3 quote-edit-icon"></i>
                                     </button>
                                 </div>
-                                
+
                                 <div class="form-check form-switch form-check-inline quote-switch">
                                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
                                     <label class="form-check-label" for="flexSwitchCheckChecked">display</label>
@@ -151,8 +151,8 @@
                                         <i class="fa-solid fa-trash quote-delete-icon"></i>
                                     </button>
                                 </div>
-        
-                            </td>    
+
+                            </td>
 
                         </tr>
 
@@ -168,7 +168,7 @@
 
                 <div class="d-flex justify-content-center">
                     {{ $all_quotes->links() }}
-                </div>    
+                </div>
 
             </div>
         </div>
@@ -176,7 +176,7 @@
 
 
 
-    
+
 </body>
 
 
