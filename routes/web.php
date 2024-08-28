@@ -44,7 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/mood/store', [MoodController::class, 'store'])->name('mood.store');
 });
 
-
 require __DIR__.'/auth.php';
 
 // Test Page

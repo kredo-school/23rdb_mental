@@ -258,8 +258,6 @@
 
                             <div class="modal-footer border-0 justify-content-center">
                                 {{-- Action buttons --}}
-
-
                                     {{-- @method('DELETE') --}}
                                     {{-- Cancel --}}
                                     <button type="button" class="btn-cancel me-2"
