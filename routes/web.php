@@ -131,3 +131,4 @@ Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.ind
  */
 Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
 // Route::get('/contactus/complete', [InquiryController::class, 'show'])->name('inquiry.complete');
+
