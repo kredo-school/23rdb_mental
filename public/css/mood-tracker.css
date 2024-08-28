@@ -3,10 +3,20 @@
     margin-right: 164px;
 }
 
+/* body {
+    background-image: url(../images/background/default.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+} */
+
 .card {
-    width: 800px;
-    margin-left: 152px;
-    margin-right: 152px;
+        width: 800px;
+        margin-left: 152px;
+        margin-right: 152px;
+
+
 }
 
 .icon-sm {
@@ -27,15 +37,17 @@
 }
 
 input {
-    /* width: 742px; */
+    width: 800px;
     border-radius: 40px;
 }
+
 
 .input-size {
     width: 800;
     margin-left: 151px;
     margin-right: 151px;
 }
+
 
 .form-control {
     flex: 1;
@@ -45,9 +57,9 @@ div .rounded-input {
     border-radius: 25px;
 }
 
-/* .container-mood {
+.container-mood {
     width: 800px;
-} */
+}
 
 div.button-edit,
 div.button-delete {
@@ -139,6 +151,7 @@ p a {
 .fa-circle-xmark {
     color: #FF6BA0;
 }
+
 
 .form-position {
     margin-right: 151px;

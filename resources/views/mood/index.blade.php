@@ -1,13 +1,18 @@
 <link rel="stylesheet" href="{{ asset('css/mood-tracker.css') }}">
 @extends('components.navbar-each')
 
+{{-- @extends('layouts.app') --}}
+
 @section('title', 'Mood Tracking')
 
 @extends('components.sidebar')
 
 @section('content')
-    <div class="container-mood my-5 py-3">
-        <div class="d-flex mb-3 input-size">
+<div class="container-mood my-5 py-3">
+    <div class="d-flex mb-3 input-size">
+
+    {{-- <div class="container-mood my-5 py-3 mx-auto">
+        <div class="d-flex align-items-center mb-3"> --}}
             {{-- Avatar --}}
             <div class="icon-sm">
                 <i class="fa-solid fa-circle-user avatar"></i>
@@ -61,35 +66,36 @@
                             @csrf
 
                             {{-- radio buttons --}}
-                       <div class="row justify-content-center mb-4">
-                        <div class="selectors d-flex">
-                            <div class="col-1"></div>
-                            <div class="col-2">
-                                <input type="radio" name="score" id="img1" value="2" checked>
-                                <label for="img1" class="selector great"></label>
+                            <div class="row justify-content-center mb-4">
+                                <div class="selectors d-flex">
+                                    <div class="col-1"></div>
+                                    <div class="col-2">
+                                        <input type="radio" name="score" id="img1" value="2" checked>
+                                        <label for="img1" class="selector great"></label>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="radio" name="score" id="img2" value="1">
+                                        <label for="img2" class="selector good"></label>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="radio" name="score" id="img3" value="0">
+                                        <label for="img3" class="selector ok"></label>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="radio" name="score" id="img4" value="-1">
+                                        <label for="img4" class="selector notgood"></label>
+                                    </div>
+                                    <div class="col-2">
+                                        <input type="radio" name="score" id="img5" value="-2">
+                                        <label for="img5" class="selector bad"></label>
+                                    </div>
+                                    <div class="col-1"></div>
+                                </div>
+                                @error('score')
+                                <p class="text-danger small">{{ $message }}</p>
+                                @enderror
+
                             </div>
-                            <div class="col-2">
-                                <input type="radio" name="score" id="img2" value="1">
-                                <label for="img2" class="selector good"></label>
-                            </div>
-                            <div class="col-2">
-                                <input type="radio" name="score" id="img3" value="0">
-                                <label for="img3" class="selector ok"></label>
-                            </div>
-                            <div class="col-2">
-                                <input type="radio" name="score" id="img4" value="-1">
-                                <label for="img4" class="selector notgood"></label>
-                            </div>
-                            <div class="col-2">
-                                <input type="radio" name="score" id="img5" value="-2">
-                                <label for="img5" class="selector bad"></label>
-                            </div>
-                            <div class="col-1"></div>
-                        </div>
-                        @error('score')
-                            <p class="text-danger small">{{ $message }}</p>
-                        @enderror
-                       </div>
 
 
                             <div class="row">
@@ -121,7 +127,6 @@
                 <h1 class="text-center">Calendar(API)</h1>
             </div>
         </div>
-
         <div class="card card-mood mb-5 px-3 bg-white shadow">
             <div class="card-header bg-white">
                 {{-- Title --}}

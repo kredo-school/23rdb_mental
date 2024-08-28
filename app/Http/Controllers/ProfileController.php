@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
-use App\Models\DeletionReason;
 use Illuminate\Support\Facades\Log;
+use App\Models\DeletionReason;
 use Illuminate\Support\Facades\DB;
+
 
 class ProfileController extends Controller
 {
@@ -94,50 +95,50 @@ class ProfileController extends Controller
             $user_a->save();
             Log::info('Success!');
             return redirect()->route('mood.save1');
-
         } catch (\Exception $e) {
             Log::error('Failed: ' . $e->getMessage());
-            return redirect()->back()->withErrors(['error' => 'Failed'])
-            ;
+            return redirect()->back()->withErrors(['error' => 'Failed']);
         }
     }
 
     public function update2(Request $request)
     {
-        try{
-        $request->validate([
-            'avatar'          => 'mimes:jpeg,jpg,png.gif',
-            'name'            => 'required|max:50',
-            'email'           => 'required|max:50|email|unique:users,email,' . Auth::user()->id,
-            // Adding: unique:<table>, <column>
-            //Updating: unique:<table>, <column>, <id>
-            'username'        => 'max:50',
-            'theme_color'     => 'required|digits_between :1, 6',
-            'location'        => 'max:50',
-            'birthday'        => 'nullable','date_format:Y-m-d'
-        ]);
+        try {
 
-        $user_a = $this->user->findOrFail(Auth::user()->id);
+            $request->validate([
+                'avatar'          => 'mimes:jpeg,jpg,png.gif',
+                'name'            => 'required|max:50',
+                'email'           => 'required|max:50|email|unique:users,email,' . Auth::user()->id,
+                // Adding: unique:<table>, <column>
+                //Updating: unique:<table>, <column>, <id>
+                'username'        => 'max:50',
+                'theme_color'     => 'required|digits_between :1, 6',
+                'location'        => 'max:50',
+                'birthday'        => 'nullable',
+                'date_format:Y-m-d'
 
-        $user_a->name         = $request->name;
-        $user_a->email        = $request->email;
-        $user_a->username     = $request->username;
-        $user_a->theme_color  = $request->theme_color;
-        $user_a->location     = $request->location;
-        $user_a->birthday     = $request->birthday;
+            ]);
 
-        if ($request->avatar) {
-            $user_a->avatar   = 'data:image/' . $request->avatar->extension() . ';base64,' . base64_encode(file_get_contents($request->avatar));
-        }
+            $user_a = $this->user->findOrFail(Auth::user()->id);
 
-        $user_a->save();
-        return redirect()->back();
-    } catch (\Exception $e) {
-        Log::error('Failed: ' . $e->getMessage());
-        return redirect()->back()->withErrors(['error' => 'Failed'])
-        ;
+            $user_a->name         = $request->name;
+            $user_a->email        = $request->email;
+            $user_a->username     = $request->username;
+            $user_a->theme_color  = $request->theme_color;
+            $user_a->location     = $request->location;
+            $user_a->birthday     = $request->birthday;
 
-};
+            if ($request->avatar) {
+                $user_a->avatar   = 'data:image/' . $request->avatar->extension() . ';base64,' . base64_encode(file_get_contents($request->avatar));
+            }
+
+            $user_a->save();
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            Log::error('Failed: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Failed']);
+        };
     }
 
     /**
@@ -182,7 +183,6 @@ class ProfileController extends Controller
 
             DB::table('users')->where('id', $user->id)->delete();
 
-            Auth::logout();
 
             return redirect('/login')->with('status', 'Your account has been deleted successfully.');
 
@@ -197,4 +197,13 @@ class ProfileController extends Controller
         };
     }
 
+
+
+    // public function destroy($id)
+    // {
+    //     $user_a = $this->user->findOrFail($id);
+    //     $user_a->forceDelete();
+    //     Auth::logout();
+    //     return redirect()->route('login');
+    // }
 }

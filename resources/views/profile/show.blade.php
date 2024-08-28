@@ -160,7 +160,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <input type="text" name="location" id="location"
-                                                            class="form-control" placeholder="Tokyo, Japan"
+                                                            class="form-control"
                                                             value="{{ old('location', Auth::user()->location) }}">
                                                     </div>
                                                     @error('location')
@@ -241,32 +241,33 @@
 
                             <div class="modal-body p-5">
                                 <form action="{{ route('deletion-reason.store') }}" method="post">
-                                @csrf
+                                    @csrf
+
                                     <div class="row justify-content-center">
                                         <div class="col-8">
                                             <p class="text-center">
                                                 Are you sure you want to delete your account? <br>Please tell us the reason:
                                             </p>
                                             {{-- input form --}}
-                                            <textarea name="reason" id="reason" cols="30" rows="5" class="form-control" placeholder="Reason why you want to delete..."></textarea>
+                                            <textarea name="reason" id="reason" cols="30" rows="5" class="form-control"
+                                                placeholder="Reason why you want to delete..."></textarea>
+                                            @error('reason')
+                                                <p class="text-danger small">{{ $message }}</p>
+                                            @enderror
+
                                         </div>
-                                        @error('reason')
-                                            <p class="text-danger small">{{ $message }}</p>
-                                        @enderror
                                     </div>
                             </div>
 
                             <div class="modal-footer border-0 justify-content-center">
                                 {{-- Action buttons --}}
-                                    {{-- @method('DELETE') --}}
-                                    {{-- Cancel --}}
-                                    <button type="button" class="btn-cancel me-2"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    {{-- Save deletion reason/Delete account --}}
-                                    <button type="submit" class="btn-delete ms-2"><i class="fa-solid fa-trash-can"></i>
-                                        Delete</button>
+                                {{-- @method('DELETE') --}}
+                                {{-- Cancel --}}
+                                <button type="button" class="btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                {{-- Save --}}
+                                <button type="submit" class="btn-delete ms-2"><i class="fa-solid fa-trash-can"></i>
+                                    Delete</button>
                                 </form>
-
                             </div>
 
                         </div>
