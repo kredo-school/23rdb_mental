@@ -32,9 +32,13 @@
         <div class="ms-auto">
             <div class="collapse navbar-collapse">
                 <a href="route('profile.show', Auth::user()->id)" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
-                <form method="POST" action="{{ route('logout') }}">
+                <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                <button class="btn-logout">Logout</button>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
-                    <button type="submit" class="btn-logout">{{ __('Logout') }}</button>
                 </form>
             </div>
         </div>

@@ -16,9 +16,16 @@
         <span class="navbar-toggler-icon"></span>
     </button>
   
-    <!-- Right Side Of Navbar -->
-    <div class="collapse navbar-collapse">
-        <a href="route('profile.show', Auth::user()->id)" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
-        <a href="{{ route('home') }}"><button class="btn-logout">Logout</button></a>
+  <!-- Right Side Of Navbar -->
+    <div class="collapse navbar-collapse d-flex justify-content-end">
+      <!-- まだRegisterボタンは未完成 -->
+      <a href="{{ route('logout') }}"
+      onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">
+      <button class="btn-register">Register</button>
+      </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          @csrf
+      </form>
     </div>
 </nav>
