@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/deletion-reason.css') }}">
+
 @extends('layouts.app')
 
 @section('title', 'Admin: Deletion Reasons')

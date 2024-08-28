@@ -15,6 +15,8 @@ use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\Admin\QuotesController;
 use App\Http\Controllers\Admin\InquiriesController;
 use App\Http\Controllers\Admin\ChatsController;
+use App\Http\Controllers\Admin\DeletionReasonController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/{id}/setting', [ProfileController::class, 'setting'])->name('profile.setting');
     Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/deletion-reason/store', [ProfileController::class, 'deletionReason'])->name('deletion-reason.store');
+    // Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
     // MOOD
     Route::get('/mood/create1', [MoodController::class, 'create1'])->name('mood.save1');
@@ -39,7 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::get('mood/index', [MoodController::class, 'index'])->name('mood.index');
     Route::post('/mood/store', [MoodController::class, 'store'])->name('mood.store');
 });
-
 
 require __DIR__.'/auth.php';
 
@@ -75,16 +79,19 @@ Route::get('/components/navbar-users', function () {
     Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
     Route::post('/quote/store',[QuotesController::class, 'store'])->name('quote.store');
 
-    
-    
+
+
     // Contactus
     Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
-    
+
     // chats
     Route::get('/admin/chats', [ChatsController::class, 'index'])->name('admin.chats.index');
     Route::get('/admin/chats/search', [ChatsController::class, 'search'])->name('admin.chats.search');
     Route::patch('/admin/chats/{id}/update', [ChatsController::class, 'update'])->name('admin.chats.update');
     Route::delete('/admin/chats/{id}/destroy', [ChatsController::class, 'destroy'])->name('admin.chats.destroy');
+
+        // Deletion Reasons
+        Route::get('/admin/deletion-reasons', [DeletionReasonController::class, 'index'])->name('deletion-reasons.index');
 
 Auth::routes();
 
@@ -121,3 +128,4 @@ Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.ind
  */
 Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
 // Route::get('/contactus/complete', [InquiryController::class, 'show'])->name('inquiry.complete');
+

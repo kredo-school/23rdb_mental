@@ -70,8 +70,13 @@ class User extends Authenticatable
         return $this->hasMany(Inquiry::class);
     }
 
-    public function chats(){
-        return $this->hasMany(Chats::class);
+    public function deletionReason()
+    {
+        return $this->hasOne(DeletionReason::class);
+    }
+
+    public function chat(){
+        return $this->hasMany(Chat::class);
     }
 
 }
