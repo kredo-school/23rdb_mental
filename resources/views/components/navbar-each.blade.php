@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
 
-@section('title', 'each')
+{{-- @section('title', 'each') --}}
 <!--ここがんばったけど、わからないです-->
 
-@section('content')
+{{-- @section('content') --}}
 
 <nav class="navbar navbar-dark navbar-expand-md">
     <div class="container-fluid">

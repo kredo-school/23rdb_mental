@@ -1,13 +1,16 @@
 <link rel="stylesheet" href="{{ asset('css/mood-tracker.css') }}">
+@extends('layouts.app')
+
 @extends('components.navbar-each')
 
-{{-- @extends('layouts.app') --}}
 
 @section('title', 'Mood Tracking')
 
-@extends('components.sidebar')
 
 @section('content')
+
+@include('components.sidebar')
+
 <div class="container-mood my-5 py-3">
     <div class="d-flex mb-3 input-size">
 

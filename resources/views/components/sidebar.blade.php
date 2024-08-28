@@ -1,15 +1,15 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
 
-@section('title', 'sidebar')
+{{-- @section('title', 'sidebar') --}}
 
-@section('content')
+{{-- @section('content') --}}
 
 <body>
     <div class="body_sidebar">
         <nav class="sidebar_inner">
             <p class=" sidebar_h1">ENCOURAGE YOURSELF, <br>HEAL YOURSELF</p>
-            <br>      
+            <br>
             <div class="sidebar a">
                 <a href="{{ route('home') }}">
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/home_side_icon.png') }}" alt="home">Home</p>
@@ -24,9 +24,9 @@
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/quote_side_icon.png') }}" alt="Quote">Quote</p>
                 </a>
             </div>
-    
-        </nav>    
- 
+
+        </nav>
+
         <nav class="sidebar_inner_bottom">
             <div class="sidebar a">
                 <a href="{{ route('profile.show', Auth::user()->id) }}">
@@ -40,7 +40,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            </div> 
+            </div>
             <p></p>
             <div class="modal-body">
                 <button class="btn-contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</button>
@@ -51,7 +51,7 @@
     @include('contactus.modals.inquiry')
     @include('contactus.modals.submitcomplete')
 
-@endsection
+{{-- @endsection --}}
 
 @section('scripts')
     <script src="{{ asset('js/inquiry.js') }}"></script>

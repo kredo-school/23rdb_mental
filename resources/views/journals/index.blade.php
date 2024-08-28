@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 @extends('components.navbar-each')
 @extends('components.sidebar')
 
