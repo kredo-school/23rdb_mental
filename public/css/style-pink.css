@@ -18,6 +18,10 @@ h1, h2, h3, p, footer {
     font-family: "Lato", sans-serif;
     color: #fff;
     position: relative;
+    height: 79px;
+    align-items: center;
+    width: 100%!important;
+    text-align: center;
 }
 
 .nav-link {

@@ -60,6 +60,7 @@ class DeletionReasonController extends Controller
             }
 
             $all_deletion_reasons = $query->paginate(10);
+
              }
 
              return view('admin.deletion-reasons.index')
