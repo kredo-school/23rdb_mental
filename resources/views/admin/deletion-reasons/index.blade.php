@@ -12,13 +12,9 @@
     <div class="container-deletion-reasons my-5">
         <div class="row justify-content-center">
 
-            <div class="col-10 py-4 quote-body-size">
-                <div class="row">
-                    <div class="col-1"></div>
-
-                    <div class="col-1">
-                        <p class="text-primary text-end mt-1">Sort</p>
-                    </div>
+            {{-- <div class="col-10 py-4"> --}}
+                <div class="row my-3">
+                    <div class="col-4"></div>
 
                     <div class="col-3">
                         <form method="get" action="{{ route('deletion-reasons.index') }}">
@@ -40,14 +36,10 @@
                         </ul> --}}
                     </div>
 
-                    <div class="col-1">
-                        <p class="text-primary mt-1">Search</p>
-                    </div>
-
                     <div class="col-3">
                         @auth
                             <form action="{{ route('deletion-reasons.index') }}" method="get">
-                                <input type="text" name="search" placeholder="keyword" class="form-control form-inline w-75 shadow" value="{{ $search }}">
+                                <input type="text" name="search" placeholder="search..." class="form-control w-100 shadow value="{{ $search }}">
                         @endauth
 
                             @if ($search)
@@ -59,19 +51,13 @@
                     </div>
                 </div>
 
-                <div>
-                    <p class="pb-0 mb-0 ms-4">
-                        Total :
-                        {{ $deletion_reason->count() }}
-                        messages
-                    </p>
-                </div>
-
-                <table class="table align-middle bg-white mt-0 table-bordered table-hover">
+                <table class="table align-middle bg-white mt-0 table-bordered table-hover table-deletion-reasons">
                     <thead class="small table-secondary border">
                         <tr class="">
                             <th class="text-center col-date">Date</th>
-                            <th class="text-center col-reason">Deletion Reasons</th>
+                            <th class="text-center col-reason">Deletion Reasons <span class="small text-muted total-number">
+                                (Total : {{ $deletion_reason->count() }})
+                            </span></th>
                         </tr>
                     </thead>
 
@@ -144,7 +130,7 @@
                     {{ $all_deletion_reasons->links() }}
                 </div>
 
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 

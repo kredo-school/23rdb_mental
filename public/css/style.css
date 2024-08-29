@@ -63,6 +63,10 @@ h3 {
     font-size: 27px;
 }
 
+p, span, td, a, button {
+    font-weight: 300;
+}
+
 /* Action Buttons */
 .btn-submit {
     border-radius: 10px;

@@ -1,9 +1,9 @@
 .col-date {
-    width: 20%;
+    width: 30%;
 }
 
 .col-reason {
-    width: 80%;
+    width: 70%;
 }
 
 .text-container {
@@ -44,13 +44,16 @@ button.more-details:hover {
 .container-deletion-reasons {
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: 17%;
+    margin-left: 25%;
     /* width: 800px; */
     /* margin-right: 151px; */
     position: absolute;
 }
 
-table {
+table.table-deletion-reasons {
     width: 800px;
-    border-radius: 10px;
+}
+
+.fa-xmark {
+    color: #FF6BA0;
 }
