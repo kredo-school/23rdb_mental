@@ -15,8 +15,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.more-details {
-    display: none; /* Initially hidden */
+
+/* .more-details {
+    display: none;
     position: absolute;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.8);
@@ -24,4 +25,20 @@
     text-align: center;
     padding: 5px;
     border-top: 1px solid #ddd;
+} */
+
+.modal-body {
+    word-wrap: break-word;
+}
+
+.container-deletion-reasons {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 20%;
+    /* margin-right: 151px; */
+    position: absolute;
+}
+
+table {
+    width: 100%;
 }

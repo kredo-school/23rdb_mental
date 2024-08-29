@@ -1,12 +1,15 @@
 <link rel="stylesheet" href="{{ asset('css/deletion-reason.css') }}">
+<script src="{{ asset('js/deletion-reason.js') }}"></script>
 
 @extends('layouts.app')
+@extends('components.navbar-each')
 
 @section('title', 'Admin: Deletion Reasons')
 
 @section('content')
+@include('components.sidebar')
 
-    <div class="container-fluid my-5">
+    <div class="container-deletion-reasons my-5">
         <div class="row justify-content-center">
 
             <div class="col-10 py-4 quote-body-size">
@@ -19,7 +22,7 @@
 
                     <div class="col-3">
                         <button
-                            class="btn dropdown-toggle btn-link text-decoration-none text-muted quote-other-btn w-75 shadow"
+                            class="btn dropdown-toggle btn-link text-decoration-none text-muted quote-other-btn w-75 bg-white shadow"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">Latest
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -82,8 +85,10 @@
                                             <button type="button" class="btn btn-border-none text-decoration-underline more-details"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#deletionReasonDetail{{ $deletion_reason->id }}"
-                                                data-body="{{ $deletion_reason->reason }}">more details</button>
+                                                data-body="{{ $deletion_reason->reason }}">more details
+                                            </button>
                                         </div>
+                                        {{-- Modal for more details--}}
                                         <div class="modal fade" id="deletionReasonDetail{{ $deletion_reason->id }}">
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                                 <div class="modal-content shadow px-5 py-3">
@@ -130,8 +135,3 @@
     </div>
 
 @endsection
-
-@section('scripts')
-    <script src="{{ asset('js/deletion-reason.js') }}"></script>
-@endsection
-
