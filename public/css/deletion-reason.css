@@ -7,7 +7,7 @@
 }
 
 .text-container {
-    max-width: 500px; /* Adjust width as needed */
+    max-width: 80%; /* Adjust width as needed */
     position: relative;
 }
 .text-content {
@@ -16,16 +16,26 @@
     text-overflow: ellipsis;
 }
 
-/* .more-details {
+.more-details {
     display: none;
     position: absolute;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    width: 100%;
+    width: 25%;
     text-align: center;
-    padding: 5px;
-    border-top: 1px solid #ddd;
-} */
+    /* padding: 5px; */
+    /* border-top: 1px solid #ddd; */
+}
+
+button.more-details {
+    color: #5DAEF2;
+}
+
+button.more-details:hover {
+    background-color: #5DAEF2;
+    border: none;
+    color: #fff;
+}
+
+
 
 .modal-body {
     word-wrap: break-word;
@@ -34,11 +44,13 @@
 .container-deletion-reasons {
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: 20%;
+    margin-left: 17%;
+    /* width: 800px; */
     /* margin-right: 151px; */
     position: absolute;
 }
 
 table {
-    width: 100%;
+    width: 800px;
+    border-radius: 10px;
 }
