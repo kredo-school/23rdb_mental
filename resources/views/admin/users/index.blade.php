@@ -76,7 +76,7 @@
                             <td>
                                 {{ $user->email }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @if ($user->id != Auth::user()->id)
                                     <form action="{{ route('users.status', $user->id) }}" method="POST" style="display:inline;">
                                         @csrf
