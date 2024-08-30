@@ -34,8 +34,8 @@
             <div class=".ls_sidebar_admin a">
                 <p class="sidebar_icon_admin"><img src="{{ asset('images/navigation/admin_side_icon.png') }}" alt="home">Admin Menu</p>
                 <ul>
-                    <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Users</a></li>  
-                    <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Quotes</a></li>
+                    <li class="ls_sidebar_admin"><a href="{{ route('users.index') }}">All Users</a></li>  
+                    <li class="ls_sidebar_admin"><a href="{{ route('deletion-reasons.index') }}">All Quotes</a></li>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.chats.index') }}">All Chat</a></li>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Inquiry</a></li>
                     <hr class="sidebar_hr1"> 
