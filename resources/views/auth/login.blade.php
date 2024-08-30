@@ -51,7 +51,7 @@
 {{-- Style CSS --}}
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
-{{-- @extends('layouts.app') --}}
+@extends('layouts.app')
 
 @section('title', 'Login')
 

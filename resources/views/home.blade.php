@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@extends('layouts.app')
+
 @extends('components.navbar-home')
 
 @section('title', 'home')

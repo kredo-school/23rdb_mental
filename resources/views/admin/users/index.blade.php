@@ -2,12 +2,14 @@
 <script src="{{ asset('js/deletion-reason.js') }}"></script>
 
 @extends('layouts.app')
+
 @extends('components.navbar-each')
 
 @section('title', 'Admin: User List')
 
 @section('content')
-    @include('components.sidebar')
+
+@include('components.sidebar')
 
     <div class="container-users my-5">
         <div class="row justify-content-center">
