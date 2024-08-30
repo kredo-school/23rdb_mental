@@ -3,9 +3,7 @@
 
 @extends('components.navbar-each')
 
-
 @section('title', 'Mood Tracking')
-
 
 @section('content')
 
