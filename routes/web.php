@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\QuotesController;
 use App\Http\Controllers\Admin\InquiriesController;
 use App\Http\Controllers\Admin\ChatsController;
 use App\Http\Controllers\Admin\DeletionReasonController;
+use App\Http\Controllers\Admin\UserController;
 
 
 Route::get('/', function () {
@@ -104,8 +105,14 @@ Route::get('/components/footer', function () {
     Route::patch('/admin/chats/{id}/update', [ChatsController::class, 'update'])->name('admin.chats.update');
     Route::delete('/admin/chats/{id}/destroy', [ChatsController::class, 'destroy'])->name('admin.chats.destroy');
 
-        // Deletion Reasons
-        Route::get('/admin/deletion-reasons', [DeletionReasonController::class, 'index'])->name('deletion-reasons.index');
+     // Deletion Reasons
+    Route::get('/admin/deletion-reasons', [DeletionReasonController::class, 'index'])->name('deletion-reasons.index');
+
+    // users
+    Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
+    // Route::delete('/admin/users/{id}/deactivate', [UserController::class, 'deactivate'])->name('admin.users.deactivate');
+    // Route::patch('/admin/users/{id}/activate', [UserController::class, 'activate'])->name('admin.users.activate');
+    Route::post('/users/{id}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.status');
 
 Auth::routes();
 

@@ -1,5 +1,5 @@
 /* navbar as header */
-.navbar {
+/* .navbar {
     background-color: #6C757D;
     font-weight: bold;
     font-family: "Lato", sans-serif;
@@ -9,12 +9,12 @@
     align-items: center;
     width: 100%!important;
     text-align: center;
-}
+} */
 
 .nav_logo {
     width: 160px;
     height: 30px;
-    margin-left: 5px; 
+    margin-left: 5px;
     display: flex;
     justify-content: center;
 }
@@ -56,7 +56,7 @@
     font-weight: 390;
     color: #fff;
     justify-content: center;
-    margin-left: -55px; 
+    margin-left: -55px;
     margin-top: 5px;
 }
 
@@ -183,7 +183,7 @@
 
 .sidebar_h1 {
     font-size: 14px;
-    font-weight: 400; 
+    font-weight: 400;
     line-height: 1.5;
     letter-spacing: 2px;
 }
@@ -231,7 +231,7 @@
 .sidebar_hr1{
     border-width: 2px;
     border-style: solid;
-    border-color: #2424245f; 
+    border-color: #2424245f;
     width: 210px;
     margin-left: -45px;
 }
