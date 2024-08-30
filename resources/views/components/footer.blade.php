@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('title', 'footer')
 
-@section('content')
+@section('content') --}}
 <body>
     <footer class="bg-footer fixed-bottom">
         <div class="container-fluid p-3 p-md-5">
@@ -17,7 +17,7 @@
     @include('contactus.modals.inquiry')
     @include('contactus.modals.submitcomplete')
 
-@endsection
+{{-- @endsection --}}
 
 
 @section('scripts')

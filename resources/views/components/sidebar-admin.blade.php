@@ -1,10 +1,10 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
 
-@section('title', 'sidebar-admin')
+{{-- @section('title', 'sidebar-admin') --}}
 
-@section('content')
+{{-- @section('content') --}}
 
     <!-- Main Menu -->
     <div class="body_sidebar">
@@ -19,12 +19,12 @@
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/mood_side_icon.png') }}" alt="MoodTracking">Mood_Tracking</p>
                 </a>
                 <a href="{{ route('journal.journals') }}">
-                    <p class="sidebar_icon"><img src="{{ asset('images/navigation/journaling_side_icon.png') }}" alt="Journaling">Journaling</p>
+                    <p class="sidebar_icon"><img src="{{ asset('images/navigation/journaling_side_icon.png') }}" alt="Journaling">Journal</p>
                 </a>
                 <a href="{{ route('quote.index') }}">
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/quote_side_icon.png') }}" alt="Quote">Quote</p>
                 </a>
-                <a href="{{ route('home') }}">
+                <a href="{{ route('chatroom.index') }}">
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat">Chat</p>
                 </a>       
             </div>
@@ -36,7 +36,7 @@
                 <ul>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Users</a></li>  
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Quotes</a></li>
-                    <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Chat</a></li>
+                    <li class="ls_sidebar_admin"><a href="{{ route('admin.chats.index') }}">All Chat</a></li>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Inquiry</a></li>
                     <hr class="sidebar_hr1"> 
                 </ui>       
@@ -59,9 +59,9 @@
                 </form>
 
                 <p></p>
-                <div class="modal-body">
-                    <button class="btn-contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</button>
-                </div>
+                    <div class="modal-body">
+                        <a class="sidebar_contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>
+                    </div>
             </div>
 
 
@@ -71,7 +71,7 @@
     @include('contactus.modals.inquiry')
     @include('contactus.modals.submitcomplete')
 
-@endsection
+{{-- @endsection --}}
 
 
 @section('scripts')

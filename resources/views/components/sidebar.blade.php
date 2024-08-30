@@ -18,11 +18,14 @@
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/mood_side_icon.png') }}" alt="MoodTracking">Mood_Tracking</p>
                 </a>
                 <a href="{{ route('journal.journals') }}">
-                    <p class="sidebar_icon"><img src="{{ asset('images/navigation/journaling_side_icon.png') }}" alt="Journaling">Journaling</p>
+                    <p class="sidebar_icon"><img src="{{ asset('images/navigation/journaling_side_icon.png') }}" alt="Journaling">Journal</p>
                 </a>
                 <a href="{{ route('quote.index') }}">
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/quote_side_icon.png') }}" alt="Quote">Quote</p>
                 </a>
+                <a href="{{ route('chatroom.index') }}">
+                    <p class="sidebar_icon"><img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat">Chat</p>
+                </a>      
             </div>
 
         </nav>
@@ -42,9 +45,9 @@
                 </form>
             </div>
             <p></p>
-            <div class="modal-body">
-                <button class="btn-contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</button>
-            </div>
+                <div class="modal-body">
+                    <a class="sidebar_contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>
+                </div>
         </nav>
     </div>
 

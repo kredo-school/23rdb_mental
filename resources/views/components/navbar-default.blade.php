@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('title', 'Default nav')
 
-@section('content')
+@section('content') --}}
 
 <nav class="navbar navbar-dark navbar-expand-md">
   <!-- Left Side Of Navbar -->
@@ -18,14 +18,8 @@
   
   <!-- Right Side Of Navbar -->
     <div class="collapse navbar-collapse d-flex justify-content-end">
-      <!-- まだRegisterボタンは未完成 -->
-      <a href="{{ route('logout') }}"
-      onclick="event.preventDefault();
-          document.getElementById('logout-form').submit();">
-      <button class="btn-register">Register</button>
+      <a href="{{ route('register') }}">
+        <button class="btn-register">Register</button>
       </a>
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-          @csrf
-      </form>
     </div>
 </nav>
