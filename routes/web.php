@@ -87,6 +87,7 @@ Route::get('/components/footer', function () {
 
 //admin route
 
+Route::middleware('auth')->group(function () {
 
     //quotes
     // Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
@@ -114,7 +115,7 @@ Route::get('/components/footer', function () {
     // Route::patch('/admin/users/{id}/activate', [UserController::class, 'activate'])->name('admin.users.activate');
     Route::post('/users/{id}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.status');
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -150,3 +151,6 @@ Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.ind
 Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
 // Route::get('/contactus/complete', [InquiryController::class, 'show'])->name('inquiry.complete');
 
+});
+
+Auth::routes();
