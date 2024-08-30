@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Quote extends Model
 {
     use HasFactory, SoftDeletes;
@@ -25,5 +26,24 @@ public function bookmarks(){
 public function isBookmarked(){
     return $this->bookmarks()->where('user_id', Auth::user()->id)->exists();
 }
+
+// use this method to sort quote lists
+// public function order($select)
+// {
+//     if($select == 'asc'){
+//         return $this->orderBy('created_at', 'asc')->get();
+//     } elseif($select == 'desc') {
+//         return $this->orderBy('created_at', 'desc')->get();
+//     } else {
+//         return $this->all();
+//     }
+// }
+
+
+
+
+
+
+
 
 }

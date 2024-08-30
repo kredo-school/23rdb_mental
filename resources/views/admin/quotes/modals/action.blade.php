@@ -81,7 +81,7 @@
                         <div class="form-floating modal-framebase">
                            
 
-                            <textarea class="form-control-lg w-100 border-0 quote-frame1" name="quote" id="quote" value="{{ old('quote') }}"></textarea>
+                            <input type="text" class="form-control-lg w-100 border-0 quote-frame1" name="edit_quotebody" value="{{ old('quote') }}" id="modal-quote"></input>
                             
                             @error('quote')
                             <div class="text-danger small">{{ $message }}</div>  
@@ -164,7 +164,7 @@
     
                                 <hr>
     
-                                <p class="text-end me-5 bg-info" value="{{ old('author') }}">---- <span>Author</span></p>
+                                <p class="text-end me-5 bg-info" value="quote text">---- <span>Author</span></p>
                                 
                                 @error('author')
                                 <div class="text-danger small">{{ $message }}</div>  

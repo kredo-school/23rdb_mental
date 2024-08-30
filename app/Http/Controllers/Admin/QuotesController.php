@@ -44,37 +44,90 @@ class QuotesController extends Controller
     return redirect()->route('quote.index');
 }
 
-    // show all quotes
-    public function index(){
-        // if ($request->search){
-        //     $search_result = $this->post->where('quote', 'LIKE', '%' . $request->search . '%')->latest()->get();
-        // }else{
-            // $quote_id = Auth::user()->quote->id;
-            $all_quotes = $this->quote->withTrashed()->latest()->paginate(10);
-            $quotes_count = $this->quote;
-            // $this->quote->id = $quote_id;
+
+public function index(Request $request){
+    $all_quotes = $this->quote->withTrashed()->latest()->paginate(3);
+    $quotes_count = $this->quote;
+
+
+    $keyword = $request->input('keyword');
+    
+    if (!empty($request)){
+        $all_quotes = Quote::query()
+            ->where('quote', 'like', '%' . $keyword . '%')
+            ->orWhere('author', 'like', '%' . $keyword . '%')
+            ->withTrashed()
+            ->latest()
+            ->paginate(3);
+
+            $quotes_count = $all_quotes;
+            };
             
-        // }
-
-        return view('admin.quotes.index')
+    
+            return view('admin.quotes.index')
             ->with('all_quotes', $all_quotes)
-            ->with('quotes_count', $quotes_count);
-            // ->with('search', $request->search);
+            ->with('quotes_count', $quotes_count)
+            ->with('keyword', $keyword);
 
-            // $userId = auth()->id(); 
-            // $quote_id = Quote::where('user_id', $userId)->withTrashed()->latest()->paginate(3);
+}
 
-            // return view('admin.quotes.index', compact('quote_id'))
-    }
+    public function sort(Request $request){
+        $sort = $request->input('sort');
+        if($sort == 'asc') {
+            $all_quotes = $this->quote->withTrashed()->orderBy('created_at', 'asc')->paginate(3);
+        }else{
+            $all_quotes = $this->quote->withTrashed()->orderBy('created_at', 'asc')->paginate(3);
+            $quotes_count = $this->quote;
+        
+        }
+        return view('admin.quotes.index')->with('all_quotes', $all_quotes);
 
-  
+}
+
+
+/**
+ * edit 
+ */
+
+ public function update(Request $request, $id){
+    $request->validate([
+        'quote' => 'required|min:1',
+        'author' => 'nullable|max:250',
+    ]);
+     #save the quote data
+     $quote = $this->quote->findOrFail($id);
+     $quote->quote = $request->quote;
+     $quote->author = $request->author;
+     
+     $quote->save();
+ 
+     #return
+     return redirect()->back();
+
+ }
+
+ /** delete */
+ public function destroy($id){
+    $quote = $this->quote->findOrFail($id);
+    $quote->forceDelete();
+    return redirect()->back();
    
+ }
 
 
+/**
+ * hide the quote
+ */
+public function hide($id){
+    $this->quote->destroy($id);
+    return redirect()->back();
+}
 
-    //edit a quote
-
-    //hide a quote
-
-    //delete a quote
+/**
+ *  unhide the quote 
+ */
+public function unhide($id){
+    $this->quote->withTrashed()->findOrFail($id)->restore();
+    return redirect()->back();
+}
 }

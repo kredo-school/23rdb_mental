@@ -22,6 +22,16 @@
     height: auto;
 }
 
+.quote-copy{
+    border:none !important;
+    outline:none !important;
+    width: 100px;
+    height: 100px !important;
+    line-height:1em !important;
+    white-space: pre-line;
+    font-size: 27px;
+}
+
 /* Refresh, bookmark, copy buttons */
 .fa-arrows-rotate,
 .fa-bookmark,

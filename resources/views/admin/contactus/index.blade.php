@@ -24,33 +24,41 @@
                 <div class="row mt-3">
                     <div class="col-7"></div>
                     
-
+                    {{-- search bar --}}
                     <div class="col-1">
+               
                         <p class="text-primary mt-1">Search</p>
                         </div>
 
+                        
                     <div class="col-3">
-                        <form action="" method="get" class="input-group">
-                            <input type="text" class="form-control form-inline quote-other-btn w-75 shadow" name="search" placeholder="keywords"> 
-                            <span class="input-group-text quote-other-btn"><i class="fa-solid fa-magnifying-glass"></i></span>
-                        {{-- value="{{ $search}}" --}}
-                            {{-- @if($search)
-                            @endif --}}
-                        </form>
+                        <form action="{{ route('admin.inquiries') }}" method="get" class="form-inline">
+                            @csrf
+                            <input type="search" name="keyword" placeholder="keyword....." class="form-control quote-other-btn">
                           
+                        </form>
+                              
                     </div>
 
 
                 </div>
                 <div>
-                    <p class="pb-0 mb-0 ms-4">
+
+                    @if ((!empty($keyword)))
+                    <span class="pb-0 mb-0 ms-4 me-5 pe-5">Result for : {{ $keyword }}</span>    
+                    @endif
+                    <p class="pb-0 mb-0 ms-4 me-5 pe-5 mt-0 pt-0">
+                        
                         Total : 
-                        <span>{{ $inquiries_count->count() }}</span>
+                        <span>{{ $inquiries_count->total() }}</span>
                          Inquiries
                     </p>
+
+                    
+                    
                 </div>
 
-                <table class="table align-middle bg-white quote-table mt-0">
+                <table class="table align-middle bg-white quote-table mt-0 table-responsive">
                     <thead class="small table-secondary border">
                         <tr class="">
                             <th class="text-center th-wssmall">#</th>

@@ -9,15 +9,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\User;
+use App\Models\Bookmark;
+use App\Models\Quote;
 use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
     private $user;
 
-    public function __construct(User $user)
+    public function __construct(User $user, Bookmark $bookmark, Quote $quote)
     {
         $this->user = $user;
+        $this->bookmark = $bookmark;
+        $this->quote = $quote;
     }
     /**
      * Display the user's profile form.
@@ -33,9 +37,50 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user_a = $this->user->findOrFail($id);
+        $all_quotes = $this->quote->get();
+        $bookmarked_quotes = [];
+
+        foreach ($all_quotes as $quote) {
+            if($quote->isBookmarked()){
+                $bookmarked_quotes[] = $quote;
+            }
+       
 
         return view('profile.show')
-            ->with('user', $user_a);
+            ->with('user', $user_a)
+            ->with('all_quotes', $all_quotes)
+            ->with('bookmarked_quotes', $bookmarked_quotes);
+    }
+
+
+    // public function show($id)
+    // {
+    //     $user_a = $this->user->findOrFail($id);
+    //     $bookmarked_quotes = $this->getBookmarkedquotes();
+    //     $all_quotes = $this->quote->get();
+
+    //     return view('profile.show')
+    //     ->with('user', $user_a)
+    //     ->with('all_quotes', $all_quotes)
+    //     ->with('bookmarked_quotes', $bookmarked_quotes);
+    // }
+
+    // public function getBookmarkedquotes()
+    // {
+    //     $all_quotes = $this->quote->get();
+    //     $bookmarked_quotes = [];
+
+    //     foreach ($all_quotes as $quote) {
+    //         if($quote->isBookmarked()){
+    //             $bookmarked_quotes[] = $quote;
+    //         }
+       
+
+    //     return $bookmarked_quotes;
+    // }
+
+
+
     }
 
     public function edit(Request $request): View
@@ -44,6 +89,8 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+
+    
 
     /**
      * Update the user's profile information.
@@ -160,4 +207,21 @@ class ProfileController extends Controller
         return redirect()->route('login');
 
     }
+
+
+    // public function getBookmarkQuote(){
+    //     $all_quotes = $this->quote->get();
+    //     $bookmarked_quotes = [];
+
+        // foreach ($all_quotes as $quote) {
+            // if($quote->isBookmarked()){
+                // $bookmarked_quotes = $quote;
+            // }
+        // }
+        // return $bookmarked_quotes;
+        // return view('profile.show')
+            // ->with('bookmarked_quotes', $bookmarked_quotes);
+    //         ->with('all_quotes', $all_quotes);
+    // }
+
 }

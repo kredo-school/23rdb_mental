@@ -49,6 +49,12 @@ td {
     font-family: "Lato", sans-serif;
     font-size: 16px;
 }
+.td-text{
+    color: #42484D !important; 
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    padding-top: 0;
+}
 
 .td-details{
     color: #42484D !important; 
@@ -66,6 +72,12 @@ td {
     font-family: "Lato", sans-serif;
     font-size: 20px;
 }
+.inquiry-modaltext {
+    color: #42484D; 
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+}
+
 .inquiry-modal-framebase {
     width: 100%;
     height: auto;
@@ -81,7 +93,7 @@ td {
     /* background-color: rgb(232, 1, 97); */
     margin-top: 10px;
     line-height: 150%;
-    height: 200px !important;
+    height: 250px !important;
 } 
 
 .inquiry-frame2{

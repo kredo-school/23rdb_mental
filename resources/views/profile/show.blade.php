@@ -258,24 +258,77 @@
                 {{-- Table for favorite quotes --}}
                 <table class="table border table-hover align-middle bg-white text-secondary">
                     {{-- Header --}}
-                    <thead class="table-secondary small">
+                    <thead class="table-secondary small border">
                         <tr>
-                            <th class="quote-column">Quote</th>
-                            <th class="author-column">Author</th>
+                                <th></th>
+                                <th class="text-center">Quote</th>
+                                <th></th>
+                                <th class="text-center">Auther</th>
+                                <th class="text-center">Bookmark</th>
                         </tr>
+
                     </thead>
                     {{-- Body --}}
-                    <tbody>
+                    <tbody class="border quote-table">
+                         
+                        @forelse($bookmarked_quotes as $quote)
+                        <tr>
+                            <td class="py-0 pe-0">
+                                <h2 class="text-end">
+                                    " 
+                                </h2>
+                            
+                            </td>
+                            <td class="h2 text-center w-50">
+                                {{ $quote->quote }}
+                            </td>
+                            
+                            <td class="py-0 pe-0">
+                                <h2 class="text-start">
+                                    "
+                                </h2>
+                            
+                            </td>
+
+                            <td class="text-center">
+                                {{ $quote->author }}
+                            </td>
+
+                            <td class="text-center pt-4">
+                                {{-- cancel the bookmark --}}
+                                <div class="quote-switch text-center">
+                                    @if ($quote->isBookmarked())
+                                    <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                            <button type="submit" class="btn pe-3">
+                                            <i class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button> 
+                                        
+                                    @else
+
+                                    <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
+                                        @csrf
+                                            <button type="submit" class="btn pe-3"><i class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
+                                    </form>
+                                        
+                                    @endif
+                                </div>
+
+        
+                            </td>    
+
+                        </tr>
+                   
+
+                        @empty
                             <tr>
-                                {{-- @forelse ($collection as $item)
-                                    <td class="quote-column"></td>
-                                    <td class="author-column"></td>
-                                @empty --}}
-                                    <td class="text-center" colspan="2">No quotes saved.</td>
-                                {{-- @endforelse --}}
+                                <td colspan="7" class="lead text-muted text-center">No Quote Bookmarked.</td>
                             </tr>
+
+                        @endforelse
                     </tbody>
                 </table>
+
 
             </div>
         </div>

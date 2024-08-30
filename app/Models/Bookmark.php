@@ -9,5 +9,5 @@ class Bookmark extends Model
 {
     use HasFactory;
 
-    public $timestamps = false; 
+    public $timestamps = false;   
 }
