@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('title', 'users')
 
-@section('content')
+@section('content') --}}
 
 <nav class="navbar navbar-dark navbar-expand-md">
     <div class="container-fluid">

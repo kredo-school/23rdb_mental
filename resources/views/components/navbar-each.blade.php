@@ -2,7 +2,6 @@
 {{-- @extends('layouts.app') --}}
 
 {{-- @section('title', 'each') --}}
-<!--ここがんばったけど、わからないです-->
 
 {{-- @section('content') --}}
 
