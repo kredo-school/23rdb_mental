@@ -191,7 +191,7 @@ console.log("test");
 </script>
 
 {{-- Footer --}}
-
+@extends('components.footer')
 
 
 @endsection
