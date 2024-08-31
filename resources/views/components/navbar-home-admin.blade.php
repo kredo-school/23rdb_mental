@@ -30,8 +30,8 @@
                     <a href="{{ route('home') }}" class="nav_icon text-white text-decoration-none btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset('images/navigation/admin_icon.png') }}" alt="Admin"><br>Admin</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li class="dropdown-item"><a href="{{ route('users.index') }}" class="text-muted text-decoration-none">All Users</li></a>
-                            <li class="dropdown-item"><a href="{{ route('deletion-reasons.index') }}" class="text-muted text-decoration-none">All Quotes</li></a>
+                            <li class="dropdown-item"><a href="{{ route('admin.users.index') }}" class="text-muted text-decoration-none">All Users</li></a>
+                            <li class="dropdown-item"><a href="{{ route('admin.quotes.index') }}" class="text-muted text-decoration-none">All Quotes</li></a>
                             <li class="dropdown-item"><a href="{{ route('admin.chats.index') }}" class="text-muted text-decoration-none">All Chat</li></a>
                             <li class="dropdown-item"><a href="{{ route('admin.inquiries') }}" class="text-muted text-decoration-none">All Inquiry</li></a>
                         </ul>
