@@ -12,6 +12,9 @@ use App\Models\User;
 use App\Models\Bookmark;
 use App\Models\Quote;
 use Illuminate\Support\Facades\Log;
+use App\Models\DeletionReason;
+use Illuminate\Support\Facades\DB;
+
 
 class ProfileController extends Controller
 {
@@ -37,51 +40,51 @@ class ProfileController extends Controller
     public function show($id)
     {
         $user_a = $this->user->findOrFail($id);
-        $all_quotes = $this->quote->get();
-        $bookmarked_quotes = [];
 
-        foreach ($all_quotes as $quote) {
-            if($quote->isBookmarked()){
-                $bookmarked_quotes[] = $quote;
-            }
-       
+        $bookmarked_quotes = Auth::user()->bookmarkedQuotes()->paginate(10);
 
-        return view('profile.show')
-            ->with('user', $user_a)
-            ->with('all_quotes', $all_quotes)
-            ->with('bookmarked_quotes', $bookmarked_quotes);
-    }
+        // // get all quotes
+        //     $all_quotes = $this->quote->all();
+            // get all bookmarks
+            // $all_bookmarks = Auth::user()->isBookmarked()->paginate(3);
+            // if (Auth::user()->isBookmarked()) {
+            //     $all_quotes = $this->quote->all();
+            //     $all_bookmarks = Auth::user()->isBookmarked()->paginate(3);
+            // }
+            // $favorite_quotes = [];
+                    // foreach ($all_bookmarks as $bookmark) {
+                    //     if ($bookmark->user_id == Auth::user()->id) {
+                             
+                    //         Log::debug($all_quotes); 
+                        
+                    //         $favorite_quotes[] = $bookmark->quote->id;
+                    //     }
+                    // }
+                    return view('profile.show')
+                    ->with('user', $user_a)
+                    // ->with('all_quotes', $all_quotes)
+                    ->with('bookmarked_quotes', $bookmarked_quotes);
+                    // ->with('favorite_quotes', $favorite_quotes);   
+    
+}
 
 
     // public function show($id)
     // {
     //     $user_a = $this->user->findOrFail($id);
-    //     $bookmarked_quotes = $this->getBookmarkedquotes();
-    //     $all_quotes = $this->quote->get();
 
-    //     return view('profile.show')
-    //     ->with('user', $user_a)
-    //     ->with('all_quotes', $all_quotes)
-    //     ->with('bookmarked_quotes', $bookmarked_quotes);
-    // }
-
-    // public function getBookmarkedquotes()
-    // {
-    //     $all_quotes = $this->quote->get();
-    //     $bookmarked_quotes = [];
-
-    //     foreach ($all_quotes as $quote) {
-    //         if($quote->isBookmarked()){
-    //             $bookmarked_quotes[] = $quote;
+    //         $all_quotes = $this->quote->all();
+    //         $bookmarked_quotes = [];
+    //         foreach ($all_quotes as $quote) {
+    //             if ($quote->isBookmarked() && $this->bookmark->user_id == Auth::user()->id) {
+    //                 $bookmarked_quotes[] = $quote;
+    //             }
     //         }
-       
-
-    //     return $bookmarked_quotes;
+    //                 return view('profile.show')
+    //                 ->with('user', $user_a)
+    //                 ->with('all_quotes', $all_quotes)
+    //                 ->with('bookmarked_quotes', $bookmarked_quotes); 
     // }
-
-
-
-    }
 
     public function edit(Request $request): View
     {
@@ -139,43 +142,50 @@ class ProfileController extends Controller
             $user_a->save();
             Log::info('Success!');
             return redirect()->route('mood.save1');
-
         } catch (\Exception $e) {
             Log::error('Failed: ' . $e->getMessage());
-            return redirect()->back()->withErrors(['error' => 'Failed'])
-            ;
+            return redirect()->back()->withErrors(['error' => 'Failed']);
         }
     }
 
     public function update2(Request $request)
     {
-        $request->validate([
-            'avatar'          => 'mimes:jpeg,jpg,png.gif',
-            'name'            => 'required|max:50',
-            'email'           => 'required|max:50|email|unique:users,email,' . Auth::user()->id,
-            // Adding: unique:<table>, <column>
-            //Updating: unique:<table>, <column>, <id>
-            'username'        => 'max:50',
-            'theme_color'     => 'required|digits_between :1, 6',
-            'location'        => 'max:50',
-            'birthday'        => 'date_format:Y-m-d'
-        ]);
+        try {
 
-        $user_a = $this->user->findOrFail(Auth::user()->id);
+            $request->validate([
+                'avatar'          => 'mimes:jpeg,jpg,png.gif',
+                'name'            => 'required|max:50',
+                'email'           => 'required|max:50|email|unique:users,email,' . Auth::user()->id,
+                // Adding: unique:<table>, <column>
+                //Updating: unique:<table>, <column>, <id>
+                'username'        => 'max:50',
+                'theme_color'     => 'required|digits_between :1, 6',
+                'location'        => 'max:50',
+                'birthday'        => 'nullable',
+                'date_format:Y-m-d'
 
-        $user_a->name         = $request->name;
-        $user_a->email        = $request->email;
-        $user_a->username     = $request->username;
-        $user_a->theme_color  = $request->theme_color;
-        $user_a->location     = $request->location;
-        $user_a->birthday     = $request->birthday;
+            ]);
 
-        if ($request->avatar) {
-            $user_a->avatar   = 'data:image/' . $request->avatar->extension() . ';base64,' . base64_encode(file_get_contents($request->avatar));
-        }
+            $user_a = $this->user->findOrFail(Auth::user()->id);
 
-        $user_a->save();
-        return redirect()->back();
+            $user_a->name         = $request->name;
+            $user_a->email        = $request->email;
+            $user_a->username     = $request->username;
+            $user_a->theme_color  = $request->theme_color;
+            $user_a->location     = $request->location;
+            $user_a->birthday     = $request->birthday;
+
+            if ($request->avatar) {
+                $user_a->avatar   = 'data:image/' . $request->avatar->extension() . ';base64,' . base64_encode(file_get_contents($request->avatar));
+            }
+
+            $user_a->save();
+            return redirect()->back();
+
+        } catch (\Exception $e) {
+            Log::error('Failed: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Failed']);
+        };
     }
 
     /**
@@ -199,29 +209,48 @@ class ProfileController extends Controller
     //     return Redirect::to('/login');
     // }
 
-    public function destroy($id)
+    public function deletionReason(Request $request)
     {
-        $user_a = $this->user->findOrFail($id);
-        $user_a->forceDelete();
-        Auth::logout();
-        return redirect()->route('login');
+        try {
+            $request->validate([
+                'reason' => 'required|max:200'
+            ]);
 
+            $user = $request->user();
+            $reason = $request->input('reason');
+
+            // user_id is irrelevant, we just need the feedback from the users for application/service improvement, removal of the user_id in this function does not hinder the functionality, user_id may be replaced by 'name' or 'email' for future projects and the functionality should remain the same as long as the data type is consistent in the db and in the blade file (Form)
+
+            DB::table('deletion_reasons')->insert([
+                'user_id' => $user->id,
+                'reason' => $reason,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            DB::table('users')->where('id', $user->id)->delete();
+
+
+            return redirect('/login')->with('status', 'Your account has been deleted successfully.');
+
+            // $this->user->deletion_reasons->reason = $request->reason;
+
+            // $this->user->deletion_reason->save();
+
+        } catch (\Exception $e) {
+            Log::error('Failed: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Failed'])
+            ;
+        };
     }
 
 
-    // public function getBookmarkQuote(){
-    //     $all_quotes = $this->quote->get();
-    //     $bookmarked_quotes = [];
 
-        // foreach ($all_quotes as $quote) {
-            // if($quote->isBookmarked()){
-                // $bookmarked_quotes = $quote;
-            // }
-        // }
-        // return $bookmarked_quotes;
-        // return view('profile.show')
-            // ->with('bookmarked_quotes', $bookmarked_quotes);
-    //         ->with('all_quotes', $all_quotes);
+    // public function destroy($id)
+    // {
+    //     $user_a = $this->user->findOrFail($id);
+    //     $user_a->forceDelete();
+    //     Auth::logout();
+    //     return redirect()->route('login');
     // }
-
 }

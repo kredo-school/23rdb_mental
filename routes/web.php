@@ -15,6 +15,9 @@ use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\Admin\QuotesController;
 use App\Http\Controllers\Admin\InquiriesController;
 use App\Http\Controllers\Admin\ChatsController;
+use App\Http\Controllers\Admin\DeletionReasonController;
+use App\Http\Controllers\Admin\UserController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,7 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/{id}/setting', [ProfileController::class, 'setting'])->name('profile.setting');
     Route::get('/profile/{id}/show', [ProfileController::class, 'show'])->name('profile.show');
-    // Route::get('profile/{id}/show', [ProfileController::class, 'getBookmarkQuote'])->name('profile.quote');
+    Route::post('/deletion-reason/store', [ProfileController::class, 'deletionReason'])->name('deletion-reason.store');
+    // Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Route::get('profile/{id}/show', [ProfileController::class, 'showBookmarkedquotes'])->name('profile.quote');
 
     // MOOD
     Route::get('/mood/create1', [MoodController::class, 'create1'])->name('mood.save1');
@@ -41,13 +47,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/mood/store', [MoodController::class, 'store'])->name('mood.store');
 });
 
-
 require __DIR__.'/auth.php';
 
 // Test Page
 Route::get('/test', [TestController::class, 'index']);
-Route::get('/test/navbar', function () {
-    return view('test.navbar');
+// Route::get('/test/navbar', function () {
+//     return view('test.navbar');
+// });
+Route::get('/test/test', function () {
+    return view('test.test');
 });
 Route::get('/components/navbar-default', function () {
     return view('components.navbar-default');
@@ -64,6 +72,17 @@ Route::get('/components/navbar-home-admin', function () {
 Route::get('/components/navbar-users', function () {
     return view('components.navbar-users');
 });
+Route::get('/components/sidebar', function () {
+    return view('components.sidebar');
+});
+Route::get('/components/sidebar-admin', function () {
+    return view('components.sidebar-admin');
+});
+Route::get('/components/footer', function () {
+    return view('components.footer');
+});
+
+
 
 
 
@@ -81,8 +100,8 @@ Route::get('/components/navbar-users', function () {
     Route::delete('/quote/{id}/hide',[QuotesController::class, 'hide'])->name('quote.hide');
     // Route::get('/quote', [QuotesController::class, 'edit'])->name('profile.edit');
 
-    
-    
+
+
     // Contactus
     Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
     // ROute::get('/admin/inquiries/search', [InquiriesController::class, 'search'])->name('admin.inquiries.search');
@@ -93,9 +112,19 @@ Route::get('/components/navbar-users', function () {
     Route::patch('/admin/chats/{id}/update', [ChatsController::class, 'update'])->name('admin.chats.update');
     Route::delete('/admin/chats/{id}/destroy', [ChatsController::class, 'destroy'])->name('admin.chats.destroy');
 
+     // Deletion Reasons
+    Route::get('/admin/deletion-reasons', [DeletionReasonController::class, 'index'])->name('deletion-reasons.index');
+
+    // users
+    Route::get('/admin/users', [UserController::class, 'index'])->name('users.index');
+    // Route::delete('/admin/users/{id}/deactivate', [UserController::class, 'deactivate'])->name('admin.users.deactivate');
+    // Route::patch('/admin/users/{id}/activate', [UserController::class, 'activate'])->name('admin.users.activate');
+    Route::post('/users/{id}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.status');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/home', [App\Http\Controllers\HomeController::class, 'change'])->name('home.quote.change');
 
 
 /**
@@ -128,3 +157,4 @@ Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.ind
  */
 Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
 // Route::get('/contactus/complete', [InquiryController::class, 'show'])->name('inquiry.complete');
+

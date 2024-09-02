@@ -30,7 +30,7 @@ class QuotesController extends Controller
  public function store(Request $request){
     #validate
     $request->validate([
-        'quote' => 'required|min:1',
+        'quote' => 'required|min:1|unique:quotes,quote',
         'author' => 'nullable|max:250',
     ]);
 
@@ -46,37 +46,73 @@ class QuotesController extends Controller
 
 
 public function index(Request $request){
-    $all_quotes = $this->quote->withTrashed()->latest()->paginate(3);
+    $all_quotes = $this->quote->withTrashed()->latest()->paginate(10);
     $quotes_count = $this->quote;
 
 
     $keyword = $request->input('keyword');
     
-    if (!empty($request)){
-        $all_quotes = Quote::query()
-            ->where('quote', 'like', '%' . $keyword . '%')
-            ->orWhere('author', 'like', '%' . $keyword . '%')
-            ->withTrashed()
-            ->latest()
-            ->paginate(3);
+  
+    // if (!empty($request)){
+    //     $all_quotes = Quote::query()
+    //         ->where('quote', 'like', '%' . $keyword . '%')
+    //         ->orWhere('author', 'like', '%' . $keyword . '%')
+    //         ->withTrashed()
+    //         ->latest()
+    //         ->paginate(3);
+    if ($request->search) {
 
+        $all_quotes = $this->quote->where('quote', 'like', '%' . $request->search . '%')
+                ->orWhere('author', 'like', '%' . $request->search . '%')
+                ->withTrashed()
+                ->latest()
+                ->paginate(10);
+        //search results
+        // $all_quotes = Quote::query()
+        //         ->where('quote', 'like', '%' . $keyword . '%')
+        //         ->orWhere('author', 'like', '%' . $keyword . '%')
+        //         ->withTrashed()
+        //         ->latest()
+        //         ->paginate(3);
+        $quotes_count = $all_quotes;
+ 
+         } else {
+
+            $sort = $request->input('sort', 'latest');
+
+            $query = Quote::query();
+
+
+            if ($sort === 'latest') {
+                $query->orderBy('created_at', 'desc');
+            } elseif ($sort === 'oldest') {
+                $query->orderBy('created_at', 'asc');
+            }
+
+            $all_quotes = $query->withTrashed()
+            
+            ->paginate(10);
             $quotes_count = $all_quotes;
             };
             
-    
             return view('admin.quotes.index')
             ->with('all_quotes', $all_quotes)
             ->with('quotes_count', $quotes_count)
+            ->with('search', $request->search)
             ->with('keyword', $keyword);
 
 }
 
+
+
+
+
     public function sort(Request $request){
         $sort = $request->input('sort');
         if($sort == 'asc') {
-            $all_quotes = $this->quote->withTrashed()->orderBy('created_at', 'asc')->paginate(3);
+            $all_quotes = $this->quote->withTrashed()->orderBy('created_at', 'asc')->paginate(10);
         }else{
-            $all_quotes = $this->quote->withTrashed()->orderBy('created_at', 'asc')->paginate(3);
+            $all_quotes = $this->quote->withTrashed()->orderBy('created_at', 'asc')->paginate(10);
             $quotes_count = $this->quote;
         
         }

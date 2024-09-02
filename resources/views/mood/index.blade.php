@@ -1,11 +1,21 @@
 <link rel="stylesheet" href="{{ asset('css/mood-tracker.css') }}">
 @extends('layouts.app')
 
+@extends('components.navbar-each')
+
+
 @section('title', 'Mood Tracking')
 
+
 @section('content')
-    <div class="container-mood my-5 py-3 mx-auto">
-        <div class="d-flex align-items-center mb-3">
+
+@include('components.sidebar')
+
+<div class="container-mood my-5 py-3">
+    <div class="d-flex mb-3 input-size">
+
+    {{-- <div class="container-mood my-5 py-3 mx-auto">
+        <div class="d-flex align-items-center mb-3"> --}}
             {{-- Avatar --}}
             <div class="icon-sm">
                 <i class="fa-solid fa-circle-user avatar"></i>
@@ -55,7 +65,7 @@
                         </div>
                     </div>
                     <div class="modal-body">
-                        <form method="#" action="#">
+                        <form method="post" action="{{ route('mood.store') }}">
                             @csrf
 
                             {{-- radio buttons --}}
@@ -63,27 +73,31 @@
                                 <div class="selectors d-flex">
                                     <div class="col-1"></div>
                                     <div class="col-2">
-                                        <input type="radio" name="selector" id="img1" value="great" checked>
+                                        <input type="radio" name="score" id="img1" value="2" checked>
                                         <label for="img1" class="selector great"></label>
                                     </div>
                                     <div class="col-2">
-                                        <input type="radio" name="selector" id="img2" value="good">
+                                        <input type="radio" name="score" id="img2" value="1">
                                         <label for="img2" class="selector good"></label>
                                     </div>
                                     <div class="col-2">
-                                        <input type="radio" name="selector" id="img3" value="ok">
+                                        <input type="radio" name="score" id="img3" value="0">
                                         <label for="img3" class="selector ok"></label>
                                     </div>
                                     <div class="col-2">
-                                        <input type="radio" name="selector" id="img4" value="notgood">
+                                        <input type="radio" name="score" id="img4" value="-1">
                                         <label for="img4" class="selector notgood"></label>
                                     </div>
                                     <div class="col-2">
-                                        <input type="radio" name="selector" id="img5" value="bad">
+                                        <input type="radio" name="score" id="img5" value="-2">
                                         <label for="img5" class="selector bad"></label>
                                     </div>
                                     <div class="col-1"></div>
                                 </div>
+                                @error('score')
+                                <p class="text-danger small">{{ $message }}</p>
+                                @enderror
+
                             </div>
 
 
@@ -105,19 +119,18 @@
         </div>
         <div class="d-flex justify-content-end">
             @auth {{-- if logged in --}}
-                <form action="" method="get">
+                <form action="" method="get" class="form-position">
                     <input type="date" name="search" placeholder="search..." class="form-control shadow" value="#">
                 </form>
             @endauth
         </div>
 
-        <div class="card card-mood mt-3 mb-3 mx-auto py-3 px-5 bg-white shadow">
+        <div class="card card-mood my-3 py-3 bg-white shadow">
             <div class="card-header bg-white border-0">
                 <h1 class="text-center">Calendar(API)</h1>
             </div>
         </div>
-
-        <div class="card card-mood mb-5 mx-auto px-3 bg-white shadow">
+        <div class="card card-mood mb-5 px-3 bg-white shadow">
             <div class="card-header bg-white">
                 {{-- Title --}}
                 <h3 class="float-start mb-0">Feedback of this Month</h3>

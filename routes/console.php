@@ -8,8 +8,8 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-// $today_quote->command('handle')
-// ->everySecond();
+// $schedule->command('app:schedule')
+// ->everyMinute();
 // })->daily();
 
 // protected function schedule(today_quote $today_quote)

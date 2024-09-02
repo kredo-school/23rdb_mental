@@ -27,6 +27,10 @@ public function isBookmarked(){
     return $this->bookmarks()->where('user_id', Auth::user()->id)->exists();
 }
 
+public function bookmarkedBy(){
+    return $this->belongsToMany(User::class, 'bookmarks');
+}
+
 // use this method to sort quote lists
 // public function order($select)
 // {
