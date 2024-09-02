@@ -20,7 +20,13 @@
         <!-- Right Side Of Navbar -->
         <div class="ms-auto">
             <div class="collapse navbar-collapse">
-                <a href="route('profile.show', Auth::user()->id)" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
+                <a href="{{ route('profile.show', Auth::user()->id) }}" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
+                @if (Auth::user()->avatar)
+                    <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="rounded-circle avatar-md">
+                 @else
+                    <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
+                @endif
+                
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
