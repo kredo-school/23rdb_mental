@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+@extends('layouts.app')
+
 @extends('components.navbar-home')
 
 @section('title', 'home')
@@ -62,7 +64,7 @@
                         <div class="col px-0 text-start">
                             {{-- Copy --}}
                             <button type="submit" class="btn btn-lg p-1 js-copy-btn" id="btn-copy-quote" data-copy><i class="fa-regular fa-clone"></i></button>
-                    </div>
+                        </div>
                 </div>
             </div>
             <div class="col-1"></div>
@@ -74,6 +76,7 @@
 {{-- Journaling section --}}
 <div class="container-journaling m-5">
     <div class="card bg-white py-3 px-5 border-0">
+    
         <div class="card-header bg-white">
             {{-- Title --}}
             <h1 class="m-0 align-self-center float-start">Journaling</h1>
@@ -173,6 +176,7 @@
 {{-- Chat Room Section --}}
 <div class="container-chat m-5">
     <div class="card bg-white py-3 px-5 border-0">
+ 
 
         <div class="card-header bg-white mb-3 border-0">
             {{-- Title --}}
@@ -219,7 +223,7 @@ console.log("test");
 </script>
 
 {{-- Footer --}}
-
+@extends('components.footer')
 
 
 @endsection

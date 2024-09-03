@@ -39,13 +39,14 @@
     margin: 0 auto;
     max-width: 600px;
     font-size: 18px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.7px;
     color: #fff;
-    text-decoration: none;
 }
 
 .nav_icon:hover {
+    opacity: 0.4;
     opacity: 0.4;
 }
 
@@ -91,9 +92,12 @@
     margin-right: 20px;
     justify-items: center;
     text-align: center;
+    justify-items: center;
+    text-align: center;
 }
 
 .btn-login:hover {
+    opacity: 0.4;
     opacity: 0.4;
 }
 
@@ -110,6 +114,8 @@
     border-radius: 7px;
     margin-left: 20px;
     margin-right: 20px;
+    justify-items: center;
+    text-align: center;
     justify-items: center;
     text-align: center;
 }
@@ -133,6 +139,8 @@
     margin-right: 20px;
     justify-items: center;
     text-align: center;
+    justify-items: center;
+    text-align: center;
 }
 
 .btn-register:hover {
@@ -146,8 +154,9 @@
 }
 
 .bg-footer {
-    background-color: #D9D9D9;
-    opacity: 0.5;
+    background-color: #b4b4b4;
+    background-size: auto;
+    opacity: 0.9;
 }
 
 
@@ -159,12 +168,18 @@
     height: 100%;
     top: 79px;
     left: 0;
-    background-color: rgba(206,211,213,0.3);
+    background-color: rgba(206,211,213,0.6);
 }
 
 .sidebar_inner {
     margin-top: 30px;
     margin-left: 30px;
+}
+
+.sidebar a {
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
 }
 
 .sidebar a {
@@ -183,7 +198,7 @@
 
 .sidebar_h1 {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 400; 
     line-height: 1.5;
     letter-spacing: 2px;
 }
@@ -207,6 +222,20 @@
 .sidebar_icon_admin {
     display: flex;
     align-items: center;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    justify-content: left;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.sidebar_icon_admin {
+    display: flex;
+    align-items: center;
     margin: 0 auto;
     font-size: 18px;
     font-weight: 400;
@@ -214,9 +243,11 @@
     justify-content: left;
     text-align: left;
     margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .sidebar_avatar {
+    font-size: 30px;
     font-size: 30px;
     outline: 2px solid #4945455f;
     border-radius: 100%;
@@ -226,9 +257,11 @@
 
 .sidebar_avatar:hover {
     opacity: 0.4;
+    opacity: 0.4;
 }
 
 .sidebar_hr1{
+    border-width: 2px;
     border-width: 2px;
     border-style: solid;
     border-color: #2424245f;
@@ -256,9 +289,30 @@
     margin-right: 90px;
     display: inline;
 	padding: 3px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.ls_sidebar_admin a{
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
+}
+
+.ls_sidebar_admin:hover{
+    background:  rgba(253, 253, 253, 0.5);
+    border-radius: 2px;
+    margin-right: 90px;
+    display: inline;
+	padding: 3px;
 }
 
 .current_page_item {
+    background:  rgba(253, 253, 253, 0.5);;
+    border-radius: 2px;
+    margin-right: 90px;
     background:  rgba(253, 253, 253, 0.5);;
     border-radius: 2px;
     margin-right: 90px;

@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 {{-- @extends('layouts.app') --}}
+{{-- @extends('layouts.app') --}}
 
 {{-- @section('title', 'each') --}}
-<!--ここがんばったけど、わからないです-->
 
+{{-- @section('content') --}}
 {{-- @section('content') --}}
 
 <nav class="navbar navbar-dark navbar-expand-md">
@@ -25,6 +26,14 @@
         <div class="ms-auto">
             <div class="collapse navbar-collapse">
         		<a href="route('profile.show', Auth::user()->id)" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                    <button class="btn-logout">Logout</button>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">

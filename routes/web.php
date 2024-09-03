@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\DeletionReasonController;
 use App\Http\Controllers\Admin\UserController;
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -56,6 +57,11 @@ Route::get('/test', [TestController::class, 'index']);
 // });
 Route::get('/test/test', function () {
     return view('test.test');
+// Route::get('/test/navbar', function () {
+//     return view('test.navbar');
+});
+Route::get('/test/test', function () {
+    return view('test.test');
 });
 Route::get('/components/navbar-default', function () {
     return view('components.navbar-default');
@@ -83,11 +89,23 @@ Route::get('/components/footer', function () {
 });
 
 
+Route::get('/components/sidebar', function () {
+    return view('components.sidebar');
+});
+Route::get('/components/sidebar-admin', function () {
+    return view('components.sidebar-admin');
+});
+Route::get('/components/footer', function () {
+    return view('components.footer');
+});
+
+
 
 
 
 //admin route
 
+Route::middleware('auth')->group(function () {
 
     //quotes
     // Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
@@ -99,6 +117,8 @@ Route::get('/components/footer', function () {
     Route::patch('/quote/{id}/unhide',[QuotesController::class, 'unhide'])->name('quote.unhide');
     Route::delete('/quote/{id}/hide',[QuotesController::class, 'hide'])->name('quote.hide');
     // Route::get('/quote', [QuotesController::class, 'edit'])->name('profile.edit');
+
+
 
 
 
@@ -121,7 +141,7 @@ Route::get('/components/footer', function () {
     // Route::patch('/admin/users/{id}/activate', [UserController::class, 'activate'])->name('admin.users.activate');
     Route::post('/users/{id}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.status');
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/home', [App\Http\Controllers\HomeController::class, 'change'])->name('home.quote.change');
@@ -158,3 +178,6 @@ Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.ind
 Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
 // Route::get('/contactus/complete', [InquiryController::class, 'show'])->name('inquiry.complete');
 
+});
+
+Auth::routes();
