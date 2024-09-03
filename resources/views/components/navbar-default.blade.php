@@ -5,7 +5,7 @@
 
 @section('content') --}}
 
-<nav class="navbar navbar-dark navbar-expand-md">
+<nav class="navbar navbar-dark navbar-expand-md fixed-top">
   <!-- Left Side Of Navbar -->
     <a class="navbar-brand ms-5 justify-content-center" href="{{ route('home') }}">
       <img src="{{ asset('images/main/logo_sm.png') }}" alt="logo">

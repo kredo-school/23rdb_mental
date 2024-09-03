@@ -5,7 +5,7 @@
 
 {{-- @section('content') --}}
 
-<nav class="navbar navbar-dark navbar-expand-md">
+<nav class="navbar navbar-dark navbar-expand-md fixed-top">
     <div class="container-fluid">
         <!-- Left Side Of Navbar -->
             <div class="nav_inner align-items-center">
