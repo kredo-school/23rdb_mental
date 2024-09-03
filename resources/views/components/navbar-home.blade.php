@@ -5,7 +5,7 @@
 
 @section('content') --}}
 
-<nav class="navbar navbar-dark navbar-expand-md fixed-top">
+<nav class="navbar sticky-top navbar-dark navbar-expand-md shadow">
     <div class="container-fluid">
         <!-- Left Side Of Navbar -->
         <a class="navbar-brand ms-5" href="{{ route('home') }}">
@@ -31,12 +31,13 @@
         <!-- Right Side Of Navbar -->
         <div class="ms-auto">
             <div class="collapse navbar-collapse">
-                <a href="{{ route('profile.show', Auth::user()->id) }}" class="nav_avatar_link"></a>
+                <a href="{{ route('profile.show', Auth::user()->id) }}" class="sidebar_avatar">
                     @if (Auth::check() && Auth::user()->avatar)
-                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="nav_avatar fa-solid fa-circle-user">
+                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="sidebar_avatar fa-solid fa-circle-user"></a>
                     @else
                         <i class="nav_avatar fa-solid fa-circle-user"></i>
                     @endif
+                
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">

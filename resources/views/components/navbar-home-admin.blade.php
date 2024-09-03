@@ -5,7 +5,7 @@
 
 @section('content') --}}
 
-<nav class="navbar navbar-dark navbar-expand-md fixed-top">
+<nav class="navbar sticky-top navbar-dark navbar-expand-md shadow">
     <div class="container-fluid">
         <!-- Left Side Of Navbar -->
         <a class="navbar-brand ms-5 justify-content-center" href="{{ route('home') }}">

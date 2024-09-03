@@ -34,8 +34,8 @@
             <div class=".ls_sidebar_admin a">
                 <p class="sidebar_icon_admin"><img src="{{ asset('images/navigation/admin_side_icon.png') }}" alt="home">Admin Menu</p>
                 <ul>
-                    <li class="ls_sidebar_admin"><a href="{{ route('admin.users.index') }}">All Users</a></li>  
-                    <li class="ls_sidebar_admin"><a href="{{ route('admin.quotes.index') }}">All Quotes</a></li>
+                    <li class="ls_sidebar_admin"><a href="{{ route('users.index') }}">All Users</a></li>  
+                    <li class="ls_sidebar_admin"><a href="{{ route('quotes.index') }}">All Quotes</a></li>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.chats.index') }}">All Chat</a></li>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Inquiry</a></li>
                     <hr class="sidebar_hr1"> 
@@ -46,9 +46,12 @@
         <!-- Footer Menu -->
         <nav class="sidebar_inner_bottom">
             <div class="sidebar a">
-                <a href="{{ route('profile.show', Auth::user()->id) }}">
-                    <p class="sidebar_icon" style="align-items: center"><i class="sidebar_avatar fa-solid fa-circle-user"></i>Profile</p>
-                </a>
+                <a href="{{ route('profile.show', Auth::user()->id) }}" class="nav_avatar_link"></a>
+                    @if (Auth::check() && Auth::user()->avatar)
+                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="nav_avatar fa-solid fa-circle-user">
+                    @else
+                        <i class="nav_avatar fa-solid fa-circle-user"></i>
+                    @endif
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
