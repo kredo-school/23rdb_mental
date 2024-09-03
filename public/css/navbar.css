@@ -63,7 +63,9 @@
 
 .nav_avatar {
     font-size: 45px;
-    outline: 4px solid #4945455f;
+    width: 50px;
+    height: 50px;
+    outline: 3px solid #7471715f;
     border-radius: 100%;
     color: #fff;
 }
@@ -78,9 +80,9 @@
 }
 
 .btn-login {
-    background-color: #6C757D;
-    color: #e1e1e1;
-    border: 1.5px solid #e1e1e1;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1.5px solid #ffffff;
     width: 90px;
     height: 35px;
     font-family: "Lato", sans-serif;
@@ -97,14 +99,15 @@
 }
 
 .btn-login:hover {
+
     opacity: 0.4;
-    opacity: 0.4;
+
 }
 
 .btn-logout {
-    background-color: #6C757D;
-    color: #e1e1e1;
-    border: 1.5px solid #e1e1e1;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1.5px solid #ffffff;
     width: 90px;
     height: 35px;
     font-family: "Lato", sans-serif;
@@ -121,7 +124,7 @@
 }
 
 .btn-logout:hover {
-    opacity: 0.3;
+    opacity: 0.6;
 }
 
 .btn-register {
@@ -168,7 +171,7 @@
     height: 100%;
     top: 79px;
     left: 0;
-    background-color: rgba(206,211,213,0.6);
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 .sidebar_inner {

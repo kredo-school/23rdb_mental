@@ -21,6 +21,7 @@
                  @else
                     <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
                 @endif
+
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
