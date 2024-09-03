@@ -31,7 +31,7 @@
         <!-- Right Side Of Navbar -->
         <div class="ms-auto">
             <div class="collapse navbar-collapse">
-                <a href="route('profile.show', Auth::user()->id)" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
+                <a href="{{ route('profile.show', Auth::user()->id) }}" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
