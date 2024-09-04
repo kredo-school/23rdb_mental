@@ -9,10 +9,10 @@
 @section('content')
 
 @if(Auth::user()->role_id == 1)
-   @include('components.sidebar-admin') 
-@else 
+   @include('components.sidebar-admin')
+@else
     @include('components.sidebar')
-@endif 
+@endif
 
 
 
@@ -24,28 +24,28 @@
 
             <div class="col-2">
                 <p></p>
-                
+
             </div>
 
 
             <div class="col-10 py-4 inquiry-body-size">
                 <div class="row mt-3">
                     <div class="col-7"></div>
-                    
+
                     {{-- search bar --}}
                     <div class="col-1">
-               
+
                         <p class="text-primary mt-1 ">Search</p>
                         </div>
 
-                        
+
                     <div class="col-3">
                         <form action="{{ route('admin.inquiries') }}" method="get" class="form-inline">
                             @csrf
                             <input type="search" name="keyword" placeholder="keyword....." class="form-control quote-other-btn shadow">
-                          
+
                         </form>
-                              
+
                     </div>
 
 
@@ -53,17 +53,17 @@
                 <div>
 
                     @if ((!empty($keyword)))
-                    <span class="pb-0 mb-0 ms-4 me-5 pe-5">Result for : {{ $keyword }}</span>    
+                    <span class="pb-0 mb-0 ms-4 me-5 pe-5">Result for : {{ $keyword }}</span>
                     @endif
                     <p class="pb-0 mb-0 ms-4 me-5 pe-5 mt-0 pt-0">
-                        
-                        Total : 
+
+                        Total :
                         <span>{{ $inquiries_count->total() }}</span>
                          Inquiries
                     </p>
 
-                    
-                    
+
+
                 </div>
 
                 <table class="table align-middle bg-white quote-table mt-0 table-responsive">
@@ -88,12 +88,12 @@
                             </td>
                             <td class="th-wsmall">
                                 @if ($inquiry->user->avatar)
-                                <img src="{{ $user->avatar }}" alt="" class="rounded-circle d-block avatar-lg">
+                                <img src="{{ $inquiry->user->avatar }}" alt="" class="rounded-circle d-block avatar-lg">
                             @else
                             <i class="fa-solid fa-circle-user d-block text-center avatar-lg"></i>
                             @endif
                             </td>
-            
+
                             <td class="text-center th-wsmedium">
                                 {{ $inquiry->user->name }}
                             </td>
@@ -117,7 +117,7 @@
                                 <p class="mb-0 px-0">
                                 {{ $inquiry->created_at }}</p>
                              </td>
-                             
+
                              @include('admin.contactus.modals.details')
 
                         </tr>
@@ -129,12 +129,12 @@
 
                         @endforelse
                     </tbody>
-                    
+
                 </table>
 
                 <div class="d-flex justify-content-center">
                     {{ $all_inquiries->links() }}
-                </div>    
+                </div>
 
             </div>
         </div>

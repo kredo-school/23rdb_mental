@@ -6,7 +6,7 @@
 
 .inquiry-table{
     border-color: #979a9b;
-    color: #42484D !important; 
+    color: #42484D !important;
     font-family: "Lato", sans-serif;
     font-size: 20px;
 }
@@ -16,7 +16,7 @@ table {
 }
 
 th {
-    color: #42484D !important; 
+    color: #42484D !important;
     font-family: "Lato", sans-serif;
     font-size: 20px;
 }
@@ -40,24 +40,24 @@ th {
 
 
 td {
-    color: #42484D !important; 
+    color: #42484D !important;
     font-family: "Lato", sans-serif;
     font-size: 20px;
 }
 .td-date{
-    color: #42484D !important; 
+    color: #42484D !important;
     font-family: "Lato", sans-serif;
     font-size: 16px;
 }
 .td-text{
-    color: #42484D !important; 
+    color: #42484D !important;
     font-family: "Lato", sans-serif;
     font-size: 20px;
     padding-top: 0;
 }
 
 .td-details{
-    color: #42484D !important; 
+    color: #42484D !important;
     font-family: "Lato", sans-serif;
     font-size: 12px;
     color: #6BB7F6 !important;
@@ -69,12 +69,12 @@ td {
 
 .inquiry-modal {
     border-color: #42484D;
-    color: #42484D; 
+    color: #42484D;
     font-family: "Lato", sans-serif;
     font-size: 20px;
 }
 .inquiry-modaltext {
-    color: #42484D; 
+    color: #42484D;
     font-family: "Lato", sans-serif;
     font-size: 20px;
 }
@@ -95,13 +95,13 @@ td {
     margin-top: 10px;
     line-height: 150%;
     height: 250px !important;
-} 
+}
 
 .inquiry-frame2{
     display: inline-block;
     margin-top: 0;
     /* background-color: green;  */
-}  
+}
 
 
 .inquiry-content{
@@ -124,14 +124,14 @@ td {
 
 .inquiry-detail-a{
     line-height: 150%;
-    color: #42484D; 
+    color: #42484D;
     font-size: 20px;
     width: 400px;
 }
 
 .avatar-lg{
-    /* width: 2rem;
-    height: 2rem; */
+    width: 2rem;
+    height: 2rem;
     object-fit: cover;
     color: #979a9b;
     font-size: 36px;

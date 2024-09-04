@@ -54,9 +54,9 @@ class ProfileController extends Controller
             // $favorite_quotes = [];
                     // foreach ($all_bookmarks as $bookmark) {
                     //     if ($bookmark->user_id == Auth::user()->id) {
-                             
-                    //         Log::debug($all_quotes); 
-                        
+
+                    //         Log::debug($all_quotes);
+
                     //         $favorite_quotes[] = $bookmark->quote->id;
                     //     }
                     // }
@@ -64,8 +64,8 @@ class ProfileController extends Controller
                     ->with('user', $user_a)
                     // ->with('all_quotes', $all_quotes)
                     ->with('bookmarked_quotes', $bookmarked_quotes);
-                    // ->with('favorite_quotes', $favorite_quotes);   
-    
+                    // ->with('favorite_quotes', $favorite_quotes);
+
 }
 
 
@@ -83,7 +83,7 @@ class ProfileController extends Controller
     //                 return view('profile.show')
     //                 ->with('user', $user_a)
     //                 ->with('all_quotes', $all_quotes)
-    //                 ->with('bookmarked_quotes', $bookmarked_quotes); 
+    //                 ->with('bookmarked_quotes', $bookmarked_quotes);
     // }
 
     public function edit(Request $request): View
@@ -93,7 +93,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    
+
 
     /**
      * Update the user's profile information.
@@ -153,7 +153,7 @@ class ProfileController extends Controller
         try {
 
             $request->validate([
-                'avatar'          => 'mimes:jpeg,jpg,png.gif',
+                'avatar'          => 'mimes:jpeg,jpg,png,gif',
                 'name'            => 'required|max:50',
                 'email'           => 'required|max:50|email|unique:users,email,' . Auth::user()->id,
                 // Adding: unique:<table>, <column>
