@@ -43,7 +43,6 @@ class MoodController extends Controller
             $this->mood->save();
 
             return redirect()->route('home');
-
         } catch (\Exception $e) {
             Log::error('Failed: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Failed']);
@@ -52,7 +51,24 @@ class MoodController extends Controller
 
     public function index()
     {
-        return view('mood.index');
+        $userId = Auth::id();
+        $startDate = Carbon::now()->subDays(5);
+        $moods = Mood::where('user_id', $userId)
+            ->where('created_at', '>=', $startDate)
+            ->select('created_at', 'score')
+            ->orderBy('created_at')
+            ->get();
+        $moodsData = $moods->map(function ($mood) {
+            return [
+                $mood->created_at->format('Y-m-d H:i:s'),
+                $mood->score
+            ];
+        });
+
+        $moodsData->prepend(['Date', 'Mood']);
+
+        return view('mood.index', ['moodsData' => $moodsData]);
+        // return view('mood.index');
     }
 
     public function getMoods()

@@ -2,6 +2,8 @@
 {{-- graph --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@latest"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
 {{-- <script src="{{ asset('js/chart.js') }}" defer></script> --}}
 
@@ -271,7 +273,53 @@
         </div>
     </div>
 
-    <script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var rawData = {!! json_encode($moodsData) !!};
+            console.log('Raw Data:', rawData);
+            try {
+                var data = google.visualization.arrayToDataTable(rawData);
+                console.log('Formatted Data:', data);
+                var options = {
+                    title: 'Mood Over Time',
+                    curveType: 'function',
+                    legend: { position: 'bottom' },
+                    chartArea: { width: '80%', height: '70%' },
+                    pointShape: 'circle',
+                    pointSize: 7,
+                    lineWidth: 2,
+                    series: {
+                        0: { color: '#007BFF' }
+                    },
+                    hAxis: {
+                        title: 'Date & Time',
+                        format: 'M/d/yy HH:mm',
+                        gridlines: { color: 'transparent' },
+                        textStyle: { fontSize: 12 }
+                    },
+                    vAxis: {
+                        title: 'Mood',
+                        ticks: [
+                            [2, 'Great'],
+                            [1, 'Good'],
+                            [0, 'Okay'],
+                            [-1, 'Not Good'],
+                            [-2, 'Bad']
+                        ]
+                    }
+                };
+                var chart = new google.visualization.LineChart(document.getElementById('moodGraph'));
+                chart.draw(data, options);
+                console.log('Chart successfully drawn.');
+            } catch (error) {
+                console.error('Error drawing chart:', error);
+            }
+        }
+    </script>
+
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             fetch('/mood/getmood', {
                     headers: {
@@ -285,14 +333,9 @@
                         console.error('No data found');
                         return;
                     }
-                    // const labels = data.map(item => new Date(item.date));
-                    // const moodData = data.map(item => {
-                    //     if (item.avg_score > 2) return 2;
-                    //     if (item.avg_score < -2) return -2;
-                    //     return item.avg_score;
-                    // });
+
+
                     const labels = data.map(item => new Date(item.created_at));
-                    // const moodData = data.map(item => item.score);
                     const moodData = data.map(item => ({
                         x: new Date(item.created_at),
                         y: item.score
@@ -365,5 +408,5 @@
                     console.error('Fetch error:', error);
                 });
         });
-    </script>
+    </script> --}}
 @endsection
