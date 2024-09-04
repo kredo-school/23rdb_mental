@@ -1,7 +1,11 @@
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 @extends('layouts.app')
 
-@extends('components.navbar-home')
+@if (Auth::user()->role_id == 1)
+    @include('components.navbar-home-admin')
+@elseif (Auth::user()->role_id == 2)
+    @include('components.navbar-home')
+@endif
 
 @section('title', 'home')
 

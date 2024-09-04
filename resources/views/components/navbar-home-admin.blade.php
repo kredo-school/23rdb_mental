@@ -25,18 +25,18 @@
                 <a href="{{ route('journal.journals') }}" class="nav_icon text-decoration-none"><img src="{{ asset('images/navigation/journaling_icon.png') }}" alt="Journal"><br>Journaling</a>
                 <a href="{{ route('quote.index') }}" class="nav_icon text-decoration-none"><img src="{{ asset('images/navigation/quote_icon.png') }}" alt="Quote"><br>Quote</a>
                 <a href="{{ route('chatroom.index') }}" class="nav_icon text-decoration-none"><img src="{{ asset('images/navigation/chat_icon.png') }}" alt="Chat"><br>Chat</a>
-                
+
                 <div class="dropdown">
                     <a href="{{ route('home') }}" class="nav_icon text-white text-decoration-none btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset('images/navigation/admin_icon.png') }}" alt="Admin"><br>Admin</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li class="dropdown-item"><a href="{{ route('admin.users.index') }}" class="text-muted text-decoration-none">All Users</li></a>
-                            <li class="dropdown-item"><a href="{{ route('admin.quotes.index') }}" class="text-muted text-decoration-none">All Quotes</li></a>
+                            <li class="dropdown-item"><a href="{{ route('users.index') }}" class="text-muted text-decoration-none">All Users</li></a>
+                            <li class="dropdown-item"><a href="{{ route('quote.index') }}" class="text-muted text-decoration-none">All Quotes</li></a>
                             <li class="dropdown-item"><a href="{{ route('admin.chats.index') }}" class="text-muted text-decoration-none">All Chat</li></a>
                             <li class="dropdown-item"><a href="{{ route('admin.inquiries') }}" class="text-muted text-decoration-none">All Inquiry</li></a>
                         </ul>
                 </div>
-            </div>       
+            </div>
         </div>
 
         <!-- Right Side Of Navbar -->

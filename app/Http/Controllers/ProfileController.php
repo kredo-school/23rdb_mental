@@ -37,8 +37,16 @@ class ProfileController extends Controller
     {
         $user_a = $this->user->findOrFail($id);
 
-        return view('profile.show')
-            ->with('user', $user_a);
+        // Check if the authenticated user is trying to access their own profile
+        if (Auth::check() && Auth::id() === $user_a->id) {
+            return view('profile.show')
+            ->with('user', $user_a);;
+        } else {
+            return redirect()->route('home')->with('error', 'Unauthorized access.');
+        }
+
+        // return view('profile.show')
+            // ->with('user', $user_a);
     }
 
     public function edit(Request $request): View

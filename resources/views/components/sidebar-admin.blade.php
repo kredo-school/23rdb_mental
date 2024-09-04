@@ -10,7 +10,7 @@
     <div class="body_sidebar">
         <nav class="sidebar_inner">
             <p class=" sidebar_h1">ENCOURAGE YOURSELF, <br>HEAL YOURSELF</p>
-            <br>      
+            <br>
             <div class="sidebar a">
                 <a href="{{ route('home') }}">
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/home_side_icon.png') }}" alt="home">Home</p>
@@ -26,7 +26,7 @@
                 </a>
                 <a href="{{ route('chatroom.index') }}">
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat">Chat</p>
-                </a>       
+                </a>
             </div>
             <br>
 
@@ -34,14 +34,14 @@
             <div class=".ls_sidebar_admin a">
                 <p class="sidebar_icon_admin"><img src="{{ asset('images/navigation/admin_side_icon.png') }}" alt="home">Admin Menu</p>
                 <ul>
-                    <li class="ls_sidebar_admin"><a href="{{ route('admin.users.index') }}">All Users</a></li>  
-                    <li class="ls_sidebar_admin"><a href="{{ route('admin.quotes.index') }}">All Quotes</a></li>
+                    <li class="ls_sidebar_admin"><a href="{{ route('users.index') }}">All Users</a></li>
+                    <li class="ls_sidebar_admin"><a href="{{ route('quote.index') }}">All Quotes</a></li>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.chats.index') }}">All Chat</a></li>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Inquiry</a></li>
-                    <hr class="sidebar_hr1"> 
-                </ui>       
+                    <hr class="sidebar_hr1">
+                </ui>
             </div>
-        </nav>  
+        </nav>
 
         <!-- Footer Menu -->
         <nav class="sidebar_inner_bottom">

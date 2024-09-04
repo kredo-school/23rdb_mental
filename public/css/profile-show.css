@@ -29,6 +29,9 @@ div .btn-delete-account {
 
 img.avatar {
     width: 180px;
+    height: 180px;
+    object-fit: cover;
+    display: flex;
 }
 
 
@@ -121,4 +124,6 @@ div .btn-dismiss {
     padding: 10px; /* Adjust padding for a better visual appearance */
     box-sizing: border-box; /* Ensure padding and border are included in the height */
 }
+
+
 

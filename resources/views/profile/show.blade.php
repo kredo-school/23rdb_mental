@@ -1,13 +1,19 @@
 <link rel="stylesheet" href="{{ asset('css/profile-show.css') }}">
 
 @extends('layouts.app')
+
 @extends('components.navbar-each')
 
 @section('title', 'Profile')
 
 @section('content')
 
-@include('components.sidebar')
+    @if (Auth::user()->role_id == 1)
+        @include('components.sidebar-admin')
+    @else
+        @include('components.sidebar')
+    @endif
+
     <div class="container-profile-show my-5">
 
         {{-- Profile Section --}}

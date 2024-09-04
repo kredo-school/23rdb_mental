@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/mood/create', [MoodController::class, 'create'])->name('mood.create');
     Route::get('mood/index', [MoodController::class, 'index'])->name('mood.index');
     Route::post('/mood/store', [MoodController::class, 'store'])->name('mood.store');
+    Route::get('/mood/getmood', [MoodController::class, 'getMoods']);
 });
 
 require __DIR__.'/auth.php';
