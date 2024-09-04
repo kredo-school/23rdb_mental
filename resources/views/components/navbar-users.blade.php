@@ -1,22 +1,17 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 {{-- @extends('layouts.app')
-
 @section('title', 'users')
-
 @section('content') --}}
-
-<nav class="navbar navbar-dark navbar-expand-md">
+<nav class="navbar navbar-dark navbar-expand-md fixed-top">
     <div class="container-fluid">
         <!-- Left Side Of Navbar -->
         <a class="navbar-brand ms-5 justify-content-center" href="{{ route('home') }}">
             <img src="{{ asset('images/main/logo_sm.png') }}" alt="logo">
         </a>
-
         <!-- Toggler button for narrow view -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <!-- Right Side Of Navbar -->
         <div class="ms-auto">
             <div class="collapse navbar-collapse">
@@ -26,7 +21,7 @@
                  @else
                     <i class="fa-solid fa-circle-user text-secondary icon-md"></i>
                 @endif
-                
+
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">

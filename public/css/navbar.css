@@ -14,7 +14,7 @@
 .nav_logo {
     width: 160px;
     height: 30px;
-    margin-left: 5px; 
+    margin-left: 5px;
     display: flex;
     justify-content: center;
 }
@@ -39,12 +39,14 @@
     margin: 0 auto;
     max-width: 600px;
     font-size: 18px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.7px;
     color: #fff;
 }
 
 .nav_icon:hover {
+    opacity: 0.4;
     opacity: 0.4;
 }
 
@@ -55,7 +57,7 @@
     font-weight: 390;
     color: #fff;
     justify-content: center;
-    margin-left: -55px; 
+    margin-left: -55px;
     margin-top: 5px;
 }
 
@@ -92,10 +94,14 @@
     margin-right: 20px;
     justify-items: center;
     text-align: center;
+    justify-items: center;
+    text-align: center;
 }
 
 .btn-login:hover {
-    opacity: 0.6;
+
+    opacity: 0.4;
+
 }
 
 .btn-logout {
@@ -111,6 +117,8 @@
     border-radius: 7px;
     margin-left: 20px;
     margin-right: 20px;
+    justify-items: center;
+    text-align: center;
     justify-items: center;
     text-align: center;
 }
@@ -132,6 +140,8 @@
     border-radius: 7px;
     margin-left: 20px;
     margin-right: 20px;
+    justify-items: center;
+    text-align: center;
     justify-items: center;
     text-align: center;
 }
@@ -175,6 +185,12 @@
     text-decoration: none;
 }
 
+.sidebar a {
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
+}
+
 .sidebar_inner_bottom {
     position: fixed;
     left: 0;
@@ -209,6 +225,20 @@
 .sidebar_icon_admin {
     display: flex;
     align-items: center;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    justify-content: left;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.sidebar_icon_admin {
+    display: flex;
+    align-items: center;
     margin: 0 auto;
     font-size: 18px;
     font-weight: 400;
@@ -216,9 +246,11 @@
     justify-content: left;
     text-align: left;
     margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .sidebar_avatar {
+    font-size: 30px;
     font-size: 30px;
     outline: 2px solid #4945455f;
     border-radius: 100%;
@@ -228,21 +260,16 @@
 
 .sidebar_avatar:hover {
     opacity: 0.4;
+    opacity: 0.4;
 }
 
 .sidebar_hr1{
     border-width: 2px;
+    border-width: 2px;
     border-style: solid;
-    border-color: #2424245f; 
+    border-color: #2424245f;
     width: 210px;
     margin-left: -45px;
-}
-
-.sidebar_contact{
-    text-decoration: none;
-    color: inherit;
-    font-size: 16px;
-    cursor : pointer;
 }
 
 .ls_sidebar_admin {
@@ -265,9 +292,30 @@
     margin-right: 90px;
     display: inline;
 	padding: 3px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.ls_sidebar_admin a{
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
+}
+
+.ls_sidebar_admin:hover{
+    background:  rgba(253, 253, 253, 0.5);
+    border-radius: 2px;
+    margin-right: 90px;
+    display: inline;
+	padding: 3px;
 }
 
 .current_page_item {
+    background:  rgba(253, 253, 253, 0.5);;
+    border-radius: 2px;
+    margin-right: 90px;
     background:  rgba(253, 253, 253, 0.5);;
     border-radius: 2px;
     margin-right: 90px;

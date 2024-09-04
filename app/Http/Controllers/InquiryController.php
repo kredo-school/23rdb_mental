@@ -26,7 +26,7 @@ class InquiryController extends Controller
     public function store(Request $request){
         #validate
         $request->validate([
-            'inquiry' => 'required|min:1'
+            'inquiry' => ['required', 'min:1'],
         ]);
 
         #save the inquiry data

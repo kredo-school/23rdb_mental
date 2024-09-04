@@ -2,9 +2,16 @@
 
 @extends('layouts.app')
 
+@extends('components.navbar-each')
+
 @section('title', 'Admin: Quotes')
 
 @section('content')
+@if(Auth::user()->role_id == 1)
+    @include('components.sidebar-admin')
+@else
+    @include('components.sidebar')
+@endif
 
 
 
@@ -14,49 +21,48 @@
         <div class="row justify-content-center">
 
             
-            <div class="col-2 bg-warning">
-                <p></p>
-                
+            <div class="col-2">
+            
             </div>
 
 
 
-            <div class="col-10 py-4 quote-body-size">
+            <div class="col-10 mt-5 quote-body-size">
                 <div class="row">
                     <div class="col-1"></div>
                     
+                    {{-- sort area --}}
                     <div class="col-1">
                     <p class="text-primary text-end mt-1">Sort</p>
                     </div>
 
+
                     <div class="col-3">
-                            <button class="btn dropdown-toggle btn-link text-decoration-none text-muted quote-other-btn w-75 shadow" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">Latest
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              {{-- <a class="dropdown-item" href="#">latest</a> --}}
-                              <li class="dropdown-item" href="#">Oldest</li>
-                              <li class="dropdown-item" href="#">Bookmarked</li>
-                              <li class="dropdown-item" href="#">Hidden</li>
-                            </ul>
-                       
+                        
+                                <form method="get" action="{{ route('quote.index') }}">
+                                    <div class="form-group">
+                                        <select name="sort" id="sort" class="form-control text-decoration-none text-muted quote-other-btn w-75" onchange="this.form.submit()">
+                                            <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Latest
+                                            </option>
+                                            <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Oldest
+                                            </option>
+                                        </select>
+                                    </div>
+                                </form>
+
 
                     </div>
 
                     <div class="col-1">
                         <p class="text-primary mt-1">Search</p>
-                        </div>
-
-                    <div class="col-3">
-                        <form action="{{ route('quote.index') }}" method="get" class="input-group">
-                            <input type="text" class="form-control form-inline quote-other-btn w-75 shadow" name="search" placeholder="keywords"> 
-                            <span class="input-group-text quote-other-btn"><i class="fa-solid fa-magnifying-glass"></i></span>
-                        {{-- value="{{ $search}}" --}}
-                            {{-- @if($search)
-                            @endif --}}
-                        </form>
-                          
                     </div>
-
+                    <div class="col-3">
+                        <form action="{{ route('quote.index') }}" method="get" class="form-inline">
+                            @csrf
+                            <input type="search" name="search" placeholder="search..." class="form-control shadow quote-other-btn" value="{{ $search }}">
+                        </form>
+                    </div> 
+            
                     {{-- create a new quote button --}}
                     <div class="col-2 ms-5">
                         <button type="button" class="btn-submit" data-bs-toggle="modal" data-bs-target="#create-quote">
@@ -70,9 +76,14 @@
 
                 </div>
                 <div>
-                    <p class="pb-0 mb-0 ms-4">
+        
+                    @if($search)
+                    <span class="pb-0 mb-0 ms-4 me-5 pe-5">Result for : {{ $search }}</span>    
+                    @endif
+                    <p class="pb-0 mb-0 ms-4 me-5 pe-5 mt-0 pt-0">
+                        
                         Total : 
-                        <span>{{ $quotes_count->count() }}</span>
+                        <span>{{ $quotes_count->total() }}</span>
                          Quotes
                     </p>
                 </div>
@@ -80,88 +91,152 @@
                 <table class="table align-middle bg-white quote-table mt-0">
                     <thead class="small table-secondary border">
                         <tr class="">
-                            <th></th>
-                            <th class="text-center">Quote</th>
-                            <th></th>
-                            <th class="text-center">Auther</th>
-                            <th class="text-center">Display</th>
+                            
+                            <th colspan=6 class="text-center">Quote</th>
+                            <th colspan=3 class="text-center">Auther</th>
+                            <th colspan=3 class="text-center">Display</th>
                         </tr>
 
                     </thead>
-
+                {{-- body --}}
                     <tbody class="border quote-table">
                         @forelse($all_quotes as $quote)
                         <tr>
-                            <td class="py-0 pe-0">
-                                <h2 class="text-end">
-                                    "
-                                </h2>
-                            
-                            </td>
-                            <td class="h2 text-center w-50">
-                                {{ $quote->quote }}
-                            </td>
-                            
-                            <td class="py-0 pe-0">
-                                <h2 class="text-start">
-                                    "
-                                </h2>
-                            
+   
+                            <td colspan=6 class="h2 text-center" value="showquote-quote">
+                               " {{ $quote->quote }} " 
                             </td>
 
-                            <td class="text-center">
+                            <td colspan=3 class="text-center">
                                 {{ $quote->author }}
                             </td>
 
-                            <td class="text-center pt-4">
+                            <td colspan=3 class="text-center pt-2">
+                                <div class="row">
                                 {{-- cancel the bookmark --}}
-                                <div class="quote-switch text-center">
+                                {{-- <div class="col-2 quote-switch text-center form-group mt-3">
                                     @if ($quote->isBookmarked())
                                     <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                            <button type="submit" class="btn pe-3">
-                                            <i class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button> 
+                                            <button type="submit" class="btn px-0 pt-0">
+                                            <i class="fa-solid fa-bookmark quote-bookmark-store"></i></button> 
+                                    </form>
                                         
                                     @else
 
                                     <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
                                         @csrf
-                                            <button type="submit" class="btn pe-3"><i class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
+                                            <button type="submit" class="btn px-0 pt-0"><i class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
                                     </form>
                                         
                                     @endif
-                                </div>
+                                </div> --}}
 
                                 {{-- edit icon --}}
-                                <div class='quote-switch'>
-                                    <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-quote">
-                                        <i class="fa-regular fa-pen-to-square pe-3 quote-edit-icon"></i>
+                                <div class='quote-switch col-2 mt-3 ms-4 ps-2'>
+                                    
+                                    <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edit-quote-{{ $quote->id }}">
+                                        <i class="fa-regular fa-pen-to-square quote-edit-icon"></i>
                                     </button>
+                                    
                                 </div>
+                                @include('admin.quotes.modals.edit')
+
+                                  
+
+                                {{-- status --}}
+
+                                <div class="quote-switch col-5 ps-2 pe-0 mx-0 mt-3 pt-2">
+                                    {{-- <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Hide</label> --}}
+
+                                    {{-- <div class="dropdown"> --}}
+
+                                        {{-- <button class="btn btn-sm" data-bs-toggle="dropdown">
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </button> --}}
+            
+                                        @if ($quote -> trashed())
+                                        
+                                            <form action="{{ route('quote.unhide', $quote->id) }}" method="post" class="switch_label">
+                                                @csrf
+                                                @method('PATCH')
+                                                
+                                                <button type="submit" class="btn btn-sm switch base unhide-switch">
+                                                    <span class="circle"></span>
+                                                    Unhide
+                                                </button>
+                                            </form>
+                                        @else
                                 
-                                <div class="form-check form-switch form-check-inline quote-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                    <label class="form-check-label" for="flexSwitchCheckChecked">display</label>
+                                            <form action="{{ route('quote.hide', $quote->id) }}" method="post" class="switch_label">
+                                                @csrf
+                                                @method('DELETE')
+                                                
+                                                <button type="submit" class="btn btn-sm switch base hide-switch">
+                                                    {{-- <span class="base"></span> --}}
+                                                    <span class="circle circle-move px-2"></span>
+                                                     Hide 
+                                                </button>
+                                            </form>
+                                            
+                                        @endif
+
+
+
+                                        {{-- <div class="form-check form-switch form-check-inline quote-switch">
+                                        @if ($quote->trashed())
+                                        
+                                        <form action="{{ route('quote.unhide', $quote->id) }}" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                            <input type="checkbox" class="btn btn-secondary btn-sm form-check-input" style="width:100px" role="switch">Unhide</input>
+                                            
+                                        </form>
+                                    @else
+                                    
+
+                                        <form action="{{ route('quote.hide', $quote->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="checkbox" class="btn btn-primary btn-sm form-check-input" style="width:100px;" role="switch" checked>Hide</input>
+                                        </form>
+                                        
+                                    @endif
+                                         --}}
+                            
+                                    
+
+
                                 </div>
 
-                                <div class="quote-switch">
-                                    <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete-quote">
-                                        {{-- -{{ $quote->id }} --}}
+                                {{-- delete  --}}
+
+                                <div class="quote-switch col-1 px-0 mx-0 mt-3">
+                                    <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete-quote{{ $quote->id }}">
                                         <i class="fa-solid fa-trash quote-delete-icon"></i>
                                     </button>
                                 </div>
-        
+                                
+                               
+                                 </div>
+                                 @include('admin.quotes.modals.delete')
+                                </div>
                             </td>    
-
+                            
                         </tr>
 
+                      
                         @empty
                             <tr>
                                 <td colspan="7" class="lead text-muted text-center">No Quote yet.</td>
                             </tr>
 
+
+                        
                         @endforelse
+                        
                     </tbody>
 
                 </table>
@@ -169,13 +244,13 @@
                 <div class="d-flex justify-content-center">
                     {{ $all_quotes->links() }}
                 </div>    
-
+                @include('admin.quotes.modals.action')
             </div>
         </div>
     </div>
 
 
-
+    <script src="{{ asset('js/quote-editmodal.js') }}"></script>
     
 </body>
 

@@ -10,8 +10,8 @@
 
 {{-- Today's Quote Section--}}
 <div class="p-5 bg-white">
-    <div class="container-quote">
-        <div class="row d-flex justify-content-center">
+    <div class="container-quote ms-5">
+        <div class="row d-flex justify-content-center ms-5">
             {{-- Remi-chan --}}
             <div class="col-auto">
                 <img src="{{ asset('images/main/remichan.png') }}" alt="Remichan">
@@ -23,29 +23,60 @@
 
             {{-- Quote --}}
             <div class="col align-self-center">
-                <p class="text-center">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit pariatur veritatis ipsam corporis nihil praesentium dolorem repudiandae cupiditate blanditiis error voluptate delectus odio possimus autem a eos inventore totam beatae nam minus, officiis accusantium hic! Sequi, distinctio magni, laudantium ad eaque dicta accusantium ab eius temporibus incidunt, iure reiciendis facilis?
-                </p>
+                <textarea name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext py-auto">
+                    {{ $quote->quote }}
+                    </textarea>
                 {{-- Author --}}
-                <p class="text-end small">By Author</p>
+                <p class="text-end small pt-1 mb-0">By  {{ $quote->author }}</p>
+                
             </div>
 
             {{-- Action Buttons --}}
-            <div class="col-2">
-                {{-- Refresh --}}
-                <button type="submit" class="btn btn-lg p-1"><i class="fa-solid fa-arrows-rotate"></i></button>
-                {{-- Bookmark --}}
-                <button type="submit" class="btn btn-lg p-1"><i class="fa-regular fa-bookmark"></i></button>
-                {{-- Copy --}}
-                <button type="submit" class="btn btn-lg p-1"><i class="fa-regular fa-clone"></i></button>
+            <div class="col-1 me-5 pe-0">
+                <div class="row">
+                    <div class="col px-0 text-end">
+                        {{-- Refresh --}}
+                        <form action="{{ route('home.quote.change') }}" method="post">
+                            @csrf
+                        <button type="submit" name="change" id ="change" class="btn btn-lg p-1"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        </form>
+                        {{-- Bookmark --}}
+                    </div>
+                    <div class="col px-0 text-center">
+                        <div class="quote-switch">
+                                            @if ($quote->isBookmarked())
+                                            <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                    <button type="submit" class="btn btn-lg p-1">
+                                                    <i class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button> 
+                                                
+                                            @else
+
+                                            <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
+                                                @csrf
+                                                    <button type="submit" class="btn btn-lg p-1"><i class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
+                                            </form>
+                                                
+                                            @endif
+                                        </div>
+                        </div>
+                        <div class="col px-0 text-start">
+                            {{-- Copy --}}
+                            <button type="submit" class="btn btn-lg p-1 js-copy-btn" id="btn-copy-quote" data-copy><i class="fa-regular fa-clone"></i></button>
+                        </div>
+                </div>
             </div>
+            <div class="col-1"></div>
         </div>
     </div>
+    <script src="{{ asset('js/quote-copy.js') }}"></script>
 </div>
 
 {{-- Journaling section --}}
 <div class="container-journaling m-5">
     <div class="card bg-white py-3 px-5 border-0">
+    
         <div class="card-header bg-white">
             {{-- Title --}}
             <h1 class="m-0 align-self-center float-start">Journaling</h1>
@@ -145,6 +176,7 @@
 {{-- Chat Room Section --}}
 <div class="container-chat m-5">
     <div class="card bg-white py-3 px-5 border-0">
+ 
 
         <div class="card-header bg-white mb-3 border-0">
             {{-- Title --}}
