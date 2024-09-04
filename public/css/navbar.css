@@ -185,11 +185,11 @@
     text-decoration: none;
 }
 
-.sidebar a {
-    color: inherit;
-    list-style: none;
-    text-decoration: none;
+
+.sidebar a:hover {
+    opacity: 0.3;
 }
+
 
 .sidebar_inner_bottom {
     position: fixed;
@@ -204,10 +204,6 @@
     font-weight: 400; 
     line-height: 1.5;
     letter-spacing: 2px;
-}
-
-.sidebar a:hover {
-    opacity: 0.3;
 }
 
 .sidebar_icon {
@@ -251,7 +247,8 @@
 
 .sidebar_avatar {
     font-size: 30px;
-    font-size: 30px;
+    width: 50px;
+    height: 50px;
     outline: 2px solid #4945455f;
     border-radius: 100%;
     color: #343A40;
@@ -310,7 +307,6 @@
     margin-right: 90px;
     display: inline;
 	padding: 3px;
-}
 
 .current_page_item {
     background:  rgba(253, 253, 253, 0.5);;
@@ -320,3 +316,4 @@
     border-radius: 2px;
     margin-right: 90px;
 }
+

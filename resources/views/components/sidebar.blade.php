@@ -2,6 +2,7 @@
 {{-- @extends('layouts.app') --}}
 {{-- @section('title', 'sidebar') --}}
 {{-- @section('content') --}}
+
     <div class="body_sidebar">
         <nav class="sidebar_inner">
             <p class=" sidebar_h1">ENCOURAGE YOURSELF, <br>HEAL YOURSELF</p>
@@ -34,7 +35,7 @@
                     @endif
             </div>
             <div class="sidebar_icon a">
-                <a href="{{ route('logout') }}"
+                <a href="{{ route('logout') }}" class="text-decoration-none"
                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/logout_side_icon.png') }}" alt="Logout">Logout</p>

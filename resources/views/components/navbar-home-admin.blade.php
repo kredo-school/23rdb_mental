@@ -1,8 +1,12 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-{{-- @extends(‘layouts.app’)
-@section(‘title’, ‘home-admin’)
-@section(‘content’) --}}
-<nav class="navbar navbar-dark navbar-expand-md fixed-top">
+{{-- @extends('layouts.app')
+
+@section('title', 'home-admin')
+
+@section('content') --}}
+
+<nav class="navbar sticky-top navbar-dark navbar-expand-md shadow">
+
     <div class="container-fluid">
         <!-- Left Side Of Navbar -->
         <a class="navbar-brand ms-5 justify-content-center" href="{{ route('home') }}">
