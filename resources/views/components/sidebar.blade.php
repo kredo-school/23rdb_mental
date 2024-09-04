@@ -1,8 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 {{-- @extends('layouts.app') --}}
-
 {{-- @section('title', 'sidebar') --}}
-
 {{-- @section('content') --}}
 
     <div class="body_sidebar">
@@ -24,11 +22,9 @@
                 </a>
                 <a href="{{ route('chatroom.index') }}">
                     <p class="sidebar_icon"><img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat">Chat</p>
-                </a>      
+                </a>
             </div>
-
         </nav>
-
         <nav class="sidebar_inner_bottom">
             <div class="sidebar_icon a">
                 <a href="{{ route('profile.show', Auth::user()->id) }}" class="sidebar_avatar">
@@ -54,12 +50,9 @@
                 </div>
         </nav>
     </div>
-
     @include('contactus.modals.inquiry')
     @include('contactus.modals.submitcomplete')
-
 {{-- @endsection --}}
-
 @section('scripts')
     <script src="{{ asset('js/inquiry.js') }}"></script>
 @endsection

@@ -1,15 +1,14 @@
 <link rel="stylesheet" href="{{ asset('css/profile-show.css') }}">
-
 @extends('layouts.app')
 @extends('components.navbar-each')
-
 @section('title', 'Profile')
-
 @section('content')
-
-@include('components.sidebar')
+    @if (Auth::user()->role_id == 1)
+        @include('components.sidebar-admin')
+    @else
+        @include('components.sidebar')
+    @endif
     <div class="container-profile-show my-5">
-
         {{-- Profile Section --}}
         <div class="card card-profile mb-5 mx-auto py-3 px-5 bg-white">
             <div class="card-header bg-white border-0">
@@ -24,7 +23,6 @@
                             <i class="fa-solid fa-circle-user avatar"></i>
                         @endif
                     </div>
-
                     <div class="col align-self-center">
                         <p class="mb-0">Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $user->name }}</p>
                         <hr class="mt-0">
@@ -79,11 +77,9 @@
                                 <div class="modal-header border-0 d-flex justify-content-between align-items-center">
                                     {{-- title --}}
                                     <h1 class="float-start">Edit Profile</h1>
-
                                     <button type="button" data-bs-dismiss="modal" class="btn btn-dismiss border-0"><i
                                             class="fa-solid fa-xmark"></i></button>
                                 </div>
-
                                 <div class="modal-body">
                                     <form action="{{ route('profile.update2') }}" method="post"
                                         enctype="multipart/form-data">
@@ -101,7 +97,6 @@
                                                         @endif
                                                     </div>
                                                 </div>
-
                                                 <div class="row mt-5">
                                                     <div class="col">
                                                         <label for="avatar" class="form-label">Avatar</label>
@@ -113,7 +108,6 @@
                                                     @enderror
                                                 </div>
                                             </div>
-
                                             <div class="col">
                                                 <div class="row mb-2">
                                                     <div class="col-4">
@@ -169,6 +163,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <hr>
                                         <div class="row">
                                             <div class="col">
@@ -207,7 +202,6 @@
                                                     <input type="radio" name="theme_color" id="img6"
                                                         value="6">
                                                     <label for="img6" class="selector dark"></label>
-
                                                 </div>
                                                 @error('theme_color')
                                                     <p class="text-danger small">{{ $message }}</p>
@@ -233,16 +227,13 @@
                 <div class="modal fade modal-delete" id="delete-account">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
-
                             <div class="modal-header px-5 py-3">
                                 {{-- title --}}
                                 <h1>Delete Account</h1>
                             </div>
-
                             <div class="modal-body p-5">
                                 <form action="{{ route('deletion-reason.store') }}" method="post">
                                     @csrf
-
                                     <div class="row justify-content-center">
                                         <div class="col-8">
                                             <p class="text-center">
@@ -254,11 +245,9 @@
                                             @error('reason')
                                                 <p class="text-danger small">{{ $message }}</p>
                                             @enderror
-
                                         </div>
                                     </div>
                             </div>
-
                             <div class="modal-footer border-0 justify-content-center">
                                 {{-- Action buttons --}}
                                 {{-- @method('DELETE') --}}
@@ -269,13 +258,14 @@
                                     Delete</button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        
+        
+       
         {{-- Quote Section --}}
         <div class="card card-quotes mx-auto px-5 py-3 bg-white">
             <div class="card-header bg-white border-0 ">
@@ -284,29 +274,81 @@
             <div class="card-body bg-white border-0">
 
                 {{-- Table for favorite quotes --}}
-                <table class="table border table-hover align-middle bg-white text-secondary">
+                <table class="table border align-middle bg-white">
                     {{-- Header --}}
-                    <thead class="table-secondary small">
+                    <thead class="table-secondary small border favorite-quote">
                         <tr>
-                            <th class="quote-column">Quote</th>
-                            <th class="author-column">Author</th>
+                                <th></th>
+                                <th class="text-center">Quote</th>
+                                <th></th>
+                                <th class="text-center">Auther</th>
+                                <th class="text-center">Bookmark</th>
                         </tr>
+
                     </thead>
                     {{-- Body --}}
-                    <tbody>
+                    <tbody class="border quote-table">  
+
+                        @forelse($bookmarked_quotes as $quote)
+                        {{-- @if ($quote->isBookmarked()) --}}
+                            
+                        
                         <tr>
-                            {{-- @forelse ($collection as $item)
-                                    <td class="quote-column"></td>
-                                    <td class="author-column"></td>
-                                @empty --}}
-                            <td class="text-center" colspan="2">No quotes saved.</td>
-                            {{-- @endforelse --}}
+                            <td colspan=3 class="h2 text-center w-50" value="showquote-quote">
+                               " {{ $quote->quote }} " 
+                            </td>
+
+                            <td class="text-center">
+                                {{ $quote->author }}
+                            </td>
+
+                            
+                            <td class="text-center pt-4">
+                                {{-- cancel the bookmark --}}
+                                <div class="quote-switch text-center">
+                                    @if ($quote->isBookmarked())
+                                    <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                            <button type="submit" class="btn pe-3" >
+                                            <i class="fa-solid fa-bookmark text-warning quote-bookmark-store favorite-quote" ></i></button> 
+                                        
+                                    @else
+
+                                    <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
+                                        @csrf
+                                            <button type="submit" class="btn pe-3"><i class="fa-regular fa-bookmark quote-bookmark-cancel favorite-quote"></i></button>
+                                    </form>
+                                        
+                                    @endif
+                                </div>
+
+        
+                            </td>    
+                            {{-- @endif --}}
                         </tr>
+                   
+
+                        @empty
+                            <tr>
+                                <td colspan="7" class="lead text-muted text-center">No Quote Bookmarked.</td>
+                            </tr>
+
+                        @endforelse
+                        
                     </tbody>
+                    
                 </table>
+
+                   
+<div class="d-flex justify-content-center">
+                        {{ $bookmarked_quotes->links() }}
+                    </div> 
 
             </div>
         </div>
 
     </div>
 @endsection
+
+ 

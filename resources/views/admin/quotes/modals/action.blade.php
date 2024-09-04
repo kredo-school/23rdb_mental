@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="{{ asset('css/quote_style.css') }}">
 
-
 {{-- create new quote --}}
 <div class="modal fade" id="create-quote">
     <div class="modal-dialog modal-lg">
@@ -17,7 +16,7 @@
                             Type a quote
 
                             {{-- picture --}}
-                            <i class="fa-regular fa-image quote-box-icon"></i>
+                            {{-- <i class="fa-regular fa-image quote-box-icon"></i> --}}
                           
                         </p>
 
@@ -40,7 +39,7 @@
                             @error('author')
                             <div class="text-danger small">{{ $message }}</div>  
                             @enderror
-                            {{-- <input type="text" class="form-control border-0 mt-0" id="author" placeholder="Author"> --}}
+                           
                             
                         </div>
                         
@@ -61,7 +60,61 @@
 
 {{-- edit modal --}}
 
- <div class="modal fade" id="edit-quote">
+ {{-- <div class="modal fade" id="edit-quote-{{ $quote->id }}">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content shadow px-5 py-3">
+                                            <form action="{{ route('quote.update', $quote->id) }}"  method="post" enctype="multipart/form-data">
+                                                @method('PATCH')
+                                                @csrf 
+                                                    <div class="modal-header quote-modal border-0 mt-3 mb-4">
+                                                        <h1 class="modal-title">
+                                                            Edit the Quote
+                                                        </h1>
+                                                    </div>
+                                
+                                                    <div class="modal-body">
+                                                      
+                                
+                                                        <div class="form-floating modal-framebase">
+                                                           
+                                
+                                                            <input type="text" class="form-control-lg w-100 border-0 quote-frame1" name="quote" value="{{ $quote->quote }}" id="quote"></input>
+                                                            
+                                                            @error('quote')
+                                                            <div class="text-danger small">{{ $message }}</div>  
+                                                            @enderror
+                                
+                                                            <hr>
+                                
+                                                            <input type="text" class="form-control-lg w-100 border-0 quote-frame2" name="author" id="author" value="{{ $quote->author }}"></input>
+                                                            
+                                                            @error('author')
+                                                            <div class="text-danger small">{{ $message }}</div>  
+                                                            @enderror
+                                                          
+                                                           
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                    </div>
+                                                    <div class="modal-footer border-0  mx-auto">
+                                
+                                                            <div class="mx-auto">
+                                                                <button type="button" class="btn-cancel me-4" data-bs-dismiss="modal"> Cancel </button>
+                                                                
+                                                                <button type="submit" class="btn-save"><i class="fa-solid fa-circle-check"></i> Save</button>
+                                                            </div>
+                                                        
+                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                 </div>
+                                  --}}
+
+
+ {{-- <div class="modal fade" id="edit-quote-{{ $quote->id }}">
     <div class="modal-dialog modal-lg">
         <div class="modal-content shadow px-5 py-3">
                     <div class="modal-header quote-modal border-0 mt-3 mb-4">
@@ -81,7 +134,7 @@
                         <div class="form-floating modal-framebase">
                            
 
-                            <textarea class="form-control-lg w-100 border-0 quote-frame1" name="quote" id="quote" value="{{ old('quote') }}"></textarea>
+                            <input type="text" class="form-control-lg w-100 border-0 quote-frame1" name="edit_quotebody" value="" id="modal-quote"></input>
                             
                             @error('quote')
                             <div class="text-danger small">{{ $message }}</div>  
@@ -93,10 +146,13 @@
                             
                             @error('author')
                             <div class="text-danger small">{{ $message }}</div>  
-                            @enderror
+                            @enderror --}}
+
+
+                            {{-- huyou --}}
                             {{-- <input type="text" class="form-control border-0 mt-0" id="author" placeholder="Author"> --}}
                             
-                        </div>
+                        {{-- </div>
                         
                         
                         
@@ -119,12 +175,12 @@
                     </div>
         </div>
     </div>
- </div>
+ </div> --}}
 
 
 {{-- delete --}}
 
-    <div class="modal fade" id="delete-quote">
+    {{-- <div class="modal fade" id="delete-quote{{ $quote->id }}">
         <div class="modal-dialog modal-lg">
             <div class="modal-content shadow px-5 py-3">
                         <div class="modal-header quote-modal border-0 mt-3 mb-2">
@@ -164,13 +220,19 @@
     
                                 <hr>
     
-                                <p class="text-end me-5 bg-info" value="{{ old('author') }}">---- <span>Author</span></p>
+                                <p class="text-end me-5 bg-info" value="quote text">---- <span>Author</span></p>
                                 
                                 @error('author')
                                 <div class="text-danger small">{{ $message }}</div>  
-                                @enderror
+                                @enderror --}}
+
+
+
+
                                 {{-- <input type="text" class="form-control border-0 mt-0" id="author" placeholder="Author"> --}}
-                                
+
+
+{{--                                 
                             </div>
                             
                         </div>
@@ -190,4 +252,4 @@
             </div>
         </div>
      </div>
-    
+     --}}

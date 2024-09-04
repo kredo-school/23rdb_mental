@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\DeletionReasonController;
 use App\Http\Controllers\Admin\UserController;
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/deletion-reason/store', [ProfileController::class, 'deletionReason'])->name('deletion-reason.store');
     // Route::delete('/profile/{id}/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // Route::get('profile/{id}/show', [ProfileController::class, 'showBookmarkedquotes'])->name('profile.quote');
 
     // MOOD
     Route::get('/mood/create1', [MoodController::class, 'create1'])->name('mood.save1');
@@ -53,6 +55,11 @@ Route::get('/test', [TestController::class, 'index']);
 // Route::get('/test/navbar', function () {
 //     return view('test.navbar');
 // });
+Route::get('/test/test', function () {
+    return view('test.test');
+// Route::get('/test/navbar', function () {
+//     return view('test.navbar');
+});
 Route::get('/test/test', function () {
     return view('test.test');
 });
@@ -82,6 +89,17 @@ Route::get('/components/footer', function () {
 });
 
 
+Route::get('/components/sidebar', function () {
+    return view('components.sidebar');
+});
+Route::get('/components/sidebar-admin', function () {
+    return view('components.sidebar-admin');
+});
+Route::get('/components/footer', function () {
+    return view('components.footer');
+});
+
+
 
 
 
@@ -94,12 +112,20 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
     Route::post('/quote/store',[QuotesController::class, 'store'])->name('quote.store');
+    Route::patch('/quote/{id}/update',[QuotesController::class, 'update'])->name('quote.update');
+    Route::delete('/quote/{id}/delete',[QuotesController::class, 'destroy'])->name('quote.destroy');
+    Route::patch('/quote/{id}/unhide',[QuotesController::class, 'unhide'])->name('quote.unhide');
+    Route::delete('/quote/{id}/hide',[QuotesController::class, 'hide'])->name('quote.hide');
+    // Route::get('/quote', [QuotesController::class, 'edit'])->name('profile.edit');
+
+
 
 
 
     // Contactus
     Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
-
+    // ROute::get('/admin/inquiries/search', [InquiriesController::class, 'search'])->name('admin.inquiries.search');
+    
     // chats
     Route::get('/admin/chats', [ChatsController::class, 'index'])->name('admin.chats.index');
     Route::get('/admin/chats/search', [ChatsController::class, 'search'])->name('admin.chats.search');
@@ -118,13 +144,14 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/home', [App\Http\Controllers\HomeController::class, 'change'])->name('home.quote.change');
 
 
 /**
  * routes related to bookmarks
  */
-Route::post('/bookmark/{bookmark_id}/store', [BookmarkController::class, 'store'])->name('bookmark.store');
-Route::delete('/bookmark/{bookmark_id}/destroy', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
+Route::post('/bookmark/{quote_id}/store', [BookmarkController::class, 'store'])->name('bookmark.store');
+Route::delete('/bookmark/{quote_id}/destroy', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
 
 // journal
 Route::get('/journals', [JournalController::class, 'index'])->name('journal.journals');
