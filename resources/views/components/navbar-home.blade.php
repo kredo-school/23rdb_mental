@@ -28,11 +28,10 @@
         
         <!-- Right Side Of Navbar -->
         <div class="ms-auto">
-            <div class="collapse navbar-collapse">
-
-                <a href="{{ route('profile.show', Auth::user()->id) }}" class="nav_avatar_link"></a>
+            <div class="ms-auto">
+                <a href="{{ route('profile.show', Auth::user()->id) }}" class="sidebar_avatar">
                     @if (Auth::check() && Auth::user()->avatar)
-                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="nav_avatar fa-solid fa-circle-user">
+                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="sidebar_avatar fa-solid fa-circle-user"></a>
                     @else
                         <i class="nav_avatar fa-solid fa-circle-user"></i>
                     @endif
