@@ -215,4 +215,21 @@ a.btn-others:focus {
     text-decoration: none;
 }
 
+/* .score {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+}
+#great { background-image: url('../images/moods/great.png'); top: 60px; left: 50px; }
+#good { background-image: url('../images/moods/good.png'); top: 100px; left: 50px; }
+#ok { background-image: url('../images/moods/ok.png'); top: 100px; left: 50px; }
+#notgood { background-image: url('../images/moods/notgood.png'); top: 100px; left: 50px; }
+#bad { background-image: url('../images/moods/bad.png'); top: 100px; left: 50px; } */
+
+.mood-icon {
+    width: 70px;
+    height: 70px;
+}
+
 

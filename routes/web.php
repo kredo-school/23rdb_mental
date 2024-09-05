@@ -46,6 +46,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/mood/create', [MoodController::class, 'create'])->name('mood.create');
     Route::get('mood/index', [MoodController::class, 'index'])->name('mood.index');
     Route::post('/mood/store', [MoodController::class, 'store'])->name('mood.store');
+    // Route::get('/mood/getmood', [MoodController::class, 'getMoods']);
+    Route::get('/test/graph', [TestController::class, 'graphIndex'])->name('mood.graph');
+    Route::get('/mood-graph', [MoodController::class, 'moodGraph']);
 });
 
 require __DIR__.'/auth.php';
@@ -125,7 +128,7 @@ Route::middleware('auth')->group(function () {
     // Contactus
     Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
     // ROute::get('/admin/inquiries/search', [InquiriesController::class, 'search'])->name('admin.inquiries.search');
-    
+
     // chats
     Route::get('/admin/chats', [ChatsController::class, 'index'])->name('admin.chats.index');
     Route::get('/admin/chats/search', [ChatsController::class, 'search'])->name('admin.chats.search');

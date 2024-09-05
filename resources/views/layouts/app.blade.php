@@ -24,6 +24,7 @@
         rel="stylesheet">
     <script src='{{ asset('js/jquery.js') }}'></script>
     <script src="{{ asset('js/inquiry.js') }}"></script>
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/bootstrap.js'])
 
