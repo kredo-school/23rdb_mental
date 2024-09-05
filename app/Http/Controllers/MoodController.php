@@ -83,6 +83,21 @@ class MoodController extends Controller
         return response()->json($moods);
     }
 
+    public function moodGraph()
+    {
+        // Fetch scores for the last 7 days
+        // Get the logged-in user
+        $userId = Auth::id();
+
+        // Fetch scores for the logged-in user for the last 7 days
+        $scores = Mood::where('user_id', $userId)
+            ->where('created_at', '>=', now()->subDays(7))
+            ->orderBy('created_at')
+            ->get(['created_at', 'score']);
+
+        return response()->json($scores);
+    }
+
     // public function getMoods()
     // {
     //     $userId = Auth::id();

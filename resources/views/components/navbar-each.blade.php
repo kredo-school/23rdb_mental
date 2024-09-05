@@ -1,11 +1,10 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 {{-- @extends('layouts.app') --}}
-
 {{-- @section('title', 'each') --}}
-
 {{-- @section('content') --}}
 
-<nav class="navbar navbar-dark navbar-expand-md">
+<nav class="navbar sticky-top navbar-dark navbar-expand-md shadow">
+
     <div class="container-fluid">
         <!-- Left Side Of Navbar -->
             <div class="nav_inner align-items-center">
@@ -14,16 +13,21 @@
                 </a>
                 <p class="nav_pageTitle">@yield('title')</p>
             </div>
-
         <!-- Toggler button for narrow view -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <!-- Right Side Of Navbar -->
         <div class="ms-auto">
             <div class="collapse navbar-collapse">
-        		<a href="route('profile.show', Auth::user()->id)" class="nav_avatar_link"><i class="nav_avatar fa-solid fa-circle-user"></i></a>
+
+                <a href="{{ route('profile.show', Auth::user()->id) }}" class="sidebar_avatar">
+                    @if (Auth::check() && Auth::user()->avatar)
+                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="sidebar_avatar fa-solid fa-circle-user"></a>
+                    @else
+                        <i class="nav_avatar fa-solid fa-circle-user"></i>
+                    @endif
+                
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -36,3 +40,4 @@
         </div>
     </div>
 </nav>
+ 

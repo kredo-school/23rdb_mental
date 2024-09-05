@@ -18,11 +18,11 @@
                     @csrf
                         
 
-                        <div class="mb-3 row">
+                        <div class="mb-4 row">
                             <label for="staticname" class="col-sm-2 col-form-label text-end">Username</label>
                             
-                            <div class="col-sm-10 ps-5">
-                              <input type="text" readonly class="form-control-plaintext" id="staticname" value="{{ Auth::user()->name }}">
+                            <div class="col-sm-9 ps-5">
+                              <input type="text" readonly class="form-control-plaintext inquiry-modaltext ps-3" id="staticname" value="{{ Auth::user()->name }}">
 
                               @error('staticname')
                             <div class="text-danger small">{{ $message }}</div>  
@@ -30,11 +30,11 @@
                             </div>
                           </div>
 
-                        <div class="mb-3 row">
+                        <div class="mb-4 row">
                             <label for="staticEmail" class="col-sm-2 col-form-label text-end">Email</label>
 
-                            <div class="col-sm-10 ps-5">
-                              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="{{ Auth::user()->email }}">
+                            <div class="col-sm-9 ps-5">
+                              <input type="text" readonly class="form-control-plaintext inquiry-modaltext ps-3" id="staticEmail" value="{{ Auth::user()->email }}">
 
                               @error('staticemail')
                             <div class="text-danger small">{{ $message }}</div>  
@@ -42,11 +42,11 @@
                             </div>
                           </div>
 
-                          <div class="mb-3 row">
+                          <div class="mb-4 row">
 
                                 <label for="staticinquiry" class="col-sm-2 col-form-label text-end">Inquiry</label>
                             
-                                <textarea class="col-sm-10 ms-5 form-control-lg border-0 inquiry-frame1 w-75" placeholder="Comments here...." name="inquiry" id="inquiry"></textarea>
+                                <textarea class="col-sm-9 ms-5 form-control-lg border-0 inquiry-frame1 w-75" placeholder="Please Comment here...." name="inquiry" id="inquiry"></textarea>
                                 
                                 @error('inquiry')
                                 <div class="text-danger small">{{ $message }}</div>  

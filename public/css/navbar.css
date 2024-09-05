@@ -14,7 +14,7 @@
 .nav_logo {
     width: 160px;
     height: 30px;
-    margin-left: 5px; 
+    margin-left: 5px;
     display: flex;
     justify-content: center;
 }
@@ -39,12 +39,14 @@
     margin: 0 auto;
     max-width: 600px;
     font-size: 18px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.7px;
     color: #fff;
 }
 
 .nav_icon:hover {
+    opacity: 0.4;
     opacity: 0.4;
 }
 
@@ -55,13 +57,15 @@
     font-weight: 390;
     color: #fff;
     justify-content: center;
-    margin-left: -55px; 
+    margin-left: -55px;
     margin-top: 5px;
 }
 
 .nav_avatar {
     font-size: 45px;
-    outline: 4px solid #4945455f;
+    width: 50px;
+    height: 50px;
+    outline: 3px solid #7471715f;
     border-radius: 100%;
     color: #fff;
 }
@@ -76,9 +80,9 @@
 }
 
 .btn-login {
-    background-color: #6C757D;
-    color: #e1e1e1;
-    border: 1.5px solid #e1e1e1;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1.5px solid #ffffff;
     width: 90px;
     height: 35px;
     font-family: "Lato", sans-serif;
@@ -88,18 +92,22 @@
     border-radius: 7px;
     margin-left: 20px;
     margin-right: 20px;
+    justify-items: center;
+    text-align: center;
     justify-items: center;
     text-align: center;
 }
 
 .btn-login:hover {
+
     opacity: 0.4;
+
 }
 
 .btn-logout {
-    background-color: #6C757D;
-    color: #e1e1e1;
-    border: 1.5px solid #e1e1e1;
+    background-color: transparent;
+    color: #ffffff;
+    border: 1.5px solid #ffffff;
     width: 90px;
     height: 35px;
     font-family: "Lato", sans-serif;
@@ -111,10 +119,12 @@
     margin-right: 20px;
     justify-items: center;
     text-align: center;
+    justify-items: center;
+    text-align: center;
 }
 
 .btn-logout:hover {
-    opacity: 0.3;
+    opacity: 0.6;
 }
 
 .btn-register {
@@ -130,6 +140,8 @@
     border-radius: 7px;
     margin-left: 20px;
     margin-right: 20px;
+    justify-items: center;
+    text-align: center;
     justify-items: center;
     text-align: center;
 }
@@ -159,7 +171,7 @@
     height: 100%;
     top: 79px;
     left: 0;
-    background-color: rgba(206,211,213,0.6);
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 .sidebar_inner {
@@ -172,6 +184,12 @@
     list-style: none;
     text-decoration: none;
 }
+
+
+.sidebar a:hover {
+    opacity: 0.3;
+}
+
 
 .sidebar_inner_bottom {
     position: fixed;
@@ -188,11 +206,21 @@
     letter-spacing: 2px;
 }
 
-.sidebar a:hover {
-    opacity: 0.3;
+.sidebar_icon {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    justify-content: left;
+    text-align: left;
+    margin-bottom: 20px;
 }
 
-.sidebar_icon {
+.sidebar_icon_admin {
+    display: flex;
+    align-items: center;
     display: flex;
     align-items: center;
     margin: 0 auto;
@@ -214,10 +242,13 @@
     justify-content: left;
     text-align: left;
     margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .sidebar_avatar {
     font-size: 30px;
+    width: 50px;
+    height: 50px;
     outline: 2px solid #4945455f;
     border-radius: 100%;
     color: #343A40;
@@ -226,21 +257,16 @@
 
 .sidebar_avatar:hover {
     opacity: 0.4;
+    opacity: 0.4;
 }
 
 .sidebar_hr1{
     border-width: 2px;
+    border-width: 2px;
     border-style: solid;
-    border-color: #2424245f; 
+    border-color: #2424245f;
     width: 210px;
     margin-left: -45px;
-}
-
-.sidebar_contact{
-    text-decoration: none;
-    color: inherit;
-    font-size: 16px;
-    cursor : pointer;
 }
 
 .ls_sidebar_admin {
@@ -263,10 +289,31 @@
     margin-right: 90px;
     display: inline;
 	padding: 3px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 2;
 }
+
+.ls_sidebar_admin a{
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
+}
+
+.ls_sidebar_admin:hover{
+    background:  rgba(253, 253, 253, 0.5);
+    border-radius: 2px;
+    margin-right: 90px;
+    display: inline;
+	padding: 3px;
 
 .current_page_item {
     background:  rgba(253, 253, 253, 0.5);;
     border-radius: 2px;
     margin-right: 90px;
+    background:  rgba(253, 253, 253, 0.5);;
+    border-radius: 2px;
+    margin-right: 90px;
 }
+

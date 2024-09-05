@@ -125,5 +125,6 @@ div .btn-dismiss {
     box-sizing: border-box; /* Ensure padding and border are included in the height */
 }
 
-
-
+.favorite-quote{
+    font-size: 20px;
+}

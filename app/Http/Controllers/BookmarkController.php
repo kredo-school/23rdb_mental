@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Bookmark; 
 
+
 class BookmarkController extends Controller
 {
     private $bookmark; 
@@ -31,6 +32,8 @@ class BookmarkController extends Controller
 
             return redirect()->back();
     }
+
+    
 
 
 }

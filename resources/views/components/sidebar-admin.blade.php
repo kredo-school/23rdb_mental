@@ -1,11 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-
 {{-- @extends('layouts.app') --}}
-
 {{-- @section('title', 'sidebar-admin') --}}
-
 {{-- @section('content') --}}
-
     <!-- Main Menu -->
     <div class="body_sidebar">
         <nav class="sidebar_inner">
@@ -29,7 +25,6 @@
                 </a>
             </div>
             <br>
-
         <!-- Admin Menu -->
             <div class=".ls_sidebar_admin a">
                 <p class="sidebar_icon_admin"><img src="{{ asset('images/navigation/admin_side_icon.png') }}" alt="home">Admin Menu</p>
@@ -43,12 +38,16 @@
             </div>
         </nav>
 
+        </nav>
         <!-- Footer Menu -->
         <nav class="sidebar_inner_bottom">
             <div class="sidebar a">
-                <a href="{{ route('profile.show', Auth::user()->id) }}">
-                    <p class="sidebar_icon" style="align-items: center"><i class="sidebar_avatar fa-solid fa-circle-user"></i>Profile</p>
-                </a>
+                <a href="{{ route('profile.show', Auth::user()->id) }}" class="nav_avatar_link"></a>
+                    @if (Auth::check() && Auth::user()->avatar)
+                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="nav_avatar fa-solid fa-circle-user">
+                    @else
+                        <i class="nav_avatar fa-solid fa-circle-user"></i>
+                    @endif
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -57,24 +56,22 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-
                 <p></p>
                     <div class="modal-body">
                         <a class="sidebar_contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>
                     </div>
             </div>
-
-
         </nav>
     </div>
-
     @include('contactus.modals.inquiry')
     @include('contactus.modals.submitcomplete')
-
 {{-- @endsection --}}
-
-
 @section('scripts')
     <script src="{{ asset('js/inquiry.js') }}"></script>
 @endsection
+
+
+
+
+
 

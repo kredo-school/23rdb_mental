@@ -17,4 +17,18 @@ class TestController extends Controller
     public function index() {
         return view('test.index');
     }
+
+    public function graphIndex() {
+        return view('test.graph');
+    }
+
+    public function moodGraph()
+    {
+        // Fetch scores for the last 7 days
+        $scores = Mood::where('created_at', '>=', now()->subDays(7))
+                        ->orderBy('created_at')
+                        ->get(['created_at', 'score']);
+
+        return response()->json($scores);
+    }
 }
