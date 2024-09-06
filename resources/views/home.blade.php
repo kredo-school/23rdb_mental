@@ -21,8 +21,12 @@
                 <img src="{{ asset('images/main/bubblespeech.png') }}" alt="bubblespeech" class="bubblespeech">
             </div>
 
+            @if ($quote->exists())
+                    
+            
             {{-- Quote --}}
             <div class="col align-self-center">
+               
                 <textarea name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext py-auto">
                     {{ $quote->quote }}
                     </textarea>
@@ -67,6 +71,11 @@
                         </div>
                 </div>
             </div>
+            @else
+             <div>
+                <p>Coming soon....</p>    
+            </div>   
+            @endif
             <div class="col-1"></div>
         </div>
     </div>

@@ -22,7 +22,7 @@
                             <label for="staticname" class="col-sm-3 col-form-label text-end">Username</label>
                             
                             <div class="col-sm-9 ps-5 mt-1">
-                                <p class="ms-2" readonly class="form-control-plaintext" id="modal-username"></p>
+                                <p class="ms-2 fw-bold" readonly class="form-control-plaintext" id="modal-username"></p>
 
 
                               @error('modal-username')
@@ -35,7 +35,7 @@
                             <label for="staticEmail" class="col-sm-3 col-form-label text-end">Email</label>
 
                             <div class="col-sm-9 ps-5 mt-1">
-                                <p class="ms-2" readonly class="form-control-plaintext" id="modal-email"></p>
+                                <p class="ms-2 fw-bold" readonly class="form-control-plaintext" id="modal-email"></p>
   
 
                               @error('modal-email')
@@ -48,7 +48,7 @@
 
                                 <label for="staticinquiry" class="col-sm-3 col-form-label text-end">Inquiry</label>
                                 <div class="col-sm-9 ps-5">
-                                <p class="ms-2 form-control-lg border-0 inquiry-frame1 w-100 form-control-plaintext td-text" id="modal-body"></p>
+                                <p class="ms-2 form-control-lg border-0 inquiry-frame1 w-100 form-control-plaintext td-text fw-bold" id="modal-body"></p>
 
                                 
                                 @error('modal-body')
