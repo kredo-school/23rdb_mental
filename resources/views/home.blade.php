@@ -76,6 +76,13 @@
                         </div>
                     </div>
                 </div>
+
+                @else
+                <div>
+                   <p>Coming soon....</p>    
+               </div>   
+               @endif
+   
                 <div class="col-1"></div>
             </div>
         </div>
