@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('journals', function (Blueprint $table) {
+        Schema::create('chats', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('room_id');
             $table->unsignedBigInteger('user_id');
-            $table->longText('body');
-            $table->integer('like_score')->default(0);
-            $table->unsignedBigInteger('replying_journal_id')->nullable();
+            $table->text('body');
             $table->timestamps();
 
+            $table->foreign('room_id')->references('id')->on('chat_rooms')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('replying_journal_id')->references('id')->on('journals');
 
             $table->softDeletes();
         });
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('journals');
+        Schema::dropIfExists('chats');
     }
 };

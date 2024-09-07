@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\ChatroomController;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\ChatController;
 
 // admin
 use App\Http\Controllers\Admin\QuotesController;
@@ -169,8 +170,8 @@ Route::post('/journal/{id}/like', [JournalController::class, 'incrementLikeScore
 Route::post('/journal/{id}/dislike', [JournalController::class, 'decrementLikeScore']);
 
 // chatroom
-Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
-//Route::get('/chatroom', [ChatroomController::class, 'index'])->name('chatroom.index');
+//Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
+Route::get('/chatroom', [ChatroomController::class, 'index'])->name('chatroom.index');
 Route::get('/chatroom/search', [ChatroomController::class, 'search'])->name('chatroom.search');
 Route::post('/chatroom/store', [ChatroomController::class, 'store'])->name('chatroom.store');
 Route::patch('/chatroom/{id}/update', [ChatroomController::class, 'update'])->name('chatroom.update');
@@ -178,6 +179,14 @@ Route::delete('/chatroom/{id}/destroy', [ChatroomController::class, 'destroy'])-
 
 //Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
 
+// chat
+// Route::get('/chat/{room}', [ChatController::class, 'index'])->name('chat.index');
+// Route::post('/chat/{room}/message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
+// http://127.0.0.1:8000/chat/1
+
+Route::get('/chat/{room_id}', [ChatController::class, 'index'])->name('chat.chats');
+Route::post('/chat/{room_id}/send', [ChatController::class, 'store'])->name('chat.store');
+Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
 
 /**
  * route related to contactus

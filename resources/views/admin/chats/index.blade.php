@@ -1,8 +1,16 @@
 <link rel="stylesheet" href="{{ asset('css/chats.css') }}">
 <link rel="stylesheet" href="{{ asset('css/chatroom.css') }}">
 
+@extends('layouts.app')
 @extends('components.navbar-each')
-@extends('components.sidebarAdmin')
+@section('title', 'Journal')
+
+@section('content')
+@if(Auth::user()->role_id == 1)
+    @include('components.sidebar-admin')
+@else
+    @include('components.sidebar')
+@endif
 {{--@extends('layouts.app')--}}
 
 @section('title', 'Admin: Chats')

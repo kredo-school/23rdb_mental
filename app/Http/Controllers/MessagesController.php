@@ -132,7 +132,7 @@ class MessagesController extends Controller
         if (!$error->status) {
             $message = Chatify::newMessage([
                 'from_id' => Auth::user()->id,
-                'to_id' => $request['id'],
+                'to_id' => $request['roomid'],
                 'body' => htmlentities(trim($request['message']), ENT_QUOTES, 'UTF-8'),
                 'attachment' => ($attachment) ? json_encode((object)[
                     'new_name' => $attachment,
@@ -143,7 +143,7 @@ class MessagesController extends Controller
             if (Auth::user()->id != $request['id']) {
                 Chatify::push("private-chatify.".$request['id'], 'messaging', [
                     'from_id' => Auth::user()->id,
-                    'to_id' => $request['id'],
+                    'to_id' => $request['roomid'],
                     'message' => Chatify::messageCard($messageData, true)
                 ]);
             }
