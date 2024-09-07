@@ -42,7 +42,7 @@
                             <div class="selectors d-flex">
                                 <div class="col-1"></div>
                                 <div class="col-2">
-                                    <input type="radio" name="score" id="img1" value="2" checked>
+                                    <input type="radio" name="score" id="img1" value="2">
                                     <label for="img1" class="selector great"></label>
                                 </div>
                                 <div class="col-2">

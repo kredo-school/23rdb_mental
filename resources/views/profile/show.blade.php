@@ -80,7 +80,7 @@
                                 <div class="modal-header border-0 d-flex justify-content-between align-items-center">
                                     {{-- title --}}
                                     <h1 class="float-start">Edit Profile</h1>
-                                    <button type="button" data-bs-dismiss="modal" class="btn btn-dismiss border-0"><i
+                                    <button type="button" data-bs-dismiss="modal" class="btn btn-profile-edit-dismiss border-0"><i
                                             class="fa-solid fa-xmark"></i></button>
                                 </div>
                                 <div class="modal-body">
@@ -293,7 +293,7 @@
                     <tbody class="border quote-table">
 
                         @forelse($bookmarked_quotes as $quote)
-                            {{-- @if ($quote->isBookmarked()) --}}
+                            @if ($quote->isBookmarked())
 
 
                             <tr>
@@ -327,7 +327,7 @@
 
 
                                 </td>
-                                {{-- @endif --}}
+                                @endif
                             </tr>
 
 
@@ -343,7 +343,7 @@
 
 
                 <div class="d-flex justify-content-center">
-                    {{ $bookmarked_quotes->links() }}
+                    {{-- {{ $bookmarked_quotes->links() }} --}}
                 </div>
 
             </div>
