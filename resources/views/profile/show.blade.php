@@ -292,11 +292,11 @@
                     {{-- Body --}}
                     <tbody class="border quote-table">
 
-                        {{-- @forelse($bookmarked_quotes as $quote) --}}
-                            {{-- @if ($quote->isBookmarked()) --}}
+                        @forelse($bookmarked_quotes as $quote)
+                            @if ($quote->isBookmarked())
 
 
-                            {{-- <tr>
+                            <tr>
                                 <td colspan=3 class="h2 text-center w-50" value="showquote-quote">
                                     " {{ $quote->quote }} "
                                 </td>
@@ -306,9 +306,9 @@
                                 </td>
 
 
-                                <td class="text-center pt-4"> --}}
+                                <td class="text-center pt-4">
                                     {{-- cancel the bookmark --}}
-                                    {{-- <div class="quote-switch text-center">
+                                    <div class="quote-switch text-center">
                                         @if ($quote->isBookmarked())
                                             <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
                                                 @csrf
@@ -324,18 +324,18 @@
                                                 </form>
                                         @endif
                                     </div>
- --}}
-
-                                {{-- </td> --}}
-                                {{-- @endif --}}
-                            {{-- </tr> --}}
 
 
-                        {{-- @empty
+                                </td>
+                                @endif
+                            </tr>
+
+
+                        @empty
                             <tr>
                                 <td colspan="7" class="lead text-muted text-center">No Quote Bookmarked.</td>
                             </tr>
-                        @endforelse --}}
+                        @endforelse
 
                     </tbody>
 

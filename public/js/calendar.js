@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        timeZone: 'UTC',
         headerToolbar: {
             left: '',  // Only previous and next buttons
             center: 'title',    // Title in the center
@@ -68,9 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             // Populate modal body with mood data
                             var tableRows = data.map(mood => {
                                 const date = new Date(mood.created_at);
-                                let hours = date.getUTCHours();
-                                const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-                                const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+                                let hours = date.getHours();
+                                const minutes = date.getMinutes().toString().padStart(2, '0');
+                                const seconds = date.getSeconds().toString().padStart(2, '0');
                                 const ampm = hours >= 12 ? 'PM' : 'AM';
                                 hours = hours % 12;
                                 hours = hours ? hours : 12; // the hour '0' should be '12'

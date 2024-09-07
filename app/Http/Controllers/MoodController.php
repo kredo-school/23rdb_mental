@@ -59,7 +59,7 @@ class MoodController extends Controller
 
     public function getMoodData($date)
     {
-        $utcDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date, 'UTC');
+        $utcDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date);
         // Fetch mood data for the given date
         $moods = Mood::whereDate('created_at', $utcDate->format('Y-m-d'))
             ->get();
