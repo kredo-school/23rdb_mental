@@ -20,4 +20,9 @@ class Chat extends Model
     {
         return $this->belongsTo(ChatRoom::class, 'room_id');
     }
+    
+    public function chats_include_replying_chat(){
+        return $this->belongsTo(Chat::class, 'replying_chat_id');
+    }
+
 }

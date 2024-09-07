@@ -32,8 +32,9 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('chat');
+        // return new Channel('chat');
         // return new PresenceChannel('chat.' . $this->message->room_id);
+        return new Channel('chat-room-' . $this->message->room_id);
     }
 
     /**

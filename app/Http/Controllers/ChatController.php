@@ -2,21 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Events\MessageSent;
 use App\Models\Message;
 use App\Models\Chat;
 use App\Models\ChatRoom;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Pusher\Pusher;
 
 class ChatController extends Controller
 {
+    private $chat;
+    private $user;
+
+    public function __construct(Chat $chat, User $user){
+        $this->chat = $chat;
+        $this->user = $user;
+    }
+
     public function index($room_id)
     {
         $chatRooms = ChatRoom::all();
         $currentRoom = ChatRoom::findOrFail($room_id);
-        $chats = $currentRoom->chats()->get();
-        return view('chat.index', compact('chatRooms', 'currentRoom', 'chats'));
+        $chats = $currentRoom->chats()->with('chats_include_replying_chat')->get();
+        $user = Auth::user();
+        return view('chat.index', compact('chatRooms', 'currentRoom', 'chats', 'user'));
     }//Index
 
     public function store(Request $request, $room_id)
@@ -47,7 +58,9 @@ class ChatController extends Controller
                 'message' => $chat->body,
             ]);
 
-            broadcast(new \App\Events\MessageSent($chat));
+            // broadcast(new \App\Events\MessageSent($chat));
+            broadcast(new MessageSent($chat))->toOthers();
+            \Log::info('test ' . $chat->user->name);
 
             // return response()->json(['status' => 'Message sent successfully!']);
             return redirect()->route('chat.chats', $room_id);
@@ -90,6 +103,69 @@ class ChatController extends Controller
         }
 
     }//sendMessage
+
+
+
+
+
+    public function reply(Request $request){
+        $request->validate([
+            'chat_reply' => 'required|min:1|max:1000'
+        ]);
+        $this->chat->user_id = Auth::user()->id;
+        $this->chat->room_id = $request->room_id;
+        $this->chat->body = $request->chat_reply;
+        $this->chat->replying_chat_id = $request->id;
+        $this->chat->save();
+        return redirect()->back();
+    }
+
+    /**
+     * This method is going to perform the actual update
+     */
+    public function update(Request $request, $id){
+        $request->validate([
+            'chat_body' => 'required|min:1|max:1000'
+        ]);
+        $chat = $this->chat->findOrFail($id);
+        $chat->body = $request->chat_body;
+        $chat->save();
+        return redirect()->back();
+    }
+
+    /**
+     * This method is use to delete a post
+     */
+    public function destroy($id){
+        $chat = $this->chat->findOrFail($id);
+        $chat->delete();
+        return redirect()->back();
+    }
+
+    public function get_replying_chat($id){
+        $replying_chat = $this->chat->findOrFail($id);
+        return view('chat.chats')
+            ->with('replying_chat', $replying_jchat);
+    }
+
+    public function update_username(Request $request){
+
+        \Log::info('Update Username method called');
+        
+        $request->validate([
+            'chat_username' => 'required|min:1|max:1000'
+        ]);
+
+        $user = User::findOrFail(Auth::user()->id);
+        $user->username = $request->chat_username;
+
+        \Log::info('username(request ' . $request->chat_username);
+        \Log::info('username(user ' . $user->username);
+
+
+        $user->save();
+        return redirect()->back();
+    }
 
 }//End of Controller
 

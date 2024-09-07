@@ -55,10 +55,18 @@
                 {{-- My User and Search Section --}}
                 <div class="card input-group mb-3 p-2 shadow">
                     <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" style="margin-bottom: 0px;">
-                        {{-- User Icon and User Name --}}
-                        <i class="fa-solid fa-circle-user fa-2x me-3 avatar"></i>
-                        <span>{{ auth()->user()->username }}</span>
-                        <i class="fa-solid fa-pen-to-square text-primary icon-sm d-inline me-2"></i>
+                        {{-- User Icon --}}
+                        @if (Auth::user()->avatar)
+                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
+                        @else
+                            <i class="fa-solid fa-circle-user avatar fa-2x me-3"></i>
+                        @endif
+                        {{-- User Name --}}
+                        <span class="fw-bold me-2">{{ auth()->user()->username }}</span>
+                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-username-{{ auth()->user()->id }}">
+                            <i class="fa-solid fa-pen-to-square text-primary icon-sm d-inline"></i>
+                        </a>
+                        @include('chat.contents.modals.edit_username')
                         {{-- Search keyword --}}
                         <div style="float: right;">
                             <input type="text" name="search" placeholder="search keyword" class="form-control" value="" style="display: inline; width: 300px;">
@@ -77,23 +85,52 @@
                 <div id="chat-messages" class="chat-messages">
                     @foreach ($chats as $chat)
                         <div class="chat-message {{ $chat->user_id == auth()->id() ? 'my-message' : 'other-message' }}">
+                            @if ($chat->user_id == auth()->id())
                             <div class="chat-icons">
-                                <i class="fa-solid fa-pen-to-square text-primary icon-sm d-inline me-2"></i>
-                                <i class="fa-solid fa-trash-can text-danger icon-sm d-inline"></i>
+                                {{-- Edit --}}
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-post-{{ $chat->id }}">
+                                    <i class="fa-solid fa-pen-to-square text-primary icon-sm"></i>
+                                </a>
+                                @include('chat.contents.modals.edit')
+                                {{-- Delete --}}
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#delete-post-{{ $chat->id }}">
+                                    <i class="fa-solid fa-trash-can text-danger icon-sm"></i>
+                                </a>
+                                @include('chat.contents.modals.delete')
                             </div>
+                            @endif
                             <div class="chat-content">
                                 @if ($chat->user_id != auth()->id())
                                 <div style="display: block;">
-                                    <img src="{{ $chat->user->avatar_url }}" alt="Avatar" class="avatar">
-                                    {{ $chat->user->username }}
+                                    @if ($chat->user->avatar)
+                                        <img src="{{ $chat->user->avatar }}" alt="avatar" class="rounded-circle avatar">
+                                    @else
+                                        <i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>
+                                    @endif
+                                    <span class="me-1">{{ $chat->user->username }}</span>
                                 </div>
                                 @endif
                                 <div class="bubble">
+                                    {{-- Reply Body --}}
+                                    @if ($chat->chats_include_replying_chat)
+                                    <div class="text-muted">
+                                            <span style="font-size: 7px;">{{ $chat->chats_include_replying_chat->created_at }}</span>
+                                        <div class="mb-3 fs-6">
+                                            {{ $chat->chats_include_replying_chat->body }}
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    @endif
                                     <p>{{ $chat->body }}</p>
                                 </div>
                                 <div class="message-info">
                                     <span class="message-time">{{ $chat->created_at }}</span>
-                                    <span class="reply-icon">↩</span>
+                                    {{-- Reply Link--}}
+                                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-{{ $chat->id }}">
+                                        <i class="fa-solid fa-reply text-primary icon-sm"></i>
+                                        <span class="text-primary fw-bold">Reply</span>
+                                    </a>
+                                    @include('chat.contents.modals.reply')
                                 </div>
                             </div>
                         </div>
@@ -116,93 +153,114 @@
 @section('scripts')
 <!-- PusherのJavaScriptライブラリをCDN経由で読み込む -->
 <script src="https://js.pusher.com/7.2.0/pusher.min.js"></script>
-
 <script>
-    function scrollToBottom() {
-        var chatMessages = document.getElementById('chat-messages');
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(scrollToBottom, 100);
-    });
-
-    var sendBtn = document.getElementById('send-btn');
-    sendBtn.addEventListener('click', function() {
-        // メッセージ送信後にスクロールを実行
-        scrollToBottom();
-    });
-</script>
-
-<script>
-    // echo({{ env('PUSHER_APP_KEY') }});
-    // Pusherのインスタンスを作成
-    const pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
-        cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
-        encrypted: true
-    });
-
-    // チャネルのサブスクライブ
-    const channel = pusher.subscribe('chat-room-{{ $currentRoom->id }}');
-
-    // 新しいメッセージが送信されたときのイベントをリッスン
-    channel.bind('new-message', function(data) {
-        // メッセージを画面に表示
-        const chatMessages = document.getElementById('chat-messages');
-        const newMessage = `<div class="chat-message"><strong>${data.username}:</strong><p>${data.message}</p></div>`;
-        chatMessages.insertAdjacentHTML('beforeend', newMessage);
-    });
-
-    // メッセージ送信処理
-    document.getElementById('chat-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const user_id = document.getElementById('user_id').value;
-        const body = document.getElementById('body').value;
-
-        if (body === "") {
-            alert("メッセージを入力してください");
-            return;
-        }
-
-        fetch(`/chat/{{ $currentRoom->id }}/send`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ user_id: user_id, body: body })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                console.log('Success:', data);
-                // Clear the input field after sending the message
-                document.getElementById('body').value = '';
-
-                const chatMessages = document.getElementById('chat-messages');
-                const newMessage = `<div class="chat-message my-message">
-                                        <div class="bubble">
-                                            <p>${body}</p>
-                                        </div>
-                                        <div class="message-info">
-                                            <span class="message-time">${new Date().toLocaleTimeString()}</span>
-                                            <span class="reply-icon">↩</span>
-                                        </div>
-                                        </div>`;
-                chatMessages.insertAdjacentHTML('beforeend', newMessage);
-
-                // Scroll to the bottom 
-                // scrollToBottom();
-            } else {
-                console.error('Error:', data.error);
-                alert('Failed to send message.');
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('An error occurred while sending the message.');
+        document.addEventListener('DOMContentLoaded', function() {
+            alert('Page has loaded');
         });
-    });
+
+
+//     function scrollToBottom() {
+//         var chatMessages = document.getElementById('chat-messages');
+//         chatMessages.scrollTop = chatMessages.scrollHeight;
+//     }
+
+//     document.addEventListener('DOMContentLoaded', function () {
+//         console.log('Page fully loaded');
+//         setTimeout(scrollToBottom, 100);
+//     });
+
+//     var sendBtn = document.getElementById('send-btn');
+//     sendBtn.addEventListener('click', function() {
+//         // メッセージ送信後にスクロールを実行
+//         scrollToBottom();
+//     });
+
+//     // echo({{ env('PUSHER_APP_KEY') }});
+//     // Pusherのインスタンスを作成
+//     const pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+//         cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+//         encrypted: true
+//     });
+
+//     console.log('Pusher instance created:', pusher);
+
+//     // チャネルのサブスクライブ
+//     const channel = pusher.subscribe('chat-room-{{ $currentRoom->id }}');
+
+//     // 新しいメッセージが送信されたときのイベントをリッスン
+//     channel.bind('new-message', function(data) {
+//         console.log('Received message:', data); // デバッグ用にデータを確認
+//         // メッセージを画面に表示
+//         const chatMessages = document.getElementById('chat-messages');
+//         const newMessage = `<div class="chat-message"><strong>${data.username}:</strong><p>${data.message}</p></div>`;
+//         chatMessages.insertAdjacentHTML('beforeend', newMessage);
+//     });
+
+//     pusher.connection.bind('state_change', function(states) {
+//         console.log('Pusher state changed:', states);
+//     });
+
+//     pusher.connection.bind('error', function(err) {
+//     if (err.error.data.code === 4004) {
+//         console.error('Over limit: Your plan might have exceeded the allowed concurrent connections.');
+//     } else {
+//         console.error('Pusher error:', err);
+//     }
+// });
+
+//     // メッセージ送信処理
+//     document.getElementById('chat-form').addEventListener('submit', function(e) {
+//         e.preventDefault();
+
+//         const user_id = document.getElementById('user_id').value;
+//         const body = document.getElementById('body').value;
+
+//         if (body === "") {
+//             alert("メッセージを入力してください");
+//             return;
+//         }
+
+//         console.log('test console');
+//         alert("test");
+
+//         fetch(`/chat/{{ $currentRoom->id }}/send`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
+//             },
+//             body: JSON.stringify({ user_id: user_id, body: body })
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             if (data.status) {
+//                 console.log('Success:', data);
+//                 // Clear the input field after sending the message
+//                 document.getElementById('body').value = '';
+
+//                 const chatMessages = document.getElementById('chat-messages');
+//                 const newMessage = `<div class="chat-message my-message">
+//                                         <div class="bubble">
+//                                             <p>${body}</p>
+//                                         </div>
+//                                         <div class="message-info">
+//                                             <span class="message-time">${new Date().toLocaleTimeString()}</span>
+//                                             <span class="reply-icon">↩</span>
+//                                         </div>
+//                                         </div>`;
+//                 chatMessages.insertAdjacentHTML('beforeend', newMessage);
+
+//                 // Scroll to the bottom 
+//                 // scrollToBottom();
+//             } else {
+//                 console.error('Error:', data.error);
+//                 alert('Failed to send message.');
+//             }
+//         })
+//         .catch((error) => {
+//             console.error('Error:', error);
+//             alert('An error occurred while sending the message.');
+//         });
+//     });
 </script>
 @endsection

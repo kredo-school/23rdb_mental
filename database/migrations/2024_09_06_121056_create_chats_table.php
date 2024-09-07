@@ -16,10 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('room_id');
             $table->unsignedBigInteger('user_id');
             $table->text('body');
+            $table->unsignedBigInteger('replying_chat_id')->nullable();
             $table->timestamps();
 
             $table->foreign('room_id')->references('id')->on('chat_rooms')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('replying_chat_id')->references('id')->on('chats');
 
             $table->softDeletes();
         });

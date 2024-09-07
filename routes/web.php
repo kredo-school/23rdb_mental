@@ -184,9 +184,16 @@ Route::delete('/chatroom/{id}/destroy', [ChatroomController::class, 'destroy'])-
 // Route::post('/chat/{room}/message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
 // http://127.0.0.1:8000/chat/1
 
+// chat
 Route::get('/chat/{room_id}', [ChatController::class, 'index'])->name('chat.chats');
 Route::post('/chat/{room_id}/send', [ChatController::class, 'store'])->name('chat.store');
-Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
+// Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
+
+Route::get('/chat/search', [ChatController::class, 'search'])->name('chat.search');
+Route::patch('/chat/{id}/update', [ChatController::class, 'update'])->name('chat.update');
+Route::delete('/chat/{id}/destroy', [ChatController::class, 'destroy'])->name('chat.destroy');
+Route::patch('/chat/{id}/reply', [ChatController::class, 'reply'])->name('chat.reply');
+Route::patch('/chat/user/{id}/update', [ChatController::class, 'update_username'])->name('chat.update.username');
 
 /**
  * route related to contactus
