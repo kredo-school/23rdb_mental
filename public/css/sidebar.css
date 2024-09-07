@@ -1,0 +1,159 @@
+/* sidebar ---------------*/
+.container{
+    width: 260px;
+    min-height: 100vh;
+    top: 79px;
+    left: 0;
+    position: fixed;
+    background-color: rgba(254, 254, 254, 0.5);
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.sidebar .title {
+    font-family: lato, sans-serif;
+    font-weight: 400; 
+    color: #42484D;
+    font-size: 12px;
+    line-height: 1.7;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.menu {
+    font-family: lato, sans-serif;
+    font-weight: 400;
+    color: #42484D;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+}
+
+.menu ul li{
+    margin-left: -30px;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.menu ul li a{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.menu ul li a.active{
+    color: #6C6C6C;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 35px;
+}
+
+.avatar_container {
+    display: flex;   
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    outline: 2px solid #42484D;
+    border-radius: 100%;
+    margin-left: -6px;
+    margin-right: 3px;
+}
+
+.username {
+    font-family: lato, sans-serif;
+    font-weight: 400;
+    color: #42484D;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* sidebar admin ---------------*/
+
+.sidebar_icon_admin {
+    display: flex;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.7px;
+    justify-content: left;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.ls_sidebar_admin {
+    list-style: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 2;
+}
+
+.ls_sidebar_admin a {
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ls_sidebar_admin a:hover {
+    background:  rgba(253, 253, 253, 0.5);
+    border-radius: 2px;
+    margin-right: 90px;
+    display: inline;
+	padding: 3px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 2;
+} 
+
+/* .menu a,
+.sidebar_icon a,
+.sidebar_avatar a,
+.ls_sidebar_admin a {
+    color: inherit;
+    list-style: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.menu:hover a,
+.sidebar_avatar a:hover,
+.sidebar_icon a:hover,
+.ls_sidebar_admin a:hover {
+    /* opacity: 0.5; */
+/* } 

@@ -1,0 +1,16 @@
+/* footer ----------------*/
+
+.btn-contact:hover {
+    opacity: 0.7;
+}
+
+.bg-footer {
+    background-color: #b4b4b4;
+    background-size: auto;
+    opacity: 0.9;
+}
+
+.footer-content {
+    align-items: center;
+    justify-content: center;
+}

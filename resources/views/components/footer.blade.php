@@ -1,26 +1,13 @@
-<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-{{-- @extends('layouts.app')
+<link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 
-@section('title', 'footer')
-
-@section('content') --}}
-<body>
-    <footer class="bg-footer fixed-bottom">
-        {{-- <div class="h-25 container-fluid p-3 p-md-5">
-            <p>MEntal copyright 2024 Designed and built by Kred 23rd Batch B</p>
-        </div> --}}
-        <div class="modal-body d-md-flex justify-content-md-end p-4">
-                <p class="fs-6 text-dark me-4 mt-2">MEntal copyright 2024 Designed and built by Kred 23rd Batch B</p>
-                <button class="btn-contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</button>
+<footer class="bg-footer fixed-bottom">
+    <div class="footer-content"> 
+        <div class="d-md-flex justify-content-end align-items-md-end p-3">
+            <div class="fs-6 text-dark me-4">MEntal copyright 2024 Designed and built by Kred 23rd Batch B</div>
+            <button class="btn-contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</button>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    @include('contactus.modals.inquiry')
-    @include('contactus.modals.submitcomplete')
-
-{{-- @endsection --}}
-
-
-@section('scripts')
-    <script src="{{ asset('js/inquiry.js') }}"></script>
-@endsection
+@include('contactus.modals.inquiry')
+@include('contactus.modals.submitcomplete')

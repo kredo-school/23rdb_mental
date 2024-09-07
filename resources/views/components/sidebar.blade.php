@@ -1,58 +1,79 @@
-<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-{{-- @extends('layouts.app') --}}
-{{-- @section('title', 'sidebar') --}}
-{{-- @section('content') --}}
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
-    <div class="body_sidebar">
-        <nav class="sidebar_inner">
-            <p class=" sidebar_h1">ENCOURAGE YOURSELF, <br>HEAL YOURSELF</p>
-            <br>
-            <div class="sidebar a">
-                <a href="{{ route('home') }}">
-                    <p class="sidebar_icon a"><img src="{{ asset('images/navigation/home_side_icon.png') }}" alt="home">Home</p>
+<div class="container">
+    <nav class="sidebar">
+        
+        <!-- Head -->
+        <div class="title">
+            ENCOURAGE YOURSELF, <br>HEAL YOURSELF
+        </div>
+
+        <!-- Main Menu -->
+        <div class="menu">
+            <ul>
+                <li class="active">
+                    <a href="{{ route('home') }}">
+                    <img src="{{ asset('images/navigation/home_side_icon.png') }}" alt="home"><span class="menu">Home</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{{ route('mood.index') }}">
+                    <img src="{{ asset('images/navigation/mood_side_icon.png') }}" alt="MoodTracking"><span class="menu">Mood Tracking</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{{ route('journal.journals') }}">
+                    <img src="{{ asset('images/navigation/journaling_side_icon.png') }}" alt="Journaling"><span class="menu">Journal</span>
                 </a>
-                <a href="{{ route('mood.index') }}">
-                    <p class="sidebar_icon a"><img src="{{ asset('images/navigation/mood_side_icon.png') }}" alt="MoodTracking">Mood_Tracking</p>
-                </a>
-                <a href="{{ route('journal.journals') }}">
-                    <p class="sidebar_icon a"><img src="{{ asset('images/navigation/journaling_side_icon.png') }}" alt="Journaling">Journal</p>
-                </a>
-                <a href="{{ route('quote.index') }}">
-                    <p class="sidebar_icon a"><img src="{{ asset('images/navigation/quote_side_icon.png') }}" alt="Quote">Quote</p>
-                </a>
-                <a href="{{ route('chatroom.index') }}">
-                    <p class="sidebar_icon"><img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat">Chat</p>
-                </a>
+                </li>
+                <li class="active">
+                    <a href="{{ route('quote.index') }}">
+                    <img src="{{ asset('images/navigation/quote_side_icon.png') }}" alt="Quote"><span class="menu">Quote</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="{{ route('chatroom.index') }}">
+                    <img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat"><span class="menu">Chat</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        
+        <div class="footer">
+            <!-- Avatar -->
+            <div class="avatar_container"> 
+                <div class="avatar">
+                    <a href="{{ route('profile.show', Auth::user()->id) }}">
+                        @if (Auth::check() && Auth::user()->avatar)
+                            <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"></a>
+                        @else
+                            <i class="fa-solid fa-circle-user"></i>
+                        @endif
+                </div>
+                <div class="username">{{ Auth::user()->name }}</div>
             </div>
-        </nav>
-        <nav class="sidebar_inner_bottom">
-            <div class="sidebar_icon a">
-                <a href="{{ route('profile.show', Auth::user()->id) }}" class="sidebar_avatar">
-                    @if (Auth::check() && Auth::user()->avatar)
-                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="sidebar_avatar fa-solid fa-circle-user"></a>
-                    @else
-                        <i class="nav_avatar fa-solid fa-circle-user"></i>
-                    @endif
-            </div>
-            <div class="sidebar_icon a">
-                <a href="{{ route('logout') }}" class="text-decoration-none"
-                    onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                    <p class="sidebar_icon"><img src="{{ asset('images/navigation/logout_side_icon.png') }}" alt="Logout">Logout</p>
-                </a>
+          
+
+            <!-- Logout -->
+            <div class="menu">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                        <p class="menu align-items-center"><img src="{{ asset('images/navigation/logout_side_icon.png') }}" alt="Logout">Logout</p></a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
             </div>
-            <p></p>
+
+                <!-- Contact Us --> 
                 <div class="modal-body">
-                    <a class="sidebar_contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>
+                    <a class="text-decoration-none text-muted fs-6 fw-normal" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>
                 </div>
-        </nav>
-    </div>
-    @include('contactus.modals.inquiry')
-    @include('contactus.modals.submitcomplete')
-{{-- @endsection --}}
-@section('scripts')
-    <script src="{{ asset('js/inquiry.js') }}"></script>
-@endsection
+        </div>
+    </nav>
+</div>
+</div>
+
+@include('contactus.modals.inquiry')
+@include('contactus.modals.submitcomplete')

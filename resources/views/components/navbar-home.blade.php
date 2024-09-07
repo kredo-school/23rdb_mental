@@ -1,7 +1,4 @@
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-{{-- @extends('layouts.app')
-@section('title', 'home')
-@section('content') --}}
 
 <nav class="navbar sticky-top navbar-dark navbar-expand-md shadow">
 
@@ -27,24 +24,26 @@
         </div>
         
         <!-- Right Side Of Navbar -->
-        <div class="ms-auto">
-            <div class="ms-auto">
-                <a href="{{ route('profile.show', Auth::user()->id) }}" class="sidebar_avatar">
+        <div class="ms-auto justify-content-center">
+            <div class="collapse navbar-collapse">
+
+                <a href="{{ route('profile.show', Auth::user()->id) }}" class="nav_avatar">
                     @if (Auth::check() && Auth::user()->avatar)
-                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="sidebar_avatar fa-solid fa-circle-user"></a>
+                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="nav_avatar fa-solid fa-circle-user"></a>
                     @else
                         <i class="nav_avatar fa-solid fa-circle-user"></i>
                     @endif
-
-                <a href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                <button class="btn-logout">Logout</button>
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
+                
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                        <button class="btn-logout">Logout</button>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
             </div>
+        </div>
         </div>
     </div>
 </nav>

@@ -48,6 +48,7 @@
                     @else
                         <i class="nav_avatar fa-solid fa-circle-user"></i>
                     @endif
+                
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -56,19 +57,16 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-                <p></p>
-                    <div class="modal-body">
-                        <a class="sidebar_contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>
-                    </div>
+
+                <div class="modal-body">
+                    <a class="sidebar_contact" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>
+                </div>
             </div>
         </nav>
     </div>
     @include('contactus.modals.inquiry')
     @include('contactus.modals.submitcomplete')
-{{-- @endsection --}}
-@section('scripts')
-    <script src="{{ asset('js/inquiry.js') }}"></script>
-@endsection
+
 
 
 
