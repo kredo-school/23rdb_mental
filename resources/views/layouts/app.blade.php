@@ -22,14 +22,20 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Oswald:wght@200..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <script src='{{ asset('js/jquery.js') }}'></script>
-    <script src="{{ asset('js/inquiry.js') }}"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/bootstrap.js'])
+    <script src='{{ asset('js/jquery.js') }}'></script>
+    <script src="{{ asset('js/inquiry.js') }}"></script>
+
+    <!-- FullCalendar CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.0/main.min.css" rel="stylesheet">
+
+    <!-- FullCalendar JavaScript -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script src="{{ asset('js/calendar.js') }}"></script>
 
     {{-- CSS --}}
-
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {{-- @if ($theme_color == null)
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">

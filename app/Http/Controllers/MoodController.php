@@ -51,41 +51,24 @@ class MoodController extends Controller
 
     public function index()
     {
-        $userId = Auth::id();
-        $startDate = Carbon::now()->subDays(5);
-        $moods = Mood::where('user_id', $userId)
-            ->where('created_at', '>=', $startDate)
-            ->select('created_at', 'score')
-            ->orderBy('created_at')
-            ->get();
-        $moodsData = $moods->map(function ($mood) {
-            return [
-                $mood->created_at->format('Y-m-d H:i:s'),
-                $mood->score
-            ];
-        });
+        $all_moods = $this->mood->where('user_id', Auth::user()->id)->paginate(20);
 
-        $moodsData->prepend(['Date', 'Mood']);
-
-        return view('mood.index', ['moodsData' => $moodsData]);
-        // return view('mood.index');
+        return view('mood.index')
+            ->with('all_moods', $all_moods);
     }
 
-    public function getMoods()
+    public function getMoodData($date)
     {
-        $userId = Auth::id();
-        $startDate = Carbon::now()->subDays(5);
-        $moods = Mood::where('user_id', $userId)
-            ->where('created_at', '>=', $startDate)
-            ->select('created_at', 'score')
-            ->orderBy('created_at')
+        $utcDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date, 'UTC');
+        // Fetch mood data for the given date
+        $moods = Mood::whereDate('created_at', $utcDate->format('Y-m-d'))
             ->get();
+        // Return the data as JSON
         return response()->json($moods);
     }
 
     public function moodGraph()
     {
-        // Fetch scores for the last 7 days
         // Get the logged-in user
         $userId = Auth::id();
 
@@ -98,14 +81,58 @@ class MoodController extends Controller
         return response()->json($scores);
     }
 
-    // public function getMoods()
+    public function moodCalendar()
+    {
+        try {
+            // Get the start and end of the current month
+            $startOfMonth = now()->startOfMonth();
+            $endOfMonth = now()->endOfMonth();
+
+            $userId = Auth::id();
+
+            // Fetch mood records for the current month
+            $records = Mood::where('user_id', $userId)
+                ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                ->get();
+
+            // Calculate average score per day
+            $dailyAverages = $records->groupBy(function ($date) {
+                return $date->created_at->toDateString(); // Group by date
+            })->map(function ($day) {
+                return $day->avg('score'); // Calculate average score for each day
+            });
+
+            // Format data for FullCalendar
+            $events = $dailyAverages->map(function ($score, $date) {
+                return [
+                    'title' => number_format($score, 1), // Display the average score
+                    'start' => $date,
+                    'allDay' => true, // Full-day events
+                    // 'color' => $this->getColorForScore($score), // Optional: color based on score
+                    'score' => $score // Ensure score is included
+                ];
+            })->values();
+
+            return response()->json($events);
+        } catch (\Exception $e) {
+            Log::error('Failed: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Failed']);
+        }
+    }
+
+    // private function getColorForScore($score)
     // {
-    //     $userId = Auth::id();
-    //     $moods = Mood::select(DB::raw('DATE(created_at) as date'), DB::raw('AVG(score) as avg_score'))
-    //         ->where('user_id', $userId)
-    //         ->groupBy(DB::raw('DATE(created_at)'))
-    //         ->orderBy(DB::raw('DATE(created_at)'))
-    //         ->get();
-    //     return response()->json($moods);
+    //     // Map score to color
+    //     if ($score >= 1.5) {
+    //         return 'green';
+    //     } elseif ($score >= 0.5) {
+    //         return 'yellow';
+    //     } elseif ($score >= -1) {
+    //         return 'orange';
+    //     } elseif ($score >= -1.5) {
+    //         return 'blue';
+    //     } else {
+    //         return 'red';
+    //     }
     // }
 }

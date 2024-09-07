@@ -61,7 +61,7 @@ table.table-users {
     height: 0;
   }
 
-  .slider {
+  .user-slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -73,7 +73,7 @@ table.table-users {
     border-radius: 34px;
   }
 
-  .slider:before {
+  .user-slider:before {
     position: absolute;
     content: "";
     height: 12px;
@@ -85,10 +85,8 @@ table.table-users {
     transition: .4s;
   }
 
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
 
-  input:checked + .slider:before {
+
+  input:checked + .user-slider:before {
     transform: translateX(16px);
   }

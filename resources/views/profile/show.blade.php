@@ -80,7 +80,7 @@
                                 <div class="modal-header border-0 d-flex justify-content-between align-items-center">
                                     {{-- title --}}
                                     <h1 class="float-start">Edit Profile</h1>
-                                    <button type="button" data-bs-dismiss="modal" class="btn btn-dismiss border-0"><i
+                                    <button type="button" data-bs-dismiss="modal" class="btn btn-profile-edit-dismiss border-0"><i
                                             class="fa-solid fa-xmark"></i></button>
                                 </div>
                                 <div class="modal-body">
@@ -292,11 +292,11 @@
                     {{-- Body --}}
                     <tbody class="border quote-table">
 
-                        @forelse($bookmarked_quotes as $quote)
+                        {{-- @forelse($bookmarked_quotes as $quote) --}}
                             {{-- @if ($quote->isBookmarked()) --}}
 
 
-                            <tr>
+                            {{-- <tr>
                                 <td colspan=3 class="h2 text-center w-50" value="showquote-quote">
                                     " {{ $quote->quote }} "
                                 </td>
@@ -306,9 +306,9 @@
                                 </td>
 
 
-                                <td class="text-center pt-4">
+                                <td class="text-center pt-4"> --}}
                                     {{-- cancel the bookmark --}}
-                                    <div class="quote-switch text-center">
+                                    {{-- <div class="quote-switch text-center">
                                         @if ($quote->isBookmarked())
                                             <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
                                                 @csrf
@@ -324,18 +324,18 @@
                                                 </form>
                                         @endif
                                     </div>
+ --}}
 
-
-                                </td>
+                                {{-- </td> --}}
                                 {{-- @endif --}}
-                            </tr>
+                            {{-- </tr> --}}
 
 
-                        @empty
+                        {{-- @empty
                             <tr>
                                 <td colspan="7" class="lead text-muted text-center">No Quote Bookmarked.</td>
                             </tr>
-                        @endforelse
+                        @endforelse --}}
 
                     </tbody>
 
@@ -343,7 +343,7 @@
 
 
                 <div class="d-flex justify-content-center">
-                    {{ $bookmarked_quotes->links() }}
+                    {{-- {{ $bookmarked_quotes->links() }} --}}
                 </div>
 
             </div>

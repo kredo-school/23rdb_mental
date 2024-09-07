@@ -49,6 +49,8 @@ Route::middleware('auth')->group(function () {
     // Route::get('/mood/getmood', [MoodController::class, 'getMoods']);
     Route::get('/test/graph', [TestController::class, 'graphIndex'])->name('mood.graph');
     Route::get('/mood-graph', [MoodController::class, 'moodGraph']);
+    Route::get('/mood-calendar', [MoodController::class, 'moodCalendar']);
+    Route::get('/get-mood-data/{date}', [MoodController::class, 'getMoodData']);
 });
 
 require __DIR__.'/auth.php';

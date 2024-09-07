@@ -1,12 +1,4 @@
 <link rel="stylesheet" href="{{ asset('css/mood-tracker.css') }}">
-{{-- graph --}}
-{{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@latest"></script> --}}
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">{{ asset('js/graph.js') }}</script>
-
-
-{{-- <script src="{{ asset('js/chart.js') }}" defer></script> --}}
 
 @extends('layouts.app')
 
@@ -26,8 +18,6 @@
     <div class="container-mood my-5 py-3">
         <div class="d-flex mb-3 input-size">
 
-            {{-- <div class="container-mood my-5 py-3 mx-auto"> --}}
-            {{-- <div class="d-flex align-items-center mb-3"> --}}
             {{-- Avatar --}}
             @if (Auth::user()->avatar)
                 <img src="{{ Auth::user()->avatar }}" alt="icon" class="avatar-sm rounded-circle">
@@ -44,9 +34,6 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 {{-- <div class="container-mood"> --}}
                 <div class="modal-content bg-white">
-                    {{-- <div class="row justify-content-center m-5"> --}}
-                    {{-- <div class="col"> --}}
-                    {{-- <div class="card p-5 bg-white shadow-lg"> --}}
                     <div class="modal-header border-0 mt-3">
                         <div class="row d-flex">
                             <div class="col-auto">
@@ -65,7 +52,7 @@
                                     <div class="col-1 text-end">
                                         {{-- <div class="text-end"> --}}
                                         <button type="button" class="btn border-0 btn-lg" data-bs-dismiss="modal">
-                                            <i class="fa-regular fa-circle-xmark"></i>
+                                            <i class="fa-regular  fa-circle-xmark mood-modal-cancel"></i>
                                         </button>
                                         {{-- </div> --}}
                                     </div>
@@ -89,26 +76,21 @@
                                         <div class="col-1"></div>
                                         <div class="col-2">
                                             <input type="radio" name="score" id="img1" value="2" checked>
-                                            <input type="radio" name="score" id="img1" value="2" checked>
                                             <label for="img1" class="selector great"></label>
                                         </div>
                                         <div class="col-2">
-                                            <input type="radio" name="score" id="img2" value="1">
                                             <input type="radio" name="score" id="img2" value="1">
                                             <label for="img2" class="selector good"></label>
                                         </div>
                                         <div class="col-2">
                                             <input type="radio" name="score" id="img3" value="0">
-                                            <input type="radio" name="score" id="img3" value="0">
                                             <label for="img3" class="selector ok"></label>
                                         </div>
                                         <div class="col-2">
                                             <input type="radio" name="score" id="img4" value="-1">
-                                            <input type="radio" name="score" id="img4" value="-1">
                                             <label for="img4" class="selector notgood"></label>
                                         </div>
                                         <div class="col-2">
-                                            <input type="radio" name="score" id="img5" value="-2">
                                             <input type="radio" name="score" id="img5" value="-2">
                                             <label for="img5" class="selector bad"></label>
                                         </div>
@@ -129,11 +111,8 @@
                                 </div>
                             </form>
                     </div>
-                    {{-- </div> --}}
-                    {{-- </div> --}}
-                    {{-- </div> --}}
                 </div>
-                {{-- </div> --}}
+
             </div>
         </div>
         <div class="d-flex justify-content-end">
@@ -145,12 +124,62 @@
             @endauth
         </div>
 
-        <div class="card card-mood my-3 py-3 bg-white shadow">
+        {{-- Calendar --}}
+        <div class="card card-mood my-3 pb-3 bg-white shadow">
                 <div class="card-header bg-white border-0">
-                    {{-- <h1 class="text-center"> --}}
-                    {{-- <canvas style="width: 150px; height: 150px;" id="moodGraph"></canvas> --}}
-                    <div id="graph_div" style="width: 900px; height: 500px;"></div>
-                    {{-- </h1> --}}
+
+                </div>
+                <div class="card-body bg-white border-0">
+                    <div id="calendar"></div>
+                    {{-- @forelse ($all_moods as $mood) --}}
+                        <div class="modal fade" id="moodModal" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header" id="modalHeader">
+                                    </div>
+                                    <div class="modal-body" id="modalBody">
+                                        <table class="table align-middle bg-white mt-0 table-hover table-bordered table-moods">
+                                            <thead class="small table-secondary border">
+                                                <tr>
+                                                    <th class="text-center col-date">Date</th>
+                                                    <th class="col-mood">Mood</th>
+                                                    <th class="text-center col-email">Score</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody class="moods-table">
+                                                @forelse($all_moods as $mood)
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            {{ $mood->created_at }}
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+                                                            {{ $mood->score }}
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="3" class="lead text-muted text-center">No records.</td>
+                                                    </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                        <div class="d-flex justify-content-center">
+                                            {{ $all_moods->links() }}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" id="modalFooter">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{-- @empty
+                        <p class="text-center">No data yet.</p>
+                    @endforelse --}}
                 </div>
         </div>
 
@@ -161,12 +190,12 @@
                 {{-- Action buttons --}}
                 <div class="action-button float-end">
                     {{-- Edit --}}
-                    <button type="button" class="btn button-edit border-0 pe-0" data-bs-toggle="modal"
+                    <button type="button" class="btn button-feedback-edit border-0 pe-0" data-bs-toggle="modal"
                         data-bs-target="#edit-feedback">
                         <i class="fa-regular fa-pen-to-square h5"></i>
                     </button>
                     {{-- Delete --}}
-                    <button type="button" class="btn button-delete border-0" data-bs-toggle="modal"
+                    <button type="button" class="btn button-feedback-delete border-0" data-bs-toggle="modal"
                         data-bs-target="#delete-feedback">
                         <i class="fa-solid fa-trash-can h5"></i>
                     </button>
@@ -231,10 +260,10 @@
                                     @csrf
                                     @method('DELETE')
                                     {{-- Cancel --}}
-                                    <button type="button" class="btn-cancel me-2"
+                                    <button type="button" class="btn-feedback-cancel me-2"
                                         data-bs-dismiss="modal">Cancel</button>
                                     {{-- Save --}}
-                                    <button type="submit" class="btn-delete ms-2"><i class="fa-solid fa-trash-can"></i>
+                                    <button type="submit" class="btn-feedback-delete ms-2"><i class="fa-solid fa-trash-can"></i>
                                         Delete</button>
                                 </form>
                             </div>
@@ -244,7 +273,7 @@
                 </div>
             </div>
             <div class="card-body bg-white">
-                <p class="text-center">No feedback yet. &nbsp;&nbsp;<a href="#" class="text-decoration-none"
+                <p class="text-center">No feedback yet. &nbsp;&nbsp;<a href="#" class="text-decoration-none feedback"
                         data-bs-toggle="modal" data-bs-target="#feedback-input">Write
                         your feedback of this month</a></p>
             </div>
@@ -280,154 +309,6 @@
             </div>
         </div>
 
-        <script type="text/javascript">
-            google.charts.load('current', {
-                'packages': ['corechart']
-            });
-            google.charts.setOnLoadCallback(drawChart);
-
-            function drawChart() {
-                var rawData = {!! json_encode($moodsData) !!};
-                console.log('Raw Data:', rawData);
-                try {
-                    var data = google.visualization.arrayToDataTable(rawData);
-                    console.log('Formatted Data:', data);
-                    var options = {
-                        title: 'Mood Over Time',
-                        curveType: 'function',
-                        legend: {
-                            position: 'bottom'
-                        },
-                        chartArea: {
-                            width: '80%',
-                            height: '70%'
-                        },
-                        pointShape: 'circle',
-                        pointSize: 7,
-                        lineWidth: 2,
-                        series: {
-                            0: {
-                                color: '#007BFF'
-                            }
-                        },
-                        hAxis: {
-                            title: 'Date & Time',
-                            format: 'M/d/yy HH:mm',
-                            gridlines: {
-                                color: 'transparent'
-                            },
-                            textStyle: {
-                                fontSize: 12
-                            }
-                        },
-                        vAxis: {
-                            title: 'Mood',
-                            ticks: [
-                                [2, 'Great'],
-                                [1, 'Good'],
-                                [0, 'Okay'],
-                                [-1, 'Not Good'],
-                                [-2, 'Bad']
-                            ]
-                        }
-                    };
-                    var chart = new google.visualization.LineChart(document.getElementById('moodGraph'));
-                    chart.draw(data, options);
-                    console.log('Chart successfully drawn.');
-                } catch (error) {
-                    console.error('Error drawing chart:', error);
-                }
-            }
-        </script>
-
-        {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('/mood/getmood', {
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Data:', data);
-                    if (data.length === 0) {
-                        console.error('No data found');
-                        return;
-                    }
 
 
-                    const labels = data.map(item => new Date(item.created_at));
-                    const moodData = data.map(item => ({
-                        x: new Date(item.created_at),
-                        y: item.score
-                    }));
-                    console.log('Labels:', labels);
-                    console.log('Mood Data:', moodData);
-                    // Chart
-                    const ctx = document.getElementById('moodGraph').getContext('2d');
-                    const moodGraph = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Mood Over Time',
-                                data: moodData,
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                fill: false
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                x: {
-                                    type: 'time',
-                                    time: {
-                                        unit: 'minute',
-                                        tooltipFormat: 'll HH:mm',
-                                        displayFormats: {
-                                            minute: 'HH:mm',
-                                            hour: 'MMM D, HH:mm',
-                                            day: 'MMM D',
-                                            month: 'MMM YYYY',
-                                            year: 'YYYY'
-                                        }
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Date & Time'
-                                    }
-                                },
-                                y: {
-                                    ticks: {
-                                        callback: function(value) {
-                                            switch (value) {
-                                                case 2:
-                                                    return 'Great';
-                                                case 1:
-                                                    return 'Good';
-                                                case 0:
-                                                    return 'Okay';
-                                                case -1:
-                                                    return 'Not Good';
-                                                case -2:
-                                                    return 'Bad';
-                                                default:
-                                                    return '';
-                                            }
-                                        }
-                                    },
-                                    title: {
-                                        display: true,
-                                        text: 'Mood'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                })
-                .catch(error => {
-                    console.error('Fetch error:', error);
-                });
-        });
-    </script> --}}
     @endsection

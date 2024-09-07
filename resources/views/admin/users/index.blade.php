@@ -9,7 +9,7 @@
 
 @section('content')
 
-@include('components.sidebar')
+@include('components.sidebar-admin')
 
     <div class="container-users my-5">
         <div class="row justify-content-center">
@@ -84,7 +84,7 @@
                                         @csrf
                                         <label class="switch">
                                             <input type="checkbox" name="status" {{ $user->deleted_at ? '' : 'checked' }} onchange="this.form.submit()">
-                                            <span class="slider"></span>
+                                            <span class="user-slider"></span>
                                         </label>
                                     </form>
                                 @endif

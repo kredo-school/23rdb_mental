@@ -66,21 +66,6 @@ div.button-delete {
     font-size: 3rem
 }
 
-button.button-edit {
-    color: #6BB7F6;
-
-}
-
-button.button-delete {
-    color: #FF6BA0;
-
-}
-
-p a {
-    color: #6BB7F6;
-
-}
-
 .remi img {
     width: 160px;
     height: auto;
@@ -148,11 +133,19 @@ p a {
             filter: brightness(1.2) grayscale(.5) opacity(1);
 }
 
-.fa-circle-xmark {
-    color: #FF6BA0;
-}
 
 
 .form-position {
     margin-right: 151px;
+}
+
+.mood-icon {
+    width: 100px !important;
+    height: 100px !important;
+    background-size: cover; /* Ensure the image covers the element */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-position: center; /* Center the image */
+    display: inline-block;
+    text-align: center; /* Center the text */
+    line-height: 24px;
 }
