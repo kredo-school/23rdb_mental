@@ -37,6 +37,8 @@
                 </ui>
             </div>
         </nav>
+
+        </nav>
         <!-- Footer Menu -->
         <nav class="sidebar_inner_bottom">
             <div class="sidebar a">

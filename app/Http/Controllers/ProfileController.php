@@ -60,13 +60,6 @@ class ProfileController extends Controller
                     //         $favorite_quotes[] = $bookmark->quote->id;
                     //     }
                     // }
-                    return view('profile.show')
-                    ->with('user', $user_a)
-                    // ->with('all_quotes', $all_quotes)
-                    ->with('bookmarked_quotes', $bookmarked_quotes);
-                    // ->with('favorite_quotes', $favorite_quotes);
-
-}
 
 
     // public function show($id)
@@ -85,6 +78,17 @@ class ProfileController extends Controller
     //                 ->with('all_quotes', $all_quotes)
     //                 ->with('bookmarked_quotes', $bookmarked_quotes);
     // }
+        // Check if the authenticated user is trying to access their own profile
+        if (Auth::check() && Auth::id() === $user_a->id) {
+            return view('profile.show')
+            ->with('user', $user_a);;
+        } else {
+            return redirect()->route('home')->with('error', 'Unauthorized access.');
+        }
+
+        // return view('profile.show')
+            // ->with('user', $user_a);
+    }
 
     public function edit(Request $request): View
     {

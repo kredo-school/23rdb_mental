@@ -30,6 +30,12 @@
     line-height:1em !important;
     white-space: pre-line;
     font-size: 27px;
+    color: #42484D !important; 
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+
+    
+    
 }
 
 /* Refresh, bookmark, copy buttons */
@@ -213,6 +219,23 @@ a.btn-others:focus {
     background-color: #ffd4fb;
     text-shadow: rgb(255, 255, 255) 2px 2px 0;
     text-decoration: none;
+}
+
+/* .score {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+}
+#great { background-image: url('../images/moods/great.png'); top: 60px; left: 50px; }
+#good { background-image: url('../images/moods/good.png'); top: 100px; left: 50px; }
+#ok { background-image: url('../images/moods/ok.png'); top: 100px; left: 50px; }
+#notgood { background-image: url('../images/moods/notgood.png'); top: 100px; left: 50px; }
+#bad { background-image: url('../images/moods/bad.png'); top: 100px; left: 50px; } */
+
+.mood-icon {
+    width: 70px;
+    height: 70px;
 }
 
 

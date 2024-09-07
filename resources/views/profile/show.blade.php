@@ -1,13 +1,16 @@
 <link rel="stylesheet" href="{{ asset('css/profile-show.css') }}">
 @extends('layouts.app')
+
 @extends('components.navbar-each')
 @section('title', 'Profile')
 @section('content')
+
     @if (Auth::user()->role_id == 1)
         @include('components.sidebar-admin')
     @else
         @include('components.sidebar')
     @endif
+
     <div class="container-profile-show my-5">
         {{-- Profile Section --}}
         <div class="card card-profile mb-5 mx-auto py-3 px-5 bg-white">
@@ -263,9 +266,9 @@
                 </div>
             </div>
         </div>
-        
-        
-       
+
+
+
         {{-- Quote Section --}}
         <div class="card card-quotes mx-auto px-5 py-3 bg-white">
             <div class="card-header bg-white border-0 ">
@@ -278,77 +281,73 @@
                     {{-- Header --}}
                     <thead class="table-secondary small border favorite-quote">
                         <tr>
-                                <th></th>
-                                <th class="text-center">Quote</th>
-                                <th></th>
-                                <th class="text-center">Auther</th>
-                                <th class="text-center">Bookmark</th>
+                            <th></th>
+                            <th class="text-center">Quote</th>
+                            <th></th>
+                            <th class="text-center">Auther</th>
+                            <th class="text-center">Bookmark</th>
                         </tr>
 
                     </thead>
                     {{-- Body --}}
-                    <tbody class="border quote-table">  
+                    <tbody class="border quote-table">
 
                         @forelse($bookmarked_quotes as $quote)
-                        {{-- @if ($quote->isBookmarked()) --}}
-                            
-                        
-                        <tr>
-                            <td colspan=3 class="h2 text-center w-50" value="showquote-quote">
-                               " {{ $quote->quote }} " 
-                            </td>
+                            {{-- @if ($quote->isBookmarked()) --}}
 
-                            <td class="text-center">
-                                {{ $quote->author }}
-                            </td>
 
-                            
-                            <td class="text-center pt-4">
-                                {{-- cancel the bookmark --}}
-                                <div class="quote-switch text-center">
-                                    @if ($quote->isBookmarked())
-                                    <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                            <button type="submit" class="btn pe-3" >
-                                            <i class="fa-solid fa-bookmark text-warning quote-bookmark-store favorite-quote" ></i></button> 
-                                        
-                                    @else
+                            <tr>
+                                <td colspan=3 class="h2 text-center w-50" value="showquote-quote">
+                                    " {{ $quote->quote }} "
+                                </td>
 
-                                    <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
-                                        @csrf
-                                            <button type="submit" class="btn pe-3"><i class="fa-regular fa-bookmark quote-bookmark-cancel favorite-quote"></i></button>
-                                    </form>
-                                        
-                                    @endif
-                                </div>
+                                <td class="text-center">
+                                    {{ $quote->author }}
+                                </td>
 
-        
-                            </td>    
-                            {{-- @endif --}}
-                        </tr>
-                   
+
+                                <td class="text-center pt-4">
+                                    {{-- cancel the bookmark --}}
+                                    <div class="quote-switch text-center">
+                                        @if ($quote->isBookmarked())
+                                            <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn pe-3">
+                                                    <i
+                                                        class="fa-solid fa-bookmark text-warning quote-bookmark-store favorite-quote"></i></button>
+                                            @else
+                                                <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn pe-3"><i
+                                                            class="fa-regular fa-bookmark quote-bookmark-cancel favorite-quote"></i></button>
+                                                </form>
+                                        @endif
+                                    </div>
+
+
+                                </td>
+                                {{-- @endif --}}
+                            </tr>
+
 
                         @empty
                             <tr>
                                 <td colspan="7" class="lead text-muted text-center">No Quote Bookmarked.</td>
                             </tr>
-
                         @endforelse
-                        
+
                     </tbody>
-                    
+
                 </table>
 
-                   
-<div class="d-flex justify-content-center">
-                        {{ $bookmarked_quotes->links() }}
-                    </div> 
+
+                <div class="d-flex justify-content-center">
+                    {{ $bookmarked_quotes->links() }}
+                </div>
 
             </div>
         </div>
 
     </div>
 @endsection
-
- 

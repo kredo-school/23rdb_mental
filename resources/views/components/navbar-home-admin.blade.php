@@ -24,6 +24,7 @@
                 <a href="{{ route('journal.journals') }}" class="nav_icon text-decoration-none"><img src="{{ asset('images/navigation/journaling_icon.png') }}" alt="Journal"><br>Journaling</a>
                 <a href="{{ route('quote.index') }}" class="nav_icon text-decoration-none"><img src="{{ asset('images/navigation/quote_icon.png') }}" alt="Quote"><br>Quote</a>
                 <a href="{{ route('chatroom.index') }}" class="nav_icon text-decoration-none"><img src="{{ asset('images/navigation/chat_icon.png') }}" alt="Chat"><br>Chat</a>
+
                 <div class="dropdown">
                     <a href="{{ route('home') }}" class="nav_icon text-white text-decoration-none btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset('images/navigation/admin_icon.png') }}" alt="Admin"><br>Admin</a>
@@ -39,13 +40,13 @@
 
          <!-- Right Side Of Navbar -->
          <div class="ms-auto">
-            <div class="collapse navbar-collapse">
-                <a href="{{ route('profile.show', Auth::user()->id) }}" class="nav_avatar_link"></a>
+                <a href="{{ route('profile.show', Auth::user()->id) }}" class="sidebar_avatar">
                     @if (Auth::check() && Auth::user()->avatar)
-                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="nav_avatar fa-solid fa-circle-user">
+                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="sidebar_avatar fa-solid fa-circle-user"></a>
                     @else
                         <i class="nav_avatar fa-solid fa-circle-user"></i>
                     @endif
+
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">

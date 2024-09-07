@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
+
 
 class Journal extends Model
 {
@@ -18,7 +20,23 @@ class Journal extends Model
         return $this->belongsTo(User::class)->withTrashed();
     }
 
-    public function replies(){
-        return $this->hasMany(Reply::class);
+    public function journals_include_replying_journal(){
+        return $this->belongsTo(Journal::class, 'replying_journal_id');
+    }
+
+    public function incrementLikeScore()
+    {
+        $this->increment('like_score');
+        $this->save();
+    }
+
+    public function decrementLikeScore()
+    {
+        $this->decrement('like_score');
+        $this->save();
+    }
+
+    public function comments(){
+        return $this->hasMany(JournalComment::class);
     }
 }
