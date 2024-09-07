@@ -102,8 +102,8 @@
         
                 <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form" class="chat-input">
                         @csrf
-                        <input type="hidden" id="user_id" value="{{ auth()->user()->id }}">  <!-- 現在のユーザーIDを送信 -->
-                        <input type="text" id="body" placeholder="メッセージを入力">
+                        <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">  <!-- 現在のユーザーIDを送信 -->
+                        <input type="text" id="body" name="body" placeholder="メッセージを入力">
                         <button type="submit" id="submit">送信</button>
                 </form>
                 </div>
@@ -175,12 +175,33 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
-            // メッセージ送信後、入力フィールドをクリア
-            document.getElementById('body').value = '';
+            if (data.status) {
+                console.log('Success:', data);
+                // Clear the input field after sending the message
+                document.getElementById('body').value = '';
+
+                const chatMessages = document.getElementById('chat-messages');
+                const newMessage = `<div class="chat-message my-message">
+                                        <div class="bubble">
+                                            <p>${body}</p>
+                                        </div>
+                                        <div class="message-info">
+                                            <span class="message-time">${new Date().toLocaleTimeString()}</span>
+                                            <span class="reply-icon">↩</span>
+                                        </div>
+                                        </div>`;
+                chatMessages.insertAdjacentHTML('beforeend', newMessage);
+
+                // Scroll to the bottom 
+                // scrollToBottom();
+            } else {
+                console.error('Error:', data.error);
+                alert('Failed to send message.');
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
+            alert('An error occurred while sending the message.');
         });
     });
 </script>
