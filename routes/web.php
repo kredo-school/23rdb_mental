@@ -131,7 +131,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/chats', [ChatsController::class, 'index'])->name('admin.chats.index');
     Route::get('/admin/chats/search', [ChatsController::class, 'search'])->name('admin.chats.search');
     Route::patch('/admin/chats/{id}/update', [ChatsController::class, 'update'])->name('admin.chats.update');
-    Route::delete('/admin/chats/{id}/destroy', [ChatsController::class, 'destroy'])->name('admin.chats.destroy');
+    // Route::delete('/admin/chats/{id}/destroy', [ChatsController::class, 'destroy'])->name('admin.chats.destroy');
+    Route::patch('/admin/chats/{id}/unhide',[ChatsController::class, 'unhide'])->name('admin.chats.unhide');
+    Route::delete('/admin/chats/{id}/hide',[ChatsController::class, 'hide'])->name('admin.chats.hide');
 
      // Deletion Reasons
     Route::get('/admin/deletion-reasons', [DeletionReasonController::class, 'index'])->name('deletion-reasons.index');

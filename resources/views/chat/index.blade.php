@@ -53,8 +53,8 @@
 
                 <div style="background-color: aliceblue;">
                 {{-- My User and Search Section --}}
-                <div class="card input-group mb-3 p-2 shadow">
-                    <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" style="margin-bottom: 0px;">
+                <div class="d-flex mb-3 p-2 shadow">
+                    <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" style="margin-bottom: 0px; block: inline;">
                         {{-- User Icon --}}
                         @if (Auth::user()->avatar)
                             <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
@@ -68,8 +68,8 @@
                         </a>
                         @include('chat.contents.modals.edit_username')
                         {{-- Search keyword --}}
-                        <div style="float: right;">
-                            <input type="text" name="search" placeholder="search keyword" class="form-control" value="" style="display: inline; width: 300px;">
+                        <div style="display: flex; align-items: center; flex-grow: 1; max-width: 400px; margin-left: 10px;">
+                            <input type="text" name="search" placeholder="search keyword" class="form-control" value="" style="flex-grow: 1; margin-right: 10px; max-width: 300px;">
                             <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
                                 <i class="fa-solid fa-search"></i>
                             </button>

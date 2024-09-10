@@ -151,7 +151,7 @@ class ChatController extends Controller
     public function update_username(Request $request){
 
         \Log::info('Update Username method called');
-        
+
         $request->validate([
             'chat_username' => 'required|min:1|max:1000'
         ]);
@@ -166,6 +166,11 @@ class ChatController extends Controller
         $user->save();
         return redirect()->back();
     }
+
+
+
+
+ 
 
 }//End of Controller
 
