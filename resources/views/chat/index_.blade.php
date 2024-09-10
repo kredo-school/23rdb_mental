@@ -17,8 +17,8 @@
         // Echoインスタンスの初期化
         const Echo = new Echo({
             broadcaster: 'pusher',
-            key: 'your-pusher-key',
-            cluster: 'your-pusher-cluster',
+            key: 'fc62cca74c438dde1c80',
+            cluster: 'ap3',
             forceTLS: true,
             wsHost: window.location.hostname,
             wsPort: 6001,

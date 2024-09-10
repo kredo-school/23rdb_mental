@@ -159,108 +159,108 @@
         });
 
 
-//     function scrollToBottom() {
-//         var chatMessages = document.getElementById('chat-messages');
-//         chatMessages.scrollTop = chatMessages.scrollHeight;
-//     }
+    function scrollToBottom() {
+        var chatMessages = document.getElementById('chat-messages');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 
-//     document.addEventListener('DOMContentLoaded', function () {
-//         console.log('Page fully loaded');
-//         setTimeout(scrollToBottom, 100);
-//     });
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('Page fully loaded');
+        setTimeout(scrollToBottom, 100);
+    });
 
-//     var sendBtn = document.getElementById('send-btn');
-//     sendBtn.addEventListener('click', function() {
-//         // メッセージ送信後にスクロールを実行
-//         scrollToBottom();
-//     });
+    var sendBtn = document.getElementById('send-btn');
+    sendBtn.addEventListener('click', function() {
+        // メッセージ送信後にスクロールを実行
+        scrollToBottom();
+    });
 
-//     // echo({{ env('PUSHER_APP_KEY') }});
-//     // Pusherのインスタンスを作成
-//     const pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
-//         cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
-//         encrypted: true
-//     });
+    // echo({{ env('PUSHER_APP_KEY') }});
+    // Pusherのインスタンスを作成
+    const pusher = new Pusher('{{ env('PUSHER_APP_KEY') }}', {
+        cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+        encrypted: true
+    });
 
-//     console.log('Pusher instance created:', pusher);
+    console.log('Pusher instance created:', pusher);
 
-//     // チャネルのサブスクライブ
-//     const channel = pusher.subscribe('chat-room-{{ $currentRoom->id }}');
+    // チャネルのサブスクライブ
+    const channel = pusher.subscribe('chat-room-{{ $currentRoom->id }}');
 
-//     // 新しいメッセージが送信されたときのイベントをリッスン
-//     channel.bind('new-message', function(data) {
-//         console.log('Received message:', data); // デバッグ用にデータを確認
-//         // メッセージを画面に表示
-//         const chatMessages = document.getElementById('chat-messages');
-//         const newMessage = `<div class="chat-message"><strong>${data.username}:</strong><p>${data.message}</p></div>`;
-//         chatMessages.insertAdjacentHTML('beforeend', newMessage);
-//     });
+    // 新しいメッセージが送信されたときのイベントをリッスン
+    channel.bind('new-message', function(data) {
+        console.log('Received message:', data); // デバッグ用にデータを確認
+        // メッセージを画面に表示
+        const chatMessages = document.getElementById('chat-messages');
+        const newMessage = `<div class="chat-message"><strong>${data.username}:</strong><p>${data.message}</p></div>`;
+        chatMessages.insertAdjacentHTML('beforeend', newMessage);
+    });
 
-//     pusher.connection.bind('state_change', function(states) {
-//         console.log('Pusher state changed:', states);
-//     });
+    pusher.connection.bind('state_change', function(states) {
+        console.log('Pusher state changed:', states);
+    });
 
-//     pusher.connection.bind('error', function(err) {
-//     if (err.error.data.code === 4004) {
-//         console.error('Over limit: Your plan might have exceeded the allowed concurrent connections.');
-//     } else {
-//         console.error('Pusher error:', err);
-//     }
-// });
+    pusher.connection.bind('error', function(err) {
+    if (err.error.data.code === 4004) {
+        console.error('Over limit: Your plan might have exceeded the allowed concurrent connections.');
+    } else {
+        console.error('Pusher error:', err);
+    }
+});
 
-//     // メッセージ送信処理
-//     document.getElementById('chat-form').addEventListener('submit', function(e) {
-//         e.preventDefault();
+    // メッセージ送信処理
+    document.getElementById('chat-form').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-//         const user_id = document.getElementById('user_id').value;
-//         const body = document.getElementById('body').value;
+        const user_id = document.getElementById('user_id').value;
+        const body = document.getElementById('body').value;
 
-//         if (body === "") {
-//             alert("メッセージを入力してください");
-//             return;
-//         }
+        if (body === "") {
+            alert("メッセージを入力してください");
+            return;
+        }
 
-//         console.log('test console');
-//         alert("test");
+        console.log('test console');
+        alert("test");
 
-//         fetch(`/chat/{{ $currentRoom->id }}/send`, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
-//             },
-//             body: JSON.stringify({ user_id: user_id, body: body })
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             if (data.status) {
-//                 console.log('Success:', data);
-//                 // Clear the input field after sending the message
-//                 document.getElementById('body').value = '';
+        fetch(`/chat/{{ $currentRoom->id }}/send`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ user_id: user_id, body: body })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                console.log('Success:', data);
+                // Clear the input field after sending the message
+                document.getElementById('body').value = '';
 
-//                 const chatMessages = document.getElementById('chat-messages');
-//                 const newMessage = `<div class="chat-message my-message">
-//                                         <div class="bubble">
-//                                             <p>${body}</p>
-//                                         </div>
-//                                         <div class="message-info">
-//                                             <span class="message-time">${new Date().toLocaleTimeString()}</span>
-//                                             <span class="reply-icon">↩</span>
-//                                         </div>
-//                                         </div>`;
-//                 chatMessages.insertAdjacentHTML('beforeend', newMessage);
+                const chatMessages = document.getElementById('chat-messages');
+                const newMessage = `<div class="chat-message my-message">
+                                        <div class="bubble">
+                                            <p>${body}</p>
+                                        </div>
+                                        <div class="message-info">
+                                            <span class="message-time">${new Date().toLocaleTimeString()}</span>
+                                            <span class="reply-icon">↩</span>
+                                        </div>
+                                        </div>`;
+                chatMessages.insertAdjacentHTML('beforeend', newMessage);
 
-//                 // Scroll to the bottom 
-//                 // scrollToBottom();
-//             } else {
-//                 console.error('Error:', data.error);
-//                 alert('Failed to send message.');
-//             }
-//         })
-//         .catch((error) => {
-//             console.error('Error:', error);
-//             alert('An error occurred while sending the message.');
-//         });
-//     });
+                // Scroll to the bottom 
+                // scrollToBottom();
+            } else {
+                console.error('Error:', data.error);
+                alert('Failed to send message.');
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred while sending the message.');
+        });
+    });
 </script>
 @endsection
