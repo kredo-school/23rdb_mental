@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\UserController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -51,9 +51,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/mood-graph', [MoodController::class, 'moodGraph']);
     Route::get('/mood-calendar', [MoodController::class, 'moodCalendar']);
     Route::get('/get-mood-data/{date}', [MoodController::class, 'getMoodData']);
+    Route::get('/api/feedbacks', [MoodController::class, 'getFeedbacks']);
+    Route::post('/api/feedbacks', [MoodController::class, 'storeFeedback']);
+    Route::patch('/api/feedbacks', [MoodController::class, 'update']);
+    Route::delete('/api/feedbacks', [MoodController::class, 'destroy']);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // Test Page
 Route::get('/test', [TestController::class, 'index']);
@@ -62,8 +66,8 @@ Route::get('/test', [TestController::class, 'index']);
 // });
 Route::get('/test/test', function () {
     return view('test.test');
-// Route::get('/test/navbar', function () {
-//     return view('test.navbar');
+    // Route::get('/test/navbar', function () {
+    //     return view('test.navbar');
 });
 Route::get('/test/test', function () {
     return view('test.test');
@@ -116,11 +120,11 @@ Route::middleware('auth')->group(function () {
     // Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
 
     Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
-    Route::post('/quote/store',[QuotesController::class, 'store'])->name('quote.store');
-    Route::patch('/quote/{id}/update',[QuotesController::class, 'update'])->name('quote.update');
-    Route::delete('/quote/{id}/delete',[QuotesController::class, 'destroy'])->name('quote.destroy');
-    Route::patch('/quote/{id}/unhide',[QuotesController::class, 'unhide'])->name('quote.unhide');
-    Route::delete('/quote/{id}/hide',[QuotesController::class, 'hide'])->name('quote.hide');
+    Route::post('/quote/store', [QuotesController::class, 'store'])->name('quote.store');
+    Route::patch('/quote/{id}/update', [QuotesController::class, 'update'])->name('quote.update');
+    Route::delete('/quote/{id}/delete', [QuotesController::class, 'destroy'])->name('quote.destroy');
+    Route::patch('/quote/{id}/unhide', [QuotesController::class, 'unhide'])->name('quote.unhide');
+    Route::delete('/quote/{id}/hide', [QuotesController::class, 'hide'])->name('quote.hide');
     // Route::get('/quote', [QuotesController::class, 'edit'])->name('profile.edit');
 
 
@@ -128,7 +132,7 @@ Route::middleware('auth')->group(function () {
 
 
     // Contactus
-    Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
+    Route::get('/admin/inquiries', [InquiriesController::class, 'index'])->name('admin.inquiries');
     // ROute::get('/admin/inquiries/search', [InquiriesController::class, 'search'])->name('admin.inquiries.search');
 
     // chats
@@ -137,7 +141,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/chats/{id}/update', [ChatsController::class, 'update'])->name('admin.chats.update');
     Route::delete('/admin/chats/{id}/destroy', [ChatsController::class, 'destroy'])->name('admin.chats.destroy');
 
-     // Deletion Reasons
+    // Deletion Reasons
     Route::get('/admin/deletion-reasons', [DeletionReasonController::class, 'index'])->name('deletion-reasons.index');
 
     // users
@@ -148,47 +152,47 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/home', [App\Http\Controllers\HomeController::class, 'change'])->name('home.quote.change');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/home', [App\Http\Controllers\HomeController::class, 'change'])->name('home.quote.change');
 
 
-/**
- * routes related to bookmarks
- */
-Route::post('/bookmark/{quote_id}/store', [BookmarkController::class, 'store'])->name('bookmark.store');
-Route::delete('/bookmark/{quote_id}/destroy', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
+    /**
+     * routes related to bookmarks
+     */
+    Route::post('/bookmark/{quote_id}/store', [BookmarkController::class, 'store'])->name('bookmark.store');
+    Route::delete('/bookmark/{quote_id}/destroy', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
 
-// journal
-Route::get('/journals', [JournalController::class, 'index'])->name('journal.journals');
-Route::get('/journal/search', [JournalController::class, 'search'])->name('journal.search');
-Route::post('/journal/store', [JournalController::class, 'store'])->name('journal.store');
-Route::patch('/journal/{id}/update', [JournalController::class, 'update'])->name('journal.update');
-Route::patch('/journal/{id}/update_like', [JournalController::class, 'update_like'])->name('journal.update_like');
-Route::patch('/journal/{id}/reply', [JournalController::class, 'reply'])->name('journal.reply');
-Route::patch('/journal/{id}/comment', [JournalController::class, 'comment'])->name('journal.comment');
-Route::delete('/journal/{id}/destroy', [JournalController::class, 'destroy'])->name('journal.destroy');
+    // journal
+    Route::get('/journals', [JournalController::class, 'index'])->name('journal.journals');
+    Route::get('/journal/search', [JournalController::class, 'search'])->name('journal.search');
+    Route::post('/journal/store', [JournalController::class, 'store'])->name('journal.store');
+    Route::patch('/journal/{id}/update', [JournalController::class, 'update'])->name('journal.update');
+    Route::patch('/journal/{id}/update_like', [JournalController::class, 'update_like'])->name('journal.update_like');
+    Route::patch('/journal/{id}/reply', [JournalController::class, 'reply'])->name('journal.reply');
+    Route::patch('/journal/{id}/comment', [JournalController::class, 'comment'])->name('journal.comment');
+    Route::delete('/journal/{id}/destroy', [JournalController::class, 'destroy'])->name('journal.destroy');
 
-// Route::post('/journal/like_plus_one', [JournalController::class, 'like_plus_one'])->name('journal.like_plus_one');
+    // Route::post('/journal/like_plus_one', [JournalController::class, 'like_plus_one'])->name('journal.like_plus_one');
 
-Route::post('/journal/{id}/like', [JournalController::class, 'incrementLikeScore']);
-Route::post('/journal/{id}/dislike', [JournalController::class, 'decrementLikeScore']);
+    Route::post('/journal/{id}/like', [JournalController::class, 'incrementLikeScore']);
+    Route::post('/journal/{id}/dislike', [JournalController::class, 'decrementLikeScore']);
 
-// chatroom
-Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
-//Route::get('/chatroom', [ChatroomController::class, 'index'])->name('chatroom.index');
-Route::get('/chatroom/search', [ChatroomController::class, 'search'])->name('chatroom.search');
-Route::post('/chatroom/store', [ChatroomController::class, 'store'])->name('chatroom.store');
-Route::patch('/chatroom/{id}/update', [ChatroomController::class, 'update'])->name('chatroom.update');
-Route::delete('/chatroom/{id}/destroy', [ChatroomController::class, 'destroy'])->name('chatroom.destroy');
+    // chatroom
+    Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
+    //Route::get('/chatroom', [ChatroomController::class, 'index'])->name('chatroom.index');
+    Route::get('/chatroom/search', [ChatroomController::class, 'search'])->name('chatroom.search');
+    Route::post('/chatroom/store', [ChatroomController::class, 'store'])->name('chatroom.store');
+    Route::patch('/chatroom/{id}/update', [ChatroomController::class, 'update'])->name('chatroom.update');
+    Route::delete('/chatroom/{id}/destroy', [ChatroomController::class, 'destroy'])->name('chatroom.destroy');
 
-//Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
+    //Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
 
 
-/**
- * route related to contactus
- */
-Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
-// Route::get('/contactus/complete', [InquiryController::class, 'show'])->name('inquiry.complete');
+    /**
+     * route related to contactus
+     */
+    Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
+    // Route::get('/contactus/complete', [InquiryController::class, 'show'])->name('inquiry.complete');
 
 });
 

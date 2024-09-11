@@ -28,51 +28,57 @@
                 </div>
 
                 {{-- Quote --}}
-                <div class="col align-self-center">
-                    <textarea name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext py-auto">
-                    {{ $quote->quote }}
-                    </textarea>
-                    {{-- Author --}}
-                    <p class="text-end small pt-1 mb-0">By {{ $quote->author }}</p>
+                @if (Auth::user()->quote)
+                    <div class="col align-self-center">
+                        <textarea name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext py-auto">
+                        {{ $quote->quote }}
+                        </textarea>
+                        {{-- Author --}}
+                        <p class="text-end small pt-1 mb-0">By {{ $quote->author }}</p>
+                    </div>
 
-                </div>
-
-                {{-- Action Buttons --}}
-                <div class="col-1 me-5 pe-0">
-                    <div class="row">
-                        <div class="col px-0 text-end">
-                            {{-- Refresh --}}
-                            <form action="{{ route('home.quote.change') }}" method="post">
-                                @csrf
-                                <button type="submit" name="change" id ="change" class="btn btn-lg p-1"><i
-                                        class="fa-solid fa-arrows-rotate"></i></button>
-                            </form>
-                            {{-- Bookmark --}}
-                        </div>
-                        <div class="col px-0 text-center">
-                            <div class="quote-switch">
-                                @if ($quote->isBookmarked())
-                                    <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-lg p-1">
-                                            <i class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button>
-                                    @else
-                                        <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
+                    {{-- Action Buttons --}}
+                    <div class="col-1 me-5 pe-0">
+                        <div class="row">
+                            <div class="col px-0 text-end">
+                                {{-- Refresh --}}
+                                <form action="{{ route('home.quote.change') }}" method="post">
+                                    @csrf
+                                    <button type="submit" name="change" id ="change" class="btn btn-lg p-1"><i
+                                            class="fa-solid fa-arrows-rotate"></i></button>
+                                </form>
+                                {{-- Bookmark --}}
+                            </div>
+                            <div class="col px-0 text-center">
+                                <div class="quote-switch">
+                                    @if ($quote->isBookmarked())
+                                        <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
                                             @csrf
-                                            <button type="submit" class="btn btn-lg p-1"><i
-                                                    class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
-                                        </form>
-                                @endif
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-lg p-1">
+                                                <i
+                                                    class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button>
+                                        @else
+                                            <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-lg p-1"><i
+                                                        class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
+                                            </form>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col px-0 text-start">
+                                {{-- Copy --}}
+                                <button type="submit" class="btn btn-lg p-1 js-copy-btn" id="btn-copy-quote" data-copy><i
+                                        class="fa-regular fa-clone"></i></button>
                             </div>
                         </div>
-                        <div class="col px-0 text-start">
-                            {{-- Copy --}}
-                            <button type="submit" class="btn btn-lg p-1 js-copy-btn" id="btn-copy-quote" data-copy><i
-                                    class="fa-regular fa-clone"></i></button>
-                        </div>
                     </div>
+                @else
+                <div class="col align-self-center">
+                    <span>No quotes registered yet.</span>
                 </div>
+                @endif
                 <div class="col-1"></div>
             </div>
         </div>
@@ -162,39 +168,40 @@
                             </div>
                             <div class="body border-0 bg-white d-flex align-items-center">
                                 {{-- <div class="row"> --}}
-                                    {{-- <div class="col p-0"> --}}
-                                        <div id="graph_div" style="width: 100%; height: 500px;" ></div>
+                                {{-- <div class="col p-0"> --}}
+                                <div id="graph_div" style="width: 100%; height: 500px;"></div>
 
-                                    {{-- </div> --}}
-                                    {{-- <div class="col-auto ps-0 pe-4"> --}}
-                                        <div class="float-end">
-                                            <div>
-                                                <p class="mb-0">&nbsp;</p>
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/notgood.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
-                                            </div>
-                                        </div>
+                                {{-- </div> --}}
+                                {{-- <div class="col-auto ps-0 pe-4"> --}}
+                                <div class="float-end">
+                                    <div>
+                                        <p class="mb-0">&nbsp;</p>
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/notgood.png') }}"
+                                            alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
+                                    </div>
+                                </div>
 
-                                    {{-- </div> --}}
+                                {{-- </div> --}}
                                 {{-- </div> --}}
 
                             </div>
                             <div class="footer bg-white border-0">
                                 <p class="small px-3 text-center">
-                                   <br><br><br>
+                                    <br><br><br>
                                     It records your mood that you input when you login.
                                 </p>
                             </div>
