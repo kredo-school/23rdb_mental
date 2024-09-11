@@ -116,33 +116,34 @@ document.addEventListener('DOMContentLoaded', function () {
                             </table>
                         `;
 
-                        // Determine the image based on the average score
-                        let averageImageUrl;
-                        if (averageScore >= 1.5) {
-                            averageImageUrl = '/images/moods/great.png';
-                        } else if (averageScore >= 0.5) {
-                            averageImageUrl = '/images/moods/good.png';
-                        } else if (averageScore >= -0.5) {
-                            averageImageUrl = '/images/moods/ok.png';
-                        } else if (averageScore >= -1.5) {
-                            averageImageUrl = '/images/moods/notgood.png';
-                        } else {
-                            averageImageUrl = '/images/moods/bad.png';
-                        }
+                            // Determine the image based on the average score
+                            let averageImageUrl;
+                            if (averageScore >= 1.5) {
+                                averageImageUrl = '/images/moods/great.png';
+                            } else if (averageScore >= 0.5) {
+                                averageImageUrl = '/images/moods/good.png';
+                            } else if (averageScore >= -0.5) {
+                                averageImageUrl = '/images/moods/ok.png';
+                            } else if (averageScore >= -1.5) {
+                                averageImageUrl = '/images/moods/notgood.png';
+                            } else {
+                                averageImageUrl = '/images/moods/bad.png';
+                            }
 
-                        modalFooter.innerHTML = `<p class="text-center">Your average mood score is <h4>${averageScore.toFixed(1)}</h4><img src="${averageImageUrl}" alt="Average Mood Image" style="width: 50px; height: auto;"></p>`;
+                            modalFooter.innerHTML = `<p class="text-center">Your average mood score is <h4>${averageScore.toFixed(1)}</h4><img src="${averageImageUrl}" alt="Average Mood Image" style="width: 50px; height: auto;"></p>`;
 
                         } else {
                             modalBody.innerHTML = '<p>No records for this date.</p>';
                             modalFooter.innerHTML = '';
                         }
                         $('#moodModal').modal('show');
+
                     })
                     .catch(error => console.error('Error fetching mood data:', error));
             });
         },
 
-        iewDidMount: function (view) {
+        viewDidMount: function (view) {
             // Set the month and year based on the current view
             currentMonth = view.view.currentStart.getMonth() + 1; // FullCalendar months are 0-based
             currentYear = view.view.currentStart.getFullYear();
@@ -157,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Dates set month:', currentMonth);
             console.log('Dates set year:', currentYear);
             updateFeedbackSection(currentMonth, currentYear);
-        }
+        },
 
     });
     calendar.render();
@@ -182,6 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function updateFeedbackSection(month, year) {
+
         if (month === undefined || year === undefined) {
             console.error('Month or year is undefined');
             return;
@@ -217,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
             editFeedbackText.value = '';
             newFeedbackText.value = '';
         } else {
-            feedbackStatus.innerHTML = `Your feedback for this month: ${feedback[0].feedback}`;
+            feedbackStatus.innerHTML = `${feedback[0].feedback}`;
             editFeedbackText.value = feedback[0].feedback;
             newFeedbackText.value = feedback[0].feedback;
         }
@@ -226,24 +228,38 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('save-new-feedback')?.addEventListener('click', function (event) {
         event.preventDefault();
         var feedbackText = document.getElementById('new-feedback-text').value;
-        console.log('Saving new feedback:', feedbackText);
-        saveFeedback(userId, feedbackText, currentMonth, currentYear);
+        saveFeedback(feedbackText, currentMonth, currentYear)
+        .then(() => {
+            var modalElement = document.getElementById('feedback-input');
+            var modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+        });
     });
 
     document.getElementById('save-edit-feedback')?.addEventListener('click', function (event) {
         event.preventDefault();
         var feedbackText = document.getElementById('edit-feedback-text').value;
-        console.log('Saving edited feedback:', feedbackText);
-        saveFeedback(feedbackText, currentMonth, currentYear, true);
+        saveFeedback(feedbackText, currentMonth, currentYear, true)
+        .then(() => {
+            var modalElement = document.getElementById('edit-feedback');
+            var modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+        });
     });
 
     document.getElementById('confirm-delete-feedback')?.addEventListener('click', function (event) {
         event.preventDefault();
-        console.log('Deleting feedback for month:', currentMonth, 'year:', currentYear);
-        deleteFeedback(currentMonth, currentYear);
+        deleteFeedback(currentMonth, currentYear)
+        .then(() => {
+            var modalElement = document.getElementById('delete-feedback');
+            var modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+        });
     });
 
     function saveFeedback(feedbackText, month, year, isEdit = false) {
+        console.log('Saving feedback with month:', month, 'year:', year); // Debugging
+
         if (month === undefined || year === undefined) {
             console.error('Month or year is undefined');
             return;
@@ -266,13 +282,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 year: year
             })
         })
-        .then(response => response.json())
-        .then(data => {
-            alert('Feedback saved successfully!');
-            updateFeedbackSection(month, year);
-        })
-        .catch(error => console.error('Error saving feedback:', error));
+            .then(response => response.json())
+            .then(data => {
+                alert('Feedback saved successfully!');
+                updateFeedbackSection(month, year);
+            })
+            .catch(error => console.error('Error saving feedback:', error));
     }
+
 
     function deleteFeedback(month, year) {
         if (month === undefined || year === undefined) {
@@ -287,13 +304,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         })
-        .then(response => response.json())
-        .then(data => {
-            alert('Feedback deleted successfully!');
-            updateFeedbackSection(month, year);
-        })
-        .catch(error => console.error('Error deleting feedback:', error));
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) {
+                    console.error('Error deleting feedback:', data.error);
+                } else {
+                    alert('Feedback deleted successfully!');
+                    updateFeedbackSection(month, year);
+                }
+
+            })
+            .catch(error => console.error('Error deleting feedback:', error));
     }
+
 });
 
 

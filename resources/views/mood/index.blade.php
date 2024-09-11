@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/mood-tracker.css') }}">
 
+
 @extends('layouts.app')
 
 @extends('components.navbar-each')
@@ -262,10 +263,10 @@
                                     {{-- @csrf --}}
                                     {{-- @method('DELETE') --}}
                                     {{-- Cancel --}}
-                                    <button type="button" class="btn-feedback-cancel me-2"
+                                    <button type="button" class="btn-cancel me-2"
                                         data-bs-dismiss="modal">Cancel</button>
                                     {{-- Save --}}
-                                    <button type="button" id="confirm-delete-feedback" class="btn-feedback-delete ms-2"><i
+                                    <button type="button" id="confirm-delete-feedback" class="btn-delete ms-2"><i
                                             class="fa-solid fa-trash-can"></i>
                                         Delete</button>
                                 {{-- </form> --}}
@@ -276,10 +277,7 @@
                 </div>
             </div>
             <div class="card-body bg-white">
-                <p class="text-center" id="feedback-status">No feedback yet. &nbsp;&nbsp;<a href="#"
-                        class="text-decoration-none feedback" data-bs-toggle="modal"
-                        data-bs-target="#feedback-input">Write
-                        your feedback of this month</a></p>
+                <p id="feedback-status"></p>
             </div>
             <div class="modal fade" id="feedback-input">
                 <div class="modal-dialog modal-dialog-centered modal-lg">

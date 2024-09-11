@@ -145,11 +145,60 @@ class MoodController extends Controller
         $year = $request->input('year');
 
         $feedbacks = Feedback::where('month', $month)
-                             ->where('year', $year)
-                             ->where('user_id', Auth::user()->id)
-                             ->get();
+            ->where('year', $year)
+            ->where('user_id', Auth::user()->id)
+            ->get();
 
         return response()->json($feedbacks);
     }
 
+    public function updateFeedback(Request $request)
+    {
+        try {
+            $request->validate([
+                'feedback' => 'required|string',
+                'month' => 'required|integer|min:1|max:12',
+                'year' => 'required|integer',
+            ]);
+
+            Feedback::updateOrCreate(
+                ['user_id' => $request->user()->id, 'month' => $request->month, 'year' => $request->year],
+                ['feedback' => $request->feedback]
+            );
+
+            return response()->json(['message' => 'Feedback saved successfully']);
+        } catch (\Exception $e) {
+            Log::error('Failed: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Failed']);
+        }
+    }
+
+    public function destroyFeedback(Request $request)
+    {
+        try {
+            $month = $request->query('month');
+            $year = $request->query('year');
+
+            if (!$month || !$year) {
+                return response()->json(['error' => 'Month and year are required'], 400);
+            }
+
+            // Assuming user_id is from authenticated user
+            $feedback = Feedback::where('user_id', $request->user()->id)
+                ->where('month', $month)
+                ->where('year', $year)
+                ->first();
+
+            if (!$feedback) {
+                return response()->json(['error' => 'Feedback not found'], 404);
+            }
+
+            $feedback->delete();
+
+            return response()->json(['message' => 'Feedback deleted successfully']);
+        } catch (\Exception $e) {
+            Log::error('Failed to delete feedback: ' . $e->getMessage());
+            return response()->json(['error' => 'Failed to delete feedback'], 500);
+        }
+    }
 }

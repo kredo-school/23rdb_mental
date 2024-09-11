@@ -53,8 +53,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-mood-data/{date}', [MoodController::class, 'getMoodData']);
     Route::get('/api/feedbacks', [MoodController::class, 'getFeedbacks']);
     Route::post('/api/feedbacks', [MoodController::class, 'storeFeedback']);
-    Route::patch('/api/feedbacks', [MoodController::class, 'update']);
-    Route::delete('/api/feedbacks', [MoodController::class, 'destroy']);
+    Route::patch('/api/feedbacks', [MoodController::class, 'updateFeedback']);
+    Route::delete('/api/feedbacks', [MoodController::class, 'destroyFeedback']);
 });
 
 require __DIR__ . '/auth.php';
