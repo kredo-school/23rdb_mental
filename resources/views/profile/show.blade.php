@@ -281,11 +281,11 @@
                     {{-- Header --}}
                     <thead class="table-secondary small border favorite-quote">
                         <tr>
-                            <th></th>
-                            <th class="text-center">Quote</th>
-                            <th></th>
-                            <th class="text-center">Auther</th>
-                            <th class="text-center">Bookmark</th>
+                            {{-- <th></th> --}}
+                            <th colspan="7" class="text-center">Quote</th>
+                            {{-- <th></th> --}}
+                            <th colspan="3" class="text-center">Auther</th>
+                            <th colspan="2" class="text-center">Bookmark</th>
                         </tr>
 
                     </thead>
@@ -297,16 +297,16 @@
 
 
                             <tr>
-                                <td colspan=3 class="h2 text-center w-50" value="showquote-quote">
+                                <td colspan=7 class="h2 text-center w-50" value="showquote-quote">
                                     " {{ $quote->quote }} "
                                 </td>
 
-                                <td class="text-center">
+                                <td colspan="3" class="text-center">
                                     {{ $quote->author }}
                                 </td>
 
 
-                                <td class="text-center pt-4">
+                                <td colspan="2" class="text-center pt-4">
                                     {{-- cancel the bookmark --}}
                                     <div class="quote-switch text-center">
                                         @if ($quote->isBookmarked())
@@ -333,7 +333,7 @@
 
                         @empty
                             <tr>
-                                <td colspan="7" class="lead text-muted text-center">No Quote Bookmarked.</td>
+                                <td colspan="12" class="lead text-muted text-center">No Quote Bookmarked.</td>
                             </tr>
                         @endforelse
 
