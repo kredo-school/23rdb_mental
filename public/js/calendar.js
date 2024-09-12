@@ -229,32 +229,19 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
         var feedbackText = document.getElementById('new-feedback-text').value;
         saveFeedback(feedbackText, currentMonth, currentYear)
-        .then(() => {
-            var modalElement = document.getElementById('feedback-input');
-            var modal = bootstrap.Modal.getInstance(modalElement);
-            modal.hide();
-        });
+        var editFeedbackModal = bootstrap.Modal.getInstance(document.getElementById('edit-feedback'));
+        editFeedbackModal.hide();
     });
 
     document.getElementById('save-edit-feedback')?.addEventListener('click', function (event) {
         event.preventDefault();
         var feedbackText = document.getElementById('edit-feedback-text').value;
-        saveFeedback(feedbackText, currentMonth, currentYear, true)
-        .then(() => {
-            var modalElement = document.getElementById('edit-feedback');
-            var modal = bootstrap.Modal.getInstance(modalElement);
-            modal.hide();
-        });
+        saveFeedback(feedbackText, currentMonth, currentYear, true);
     });
 
     document.getElementById('confirm-delete-feedback')?.addEventListener('click', function (event) {
         event.preventDefault();
-        deleteFeedback(currentMonth, currentYear)
-        .then(() => {
-            var modalElement = document.getElementById('delete-feedback');
-            var modal = bootstrap.Modal.getInstance(modalElement);
-            modal.hide();
-        });
+        deleteFeedback(currentMonth, currentYear);
     });
 
     function saveFeedback(feedbackText, month, year, isEdit = false) {
@@ -282,14 +269,46 @@ document.addEventListener('DOMContentLoaded', function () {
                 year: year
             })
         })
-            .then(response => response.json())
-            .then(data => {
-                alert('Feedback saved successfully!');
-                updateFeedbackSection(month, year);
-            })
-            .catch(error => console.error('Error saving feedback:', error));
-    }
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Feedback saved:', data);
+            alert('Feedback saved successfully!');
 
+            // Get the modal element
+            var modalElement = document.getElementById('feedback-input');
+
+            if (modalElement) {
+                // Ensure Bootstrap's Modal instance is correctly created or fetched
+                var modal = bootstrap.Modal.getInstance(modalElement);
+
+                if (modal) {
+                    modal.hide();
+                } else {
+                    // Create a new instance of the modal if it does not exist
+                    modal = new bootstrap.Modal(modalElement);
+                    modal.hide();
+                }
+
+                // Remove any remaining backdrop
+                var backdrop = document.querySelector('.modal-backdrop');
+                if (backdrop) {
+                    backdrop.classList.remove('show');
+                    setTimeout(() => backdrop.remove(), 150); // Allow fade-out transition
+                }
+            } else {
+                console.error('Modal element not found');
+            }
+
+            // Optional: Refresh feedback section
+            updateFeedbackSection(month, year);
+        })
+        .catch(error => console.error('Error saving feedback:', error));
+    }
 
     function deleteFeedback(month, year) {
         if (month === undefined || year === undefined) {
@@ -304,24 +323,47 @@ document.addEventListener('DOMContentLoaded', function () {
                 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.error) {
-                    console.error('Error deleting feedback:', data.error);
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Feedback deleted:', data);
+            alert('Feedback deleted successfully!');
+
+            // Get the modal element
+            var modalElement = document.getElementById('delete-feedback');
+            if (modalElement) {
+                // Ensure Bootstrap's Modal instance is correctly created or fetched
+                var modal = bootstrap.Modal.getInstance(modalElement);
+
+                if (modal) {
+                    modal.hide();
                 } else {
-                    alert('Feedback deleted successfully!');
-                    updateFeedbackSection(month, year);
+                    // Create a new instance of the modal if it does not exist
+                    modal = new bootstrap.Modal(modalElement);
+                    modal.hide();
                 }
 
-            })
-            .catch(error => console.error('Error deleting feedback:', error));
+                // Remove any remaining backdrop
+                var backdrop = document.querySelector('.modal-backdrop');
+                if (backdrop) {
+                    backdrop.classList.remove('show');
+                    setTimeout(() => {
+                        backdrop.remove();
+                    }, 150); // Allow fade-out transition
+                }
+            } else {
+                console.error('Modal element not found');
+            }
+
+            // Optional: Refresh feedback section
+            updateFeedbackSection(month, year);
+        })
+        .catch(error => console.error('Error deleting feedback:', error));
     }
 
+
 });
-
-

@@ -195,3 +195,10 @@ div.button-delete {
     font-size: 14px;
     font-weight: 300;
 }
+
+.modal-backdrop {
+    z-index: 1040 !important; /* Bootstrap's default backdrop z-index */
+}
+.modal {
+    z-index: 1050 !important; /* Bootstrap's default modal z-index */
+}

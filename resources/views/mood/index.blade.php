@@ -204,7 +204,7 @@
                     </button>
                 </div>
                 {{-- Modal for edit --}}
-                <div class="modal fade" id="edit-feedback">
+                <div class="modal fade" id="edit-feedback" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
 
