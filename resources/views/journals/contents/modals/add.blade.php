@@ -11,7 +11,7 @@
                 @csrf
                 <div class="modal-body">
                     <div class="mt-3">
-                        <input type="text" name="journal_body" id="journal_body" class="form-control rounded-3" placeholder="What's on your mind?" value="">
+                        <input type="text" name="journal_body" id="journal_body_add" class="form-control rounded-3" placeholder="What's on your mind?" value="">
                     </div>
                 </div>
                 <div class="modal-footer border-0 justify-content-center">

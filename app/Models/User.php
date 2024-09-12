@@ -76,7 +76,7 @@ class User extends Authenticatable
         return $this->hasOne(DeletionReason::class);
     }
 
-    public function chat(){
+    public function chats(){
         return $this->hasMany(Chat::class);
     }
 
@@ -97,4 +97,16 @@ class User extends Authenticatable
         return $this->hasMany(Feedback::class);
     }
 
+    // public function messages()
+    // {
+    //     return $this->hasMany(Message::class);
+    // }
+
+    // /**
+    //  * ユーザーが参加しているチャットルームを取得します（必要に応じて）。
+    //  */
+    // public function chatRooms()
+    // {
+    //     return $this->belongsToMany(ChatRoom::class, 'chat_room_user');
+    // }
 }

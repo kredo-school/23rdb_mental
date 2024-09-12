@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{ asset('css/journal.css') }}">
-<link rel="stylesheet" href="{{ asset('css/journal.css') }}">
 
 @extends('layouts.app')
 @extends('components.navbar-each')
@@ -64,7 +63,7 @@
                         @if ($journal->journals_include_replying_journal)
                         <div class="text-muted">
                                 <span style="font-size: 16px;">{{ $journal->journals_include_replying_journal->created_at }}</span>
-                            <div class="mb-3 fs-4">
+                            <div class="mb-3 fs-5">
                                 {{ $journal->journals_include_replying_journal->body }}
                             </div>
                             <hr>
@@ -95,18 +94,18 @@
                         </div>
                         @include('journals.contents.modals.reply')
                         {{-- Body --}}
-                        <div class="mb-3 fs-3">
+                        <div class="mb-3 fs-4">
                             {{ $journal->body }}
                         </div>
                         {{-- Like Score --}}
                         <div>
                             <div>
-                                <i id="minus" class="button_minus fa-solid fa-circle-minus text-secondary fa-2x" onclick="decrementLikeScore({{ $journal->id }})" style="cursor: pointer;"></i>
+                                <i id="minus" class="button_minus fa-solid fa-circle-minus text-secondary fa-lg" onclick="decrementLikeScore({{ $journal->id }})" style="cursor: pointer;"></i>
                                 <div class="like-container">
-                                    <i class="like-icon fas fa-heart text-danger fa-2x"></i>
-                                    <div class="like-score" id="like-score-{{ $journal->id }}">{{ $journal->like_score }}</div>
+                                    <i class="like-icon fas fa-heart fa-2x" id="like-icon-{{ $journal->id }}"></i>
+                                    <div class="like-score fs-5" id="like-score-{{ $journal->id }}">{{ $journal->like_score }}</div>
                                 </div>
-                                <i id="plus" class="button_plus fa-solid fa-circle-plus text-secondary fa-2x" onclick="incrementLikeScore({{ $journal->id }})" tyle="cursor: pointer;"></i>
+                                <i id="plus" class="button_plus fa-solid fa-circle-plus text-secondary fa-lg" onclick="incrementLikeScore({{ $journal->id }})" tyle="cursor: pointer;"></i>
                             </div>
                         </div>
 
@@ -120,11 +119,9 @@
                         @include('journals.contents.modals.comment')
                         <div>
                             @foreach ($journal->comments as $comment)
-                                <div class="card mt-2" style="border: none;">
+                                <div class="card mt-2">
                                     <div class="card-body">
-                                        <div class="mb-3 fs-5">
-                                            {{ $comment->body }}
-                                        </div>
+                                        {{ $comment->body }}
                                     </div>
                                 </div>
                             @endforeach
@@ -140,86 +137,67 @@
     </div>
 </div>
 
-
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-
-
 <script>
-// function incrementLikeScore(id) {
-//     $.post('/journal/' + id + '/like', {
-//         _token: '{{ csrf_token() }}'
-//     }, function (data) {
-//         $('#like-score-' + id).text(data.like_score);
-//     });
-// }
+    document.addEventListener('DOMContentLoaded', function () {
+        const allJournals = @json($all_journals);
+        if (Array.isArray(allJournals.data) && allJournals.data.length > 0) {
+            allJournals.data.forEach(journal => {
 
-function incrementLikeScore(id) {
-            $.post('/journal/' + id + '/like', {
-                _token: '{{ csrf_token() }}'
-            }, function (data) {
-                $('#like-score-' + id).text(data.like_score);
+                updateLikeIconColor(journal.id, journal.like_score);
+
+                // Focus the input when the modal is displayed
+                $('#add-post').on('shown.bs.modal', function () {
+                    $('#journal_body_add').trigger('focus');
+                });
+                $('#edit-post-' + journal.id).on('shown.bs.modal', function () {
+                    $('#journal_body_edit_' + journal.id).trigger('focus');
+                });
+                $('#reply-post-' + journal.id).on('shown.bs.modal', function () {
+                    $('#journal_reply_' + journal.id).trigger('focus');
+                });
+                $('#comment-post-' + journal.id).on('shown.bs.modal', function () {
+                    $('#journal_comment_' + journal.id).trigger('focus');
+                });
             });
+        } else {
+            console.error("allJournals is not an array or it's empty");
         }
-
-
-function decrementLikeScore(id) {
-            $.post('/journal/' + id + '/dislike', {
-                _token: '{{ csrf_token() }}'
-            }, function (data) {
-                $('#like-score-' + id).text(data.like_score);
-            });
-        }
-</script>
-
-
-{{-- 
-<script>
-    function plusLikeScore(id) {
-        document.getElementById('likeScore' + id).value++;
-    }
-    function minusLikeScore(id) {
-        document.getElementById('likeScore' + id).value--;
-    }
-
-    let like = $('.button_plus'); //button_plusのついたiタグを取得し代入。
-    let journal_id;
-    like.on('click', function () {
-      let $this = like; //this=イベントの発火した要素＝iタグを代入
-    //   journal_id = $this.data('journal_id'); //iタグに仕込んだdata-review-idの値を取得
-      journal_id = 3; //iタグに仕込んだdata-review-idの値を取得
-
-      alert(journal_id);
-      // いいね数を1増やす
-    //   $this.next('.like-counter').html(parseInt($this.next('.like-counter').html()) + 1);
-
-      //ajax処理スタート
-      $.ajax({
-        headers: {
-          'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-        },
-        url: '/journal/like_plus_one',
-        method: 'POST',
-        data: {
-          'journal_id': journal_id //いいねされた投稿のidを送る
-        },
-      })
-      //成功した時の処理
-      .done(function (data) {
-        alert("success!");
-        // 返却されたカウント後のいいね数を表示
-        $this.next('.like-counter').html(data.likes_count);
-      })
-      //失敗した時の処理
-      .fail(function () {
-        alert("fail!");
-        console.log('err');
-      });
     });
-</script> --}}
 
+    function incrementLikeScore(id) {
+        $.post('/journal/' + id + '/like', {
+            _token: '{{ csrf_token() }}'
+        }, function (data) {
+            $('#like-score-' + id).text(data.like_score);
+            updateLikeIconColor(id, data.like_score);
+        });
+    }
+
+    function decrementLikeScore(id) {
+        $.post('/journal/' + id + '/dislike', {
+            _token: '{{ csrf_token() }}'
+        }, function (data) {
+            $('#like-score-' + id).text(data.like_score);
+            updateLikeIconColor(id, data.like_score);
+        });
+    }
+
+    // Change the icon color depending on whether the like score is positive or negative
+    function updateLikeIconColor(journalId, likeScore) {
+        const likeIcon = document.getElementById(`like-icon-${journalId}`);
+        if (likeScore >= 0) {
+            likeIcon.classList.remove('blue', 'pink');
+            likeIcon.classList.add('pink');
+        } else if (likeScore < 0) {
+            likeIcon.classList.remove('blue', 'pink');
+            likeIcon.classList.add('blue');
+        } else {
+            likeIcon.classList.remove('blue', 'pink');
+            likeIcon.classList.add('pink');
+        }
+    }
+</script>
 @endsection
 
 @section('scripts')
