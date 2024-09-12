@@ -135,5 +135,54 @@ td {
     object-fit: cover;
     color: #979a9b;
     font-size: 36px;
+    margin-left: 25px;
 
 }
+
+
+
+.inquiry-search_box{
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+  }
+  .inquiry-search_box:before{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    margin: auto;
+    width: 1.5em;
+    height: 1em;
+    /* padding-right: 30px; */
+    text-align: center;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900;
+    content: '\f002';
+    color: #979a9b;
+    /* background-color: #FF6BA0; */
+  }
+  .inquiry-search_box input[type="search"]{
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    padding: 10px 15px 10px 35px;
+    border-radius: 10px;
+    border: 1px solid #979a9b;
+    /* background: #fff; */
+    /* background-color: aqua; */
+    color: #979a9b;
+    /* box-shadow: 2px 2px 2px 0 #ccc inset; */
+
+  }
+  /* .search_box input[type="text"]:focus{
+    outline:0;
+  } */
+  .inquiry-search_box input[type="search"]::placeholder{
+    color: #ccc;
+  }
+  

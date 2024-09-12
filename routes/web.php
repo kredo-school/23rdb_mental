@@ -114,19 +114,12 @@ Route::get('/components/footer', function () {
 Route::middleware('auth')->group(function () {
 
     //quotes
-    // Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
-
     Route::get('/quote', [QuotesController::class, 'index'])->name('quote.index');
     Route::post('/quote/store',[QuotesController::class, 'store'])->name('quote.store');
     Route::patch('/quote/{id}/update',[QuotesController::class, 'update'])->name('quote.update');
     Route::delete('/quote/{id}/delete',[QuotesController::class, 'destroy'])->name('quote.destroy');
     Route::patch('/quote/{id}/unhide',[QuotesController::class, 'unhide'])->name('quote.unhide');
     Route::delete('/quote/{id}/hide',[QuotesController::class, 'hide'])->name('quote.hide');
-    // Route::get('/quote', [QuotesController::class, 'edit'])->name('profile.edit');
-
-
-
-
 
     // Contactus
     Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
@@ -206,7 +199,19 @@ Route::patch('/chat/user/{id}/update', [ChatController::class, 'update_username'
  * route related to contactus
  */
 Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
-// Route::get('/contactus/complete', [InquiryController::class, 'show'])->name('inquiry.complete');
+
+
+/**
+ * FAQ
+ */
+// Route::get('/faq', [InquiryController::class, 'show'])->name('faq.show');
+// Route::get('/faq', function () {
+//     return view('test.test');
+
+
+Route::get('/faq', function () {
+    return view('contactus.faq');
+});
 
 });
 

@@ -1,0 +1,142 @@
+/* .card {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+} */
+
+.container-faq-show {
+    margin-left: 444px;
+    margin-right: 164px;
+    /* background-color: #ff8d8d; */
+}
+
+.card {
+    width: 800px;
+}
+
+
+
+.qa-7 {
+    max-width: 700px;
+    margin-bottom: 10px;
+    border: 1px solid #979a9b;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 2%), 0 2px 3px -2px rgba(0 0 0 / 5%);
+    /* background-color: #fff; */
+    /* background-color: #ff8d8d; */
+
+}
+
+.qa-7 summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 1em 2em 1em 3em;
+    color: #42484D;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.qa-7 summary::before,
+.qa-7 p::before {
+    position: absolute;
+    left: 1em;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.qa-7 summary::before {
+    color: #75bbff;
+    content: "Q";
+    font-size: 20px;
+}
+
+.qa-7 summary::after {
+    transform: translateY(-25%) rotate(45deg);
+    width: 7px;
+    height: 7px;
+    margin-left: 10px;
+    border-bottom: 3px solid #333333b3;
+    border-right: 3px solid #333333b3;
+    content: '';
+    transition: transform .5s;
+}
+
+.qa-7[open] summary::after {
+    transform: rotate(225deg);
+}
+
+.qa-7 p {
+    position: relative;
+    transform: translateY(-10px);
+    opacity: 0;
+    margin: 0;
+    padding: .3em 3em 1.5em;
+    color:  #42484D;
+    transition: transform .5s, opacity .5s;
+    font-size: 20px;
+}
+
+.qa-7[open] p {
+    transform: none;
+    opacity: 1;
+}
+
+.qa-7 p::before {
+    color: #ff8d8d;
+    line-height: 2;
+    content: "A";
+    font-size: 20px;
+}
+
+
+/* remichan comment sec */
+.balloon2{
+    position: relative;
+    /* padding: 20px; */
+    border-radius: 40px;
+    color: #ffffff;
+    /* background-color: #ffffff; */
+    /* margin-right: 50px;   */
+    background-color: rgb(228, 228, 228);
+    width: 370px;
+    margin-left: 950px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    height: 100px;
+    top: 100px;
+    z-index: 2;
+    /* position: fixed; */
+
+  }
+  
+  .balloon2 .icon{
+    position: absolute;
+    right: -250px;
+    /* background-color: #ff8d8d; */
+    top: 90px;
+    margin-right: 0;
+    z-index: 1;
+    margin-right: 30px;
+    
+  }
+  /* triangle icon */
+  .balloon2::before{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    right: -15px;
+    /* top: 20px; */
+    top: 35px;
+    border-left: 40px solid rgb(228, 228, 228);
+    border-top: 50px solid transparent;
+    border-bottom: 0px solid transparent;
+  }
+/* 
+  .faq-remichan_circle{
+    width:2px;
+    height:2px;
+  } */

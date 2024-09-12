@@ -40,5 +40,12 @@ class InquiryController extends Controller
 }
 
 
+    // show FAQ page 
+    // public function show(){
+    //         // $user = $this->user->findOrFail($id);
+    //         return view('faq.show');
+    // }
+
+
 
 }
