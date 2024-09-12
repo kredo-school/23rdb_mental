@@ -22,6 +22,7 @@ h1, h2, h3, p, footer {
     align-items: center;
     width: 100%!important;
     text-align: center;
+    position: sticky;
 }
 
 .nav-link {
@@ -278,6 +279,16 @@ h3 {
     margin-right: 20px;
 }
 
+.nav_avatar {
+    font-size: 45px;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #6f7172;
+    border-radius: 100%;
+    color: #fff;
+    margin-right: 10px;
+}
+
 
 /* CALENDAR */
 
@@ -458,9 +469,8 @@ button.dr-more-details:hover {
     color: #FC4646;
 }
 
-
-
-/* quote page */
-.quote-subtextcolor{
-    color:rgb(255, 255, 255);
+ /* sidebar backgoundcolor */
+div.body_sidebar {
+    background-color: #ffffff;
+    opacity: 0.5;
 }

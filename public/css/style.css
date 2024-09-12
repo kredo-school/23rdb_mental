@@ -26,11 +26,12 @@ h1, h2, h3, p, footer {
     font-weight: bold;
     font-family: "Lato", sans-serif;
     color: #fff;
-    position: relative;
+    /* position: relative; */
     height: 79px;
     align-items: center;
     width: 100%!important;
     text-align: center;
+    position: sticky;
 }
 
 .nav-link {
@@ -271,7 +272,6 @@ p, span, td, a {
     border-radius: 7px;
     font-family: "Lato", sans-serif;
     margin-right: 20px;
-
 }
 
 .btn-login:hover,
@@ -279,7 +279,7 @@ p, span, td, a {
 .btn-logout:hover,
 .btn-logout:focus {
     color: #6C757D;
-    background-color: #e1e1e1;
+    background-color:  rgba(255, 255, 255, 0.5);
     text-decoration: none;
     text-shadow: rgb(255, 255, 255) 2px 2px 0;
     border: none;
