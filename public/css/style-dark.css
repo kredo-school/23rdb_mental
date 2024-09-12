@@ -278,3 +278,189 @@ h3 {
     margin-right: 20px;
 }
 
+
+/* CALENDAR */
+
+#modal-calendar {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure the modal is above other content */
+}
+
+/* Modal content */
+#modal-calendar-content {
+    width: 600px;
+    /* max-width: 90%; */
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center text inside the modal */
+}
+
+
+#calendar {
+    font-family: "Lato", sans-serif;
+    color: #42484D;
+
+}
+
+.fc {
+    font-family: "Lato", sans-serif;
+    color: #42484D;
+
+}
+
+#calendar a {
+    text-decoration: none;
+    color: #42484D;
+
+}
+
+.fc .fc-event {
+    background-color: transparent !important; /* Remove background color */
+    border: none !important; /* Remove border */
+    box-shadow: none !important; /* Remove any box shadow */
+}
+
+/* Remove underline from the calendar title */
+a #calendar-container .fc-toolbar-title {
+    text-decoration: none !important;
+}
+
+/* Ensure the link itself does not have underlines or borders */
+#calendar-container {
+    text-decoration: none !important;
+    border: none;
+    background: none;
+}
+
+/* reset all link styles within the calendar */
+#calendar-container {
+    color: inherit; /* Keeps text color consistent */
+}
+
+/* today's background color */
+.fc-day-today {
+    background-color: #34343424 !important;
+}
+
+/* < > buttons */
+.fc .fc-prev-button,
+.fc .fc-next-button {
+    background-color: #0068E2 !important;
+    border-color: #0068E2 !important;
+    color: white !important;
+}
+
+.fc .fc-prev-button:hover,
+.fc .fc-next-button:hover {
+    background-color: #CEE5FF !important;
+    border-color: #CEE5FF !important;
+    color: #0068E2 !important;
+}
+
+/* < > buttons round corner */
+.fc .fc-prev-button,
+.fc .fc-next-button {
+    border-radius: 10px;
+}
+
+.fc-daygrid-day.fc-day-sun .fc-daygrid-day-number {
+    color: #FC4646 !important;
+}
+
+.fc-daygrid-day.fc-day-sat .fc-daygrid-day-number {
+    color: #0068E2 !important;
+}
+
+.fc-day-sun a {
+    color: #FC4646 !important;
+}
+
+.fc-day-sat a {
+    color: #0068E2 !important;
+}
+
+
+/* profile.show */
+div .btn-delete-account {
+    color: #FC4646;
+}
+
+div .btn-profile-edit-dismiss {
+    color: #FC4646;
+    margin-left: auto;
+}
+/* home.blade */
+/* Refresh, bookmark, copy buttons */
+.fa-arrows-rotate,
+.fa-bookmark,
+.fa-clone {
+    color: #0068E2;
+}
+
+/* see all link */
+.container-home-journaling a {
+    color: #0068E2;
+}
+
+/* yes link in mood section */
+a.mood {
+    color: #0068E2;
+    text-decoration: none;
+}
+
+/* mood.index */
+button.button-feedback-edit {
+    color: #0068E2;
+
+}
+
+button.button-feedback-delete {
+    color: #FC4646;
+
+}
+
+p a.feedback {
+    color: #0068E2;
+
+}
+
+.mood-modal-cancel {
+    color: #FC4646;
+}
+
+/* admin/users.index */
+input:checked + .user-slider {
+    background-color: #0068E2;
+}
+
+/* admin/deletion-reasons.index */
+button.dr-more-details {
+    color: #0068E2;
+}
+
+button.dr-more-details:hover {
+    background-color: #0068E2;
+    border: none;
+    color: #fff;
+}
+
+.dr-modal-cancel {
+    color: #FC4646;
+}
+
+
+
+/* quote page */
+.quote-subtextcolor{
+    color:rgb(255, 255, 255);
+}

@@ -18,10 +18,6 @@
 
 }
 
-div .btn-delete-account {
-    color: #FF6BA0;
-}
-
 .avatar {
     font-size: 180px;
     color: #CED3D5;
@@ -48,10 +44,6 @@ img.selector {
     width: 25%; /* Adjust as needed */
 }
 
-div .btn-dismiss {
-    color: #FF6BA0;
-    margin-left: auto;
-}
 
 /* selectors */
 .selectors input {

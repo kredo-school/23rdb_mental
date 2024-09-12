@@ -309,3 +309,228 @@ p, span, td, a {
     margin-right: 20px;
 }
 
+.mood-icon {
+    width: 80px;
+    height: 80px;
+    background-size: cover; /* Ensure the image covers the element */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    background-position: center; /* Center the image */
+    display: inline-block;
+    text-align: center; /* Center the text */
+    line-height: 24px;
+}
+
+.mood-icon-great {
+    background-image: url('/images/moods/great.png');
+}
+
+.mood-icon-good {
+    background-image: url('/images/moods/good.png');
+}
+
+.mood-icon-ok {
+    background-image: url('/images/moods/ok.png');
+}
+
+.mood-icon-notgood {
+    background-image: url('/images/moods/notgood.png');
+}
+
+.mood-icon-bad {
+    background-image: url('/images/moods/bad.png');
+}
+
+.mood-icon-default {
+    background-image: url('/images/moods/default.png'); /* Fallback image */
+}
+
+#modal-calendar {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure the modal is above other content */
+}
+
+/* Modal content */
+#modal-calendar-content {
+    width: 600px;
+    /* max-width: 90%; */
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center text inside the modal */
+}
+
+/* Modal button */
+/* #modal-calendar-content button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#modal-calendar-content button:hover {
+    background: #0056b3;
+} */
+
+#calendar {
+    font-family: "Lato", sans-serif;
+    color: #42484D;
+
+}
+
+.fc {
+    font-family: "Lato", sans-serif;
+    color: #42484D;
+
+}
+
+#calendar a {
+    text-decoration: none;
+    color: #42484D;
+
+}
+
+.fc .fc-event {
+    background-color: transparent !important; /* Remove background color */
+    border: none !important; /* Remove border */
+    box-shadow: none !important; /* Remove any box shadow */
+}
+
+/* Remove underline from the calendar title */
+a #calendar-container .fc-toolbar-title {
+    text-decoration: none !important;
+}
+
+/* Ensure the link itself does not have underlines or borders */
+#calendar-container {
+    text-decoration: none !important;
+    border: none;
+    background: none;
+}
+
+/* reset all link styles within the calendar */
+#calendar-container {
+    color: inherit; /* Keeps text color consistent */
+}
+
+/* today's background color */
+.fc-day-today {
+    background-color: #6c757d37 !important;
+}
+
+/* < > buttons */
+.fc .fc-prev-button,
+.fc .fc-next-button {
+    background-color: #6BB7F6 !important;
+    border-color: #6BB7F6 !important;
+    color: white !important;
+}
+
+.fc .fc-prev-button:hover,
+.fc .fc-next-button:hover {
+    background-color: #DCEEFC !important;
+    border-color: #DCEEFC !important;
+    color: #5DAEF2 !important;
+    background-color: #DCEEFC;
+}
+
+/* < > buttons round corner */
+.fc .fc-prev-button,
+.fc .fc-next-button {
+    border-radius: 10px;
+}
+
+.fc-daygrid-day.fc-day-sun .fc-daygrid-day-number {
+    color: #FF6BA0 !important;
+}
+
+.fc-daygrid-day.fc-day-sat .fc-daygrid-day-number {
+    color: #6BB7F6 !important;
+}
+
+.fc-day-sun a {
+    color: #FF6BA0 !important;
+}
+
+.fc-day-sat a {
+    color: #5DAEF2 !important;
+}
+
+/* profile.show */
+div .btn-delete-account {
+    color: #FF6BA0;
+}
+
+div .btn-profile-edit-dismiss {
+    color: #FF6BA0;
+    margin-left: auto;
+}
+
+/* home.blade */
+/* Refresh, bookmark, copy buttons */
+.fa-arrows-rotate,
+.fa-bookmark,
+.fa-clone {
+    color: #6BB7F6;
+}
+
+/* see all link */
+.container-home-journaling a {
+    color: #6BB7F6;
+}
+
+/* yes link in mood section */
+a.mood {
+    color: #6BB7F6;
+    text-decoration: none;
+}
+
+/* mood.index */
+button.button-feedback-edit {
+    color: #6BB7F6;
+
+}
+
+button.button-feedback-delete {
+    color: #FF6BA0;
+
+}
+
+p a.feedback {
+    color: #6BB7F6;
+
+}
+
+.mood-modal-cancel {
+    color: #FF6BA0;
+}
+
+/* admin/users.index */
+input:checked + .user-slider {
+    background-color: #6BB7F6;
+  }
+
+/* admin/deletion-reasons.index */
+button.dr-more-details {
+    color: #5DAEF2;
+}
+
+button.dr-more-details:hover {
+    background-color: #5DAEF2;
+    border: none;
+    color: #fff;
+}
+
+.dr-modal-cancel {
+    color: #FF6BA0;
+}

@@ -90,9 +90,9 @@
                 <div>
         
                     @if($search)
-                    <span class="pb-0 mb-0 ms-4 me-5 pe-5">Result for : {{ $search }}</span>    
+                    <span class="pb-0 mb-0 ms-4 me-5 pe-5 quote-subtextcolor">Result for : {{ $search }}</span>    
                     @endif
-                    <p class="pb-0 mb-0 ms-4 me-5 pe-5 mt-0 pt-0">
+                    <p class="pb-0 mb-0 ms-4 me-5 pe-5 mt-0 pt-0 quote-subtextcolor">
                         
                         Total : 
                         <span>{{ $quotes_count->total() }}</span>

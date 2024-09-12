@@ -103,7 +103,7 @@
     </div>
 
     {{-- Journaling section --}}
-    <div class="container-journaling m-5">
+    <div class="container-home-journaling m-5">
         <div class="card bg-white py-3 px-5 border-0">
 
             <div class="card-header bg-white">
@@ -164,11 +164,14 @@
                         </div>
                         <div class="body border-0 bg-white">
                             <div class="w-100 text-center">
-                                <a href="{{ route('mood.index') }}">Calendar</a>
+                                <a href="{{ route('mood.index') }}" id="calendar-container">
+                                    <div id="calendar" width="80%"></div>
+                                </a>
                             </div>
                         </div>
                         <div class="footer bg-white border-0">
-                            <p class="small px-5">
+                            <p class="small px-5 text-center">
+                                <br>
                                 It shows the average score of your mood of the day.
                             </p>
                         </div>
@@ -213,7 +216,8 @@
 
                             </div>
                             <div class="footer bg-white border-0">
-                                <p class="small px-3">
+                                <p class="small px-3 text-center">
+                                   <br><br><br>
                                     It records your mood that you input when you login.
                                 </p>
                             </div>

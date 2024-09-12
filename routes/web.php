@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\ChatroomController;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\ChatController;
 
 // admin
 use App\Http\Controllers\Admin\QuotesController;
@@ -49,6 +50,8 @@ Route::middleware('auth')->group(function () {
     // Route::get('/mood/getmood', [MoodController::class, 'getMoods']);
     Route::get('/test/graph', [TestController::class, 'graphIndex'])->name('mood.graph');
     Route::get('/mood-graph', [MoodController::class, 'moodGraph']);
+    Route::get('/mood-calendar', [MoodController::class, 'moodCalendar']);
+    Route::get('/get-mood-data/{date}', [MoodController::class, 'getMoodData']);
 });
 
 require __DIR__.'/auth.php';
@@ -126,7 +129,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/chats', [ChatsController::class, 'index'])->name('admin.chats.index');
     Route::get('/admin/chats/search', [ChatsController::class, 'search'])->name('admin.chats.search');
     Route::patch('/admin/chats/{id}/update', [ChatsController::class, 'update'])->name('admin.chats.update');
-    Route::delete('/admin/chats/{id}/destroy', [ChatsController::class, 'destroy'])->name('admin.chats.destroy');
+    // Route::delete('/admin/chats/{id}/destroy', [ChatsController::class, 'destroy'])->name('admin.chats.destroy');
+    Route::patch('/admin/chats/{id}/unhide',[ChatsController::class, 'unhide'])->name('admin.chats.unhide');
+    Route::delete('/admin/chats/{id}/hide',[ChatsController::class, 'hide'])->name('admin.chats.hide');
 
      // Deletion Reasons
     Route::get('/admin/deletion-reasons', [DeletionReasonController::class, 'index'])->name('deletion-reasons.index');
@@ -165,8 +170,8 @@ Route::post('/journal/{id}/like', [JournalController::class, 'incrementLikeScore
 Route::post('/journal/{id}/dislike', [JournalController::class, 'decrementLikeScore']);
 
 // chatroom
-Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
-//Route::get('/chatroom', [ChatroomController::class, 'index'])->name('chatroom.index');
+//Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
+Route::get('/chatroom', [ChatroomController::class, 'index'])->name('chatroom.index');
 Route::get('/chatroom/search', [ChatroomController::class, 'search'])->name('chatroom.search');
 Route::post('/chatroom/store', [ChatroomController::class, 'store'])->name('chatroom.store');
 Route::patch('/chatroom/{id}/update', [ChatroomController::class, 'update'])->name('chatroom.update');
@@ -174,12 +179,39 @@ Route::delete('/chatroom/{id}/destroy', [ChatroomController::class, 'destroy'])-
 
 //Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
 
+// chat
+// Route::get('/chat/{room}', [ChatController::class, 'index'])->name('chat.index');
+// Route::post('/chat/{room}/message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
+// http://127.0.0.1:8000/chat/1
+
+// chat
+Route::get('/chat/{room_id}', [ChatController::class, 'index'])->name('chat.chats');
+Route::post('/chat/{room_id}/send', [ChatController::class, 'store'])->name('chat.store');
+// Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
+
+Route::get('/chat/search', [ChatController::class, 'search'])->name('chat.search');
+Route::patch('/chat/{id}/update', [ChatController::class, 'update'])->name('chat.update');
+Route::delete('/chat/{id}/destroy', [ChatController::class, 'destroy'])->name('chat.destroy');
+Route::patch('/chat/{id}/reply', [ChatController::class, 'reply'])->name('chat.reply');
+Route::patch('/chat/user/{id}/update', [ChatController::class, 'update_username'])->name('chat.update.username');
 
 /**
  * route related to contactus
  */
 Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inquiry.store');
 
+
+/**
+ * FAQ
+ */
+// Route::get('/faq', [InquiryController::class, 'show'])->name('faq.show');
+// Route::get('/faq', function () {
+//     return view('test.test');
+
+
+Route::get('/faq', function () {
+    return view('contactus.faq');
+});
 
 });
 

@@ -204,11 +204,6 @@ input {
     height: 80px;
 }
 
-/* Link "See All" */
-.container-journaling a {
-    color: #6BB7F6;
-}
-
 /* Create Journaling */
 .modal-dialog {
     display: flex;
@@ -228,11 +223,6 @@ input {
     background-color: D9D9D9;
     border-radius: 20px;
     border-style: none;
-}
-
-a.mood {
-    color: #6BB7F6;
-    text-decoration: none;
 }
 
 /* Chat Room Links */

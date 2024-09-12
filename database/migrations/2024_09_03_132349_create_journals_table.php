@@ -21,6 +21,8 @@ return new class extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('replying_journal_id')->references('id')->on('journals');
+
+            $table->softDeletes();
         });
     }
 

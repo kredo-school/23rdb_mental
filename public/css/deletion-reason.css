@@ -25,18 +25,6 @@
     /* border-top: 1px solid #ddd; */
 }
 
-button.more-details {
-    color: #5DAEF2;
-}
-
-button.more-details:hover {
-    background-color: #5DAEF2;
-    border: none;
-    color: #fff;
-}
-
-
-
 .modal-body {
     word-wrap: break-word;
 }
@@ -54,6 +42,4 @@ table.table-deletion-reasons {
     width: 800px;
 }
 
-.fa-xmark {
-    color: #FF6BA0;
-}
+

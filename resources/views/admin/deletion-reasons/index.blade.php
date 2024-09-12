@@ -72,19 +72,18 @@
                                     <div class="text-container">
 
                                         <div class="row justify-content-center">
-                                            <div class="col-10 align-self-center text-truncate ps-5">
+                                            <div class="col-9 align-self-center text-truncate ps-5">
                                                 <div class="text-container">
                                                     <div class="text-content">
                                                         {{ $deletion_reason->reason }}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-3">
                                                 <button type="button"
-                                                    class="btn btn-border-none text-decoration-underline more-details btn-sm"
+                                                    class="btn btn-border-none text-decoration-underline dr-more-details btn-sm"
                                                     data-bs-toggle="modal"
-                                                    data-bs-target="#deletionReasonDetail{{ $deletion_reason->id }}">more
-                                                    details
+                                                    data-bs-target="#deletionReasonDetail{{ $deletion_reason->id }}">more details
                                                 </button>
                                             </div>
                                             {{-- Modal for more details --}}
@@ -99,7 +98,7 @@
 
                                                             <button type="modal" data-bs-dismiss="modal"
                                                                 class="border-0 bg-white">
-                                                                <i class="fa-solid fa-xmark"></i>
+                                                                <i class="fa-solid fa-xmark dr-modal-cancel"></i>
                                                             </button>
 
                                                         </div>

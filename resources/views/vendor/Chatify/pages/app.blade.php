@@ -1,4 +1,7 @@
 @include('Chatify::layouts.headLinks')
+@extends('components.navbar-each')
+@extends('components.sidebar')
+
 <div class="messenger">
     {{-- ----------------------Users/Groups lists side---------------------- --}}
     <div class="messenger-listView {{ !!$id ? 'conversation-active' : '' }}">
