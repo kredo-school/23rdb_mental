@@ -204,7 +204,7 @@
                     </button>
                 </div>
                 {{-- Modal for edit --}}
-                <div class="modal fade" id="edit-feedback" aria-hidden="true">
+                <div class="modal fade" id="edit-feedback" tabindex="-1" aria-labelledby="edit-feedbackLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
 
@@ -238,7 +238,7 @@
                 </div>
 
                 {{-- Modal for delete --}}
-                <div class="modal fade modal-delete" id="delete-feedback">
+                <div class="modal fade modal-delete" id="delete-feedback" tabindex="-1" aria-labelledby="delete-feedbackLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
 
@@ -279,7 +279,7 @@
             <div class="card-body bg-white">
                 <p id="feedback-status"></p>
             </div>
-            <div class="modal fade" id="feedback-input">
+            <div class="modal fade" id="feedback-input" tabindex="-1" aria-labelledby="new-feedbackLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
 

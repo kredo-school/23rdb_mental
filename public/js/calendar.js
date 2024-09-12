@@ -269,45 +269,42 @@ document.addEventListener('DOMContentLoaded', function () {
                 year: year
             })
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Feedback saved:', data);
-            alert('Feedback saved successfully!');
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Feedback saved:', data);
+                alert('Feedback saved successfully!');
 
-            // Get the modal element
-            var modalElement = document.getElementById('feedback-input');
+                // Get the modal element
+                var modalElement = document.getElementById('feedback-input');
 
-            if (modalElement) {
-                // Ensure Bootstrap's Modal instance is correctly created or fetched
-                var modal = bootstrap.Modal.getInstance(modalElement);
+                if (modalElement) {
+                    // Ensure Bootstrap's Modal instance is correctly created or fetched
+                    var modal = bootstrap.Modal.getInstance(modalElement);
 
-                if (modal) {
-                    modal.hide();
+                    if (modal) {
+                        modal.hide();
+                    } else {
+                        // Create a new instance of the modal if it does not exist
+                        modal = new bootstrap.Modal(modalElement);
+                        modal.hide();
+                    }
+
+                    // Remove any remaining backdrop
+                    const overlay = document.querySelector('.modal-overlay');
+                    overlay.remove();
                 } else {
-                    // Create a new instance of the modal if it does not exist
-                    modal = new bootstrap.Modal(modalElement);
-                    modal.hide();
+                    console.error('Modal element not found');
                 }
 
-                // Remove any remaining backdrop
-                var backdrop = document.querySelector('.modal-backdrop');
-                if (backdrop) {
-                    backdrop.classList.remove('show');
-                    setTimeout(() => backdrop.remove(), 150); // Allow fade-out transition
-                }
-            } else {
-                console.error('Modal element not found');
-            }
-
-            // Optional: Refresh feedback section
-            updateFeedbackSection(month, year);
-        })
-        .catch(error => console.error('Error saving feedback:', error));
+                // Optional: Refresh feedback section
+                updateFeedbackSection(month, year);
+            })
+            .catch(error => console.error('Error saving feedback:', error));
     }
 
     function deleteFeedback(month, year) {
@@ -337,23 +334,23 @@ document.addEventListener('DOMContentLoaded', function () {
             var modalElement = document.getElementById('delete-feedback');
             if (modalElement) {
                 // Ensure Bootstrap's Modal instance is correctly created or fetched
-                var modal = bootstrap.Modal.getInstance(modalElement);
+                var modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
 
-                if (modal) {
-                    modal.hide();
-                } else {
-                    // Create a new instance of the modal if it does not exist
-                    modal = new bootstrap.Modal(modalElement);
-                    modal.hide();
-                }
+                // Hide the modal
+                modal.hide();
 
                 // Remove any remaining backdrop
                 var backdrop = document.querySelector('.modal-backdrop');
                 if (backdrop) {
+                    console.log('Removing backdrop');
                     backdrop.classList.remove('show');
                     setTimeout(() => {
-                        backdrop.remove();
+                        if (backdrop.parentNode) {
+                            backdrop.parentNode.removeChild(backdrop);
+                        }
                     }, 150); // Allow fade-out transition
+                } else {
+                    console.log('Backdrop not found');
                 }
             } else {
                 console.error('Modal element not found');
@@ -364,6 +361,5 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error deleting feedback:', error));
     }
-
 
 });
