@@ -248,22 +248,22 @@
                 <div class="row px-5">
                     {{-- Chat Rooms --}}
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-relationship w-100">Relationship</a>
+                        <a href="{{ url('/chat/1') }}" class="btn btn-relationship w-100">Relationship</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-career w-100">Career</a>
+                        <a href="{{ url('/chat/2') }}" class="btn btn-career w-100">Career</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-family w-100">Family</a>
+                        <a href="{{ url('/chat/3') }}" class="btn btn-family w-100">Family</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-health w-100">Health</a>
+                        <a href="{{ url('/chat/4') }}" class="btn btn-health w-100">Health</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-finance w-100">Finance</a>
+                        <a href="{{ url('/chat/5') }}" class="btn btn-finance w-100">Finance</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-others w-100">Others</a>
+                        <a href="{{ url('/chat/6') }}" class="btn btn-others w-100">Others</a>
                     </div>
                 </div>
 

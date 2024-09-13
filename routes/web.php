@@ -170,7 +170,7 @@ Route::post('/journal/{id}/like', [JournalController::class, 'incrementLikeScore
 Route::post('/journal/{id}/dislike', [JournalController::class, 'decrementLikeScore']);
 
 // chatroom
-//Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
+Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
 Route::get('/chatroom', [ChatroomController::class, 'index'])->name('chatroom.index');
 Route::get('/chatroom/search', [ChatroomController::class, 'search'])->name('chatroom.search');
 Route::post('/chatroom/store', [ChatroomController::class, 'store'])->name('chatroom.store');
@@ -188,7 +188,6 @@ Route::delete('/chatroom/{id}/destroy', [ChatroomController::class, 'destroy'])-
 Route::get('/chat/{room_id}', [ChatController::class, 'index'])->name('chat.chats');
 Route::post('/chat/{room_id}/send', [ChatController::class, 'store'])->name('chat.store');
 // Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
-
 Route::get('/chat/search', [ChatController::class, 'search'])->name('chat.search');
 Route::patch('/chat/{id}/update', [ChatController::class, 'update'])->name('chat.update');
 Route::delete('/chat/{id}/destroy', [ChatController::class, 'destroy'])->name('chat.destroy');
