@@ -22,7 +22,7 @@ use App\Http\Controllers\Admin\UserController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -52,9 +52,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/mood-graph', [MoodController::class, 'moodGraph']);
     Route::get('/mood-calendar', [MoodController::class, 'moodCalendar']);
     Route::get('/get-mood-data/{date}', [MoodController::class, 'getMoodData']);
+    Route::get('/api/feedbacks', [MoodController::class, 'getFeedbacks']);
+    Route::post('/api/feedbacks', [MoodController::class, 'storeFeedback']);
+    Route::patch('/api/feedbacks', [MoodController::class, 'updateFeedback']);
+    Route::delete('/api/feedbacks', [MoodController::class, 'destroyFeedback']);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // Test Page
 Route::get('/test', [TestController::class, 'index']);
@@ -63,8 +67,8 @@ Route::get('/test', [TestController::class, 'index']);
 // });
 Route::get('/test/test', function () {
     return view('test.test');
-// Route::get('/test/navbar', function () {
-//     return view('test.navbar');
+    // Route::get('/test/navbar', function () {
+    //     return view('test.navbar');
 });
 Route::get('/test/test', function () {
     return view('test.test');
@@ -122,7 +126,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/quote/{id}/hide',[QuotesController::class, 'hide'])->name('quote.hide');
 
     // Contactus
-    Route::get('/admin/inquiries',[InquiriesController::class, 'index'])->name('admin.inquiries');
+    Route::get('/admin/inquiries', [InquiriesController::class, 'index'])->name('admin.inquiries');
     // ROute::get('/admin/inquiries/search', [InquiriesController::class, 'search'])->name('admin.inquiries.search');
 
     // chats
@@ -133,7 +137,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/admin/chats/{id}/unhide',[ChatsController::class, 'unhide'])->name('admin.chats.unhide');
     Route::delete('/admin/chats/{id}/hide',[ChatsController::class, 'hide'])->name('admin.chats.hide');
 
-     // Deletion Reasons
+    // Deletion Reasons
     Route::get('/admin/deletion-reasons', [DeletionReasonController::class, 'index'])->name('deletion-reasons.index');
 
     // users
@@ -144,30 +148,30 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/home', [App\Http\Controllers\HomeController::class, 'change'])->name('home.quote.change');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::post('/home', [App\Http\Controllers\HomeController::class, 'change'])->name('home.quote.change');
 
 
-/**
- * routes related to bookmarks
- */
-Route::post('/bookmark/{quote_id}/store', [BookmarkController::class, 'store'])->name('bookmark.store');
-Route::delete('/bookmark/{quote_id}/destroy', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
+    /**
+     * routes related to bookmarks
+     */
+    Route::post('/bookmark/{quote_id}/store', [BookmarkController::class, 'store'])->name('bookmark.store');
+    Route::delete('/bookmark/{quote_id}/destroy', [BookmarkController::class, 'destroy'])->name('bookmark.destroy');
 
-// journal
-Route::get('/journals', [JournalController::class, 'index'])->name('journal.journals');
-Route::get('/journal/search', [JournalController::class, 'search'])->name('journal.search');
-Route::post('/journal/store', [JournalController::class, 'store'])->name('journal.store');
-Route::patch('/journal/{id}/update', [JournalController::class, 'update'])->name('journal.update');
-Route::patch('/journal/{id}/update_like', [JournalController::class, 'update_like'])->name('journal.update_like');
-Route::patch('/journal/{id}/reply', [JournalController::class, 'reply'])->name('journal.reply');
-Route::patch('/journal/{id}/comment', [JournalController::class, 'comment'])->name('journal.comment');
-Route::delete('/journal/{id}/destroy', [JournalController::class, 'destroy'])->name('journal.destroy');
+    // journal
+    Route::get('/journals', [JournalController::class, 'index'])->name('journal.journals');
+    Route::get('/journal/search', [JournalController::class, 'search'])->name('journal.search');
+    Route::post('/journal/store', [JournalController::class, 'store'])->name('journal.store');
+    Route::patch('/journal/{id}/update', [JournalController::class, 'update'])->name('journal.update');
+    Route::patch('/journal/{id}/update_like', [JournalController::class, 'update_like'])->name('journal.update_like');
+    Route::patch('/journal/{id}/reply', [JournalController::class, 'reply'])->name('journal.reply');
+    Route::patch('/journal/{id}/comment', [JournalController::class, 'comment'])->name('journal.comment');
+    Route::delete('/journal/{id}/destroy', [JournalController::class, 'destroy'])->name('journal.destroy');
 
-// Route::post('/journal/like_plus_one', [JournalController::class, 'like_plus_one'])->name('journal.like_plus_one');
+    // Route::post('/journal/like_plus_one', [JournalController::class, 'like_plus_one'])->name('journal.like_plus_one');
 
-Route::post('/journal/{id}/like', [JournalController::class, 'incrementLikeScore']);
-Route::post('/journal/{id}/dislike', [JournalController::class, 'decrementLikeScore']);
+    Route::post('/journal/{id}/like', [JournalController::class, 'incrementLikeScore']);
+    Route::post('/journal/{id}/dislike', [JournalController::class, 'decrementLikeScore']);
 
 // chatroom
 //Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
@@ -177,7 +181,7 @@ Route::post('/chatroom/store', [ChatroomController::class, 'store'])->name('chat
 Route::patch('/chatroom/{id}/update', [ChatroomController::class, 'update'])->name('chatroom.update');
 Route::delete('/chatroom/{id}/destroy', [ChatroomController::class, 'destroy'])->name('chatroom.destroy');
 
-//Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
+    //Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
 
 // chat
 // Route::get('/chat/{room}', [ChatController::class, 'index'])->name('chat.index');
