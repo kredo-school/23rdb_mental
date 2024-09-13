@@ -3,7 +3,7 @@
 
 @extends('layouts.app')
 @extends('components.navbar-each')
-@section('title', 'Journal')
+@section('title', 'Chat')
 
 @section('content')
 @if(Auth::user()->role_id == 1)

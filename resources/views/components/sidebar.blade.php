@@ -21,7 +21,7 @@
                     <p class="sidebar_icon @yield('title')_quote"><img src="{{ asset('images/navigation/quote_side_icon.png') }}" alt="Quote">Quote</p>
                 </a> --}}
                 <a href="{{ route('chat.chats', '1') }}" class="sidebar_icon">
-                    <p class="sidebar_icon @yield('title')chat"><img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat">Chat</p>
+                    <p class="sidebar_icon @yield('title')_chat"><img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat">Chat</p>
                 </a>
             </div>
         </nav>
