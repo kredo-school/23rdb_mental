@@ -25,22 +25,22 @@
                 {{-- 吹き出し --}}
                 <div class="col-auto fukidashi-01-13">
                     {{-- 吹き出し線 --}}
-                    <span class="ornament"></span>  
-                    
+                    <span class="ornament"></span>
+
                     {{-- <img src="{{ asset('images/main/bubblespeech.png') }}" alt="bubblespeech" class="bubblespeech"> --}}
                 </div>
 
-                   
+
             {{-- Quote --}}
             <div class="col align-self-center fade-in-text">
                 {{-- quote itself --}}
-                @if ($quote->exists()) 
-                
+                @if ($quote->exists())
+
                 <p name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext py-auto">
                     {{ $quote->quote }}
                 </p>
                 {{-- Author --}}
-                
+
                 <p class="text-end small pt-1 mb-0">By  {{ $quote->author }}</p>
 
                 </div>
@@ -56,7 +56,7 @@
                                         class="fa-solid fa-arrows-rotate"></i></button>
                             </form>
                             <span>change today's quote</span>
-                            
+
                         </div>
                             {{-- Bookmark --}}
                         <div class="col px-0 text-center">
@@ -87,16 +87,16 @@
                         </div>
                     </div>
                 </div>
-               
+
 
                 @else
                 <div>
-                   <p>Coming soon....</p>    
-               </div>   
+                   <p>Coming soon....</p>
+               </div>
                @endif
-   
+
                 <div class="col-1"></div>
-                
+
             </div>
         </div>
         <script src="{{ asset('js/quote-copy.js') }}"></script>
@@ -185,39 +185,40 @@
                             </div>
                             <div class="body border-0 bg-white d-flex align-items-center">
                                 {{-- <div class="row"> --}}
-                                    {{-- <div class="col p-0"> --}}
-                                        <div id="graph_div" style="width: 100%; height: 500px;" ></div>
+                                {{-- <div class="col p-0"> --}}
+                                <div id="graph_div" style="width: 100%; height: 500px;"></div>
 
-                                    {{-- </div> --}}
-                                    {{-- <div class="col-auto ps-0 pe-4"> --}}
-                                        <div class="float-end">
-                                            <div>
-                                                <p class="mb-0">&nbsp;</p>
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/notgood.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
-                                            </div>
-                                        </div>
+                                {{-- </div> --}}
+                                {{-- <div class="col-auto ps-0 pe-4"> --}}
+                                <div class="float-end">
+                                    <div>
+                                        <p class="mb-0">&nbsp;</p>
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/notgood.png') }}"
+                                            alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
+                                    </div>
+                                </div>
 
-                                    {{-- </div> --}}
+                                {{-- </div> --}}
                                 {{-- </div> --}}
 
                             </div>
                             <div class="footer bg-white border-0">
                                 <p class="small px-3 text-center">
-                                   <br><br><br>
+                                    <br><br><br>
                                     It records your mood that you input when you login.
                                 </p>
                             </div>

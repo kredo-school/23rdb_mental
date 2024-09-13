@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/mood-tracker.css') }}">
 
+
 @extends('layouts.app')
 
 @extends('components.navbar-each')
@@ -114,73 +115,75 @@
                 </div>
 
             </div>
+
         </div>
-        <div class="d-flex justify-content-end">
+        {{-- search bar --}}
+        <div class="d-flex justify-content-end searchbar">
             @auth {{-- if logged in --}}
-                <form action="" method="get" class="form-position">
-                    <input type="date" name="search" placeholder="search..." class="form-control shadow"
-                        value="#">
-                </form>
+                <div class="search-container mb-0">
+                    <input type="text" id="dateInput" placeholder="Search date (e.g., 2024-09)" class="form-control">
+                    <button id="searchButton" class="btn btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
             @endauth
         </div>
 
         {{-- Calendar --}}
         <div class="card card-mood my-3 pb-3 bg-white shadow">
-                <div class="card-header bg-white border-0">
+            <div class="card-header bg-white border-0">
 
-                </div>
-                <div class="card-body bg-white border-0">
-                    <div id="calendar"></div>
-                    {{-- @forelse ($all_moods as $mood) --}}
-                        <div class="modal fade" id="moodModal" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header" id="modalHeader">
-                                    </div>
-                                    <div class="modal-body" id="modalBody">
-                                        <table class="table align-middle bg-white mt-0 table-hover table-bordered table-moods">
-                                            <thead class="small table-secondary border">
-                                                <tr>
-                                                    <th class="text-center col-date">Date</th>
-                                                    <th class="col-mood">Mood</th>
-                                                    <th class="text-center col-score">Score</th>
-                                                </tr>
-                                            </thead>
+            </div>
+            <div class="card-body bg-white border-0">
+                <div id="calendar"></div>
+                {{-- @forelse ($all_moods as $mood) --}}
+                <div class="modal fade" id="moodModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header" id="modalHeader">
+                            </div>
+                            <div class="modal-body" id="modalBody">
+                                <table class="table align-middle bg-white mt-0 table-hover table-bordered table-moods">
+                                    <thead class="small table-secondary border">
+                                        <tr>
+                                            <th class="text-center col-date">Date</th>
+                                            <th class="col-mood">Mood</th>
+                                            <th class="text-center col-score">Score</th>
+                                        </tr>
+                                    </thead>
 
-                                            <tbody class="moods-table">
-                                                @forelse($all_moods as $mood)
-                                                    <tr>
-                                                        <td class="text-center">
-                                                            {{ $mood->created_at }}
-                                                        </td>
-                                                        <td>
+                                    <tbody class="moods-table">
+                                        @forelse($all_moods as $mood)
+                                            <tr>
+                                                <td class="text-center">
+                                                    {{ $mood->created_at }}
+                                                </td>
+                                                <td>
 
-                                                        </td>
-                                                        <td>
-                                                            {{ $mood->score }}
-                                                        </td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="3" class="lead text-muted text-center">No records.</td>
-                                                    </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                        <div class="d-flex justify-content-center">
-                                            {{ $all_moods->links() }}
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer" id="modalFooter">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
+                                                </td>
+                                                <td>
+                                                    {{ $mood->score }}
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="3" class="lead text-muted text-center">No records.</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                                <div class="d-flex justify-content-center">
+                                    {{ $all_moods->links() }}
                                 </div>
                             </div>
+                            <div class="modal-footer" id="modalFooter">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
-                    {{-- @empty
+                    </div>
+                </div>
+                {{-- @empty
                         <p class="text-center">No data yet.</p>
                     @endforelse --}}
-                </div>
+            </div>
         </div>
 
         <div class="card card-feedback mb-5 px-3 bg-white shadow">
@@ -201,7 +204,7 @@
                     </button>
                 </div>
                 {{-- Modal for edit --}}
-                <div class="modal fade" id="edit-feedback">
+                <div class="modal fade" id="edit-feedback" tabindex="-1" aria-labelledby="edit-feedbackLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
 
@@ -212,22 +215,22 @@
 
                             <div class="modal-body">
                                 {{-- input form --}}
-                                <textarea name="feedback" id="feedback" cols="30" rows="10" class="form-control"
+                                <textarea name="feedback" id="edit-feedback-text" cols="30" rows="10" class="form-control"
                                     placeholder="How was your mood this month?" value=""></textarea>
                             </div>
 
                             <div class="modal-footer border-0 justify-content-center">
                                 {{-- Action buttons --}}
-                                <form action="#" method="post">
-                                    @csrf
-                                    @method('PATCH')
+                                {{-- <form action="#" method="post"> --}}
+                                    {{-- @csrf --}}
+                                    {{-- @method('PATCH') --}}
                                     {{-- Cancel --}}
                                     <button type="button" class="btn-cancel me-2"
                                         data-bs-dismiss="modal">Cancel</button>
                                     {{-- Save --}}
-                                    <button type="submit" class="btn-submit ms-2"><i
+                                    <button type="button" id="save-edit-feedback" class="btn-submit ms-2"><i
                                             class="fa-solid fa-circle-check"></i> Save</button>
-                                </form>
+                                {{-- </form> --}}
                             </div>
 
                         </div>
@@ -235,7 +238,7 @@
                 </div>
 
                 {{-- Modal for delete --}}
-                <div class="modal fade modal-delete" id="delete-feedback">
+                <div class="modal fade modal-delete" id="delete-feedback" tabindex="-1" aria-labelledby="delete-feedbackLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
 
@@ -256,16 +259,17 @@
 
                             <div class="modal-footer border-0 justify-content-center">
                                 {{-- Action buttons --}}
-                                <form action="#" method="post">
-                                    @csrf
-                                    @method('DELETE')
+                                {{-- <form action="#" method="post"> --}}
+                                    {{-- @csrf --}}
+                                    {{-- @method('DELETE') --}}
                                     {{-- Cancel --}}
-                                    <button type="button" class="btn-feedback-cancel me-2"
+                                    <button type="button" class="btn-cancel me-2"
                                         data-bs-dismiss="modal">Cancel</button>
                                     {{-- Save --}}
-                                    <button type="submit" class="btn-feedback-delete ms-2"><i class="fa-solid fa-trash-can"></i>
+                                    <button type="button" id="confirm-delete-feedback" class="btn-delete ms-2"><i
+                                            class="fa-solid fa-trash-can"></i>
                                         Delete</button>
-                                </form>
+                                {{-- </form> --}}
                             </div>
 
                         </div>
@@ -273,11 +277,9 @@
                 </div>
             </div>
             <div class="card-body bg-white">
-                <p class="text-center">No feedback yet. &nbsp;&nbsp;<a href="#" class="text-decoration-none feedback"
-                        data-bs-toggle="modal" data-bs-target="#feedback-input">Write
-                        your feedback of this month</a></p>
+                <p id="feedback-status"></p>
             </div>
-            <div class="modal fade" id="feedback-input">
+            <div class="modal fade" id="feedback-input" tabindex="-1" aria-labelledby="new-feedbackLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
 
@@ -288,20 +290,20 @@
 
                         <div class="modal-body">
                             {{-- input form --}}
-                            <textarea name="feedback" id="feedback" cols="30" rows="10" class="form-control"
+                            <textarea name="feedback" id="new-feedback-text" cols="30" rows="10" class="form-control"
                                 placeholder="How was your mood this month?"></textarea>
                         </div>
 
                         <div class="modal-footer border-0 justify-content-center">
                             {{-- Action buttons --}}
-                            <form action="#" method="post">
-                                @csrf
+                            {{-- <form action="#" method="post"> --}}
+                                {{-- @csrf --}}
                                 {{-- Cancel --}}
                                 <button type="button" class="btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
                                 {{-- Save --}}
-                                <button type="submit" class="btn-submit ms-2"><i class="fa-solid fa-circle-check"></i>
+                                <button type="button" id="save-new-feedback" class="btn-submit ms-2"><i class="fa-solid fa-circle-check"></i>
                                     Save</button>
-                            </form>
+                            {{-- </form> --}}
                         </div>
 
                     </div>
