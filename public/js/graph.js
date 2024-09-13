@@ -25,20 +25,25 @@ function drawChart() {
 
             let scoresMap = {};
             data.forEach(item => {
-                let date = new Date(item.created_at).toISOString().split('T')[0];
+                let dateTime = new Date(item.created_at); // Keep the full date-time
+                let date = dateTime.toISOString().split('T')[0];;
                 if (allDates.includes(date)) {
-                    scoresMap[date] = item.score;
+                    if (!scoresMap[date]) {
+                        scoresMap[date] = [];
+                    }
+                    scoresMap[date].push(dateTime); // Store the exact timestamp
                 }
             });
 
             // Interpolate missing points
             let chartData = [['Date', 'Score']];
-            allDates.forEach(date => {
-                if (scoresMap[date] === undefined) {
-                    // If no data, use average score or some other placeholder value
-                    scoresMap[date] = null; // Use null to indicate no data
+            data.forEach(item => {
+                let dateTime = new Date(item.created_at);
+                let date = dateTime.toISOString().split('T')[0]; // Extract the date part
+                if (allDates.includes(date)) {
+                    // Use dateTime as x-axis value, but show only date on x-axis
+                    chartData.push([dateTime, item.score]);
                 }
-                chartData.push([new Date(date), scoresMap[date]]);
             });
 
             let dataTable = google.visualization.arrayToDataTable(chartData);
@@ -54,11 +59,11 @@ function drawChart() {
                 },
                 vAxis: {
                     title: 'Score',
-                    ticks: [-2, -1, 0, 1, 2] // Custom y-axis labels
+                    ticks: [-2, -1, 0, 1, 2]
                 },
                 legend: 'none',
                 series: {
-                    0: { lineWidth: 2, pointSize: 5 } // Adjust line width and point size
+                    0: { lineWidth: 2, pointSize: 5 }
                 }
             };
 

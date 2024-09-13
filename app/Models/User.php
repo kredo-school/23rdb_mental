@@ -82,7 +82,7 @@ class User extends Authenticatable
 
     public function bookmarks(){
         return $this->hasMany(Bookmark::class);
-        
+
     }
 
     // public function isBookmarked(){
@@ -91,6 +91,10 @@ class User extends Authenticatable
 
     public function bookmarkedQuotes(){
         return $this->belongsToMany(Quote::class, 'bookmarks');
+    }
+
+    public function feedbacks() {
+        return $this->hasMany(Feedback::class);
     }
 
     // public function messages()
