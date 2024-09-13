@@ -25,6 +25,7 @@
         <br><br>
         Hide<br>
         <button class="btn-hide"><i class="fa-solid fa-eye-slash"></i> Hide</button>
+        <input type="button" onclick="location.href='{{ route('faq.show') }}'" value="Hide">
 
         <br><br>
         Cancel<br>

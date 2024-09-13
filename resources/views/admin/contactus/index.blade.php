@@ -29,26 +29,30 @@
 
 
             <div class="col-10 py-4 inquiry-body-size">
-                <div class="row mt-3">
-                    <div class="col-7"></div>
+                {{-- head search section --}}
+                <div class="row mt-3  my-4">
+                    <div class="col-6"></div>
+                    <div class="col-5 px-5">
+                        <div class="row bg-white rounded">
+                             {{-- search bar --}}
+                            <div class="col-auto ps-5">
+                                        <p class="text-primary mt-1 pt-3">Search</p>
+                                 
+                            </div>
 
-                    {{-- search bar --}}
-                    <div class="col-1">
-
-                        <p class="text-primary mt-1 ">Search</p>
+                                        
+                            <div class="col-auto inquiry-search_box pt-3">
+                                        <form action="{{ route('admin.inquiries') }}" method="get" class="form-inline">
+                                            @csrf
+                                            <input type="search" name="keyword" placeholder="keyword....." class="form-control shadow">
+                                        
+                                        </form>
+                                            
+                            </div>
+                            
                         </div>
-
-
-                    <div class="col-3">
-                        <form action="{{ route('admin.inquiries') }}" method="get" class="form-inline">
-                            @csrf
-                            <input type="search" name="keyword" placeholder="keyword....." class="form-control quote-other-btn shadow">
-
-                        </form>
-
                     </div>
-
-
+                
                 </div>
                 <div>
 
@@ -66,7 +70,7 @@
 
                 </div>
 
-                <table class="table align-middle bg-white quote-table mt-0 table-responsive">
+                <table class="table align-middle bg-white quote-table mt-0 table-responsive shadow">
                     <thead class="small table-secondary border">
                         <tr class="">
                             <th class="text-center th-wssmall">#</th>
@@ -86,12 +90,12 @@
                             <td class="th-wssmall text-center">
                                 {{ $inquiry->id }}
                             </td>
-                            <td class="th-wsmall">
+                            <td class="text-center th-wsmall">
                                 @if ($inquiry->user->avatar)
-                                <img src="{{ $inquiry->user->avatar }}" alt="" class="rounded-circle d-block avatar-lg">
-                            @else
-                            <i class="fa-solid fa-circle-user d-block text-center avatar-lg"></i>
-                            @endif
+                                <img src="{{ $inquiry->user->avatar }}" alt="" class="rounded-circle d-block avatar-lg text-center">
+                                @else
+                                <i class="fa-solid fa-circle-user d-block text-center avatar-lg"></i>
+                                @endif
                             </td>
 
                             <td class="text-center th-wsmedium">

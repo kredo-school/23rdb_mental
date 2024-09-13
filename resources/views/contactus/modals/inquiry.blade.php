@@ -4,7 +4,7 @@
 
 {{-- inquiry modal --}}
 <div class="modal fade" id="ContactUs">
-    <div class="modal-dialog modal-lg bg-info inquiry-modal">
+    <div class="modal-dialog modal-lg inquiry-modal">
         <div class="modal-content shadow px-5 py-3">
             
                 <div class="modal-header mt-3 mb-4">
@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="modal-body mx-3">
-                    <form action="#" id="inquiry-form" name="inquiry-form">
+                    <form action="{{ route('inquiry.store') }}" id="inquiry-form" name="inquiry-form">
                     @csrf
                         
 
@@ -62,13 +62,16 @@
                             <div class="mx-auto">
                                 <button type="button" class="btn-cancel me-4" data-bs-dismiss="modal">Cancel</button>
                                 
-                                <button type="submit" class="btn btn-save"><i class="fa-solid fa-circle-check"></i> Submit</button>
+                                <button type="submit" class="btn btn-save" id="contactus-submit-button" ><i class="fa-solid fa-circle-check"></i> Submit</button>
                             </div>
                         </div>
                     </form>
         </div>
     </div>
  </div>
+ <script src="{{ asset('js/contactus-button.js') }}"></script>
+
+ {{-- <script src="{{ asset('js/inquiry.js') }}"></script> --}}
 
 
 
