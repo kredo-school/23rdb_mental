@@ -60,7 +60,7 @@
                 <div class="card mb-3 shadow">
                     <div class="card-body">
                         {{-- Reply Body --}}
-                        @if ($journal->journals_include_replying_journal)
+                        {{-- @if ($journal->journals_include_replying_journal)
                         <div class="text-muted">
                                 <span class="fs-6">{{ $journal->journals_include_replying_journal->created_at }}</span>
                             <div class="mb-3 fs-5">
@@ -69,7 +69,7 @@
                             <hr>
                         </div>
                         @endif
-                        
+                         --}}
                         {{-- Date, Edit and Delete --}}
                         <div class="text-start">
                             {{-- Date --}}
@@ -86,12 +86,12 @@
                             @include('journals.contents.modals.edit')
                         </div>
                         {{-- Reply Link--}}
-                        <div class="float-end">
+                        {{-- <div class="float-end">
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-{{ $journal->id }}">
                                 <i class="fa-solid fa-reply text-primary icon-sm"></i>
                                 <span class="text-primary fw-bold">Reply</span>
                             </a>
-                        </div>
+                        </div> --}}
                         @include('journals.contents.modals.reply')
                         {{-- Body --}}
                         <div class="mb-3 fs-4">
@@ -119,11 +119,13 @@
                         @include('journals.contents.modals.comment')
                         <div>
                             @foreach ($journal->comments as $comment)
-                                <div class="card mt-2">
-                                    <div class="card-body">
-                                        {{ $comment->body }}
-                                    </div>
+                            <hr>
+                            <div class="text-muted">
+                                    <span style="font-size: 16px;">{{ $comment->created_at }}</span>
+                                <div class="mb-3 fs-5">
+                                    {{ $comment->body }}
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>

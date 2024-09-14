@@ -176,11 +176,21 @@
         scrollToBottom();
     };
 
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     alert('Page has loaded 2');
+    //     console.log('Page fully loaded');
+    //     setTimeout(scrollToBottom, 100);
+    // });
     document.addEventListener('DOMContentLoaded', function () {
         console.log('Page fully loaded');
         setTimeout(scrollToBottom, 500);
     });
 
+    // var sendBtn = document.getElementById('send-btn');
+    // sendBtn.addEventListener('click', function() {
+    //     // メッセージ送信後にスクロールを実行
+    //     scrollToBottom();
+    // });
     var sendBtn = document.getElementById('send-btn');
     sendBtn.addEventListener('click', function() {
         // メッセージ送信後にスクロールを実行
@@ -228,6 +238,9 @@
     // メッセージ送信処理
     document.getElementById('chat-form').addEventListener('submit', function(e) {
         e.preventDefault();
+
+        alert('submit clicked');
+
 
         const user_id = document.getElementById('user_id').value;
         const body = document.getElementById('body').value;
