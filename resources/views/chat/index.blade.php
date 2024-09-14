@@ -143,6 +143,18 @@
                         <input type="text" id="body" name="body" placeholder="message">
                         <button type="submit" id="submit" onclick="sendMessage()">send</button>
                 </form>
+
+                <div>
+                    <p>Pusher Test</p>
+                    <p>
+                      Try publishing an event to channel <code>chat-room-1</code>
+                      with event name <code>new-message</code>.
+                    </p>
+                    <div id="chat-messages-test">
+
+                    </div>
+                </div>
+
                 </div>
             </div>
         </div>
@@ -152,8 +164,30 @@
 
 @section('scripts')
 <!-- PusherのJavaScriptライブラリをCDN経由で読み込む -->
-<script src="https://js.pusher.com/7.2.0/pusher.min.js"></script>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <script>
+
+    //  Pusher.logToConsole = true;
+
+    var pusherTest = new Pusher('fc62cca74c438dde1c80', {
+        cluster: 'ap3'
+    });
+
+    var channelTest = pusherTest.subscribe('chat-room-1');
+    channelTest.bind('new-message', function(data) {
+        // alert(JSON.stringify(data));
+
+        const chatMessages = document.getElementById('chat-messages-test');
+        const newMessage = `<div class="chat-message"><strong>${data.username}:</strong><p>${data.message}</p></div>`;
+        chatMessages.insertAdjacentHTML('beforeend', newMessage);
+                
+        // メッセージが追加されたらスクロール
+        scrollToBottom();
+    });
+
+
+
+
     document.addEventListener('DOMContentLoaded', function() {
         // alert('Page has loaded');
         scrollToBottom();
@@ -234,7 +268,7 @@
     // メッセージ送信処理
         // function sendMessage() {
 
-        document.getElementById('chat-form').addEventListener('submit', function(e) {
+    document.getElementById('chat-form').addEventListener('submit', function(e) {
 
         alert('submit clicked');
         e.preventDefault();
