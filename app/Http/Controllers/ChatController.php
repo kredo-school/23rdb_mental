@@ -21,12 +21,19 @@ class ChatController extends Controller
         $this->user = $user;
     }
 
-    public function index($room_id)
+    public function index(Request $request, $room_id)
     {
         $chatRooms = ChatRoom::all();
         $currentRoom = ChatRoom::findOrFail($room_id);
-        $chats = $currentRoom->chats()->with('chats_include_replying_chat')->get();
+        $chats = $currentRoom->chats();
         $user = Auth::user();
+
+        // if ($request->has('search')) {
+        //     $search = $request->input('search');
+        //     $chats = $chats->where('body', 'LIKE', "%{$search}%");
+        // }
+        $chats = $chats->with('chats_include_replying_chat')->get();
+
         return view('chat.index', compact('chatRooms', 'currentRoom', 'chats', 'user'));
     }//Index
 

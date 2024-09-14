@@ -1,3 +1,26 @@
+.journal-body {
+    margin-left:200px;
+}
+
+.journal-add-input {
+    border-radius: 25px !important;
+}
+
+.journal-form{
+    margin-bottom: 0px;
+}
+
+.journal-search-input{
+    display: inline !important;
+    width: 150px !important;
+}
+
+.journal-search-date-title{
+    display: inline;
+    width: 100px;
+    margin-left: 50px;
+}
+
 .search-date {
     width: 100px;
 }
@@ -31,6 +54,13 @@
     color: #FF85C0;
 }
 
+.button_minus {
+    cursor: pointer;
+}
+
+.button_plus{
+    cursor: pointer;
+}
 
 /*
 .container-journal {
