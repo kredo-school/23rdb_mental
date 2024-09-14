@@ -61,8 +61,14 @@ class ChatController extends Controller
             );
 
             $pusher->trigger('chat-room-' . $room_id, 'new-message', [
-                'username' => $chat->user->name,  // 外部キーの `user_id` からユーザー名を取得
+                'id' => $chat->id,
                 'message' => $chat->body,
+                'user_id' => $chat->user->id,
+                'username' => $chat->user->username,  // 外部キーの `user_id` からユーザー名を取得
+                // 'user_avatar' => $chat->user->avatar,
+                'created_at' => $chat->created_at,
+                // 'replying_created_at' => $chat->chats_include_replying_chat->created_at,
+                // 'replying_body' => $chat->chats_include_replying_chat->body,
             ]);
 
             // broadcast(new \App\Events\MessageSent($chat));
