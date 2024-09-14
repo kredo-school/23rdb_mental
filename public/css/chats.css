@@ -1,4 +1,3 @@
-
 .chats-edit-icon {
     color: #6BB7F6;
 }
@@ -7,10 +6,19 @@
     color: #FF6BA0;
 }
 
-
-.chats-body-size{
+.chats-body{
     padding-right: 164px;
     padding-left: 164px;
+    margin-left: 200px;
+}
+
+.chats-form{
+    margin-bottom: 0px;
+}
+
+.chats-search-component{
+    display: inline !important;
+    width: 150px !important;
 }
 
 .chats-table{
@@ -282,6 +290,10 @@ color: white;
     position: absolute;
   }
 
+  .hide-body{
+    display: inline-block;
+  }
+
   .hide-switch{
     background-color: #FF6BA0;
     width: 85px !important;
@@ -315,6 +327,9 @@ color: white;
   }
 
 
+
+
+
 /* ------------------------ user screen ------------------------ */
 
 body {
@@ -322,6 +337,37 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+}
+
+.chat-body{
+    margin-left: 200px;
+}
+
+.chat-background{
+    background-color: aliceblue;
+}
+
+.chat-form{
+    margin-bottom: 0px;
+    display: inline-block; 
+}
+
+.chat-search-input{
+    flex-grow: 1;
+    margin-right: 10px;
+    max-width: 300px;
+}
+
+.chat-form-search{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 400px;
+    margin-left: 10px;
+}
+
+.chat-user{
+    display: block;
 }
 
 .chat-container {
@@ -447,14 +493,12 @@ body {
     background-color: #45a049;
 }
 
-/* アクティブなチャットルームのスタイル */
 .active-room {
     opacity: 1;
 }
 
-/* 非アクティブなチャットルームのスタイル */
 .inactive-room {
-    opacity: 0.5; /* 薄く表示 */
+    opacity: 0.5;
 }
 
 

@@ -15,14 +15,14 @@
 <body class="">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-10 py-4 chats-body-size w-75" style="margin-left:200px;">
+            <div class="chats-body col-10 py-4 w-75">
 
                 {{-- Search Section --}}
                 <div class="card input-group mb-3 p-2 shadow">
-                    <form action="{{ route('admin.chats.index') }}" method="get" style="margin-bottom: 0px;">
+                    <form class="chats-form" action="{{ route('admin.chats.index') }}" method="get">
                         {{-- Sort --}}
                         <span class="text-primary">Sort</span>
-                        <select name="sort" id="sort" class="form-control" onchange="this.form.submit()" style="display: inline; width: 150px;">
+                        <select name="sort" id="sort" class="chats-search-component form-control" onchange="this.form.submit()">
                             <option value="Latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Latest
                             </option>
                             <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Oldest
@@ -31,12 +31,12 @@
                             </option>
                         </select>
                         {{-- Search date --}}
-                        <span class="text-primary me-3" style="display: inline; width: 100px; margin-left: 50px;">Search</span>
-                        <input type="date" name="search_date_start" class="form-control search-date" value="{{ $search_date_start }}" style="display: inline; width: 150px;">
+                        <span class="chats-search-component text-primary m-1">Search</span>
+                        <input type="date" name="search_date_start" class="chats-search-component form-control search-date" value="{{ $search_date_start }}">
                         ～
-                        <input type="date" name="search_date_end" class="form-control search-date" value="{{ $search_date_end }}" style="display: inline; width: 150px;">
+                        <input type="date" name="search_date_end" class="chats-search-component form-control search-date" value="{{ $search_date_end }}">
                         {{-- Search chatroom --}}
-                        <select name="chatroom" id="chatroom" class="form-control" onchange="this.form.submit()" style="display: inline; width: 150px;">
+                        <select name="chatroom" id="chatroom" class="chats-search-component form-control" onchange="this.form.submit()">
                             <option value="all" {{ request('chatroom') === 'all' ? 'selected' : '' }}>ChatRoom
                             </option>
                             <option value="1" {{ request('chatroom') === '1' ? 'selected' : '' }}>Relateionship
@@ -53,7 +53,7 @@
                             </option>
                         </select>
                         {{-- Search keyword --}}
-                        <input type="text" name="search" placeholder="search..." class="form-control" value="{{ $search }}" style="display: inline; width: 150px;">
+                        <input type="text" name="search" placeholder="search..." class="chats-search-component form-control" value="{{ $search }}">
                         {{-- @if ($search)
                             <p class="text-muted mb-4 small">Search results for '<span class="fw-bold">{{ $search }}</span>'</p>
                         @endif --}}
@@ -85,13 +85,13 @@
                         @forelse($all_chats as $chat)
                         <tr>
                             <td class="text-center w-50">
-                                {{ $chat->room_id }}
+                                {{ $chat->chatroom->name }}
                             </td>
                             <td class="text-center w-50">
                                 {{ $chat->body }}
                             </td>
                             <td class="text-center">
-                                {{ $chat->user_id }}
+                                {{ $chat->user->name }}
                             </td>
                             <td class="text-center">
                                 {{ $chat->created_at }}
@@ -103,7 +103,7 @@
                                 </a>
                                 @include('chat.contents.modals.edit')
                                 {{-- Hide of Unhide --}}
-                                <div class="" style="display: inline-block">
+                                <div class="hide-body">
                                         @if ($chat -> trashed())
                                             <form action="{{ route('admin.chats.unhide', $chat->id) }}" method="post" class="switch_label">
                                                 @csrf

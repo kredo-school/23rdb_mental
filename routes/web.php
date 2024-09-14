@@ -73,45 +73,6 @@ Route::get('/test/test', function () {
 Route::get('/test/test', function () {
     return view('test.test');
 });
-Route::get('/components/navbar-default', function () {
-    return view('components.navbar-default');
-});
-Route::get('/components/navbar-each', function () {
-    return view('components.navbar-each');
-});
-Route::get('/components/navbar-home', function () {
-    return view('components.navbar-home');
-});
-Route::get('/components/navbar-home-admin', function () {
-    return view('components.navbar-home-admin');
-});
-Route::get('/components/navbar-users', function () {
-    return view('components.navbar-users');
-});
-Route::get('/components/sidebar', function () {
-    return view('components.sidebar');
-});
-Route::get('/components/sidebar-admin', function () {
-    return view('components.sidebar-admin');
-});
-Route::get('/components/footer', function () {
-    return view('components.footer');
-});
-
-
-Route::get('/components/sidebar', function () {
-    return view('components.sidebar');
-});
-Route::get('/components/sidebar-admin', function () {
-    return view('components.sidebar-admin');
-});
-Route::get('/components/footer', function () {
-    return view('components.footer');
-});
-
-
-
-
 
 //admin route
 
@@ -174,7 +135,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/journal/{id}/dislike', [JournalController::class, 'decrementLikeScore']);
 
 // chatroom
-//Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
+Route::get('/chatify', [MessagesController::class, 'index'])->name('chatroom.index');
 Route::get('/chatroom', [ChatroomController::class, 'index'])->name('chatroom.index');
 Route::get('/chatroom/search', [ChatroomController::class, 'search'])->name('chatroom.search');
 Route::post('/chatroom/store', [ChatroomController::class, 'store'])->name('chatroom.store');
@@ -192,7 +153,6 @@ Route::delete('/chatroom/{id}/destroy', [ChatroomController::class, 'destroy'])-
 Route::get('/chat/{room_id}', [ChatController::class, 'index'])->name('chat.chats');
 Route::post('/chat/{room_id}/send', [ChatController::class, 'store'])->name('chat.store');
 // Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
-
 Route::get('/chat/search', [ChatController::class, 'search'])->name('chat.search');
 Route::patch('/chat/{id}/update', [ChatController::class, 'update'])->name('chat.update');
 Route::delete('/chat/{id}/destroy', [ChatController::class, 'destroy'])->name('chat.destroy');
