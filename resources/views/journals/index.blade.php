@@ -11,18 +11,18 @@
     @include('components.sidebar')
 @endif
 
-{{--
-<div class="container-mood my-5 py-3">
-    <div class="d-flex mb-3 input-size">
---}}
-
 <div>
     <div class="mt-4" style="margin-left:200px;">
         <div class="w-75 mx-auto">
 
             {{-- Add journal --}}
             <div class="input-group mb-3" data-bs-toggle="modal" data-bs-target="#add-post">
-                <i class="fa-solid fa-circle-user fa-3x me-3 avatar"></i>
+                {{-- User Icon --}}
+                @if (Auth::user()->avatar)
+                    <img src="{{ Auth::user()->avatar }}" alt="avatar" class="avatar-sm rounded-circle icon-sm img-fluid">
+                @else
+                    <i class="fa-solid fa-circle-user avatar icon-sm"></i>
+                @endif
                 <input type="text" name="journal_body" id="journal_body" class="form-control rounded-input shadow"
                     placeholder="What's on your mind?" value="" style="border-radius: 25px;">
             </div>

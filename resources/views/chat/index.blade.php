@@ -156,6 +156,7 @@
 <script>
         document.addEventListener('DOMContentLoaded', function() {
             alert('Page has loaded');
+            scrollToBottom();
         });
 
 
