@@ -5,6 +5,9 @@
 
 <div class="modal fade" id="delete-quote{{ $quote->id }}">
     <div class="modal-dialog modal-lg">
+        <form action="{{ route('quote.destroy', $quote->id) }}" method="post">
+            @csrf
+            @method('DELETE')
         <div class="modal-content shadow px-5 py-3">
                     <div class="modal-header quote-modal border-0 mt-3 mb-2">
                         <h1 class="modal-title">
@@ -13,25 +16,28 @@
                     </div>
 
                     <div class="modal-body">
-                        <p class="mb-4 h3">
+                        <p class="text-start ps-5">
                             Are you sure you want to delete this quote ? 
                         </p>
                         
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-6">
-                                <span class="fw-bold ps-4 pe-0 fs-2">"</span>
+                                <span class="fw-bold ps-4 pe-0 fs-2 bg-info">"</span>
                             </div>
                             <div class="col-6 text-end">
-                                <span class="fw-bold pe-4 fs-2">"</span>
+                                <span class="fw-bold pe-4 fs-2 bg-info">"</span>
                             </div>
-                        </div>
+                        </div> --}}
 
 
                         
-                        <div class="form-floating mx-5">
+                        <div class="form-floating mx-5 py-4">
 
                             
-                            <p class="h2 text-center" value="">{{ $quote->quote}}</p>
+                            <p class="h4 text-center py-5" value=""> 
+                                <strong>"</strong> 
+                                {{ $quote->quote}} 
+                                <strong>"</strong></p>
                             
                             
                             
@@ -52,9 +58,7 @@
                         
                     </div>
                     <div class="modal-footer border-0  mx-auto">
-                        <form action="" method="post">
-                            @csrf
-                            
+                        
                             <div class="mb-2">
                                 <button type="button" class="btn btn-cancel me-4" data-bs-dismiss="modal"> Cancel </button>
                                 <button class="btn btn-delete">
@@ -62,8 +66,9 @@
                                     Delete</button>
                                 
                             </div>
-                        </form>
+                       
                     </div>
         </div>
+        </form>
     </div>
  </div>

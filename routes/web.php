@@ -211,7 +211,7 @@ Route::post('/contactus/store', [InquiryController::class, 'store'])->name('inqu
 
 Route::get('/faq', function () {
     return view('contactus.faq');
-});
+})->name('faq');
 
 });
 

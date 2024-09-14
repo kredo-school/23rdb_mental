@@ -65,12 +65,71 @@
             <details class="qa-7">
                 <summary>I can't sign in to my account</summary>
                 <p>If you forgot your email address or password to sign in, Please contact us.
+                <br>
+                If an account's owner hasn't followed our policy, the account might be disabled.
                     <br>
                     You can contact us clicking <strong>Contact Us</strong> button.
                 </p>
             </details>
 
+            <details class="qa-7">
+                <summary>Can I recover my account?</summary>
+                <p>Once you delete your account, you can't recover it.
+                    <br>
+                Please  create your account again.
+                </p>
+            </details>
+
             <h3 class="mt-5">Setting</h3>
+            <details class="qa-7">
+                <summary>How do I change the theme color?</summary>
+                <p>
+                1. Click <strong>your avator icon</strong> <br>
+                2. Click <strong>edit</strong> button on profile page <br>
+                3. Change theme color <br>
+                4. If you finish, click <strong>save</strong> button
+                </p>
+            </details>
+
+            <details class="qa-7">
+                <summary>What's the difference between username and nickname</summary>
+                <p>Username is your personal infomation to use our service.
+                    <br>
+                    Nickname can be used when you don't want to visualize your username to anyone in chat room. Your perosonal information whould be protected.
+                </p>
+            </details>
+
+            <h3 class="mt-5">Quote</h3>
+            <details class="qa-7">
+                <summary>What is today's quote?</summary>
+                <p>
+                You can read one different famous quote every day.
+                <br>
+                If you find a favorite quote, you can bookmark and see all quotes you bookmarked. 
+                </p>
+            </details>
+
+            <h3 class="mt-5">Journaling</h3>
+            <details class="qa-7">
+                <summary>What I write on Journaling? </summary>
+                <p>
+                You can write whatever you come up in your mind now and vent your feelings.
+                </p>
+            </details>
+
+            <h3 class="mt-5">Mood Tracking</h3>
+            <details class="qa-7">
+                <summary>What is mood face icon?</summary>
+                <p>
+
+                1. Click <strong>your avator icon</strong> <br>
+                2. Click <strong>edit</strong> button on profile page <br>
+                3. Change theme color <br>
+                4. If you finish, click <strong>save</strong> button
+                </p>
+            </details>
+
+            <h3 class="mt-5">Chat Room</h3>
             <details class="qa-7">
                 <summary>How do I change the theme color?</summary>
                 <p>

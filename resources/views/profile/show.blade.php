@@ -279,12 +279,12 @@
                 {{-- Table for favorite quotes --}}
                 <table class="table border align-middle bg-white">
                     {{-- Header --}}
-                    <thead class="table-secondary small border favorite-quote">
+                    <thead class="table-secondary small border favorite-quote text-center">
                         <tr>
                             {{-- <th></th> --}}
-                            <th colspan="7" class="text-center">Quote</th>
+                            <th colspan="7" class="text-center py-2">Quote</th>
                             {{-- <th></th> --}}
-                            <th colspan="3" class="text-center">Auther</th>
+                            <th colspan="3" class="text-center py-2">Auther</th>
                             <th colspan="2" class="text-center pe-2">Bookmark</th>
                         </tr>
 
@@ -297,30 +297,30 @@
 
 
                             <tr>
-                                <td colspan=7 class="h3 text-center w-50" value="showquote-quote">
+                                <td colspan=7 class="h4 text-center w-50 py-4 ps-4" value="showquote-quote">
                                     " {{ $quote->quote }} "
                                 </td>
 
-                                <td colspan="3" class="text-center">
+                                <td colspan="3" class="text-center py-4">
                                     {{ $quote->author }}
                                 </td>
 
 
-                                <td colspan="2" class="text-center pt-4">
+                                <td colspan="2" class="text-center">
                                     {{-- cancel the bookmark --}}
                                     <div class="quote-switch text-center">
                                         @if ($quote->isBookmarked())
                                             <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn pe-3">
+                                                <button type="submit" class="btn py-5">
                                                     <i
-                                                        class="fa-solid fa-bookmark text-warning quote-bookmark-store favorite-quote"></i></button>
+                                                        class="fa-solid fa-bookmark text-warning quote-bookmark-store favorite-quote-icon pt-4"></i></button>
                                             @else
                                                 <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
                                                     @csrf
-                                                    <button type="submit" class="btn pe-3"><i
-                                                            class="fa-regular fa-bookmark quote-bookmark-cancel favorite-quote"></i></button>
+                                                    <button type="submit" class="btn py-3"><i
+                                                            class="fa-regular fa-bookmark quote-bookmark-cancel favorite-quote-icon pt-4"></i></button>
                                                 </form>
                                         @endif
                                     </div>
@@ -333,7 +333,7 @@
 
                         @empty
                             <tr>
-                                <td colspan="12" class="lead text-muted text-center">No Quote Bookmarked.</td>
+                                <td colspan="12" class="lead text-muted text-center py-3">No Quote Bookmarked.</td>
                             </tr>
                         @endforelse
 
