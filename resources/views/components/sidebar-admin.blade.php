@@ -21,7 +21,7 @@
                     <p class="sidebar_icon @yield('title')_quote"><img src="{{ asset('images/navigation/quote_side_icon.png') }}" alt="Quote">Quote</p>
                 </a> --}}
                 <a href="{{ route('chat.chats', '1') }}" class="sidebar_icon">
-                    <p class="sidebar_icon @yield('title')chat"><img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat">Chat</p>
+                    <p class="sidebar_icon @yield('title')_chat"><img src="{{ asset('images/navigation/chat_side_icon.png') }}" alt="Chat">Chat</p>
                 </a>
             </div>
         </nav>
@@ -35,6 +35,7 @@
                     <li class="ls_sidebar_admin"><a href="{{ route('quote.index') }}">All Quotes</a></li>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.chats.index') }}">All Chat</a></li>
                     <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All Inquiry</a></li>
+                    <li class="ls_sidebar_admin"><a href="{{ route('admin.inquiries') }}">All deletion reasons</a></li>
                 </ui>
             </div>
         </nav>

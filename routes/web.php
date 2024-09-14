@@ -73,45 +73,6 @@ Route::get('/test/test', function () {
 Route::get('/test/test', function () {
     return view('test.test');
 });
-Route::get('/components/navbar-default', function () {
-    return view('components.navbar-default');
-});
-Route::get('/components/navbar-each', function () {
-    return view('components.navbar-each');
-});
-Route::get('/components/navbar-home', function () {
-    return view('components.navbar-home');
-});
-Route::get('/components/navbar-home-admin', function () {
-    return view('components.navbar-home-admin');
-});
-Route::get('/components/navbar-users', function () {
-    return view('components.navbar-users');
-});
-Route::get('/components/sidebar', function () {
-    return view('components.sidebar');
-});
-Route::get('/components/sidebar-admin', function () {
-    return view('components.sidebar-admin');
-});
-Route::get('/components/footer', function () {
-    return view('components.footer');
-});
-
-
-Route::get('/components/sidebar', function () {
-    return view('components.sidebar');
-});
-Route::get('/components/sidebar-admin', function () {
-    return view('components.sidebar-admin');
-});
-Route::get('/components/footer', function () {
-    return view('components.footer');
-});
-
-
-
-
 
 //admin route
 
