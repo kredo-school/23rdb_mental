@@ -40,7 +40,3 @@
 
     @include('contactus.modals.inquiry')
     @include('contactus.modals.submitcomplete')
-{{-- @endsection --}}
-@section('scripts')
-    <script src="{{ asset('js/inquiry.js') }}"></script>
-@endsection
