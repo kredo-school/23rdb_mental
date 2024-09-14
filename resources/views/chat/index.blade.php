@@ -141,7 +141,7 @@
                         @csrf
                         <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">  <!-- 現在のユーザーIDを送信 -->
                         <input type="text" id="body" name="body" placeholder="message">
-                        <button type="submit" id="submit">send</button>
+                        <button type="submit" id="submit" onclick="sendMessage()">send</button>
                 </form>
                 </div>
             </div>
@@ -154,9 +154,10 @@
 <!-- PusherのJavaScriptライブラリをCDN経由で読み込む -->
 <script src="https://js.pusher.com/7.2.0/pusher.min.js"></script>
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            alert('Page has loaded');
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        // alert('Page has loaded');
+        scrollToBottom();
+    });
 
     function scrollToBottom() {
         var chatMessages = document.getElementById('chat-messages');
@@ -170,15 +171,20 @@
     }
 
     // 初期表示でスクロールを一番下にする
-    window.onload = function() {
-        console.log('Window has loaded');
-        scrollToBottom();
-    };
+    // window.onload = function() {
+    //     console.log('Window has loaded');
+    //     scrollToBottom();
+    // };
 
-    document.addEventListener('DOMContentLoaded', function () {
-        console.log('Page fully loaded');
-        setTimeout(scrollToBottom, 500);
-    });
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     alert('Page has loaded 2');
+    //     console.log('Page fully loaded');
+    //     setTimeout(scrollToBottom, 100);
+    // });
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     console.log('Page fully loaded');
+    //     setTimeout(scrollToBottom, 500);
+    // });
 
     var sendBtn = document.getElementById('send-btn');
     sendBtn.addEventListener('click', function() {
@@ -203,6 +209,7 @@
     // 新しいメッセージが送信されたときのイベントをリッスン
     channel.bind('new-message', function(data) {
         console.log('Received message:', data); // デバッグ用にデータを確認
+        alert('new-message');
         // メッセージを画面に表示
         const chatMessages = document.getElementById('chat-messages');
         const newMessage = `<div class="chat-message"><strong>${data.username}:</strong><p>${data.message}</p></div>`;
@@ -225,8 +232,14 @@
 });
 
     // メッセージ送信処理
-    document.getElementById('chat-form').addEventListener('submit', function(e) {
+        // function sendMessage() {
+
+        document.getElementById('chat-form').addEventListener('submit', function(e) {
+
+        alert('submit clicked');
         e.preventDefault();
+
+
 
         const user_id = document.getElementById('user_id').value;
         const body = document.getElementById('body').value;

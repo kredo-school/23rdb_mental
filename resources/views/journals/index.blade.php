@@ -11,20 +11,20 @@
     @include('components.sidebar')
 @endif
 
-{{--
-<div class="container-mood my-5 py-3">
-    <div class="d-flex mb-3 input-size">
---}}
-
 <div>
     <div class="journal-body mt-4">
         <div class="w-75 mx-auto">
 
             {{-- Add journal --}}
             <div class="input-group mb-3" data-bs-toggle="modal" data-bs-target="#add-post">
-                <i class="fa-solid fa-circle-user fa-3x me-3 avatar"></i>
-                <input type="text" name="journal_body" id="journal_body" class="journal-add-input form-control rounded-input shadow"
-                    placeholder="What's on your mind?" value="">
+                {{-- User Icon --}}
+                @if (Auth::user()->avatar)
+                    <img src="{{ Auth::user()->avatar }}" alt="avatar" class="avatar-sm rounded-circle icon-sm img-fluid">
+                @else
+                    <i class="fa-solid fa-circle-user avatar icon-sm"></i>
+                @endif
+                <input type="text" name="journal_body" id="journal_body" class="form-control rounded-input shadow"
+                    placeholder="What's on your mind?" value="" style="border-radius: 25px;">
             </div>
             @include('journals.contents.modals.add')
 
@@ -60,7 +60,7 @@
                 <div class="card mb-3 shadow">
                     <div class="card-body">
                         {{-- Reply Body --}}
-                        @if ($journal->journals_include_replying_journal)
+                        {{-- @if ($journal->journals_include_replying_journal)
                         <div class="text-muted">
                                 <span class="fs-6">{{ $journal->journals_include_replying_journal->created_at }}</span>
                             <div class="mb-3 fs-5">
@@ -69,7 +69,7 @@
                             <hr>
                         </div>
                         @endif
-                        
+                         --}}
                         {{-- Date, Edit and Delete --}}
                         <div class="text-start">
                             {{-- Date --}}
@@ -86,12 +86,12 @@
                             @include('journals.contents.modals.edit')
                         </div>
                         {{-- Reply Link--}}
-                        <div class="float-end">
+                        {{-- <div class="float-end">
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-{{ $journal->id }}">
                                 <i class="fa-solid fa-reply text-primary icon-sm"></i>
                                 <span class="text-primary fw-bold">Reply</span>
                             </a>
-                        </div>
+                        </div> --}}
                         @include('journals.contents.modals.reply')
                         {{-- Body --}}
                         <div class="mb-3 fs-4">
@@ -119,11 +119,13 @@
                         @include('journals.contents.modals.comment')
                         <div>
                             @foreach ($journal->comments as $comment)
-                                <div class="card mt-2">
-                                    <div class="card-body">
-                                        {{ $comment->body }}
-                                    </div>
+                            <hr>
+                            <div class="text-muted">
+                                    <span style="font-size: 16px;">{{ $comment->created_at }}</span>
+                                <div class="mb-3 fs-5">
+                                    {{ $comment->body }}
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
