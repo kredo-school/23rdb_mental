@@ -33,7 +33,7 @@
                 <form action="{{ route('journal.journals') }}" method="get" class="journal-form">
                     {{-- Sort --}}
                     <span class="text-primary me-3">Sort</span>
-                    <select name="sort" id="sort" class="journal-search-input form-select shadow" onchange="this.form.submit()">
+                    <select name="sort" id="sort" class="journal-search-component form-select shadow" onchange="this.form.submit()">
                         <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Latest
                         </option>
                         <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Oldest
@@ -42,12 +42,12 @@
                         </option>
                     </select>
                     {{-- Search date --}}
-                    <span class="journal-search-date-title text-primary me-3">Search</span>
-                    <input type="date" name="search_date_start" class="journal-search-input form-control search-date shadow" value="{{ $search_date_start }}">
+                    <span class="text-primary ms-5 me-3">Search</span>
+                    <input type="date" name="search_date_start" class="journal-search-component form-control search-date shadow" value="{{ $search_date_start }}">
                     ～
-                    <input type="date" name="search_date_end" class="journal-search-input form-control search-date shadow" value="{{ $search_date_end }}">
+                    <input type="date" name="search_date_end" class="journal-search-component form-control search-date shadow" value="{{ $search_date_end }}">
                     {{-- Search keyword --}}
-                    <input type="text" name="search" placeholder="search..." class="journal-search-input journal-search-keyword form-control shadow ms-3" value="{{ $search }}">
+                    <input type="text" name="search" placeholder="search..." class="journal-search-component journal-search-keyword form-control shadow ms-3" value="{{ $search }}">
                     {{-- @if ($search)
                         <p class="text-muted mb-4 small">Search results for '<span class="fw-bold">{{ $search }}</span>'</p>
                     @endif --}}

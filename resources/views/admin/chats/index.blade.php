@@ -18,11 +18,11 @@
             <div class="chats-body col-10 py-4 w-75">
 
                 {{-- Search Section --}}
-                <div class="card input-group mb-3 p-2 shadow">
-                    <form class="chats-form" action="{{ route('admin.chats.index') }}" method="get">
+                <div class="cinput-group bg-white rounded shadow mb-3 p-3">
+                    <form action="{{ route('admin.chats.index') }}" method="get" class="chats-form">
                         {{-- Sort --}}
-                        <span class="text-primary">Sort</span>
-                        <select name="sort" id="sort" class="chats-search-component form-control" onchange="this.form.submit()">
+                        <span class="text-primary me-3">Sort</span>
+                        <select name="sort" id="sort" class="chats-search-component form-select shadow" onchange="this.form.submit()">
                             <option value="Latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Latest
                             </option>
                             <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Oldest
@@ -30,14 +30,10 @@
                             <option value="hidden" {{ request('sort') === 'hidden' ? 'selected' : '' }}>Hidden
                             </option>
                         </select>
-                        {{-- Search date --}}
-                        <span class="chats-search-component text-primary m-1">Search</span>
-                        <input type="date" name="search_date_start" class="chats-search-component form-control search-date" value="{{ $search_date_start }}">
-                        ～
-                        <input type="date" name="search_date_end" class="chats-search-component form-control search-date" value="{{ $search_date_end }}">
                         {{-- Search chatroom --}}
-                        <select name="chatroom" id="chatroom" class="chats-search-component form-control" onchange="this.form.submit()">
-                            <option value="all" {{ request('chatroom') === 'all' ? 'selected' : '' }}>ChatRoom
+                        <span class="text-primary ms-5 me-3">Search</span>
+                        <select name="chatroom" id="chatroom" class="chats-search-component form-select shadow me-4" onchange="this.form.submit()">
+                            <option value="all" {{ request('chatroom') === 'all' ? 'selected' : '' }}>All ChatRoom
                             </option>
                             <option value="1" {{ request('chatroom') === '1' ? 'selected' : '' }}>Relateionship
                             </option>
@@ -52,8 +48,12 @@
                             <option value="6" {{ request('chatroom') === '6' ? 'selected' : '' }}>Others
                             </option>
                         </select>
+                        {{-- Search date --}}
+                        <input type="date" name="search_date_start" class="chats-search-component form-control search-date shadow" value="{{ $search_date_start }}">
+                        ～
+                        <input type="date" name="search_date_end" class="chats-search-component form-control search-date shadow" value="{{ $search_date_end }}">
                         {{-- Search keyword --}}
-                        <input type="text" name="search" placeholder="search..." class="chats-search-component form-control" value="{{ $search }}">
+                        <input type="text" name="search" placeholder="search..." class="chats-search-component chats-search-keyword form-control shadow ms-4" value="{{ $search }}">
                         {{-- @if ($search)
                             <p class="text-muted mb-4 small">Search results for '<span class="fw-bold">{{ $search }}</span>'</p>
                         @endif --}}

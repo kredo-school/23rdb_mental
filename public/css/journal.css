@@ -10,7 +10,7 @@
     margin-bottom: 0px;
 }
 
-.journal-search-input{
+.journal-search-component{
     display: inline !important;
     width: 150px !important;
     border: 1px solid #979a9b !important;
@@ -20,14 +20,8 @@
     font-family: "Lato", sans-serif !important;
 }
 
-.journal-search-input::placeholder {
+.journal-search-component::placeholder {
     color: #979a9b !important;
-}
-
-.journal-search-date-title{
-    display: inline;
-    width: 100px;
-    margin-left: 50px;
 }
 
 .search-date {
