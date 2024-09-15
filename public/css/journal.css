@@ -13,6 +13,15 @@
 .journal-search-input{
     display: inline !important;
     width: 150px !important;
+    border: 1px solid #979a9b !important;
+    border-radius: 10px !important;
+    font-family: "Lato", sans-serif !important;
+    background-color: #fff !important;
+    font-family: "Lato", sans-serif !important;
+}
+
+.journal-search-input::placeholder {
+    color: #979a9b !important;
 }
 
 .journal-search-date-title{
@@ -24,6 +33,39 @@
 .search-date {
     width: 100px;
 }
+
+.journal-search-keyword {
+    width: 200px !important;
+}
+
+.edit-icon {
+    color: #6BB7F6;
+    cursor: pointer;
+}
+
+.delete-icon {
+    color: #979a9b;
+    size: 24px;
+    margin-left: 2px;
+    cursor: pointer;
+}
+
+.comment-icon {
+    color: #6BB7F6;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.comment-text {
+    color: #6BB7F6;
+    margin-left: 1px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+
 
 .like-container {
     position: relative;
@@ -109,6 +151,8 @@ input {
 .button_plus{
     cursor: pointer;
 }
+
+
 
 /*
 .container-journal {
