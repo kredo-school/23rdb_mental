@@ -280,26 +280,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Feedback saved successfully!');
 
                 // Get the modal element
-                var modalElement = document.getElementById('feedback-input');
-
-                if (modalElement) {
-                    // Ensure Bootstrap's Modal instance is correctly created or fetched
-                    var modal = bootstrap.Modal.getInstance(modalElement);
-
-                    if (modal) {
-                        modal.hide();
-                    } else {
-                        // Create a new instance of the modal if it does not exist
-                        modal = new bootstrap.Modal(modalElement);
-                        modal.hide();
+                const myModalEl = document.getElementById('feedback-input');
+                console.log(myModalEl)
+                myModalEl.addEventListener('hidden.bs.modal', event => {
+                    if ($(".modal - backdrop").length >= 1) {
+                        $(".modal - backdrop").remove();
                     }
+                    console.log('hidden')
+                });
 
-                    // Remove any remaining backdrop
-                    const overlay = document.querySelector('.modal-overlay');
-                    overlay.remove();
-                } else {
-                    console.error('Modal element not found');
-                }
 
                 // Optional: Refresh feedback section
                 updateFeedbackSection(month, year);
@@ -320,46 +309,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             }
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Feedback deleted:', data);
-            alert('Feedback deleted successfully!');
-
-            // Get the modal element
-            var modalElement = document.getElementById('delete-feedback');
-            if (modalElement) {
-                // Ensure Bootstrap's Modal instance is correctly created or fetched
-                var modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
-
-                // Hide the modal
-                modal.hide();
-
-                // Remove any remaining backdrop
-                var backdrop = document.querySelector('.modal-backdrop');
-                if (backdrop) {
-                    console.log('Removing backdrop');
-                    backdrop.classList.remove('show');
-                    setTimeout(() => {
-                        if (backdrop.parentNode) {
-                            backdrop.parentNode.removeChild(backdrop);
-                        }
-                    }, 150); // Allow fade-out transition
-                } else {
-                    console.log('Backdrop not found');
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
-            } else {
-                console.error('Modal element not found');
-            }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Feedback deleted:', data);
+                alert('Feedback deleted successfully!');
 
-            // Optional: Refresh feedback section
-            updateFeedbackSection(month, year);
-        })
-        .catch(error => console.error('Error deleting feedback:', error));
+                // Get the modal element
+                const myModalEl = document.getElementById('delete-feedback');
+                console.log(myModalEl)
+                myModalEl.addEventListener('hidden.bs.modal', event => {
+                    if ($(".modal - backdrop").length >= 1) {
+                        $(".modal - backdrop").remove();
+                    }
+                    console.log('hidden')
+                });
+
+                // Optional: Refresh feedback section
+                updateFeedbackSection(month, year);
+            })
+            .catch(error => console.error('Error deleting feedback:', error));
     }
 
 });

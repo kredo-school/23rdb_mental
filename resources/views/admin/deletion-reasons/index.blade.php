@@ -7,7 +7,7 @@
 @section('title', 'Admin: Deletion Reasons')
 
 @section('content')
-    @include('components.sidebar')
+    @include('components.sidebar-admin')
 
     <div class="container-deletion-reasons my-5">
         <div class="row justify-content-center">
