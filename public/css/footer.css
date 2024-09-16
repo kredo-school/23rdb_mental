@@ -1,10 +1,15 @@
 /* footer ----------------*/
-.fixed-bottom {
+.footer {
     background-color: #b4b4b4;
     opacity: 0.9;
     width: 100%;
     min-height: 20px;
 }
+
+.footer_container {
+    padding-right: 15px;
+    padding-left: 15px;
+    }
 
 .copyright{
     font-family:  "Lato", sans-serif;

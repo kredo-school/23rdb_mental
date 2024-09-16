@@ -29,11 +29,11 @@
         <!-- Footer Menu -->
         <nav class="sidebar_inner_footer">
             <div>
-                <a href="{{ url('/') }}" class="sidebar_faq"> F A Q </a>
+                <a href="{{ url('faq') }}" class="sidebar_faq"> F A Q </a>
             </div>
 
             <div class="modal-body">
-                <button class="sidebar_contact mt-3" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</button>
+                <a class="sidebar_contact mt-3" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>
             </div>
         </nav>
     </div>

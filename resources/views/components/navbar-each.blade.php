@@ -16,7 +16,7 @@
         </button>
         
         <!-- Right Side Of Navbar -->
-        <div class="ms-auto justify-content-center">
+        <div class="ms-auto d-flex justify-content-center align-items-center">
             <a href="{{ route('profile.show', Auth::user()->id) }}">
                 @if (Auth::check() && Auth::user()->avatar)
                     <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="nav_avatar fa-solid fa-circle-user"></a>
