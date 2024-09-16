@@ -24,7 +24,9 @@ class JournalController extends Controller
             ->where('user_id', Auth::user()->id);
         // Sort
         $sort = $request->input('sort', 'name');
-        if ($sort === 'date') {
+        if ($sort === 'latest') {
+            $journals_query->orderBy('created_at', 'desc');
+        } elseif ($sort === 'oldest') {
             $journals_query->orderBy('created_at');
         } elseif ($sort === 'like_score') {
             $journals_query->orderBy('like_score', 'desc');

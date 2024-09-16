@@ -29,29 +29,34 @@
             @include('journals.contents.modals.add')
 
             {{-- Search Section --}}
-            <div class="card input-group mb-3 p-2 shadow">
+            <div class="input-group bg-white rounded shadow mb-3 p-3">
                 <form action="{{ route('journal.journals') }}" method="get" class="journal-form">
                     {{-- Sort --}}
-                    <span class="text-primary">Sort</span>
-                    <select name="sort" id="sort" class="journal-search-input form-control" onchange="this.form.submit()">
-                        <option value="date" {{ request('sort') === 'name' ? 'selected' : '' }}>Sorted by Date
+                    <span class="text-primary me-3">Sort</span>
+                    <select name="sort" id="sort" class="journal-search-component form-select shadow" onchange="this.form.submit()">
+                        <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Latest
                         </option>
-                        <option value="like_score" {{ request('sort') === 'like_score' ? 'selected' : '' }}>Sorted by LikeScore
+                        <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Oldest
+                        </option>
+                        <option value="like_score" {{ request('sort') === 'like_score' ? 'selected' : '' }}>Most Liked
                         </option>
                     </select>
                     {{-- Search date --}}
-                    <span class="journal-search-date-title text-primary me-3">Search</span>
-                    <input type="date" name="search_date_start" class="journal-search-input form-control search-date" value="{{ $search_date_start }}">
+                    <span class="text-primary ms-5 me-3">Search</span>
+                    <input type="date" name="search_date_start" class="journal-search-component form-control search-date shadow" value="{{ $search_date_start }}">
                     ～
-                    <input type="date" name="search_date_end" class="journal-search-input form-control search-date" value="{{ $search_date_end }}">
+                    <input type="date" name="search_date_end" class="journal-search-component form-control search-date shadow" value="{{ $search_date_end }}">
                     {{-- Search keyword --}}
-                    <input type="text" name="search" placeholder="search..." class="journal-search-input form-control" value="{{ $search }}">
-                    {{-- @if ($search)
+                    <div class="search_box">
+                            @csrf
+                            <input type="text" name="search" placeholder="search..." class="journal-search-component journal-search-keyword form-control shadow ms-3" value="{{ $search }}">
+                    </div>
+                        {{-- @if ($search)
                         <p class="text-muted mb-4 small">Search results for '<span class="fw-bold">{{ $search }}</span>'</p>
                     @endif --}}
-                    <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
+                    {{-- <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
                         <i class="fa-solid fa-search"></i>
-                      </button>
+                      </button> --}}
                 </form>
             </div>
 
@@ -76,12 +81,12 @@
                             <span class="fs-6">{{ $journal->created_at }}</span>
                             {{-- Delete --}}
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#delete-post-{{ $journal->id }}">
-                                <i class="fa-solid fa-trash-can text-danger icon-sm d-inline float-end"></i>
+                                <i class="fa-solid fa-trash-can delete-icon float-end"></i>
                             </a>
                             @include('journals.contents.modals.delete')
                             {{-- Edit --}}
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-post-{{ $journal->id }}">
-                                <i class="fa-solid fa-pen-to-square text-primary icon-sm d-inline float-end me-2"></i>
+                                <i class="fa-solid fa-pen-to-square edit-icon float-end me-2"></i>
                             </a>
                             @include('journals.contents.modals.edit')
                         </div>
@@ -99,27 +104,25 @@
                         </div>
                         {{-- Like Score --}}
                         <div>
-                            <div>
-                                <i id="minus" class="button_minus fa-solid fa-circle-minus text-secondary fa-lg" onclick="decrementLikeScore({{ $journal->id }})"></i>
-                                <div class="like-container">
-                                    <i class="like-icon fas fa-heart fa-2x" id="like-icon-{{ $journal->id }}"></i>
-                                    <div class="like-score fs-5" id="like-score-{{ $journal->id }}">{{ $journal->like_score }}</div>
-                                </div>
-                                <i id="plus" class="button_plus fa-solid fa-circle-plus text-secondary fa-lg" onclick="incrementLikeScore({{ $journal->id }})"></i>
+                            <i id="minus" class="button_minus fa-solid fa-circle-minus text-secondary fa-lg" onclick="decrementLikeScore({{ $journal->id }})"></i>
+                            <div class="like-container">
+                                <i class="like-icon fas fa-heart fa-2x" id="like-icon-{{ $journal->id }}"></i>
+                                <div class="like-score fs-5" id="like-score-{{ $journal->id }}">{{ $journal->like_score }}</div>
                             </div>
+                            <i id="plus" class="button_plus fa-solid fa-circle-plus text-secondary fa-lg" onclick="incrementLikeScore({{ $journal->id }})"></i>
                         </div>
 
                         {{-- Comment Section --}}
-                        <div class="d-inline">
+                        <div class="d-inline my-2">
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#comment-post-{{ $journal->id }}">
-                                <i class="fa-solid fa-pencil text-primary icon-sm"></i>
-                                <span class="text-primary fw-bold">Comment</span>
+                                <i class="fa-solid fa-pencil comment-icon"></i>
+                                <span class="comment-text">Comment</span>
                             </a>
                         </div>
                         @include('journals.contents.modals.comment')
                         <div>
                             @foreach ($journal->comments as $comment)
-                            <hr>
+                            <hr class="my-1">
                             <div class="text-muted">
                                     <span style="font-size: 16px;">{{ $comment->created_at }}</span>
                                 <div class="mb-3 fs-5">

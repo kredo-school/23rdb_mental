@@ -28,10 +28,10 @@ class ChatController extends Controller
         $chats = $currentRoom->chats();
         $user = Auth::user();
 
-        // if ($request->has('search')) {
-        //     $search = $request->input('search');
-        //     $chats = $chats->where('body', 'LIKE', "%{$search}%");
-        // }
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $chats = $chats->where('body', 'LIKE', "%{$search}%");
+        }
         $chats = $chats->with('chats_include_replying_chat')->get();
 
         return view('chat.index', compact('chatRooms', 'currentRoom', 'chats', 'user'));
@@ -61,8 +61,17 @@ class ChatController extends Controller
             );
 
             $pusher->trigger('chat-room-' . $room_id, 'new-message', [
-                'username' => $chat->user->name,  // 外部キーの `user_id` からユーザー名を取得
+                'id' => $chat->id,
                 'message' => $chat->body,
+                'user_id' => $chat->user->id,
+                'auth_user_id' => auth()->id(),
+                'username' => $chat->user->username,
+                // 'user_avatar' => $chat->user->avatar,
+                'created_at' => $chat->created_at,
+                // 'replying_created_at' => $chat->with('chats_include_replying_chat')->created_at,
+                // 'replying_created_at' => $chat->chats_include_replying_chat->created_at,
+                // 'replying_body' => $chat->chats_include_replying_chat->body,
+                
             ]);
 
             // broadcast(new \App\Events\MessageSent($chat));
@@ -152,7 +161,7 @@ class ChatController extends Controller
     public function get_replying_chat($id){
         $replying_chat = $this->chat->findOrFail($id);
         return view('chat.chats')
-            ->with('replying_chat', $replying_jchat);
+            ->with('replying_chat', $replying_chat);
     }
 
     public function update_username(Request $request){
