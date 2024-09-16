@@ -15,40 +15,52 @@
 
 
     {{-- Today's Quote Section --}}
-    <div class="p-5 bg-white">
-        <div class="container-quote ms-5">
-            <div class="row d-flex justify-content-center ms-5">
+    <div class="p-3 bg-white">
+        <div class="container-quote mx-5">
+            <div class="row justify-content-center ps-0">
                 {{-- Remi-chan --}}
-                <div class="col-auto fuwafuwa">
-                    <img src="{{ asset('images/main/remichan.png') }}" alt="Remichan">
+                <div class="col-1">
+                    <p class="fs-6 today-quote-text mb-0">Today's Quote</p>
+                    <span class="fuwafuwa pt-0">
+                    <img src="{{ asset('images/main/remichan.png') }}" alt="Remichan" class="remichan-home">
+                </span>
                 </div>
                 {{-- 吹き出し --}}
-                <div class="col-auto fukidashi-01-13">
+                {{-- <div class="col-auto fukidashi-01-13"> --}}
                     {{-- 吹き出し線 --}}
-                    <span class="ornament"></span>
+
+                    {{-- <span class="ornament"></span>   --}}
+                    
 
                     {{-- <img src="{{ asset('images/main/bubblespeech.png') }}" alt="bubblespeech" class="bubblespeech"> --}}
-                </div>
+                {{-- </div> --}}
 
 
             {{-- Quote --}}
-            <div class="col align-self-center fade-in-text">
+            <div class="col-8 d-flex align-items-center fade-in-text mx-0 quote-copy-parent">
                 {{-- quote itself --}}
-                @if ($quote->exists())
 
-                <p name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext py-auto">
+                @if ($quote->exists()) 
+               
+                <p name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext text-center ps-3 mx-0 py-auto">
+
                     {{ $quote->quote }}
                 </p>
+            </div>
+
+            <div class="col-2 align-self-end">
                 {{-- Author --}}
 
-                <p class="text-end small pt-1 mb-0">By  {{ $quote->author }}</p>
+                
+                <p class="text-start mb-0 home-author">By  {{ $quote->author }}</p>
 
-                </div>
+
+            </div>
 
                 {{-- Action Buttons --}}
-                <div class="col-1 me-5 pe-0">
+            <div class="col-1">
                     <div class="row">
-                        <div class="col px-0 text-end tooltip-002">
+                        <div class="col-auto px-0 text-end tooltip-002">
                             {{-- Refresh --}}
                             <form action="{{ route('home.quote.change') }}" method="post">
                                 @csrf
@@ -59,7 +71,7 @@
 
                         </div>
                             {{-- Bookmark --}}
-                        <div class="col px-0 text-center">
+                        <div class="col-auto px-0 text-center">
                             <div class="quote-switch tooltip-002">
                                 @if ($quote->isBookmarked())
                                     <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
@@ -68,34 +80,36 @@
                                         <button type="submit" class="btn btn-lg p-1">
                                             <i class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button>
                                     </form>
-                                    <span>unbookmark</span>
+                                    <span>delete from bookmark list</span>
                                 @else
                                         <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-lg p-1"><i
                                                     class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
                                         </form>
-                                        <span>bookmark</span>
+                                        <span>see all bookmarked quotes on your profile</span>
                                 @endif
                             </div>
                         </div>
-                        <div class="col px-0 text-start tooltip-002">
+                        <div class="col-auto px-0 text-start tooltip-002">
                             {{-- Copy --}}
                             <button type="submit" class="btn btn-lg p-1 js-copy-btn" id="btn-copy-quote" data-copy><i
                                     class="fa-regular fa-clone"></i></button>
                             <span>copy</span>
                         </div>
                     </div>
-                </div>
 
+            </div>
+               
 
-                @else
-                <div>
-                   <p>Coming soon....</p>
-               </div>
-               @endif
-
-                <div class="col-1"></div>
+            @else
+            <div>
+                   <p>Coming soon....</p>    
+            </div>   
+            @endif
+   
+            {{-- <div class="col-1"></div> --}}
+                
 
             </div>
         </div>

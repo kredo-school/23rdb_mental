@@ -104,9 +104,9 @@
                     <thead class="small table-secondary border">
                         <tr class="">
                             
-                            <th colspan=6 class="text-center">Quote</th>
-                            <th colspan=3 class="text-center">Auther</th>
-                            <th colspan=3 class="text-center">Display</th>
+                            <th colspan=6 class="text-center py-2">Quote</th>
+                            <th colspan=3 class="text-center py-2">Auther</th>
+                            <th colspan=3 class="text-center py-2">Display</th>
                         </tr>
 
                     </thead>
@@ -115,15 +115,16 @@
                         @forelse($all_quotes as $quote)
                         <tr>
    
-                            <td colspan=6 class="h3 text-center px-5" value="showquote-quote">
-                               " {{ $quote->quote }} " 
+                            <td colspan=6 class="text-center px-5 py-3" value="showquote-quote">
+                               <strong>" </strong>
+                                {{ $quote->quote }} <strong>"</strong> 
                             </td>
 
-                            <td colspan=3 class="text-center px-3">
+                            <td colspan=3 class="text-center px-3 py-3">
                                 {{ $quote->author }}
                             </td>
 
-                            <td colspan=3 class="text-center pt-2 ps-4 pe-0">
+                            <td colspan=3 class="text-center pt-2 ps-4 pe-0 py-3">
                                 <div class="row">
                                 {{-- cancel the bookmark --}}
                                 {{-- <div class="col-2 quote-switch text-center form-group mt-3">
@@ -230,7 +231,6 @@
                                         <i class="fa-solid fa-trash quote-delete-icon"></i>
                                     </button>
                                 </div>
-                                
                                
                                  </div>
                                  @include('admin.quotes.modals.delete')
@@ -242,7 +242,7 @@
                       
                         @empty
                             <tr>
-                                <td colspan="7" class="lead text-muted text-center">No Quote yet.</td>
+                                <td colspan="7" class="lead text-muted text-center py-3">No Quote yet.</td>
                             </tr>
 
 

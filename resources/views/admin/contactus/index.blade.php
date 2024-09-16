@@ -87,10 +87,10 @@
                     <tbody class="border quote-table">
                         @forelse($all_inquiries as $inquiry)
                         <tr>
-                            <td class="th-wssmall text-center">
+                            <td class="th-wssmall text-center py-3">
                                 {{ $inquiry->id }}
                             </td>
-                            <td class="text-center th-wsmall">
+                            <td class="text-center th-wsmall py-3">
                                 @if ($inquiry->user->avatar)
                                 <img src="{{ $inquiry->user->avatar }}" alt="" class="rounded-circle d-block avatar-lg text-center">
                                 @else
@@ -98,7 +98,7 @@
                                 @endif
                             </td>
 
-                            <td class="text-center th-wsmedium">
+                            <td class="text-center th-wsmedium py-3">
                                 {{ $inquiry->user->name }}
                             </td>
 
@@ -106,7 +106,7 @@
                                 {{ $inquiry->user->email }}
                             </td> --}}
 
-                            <td class="ps-5 text-truncate me-0">
+                            <td class="ps-5 text-truncate me-0 py-3">
                                 <div class="row">
                                     <div class="col-11 w-75 align-items-center text-truncate inquiry-detail-a">
                                     {{ $inquiry->body}}
@@ -117,7 +117,7 @@
                                 </div>
                              </td>
 
-                             <td class="text-center td-date">
+                             <td class="text-center td-date py-3">
                                 <p class="mb-0 px-0">
                                 {{ $inquiry->created_at }}</p>
                              </td>
@@ -128,7 +128,7 @@
 
                         @empty
                             <tr>
-                                <td colspan="7" class="lead text-muted text-center">No Inquiry yet.</td>
+                                <td colspan="7" class="lead text-muted text-center py-3">No Inquiry yet.</td>
                             </tr>
 
                         @endforelse

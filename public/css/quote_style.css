@@ -1,10 +1,14 @@
 
 .quote-edit-icon {
-    color: #6BB7F6;
+    /* color: #6BB7F6; */
+    color:  #979a9b;
+    font-size: 24px;
 }
 
 .quote-delete-icon {
-    color: #FF6BA0;
+    /* color: #FF6BA0; */
+    color: #979a9b;
+    font-size: 24px;
 }
 
 
