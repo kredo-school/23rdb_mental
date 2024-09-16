@@ -24,24 +24,22 @@
         </div>
         
         <!-- Right Side Of Navbar -->
-        <div class="ms-auto justify-content-center">
+        <div class="ms-auto d-flex align-items-center">
             <a href="{{ route('profile.show', Auth::user()->id) }}">
                 @if (Auth::check() && Auth::user()->avatar)
-                    <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="nav_avatar fa-solid fa-circle-user"></a>
-                @else
-                    <i class="nav_avatar fa-solid fa-circle-user"></i>
-                @endif
-                
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                        <button class="btn-logout">Logout</button>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-            </div>
-        </div>
+                    <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="nav_avatar fa-solid fa-circle-user">
+            </a>
+            @else
+                <i class="nav_avatar fa-solid fa-circle-user"></i>
+            @endif                
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                <button class="btn-logout">Logout</button>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </div>
     </div>
 </nav>
