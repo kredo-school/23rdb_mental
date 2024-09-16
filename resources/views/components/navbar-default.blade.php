@@ -1,11 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-{{-- @extends('layouts.app')
 
-@section('title', 'Default nav')
-
-@section('content') --}}
-
-<nav class="navbar navbar-dark navbar-expand-md fixed-top">
+<nav class="navbar navbar-dark navbar-expand-md sticky-top">
   <!-- Left Side Of Navbar -->
     <a class="navbar-brand ms-5 justify-content-center" href="{{ route('home') }}">
       <img src="{{ asset('images/main/logo_sm.png') }}" alt="logo">

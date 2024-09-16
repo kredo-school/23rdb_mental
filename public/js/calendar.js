@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
+    var currentMonth, currentYear;
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         timeZone: 'UTC',
@@ -114,35 +116,223 @@ document.addEventListener('DOMContentLoaded', function () {
                             </table>
                         `;
 
-                        // Determine the image based on the average score
-                        let averageImageUrl;
-                        if (averageScore >= 1.5) {
-                            averageImageUrl = '/images/moods/great.png';
-                        } else if (averageScore >= 0.5) {
-                            averageImageUrl = '/images/moods/good.png';
-                        } else if (averageScore >= -0.5) {
-                            averageImageUrl = '/images/moods/ok.png';
-                        } else if (averageScore >= -1.5) {
-                            averageImageUrl = '/images/moods/notgood.png';
-                        } else {
-                            averageImageUrl = '/images/moods/bad.png';
-                        }
+                            // Determine the image based on the average score
+                            let averageImageUrl;
+                            if (averageScore >= 1.5) {
+                                averageImageUrl = '/images/moods/great.png';
+                            } else if (averageScore >= 0.5) {
+                                averageImageUrl = '/images/moods/good.png';
+                            } else if (averageScore >= -0.5) {
+                                averageImageUrl = '/images/moods/ok.png';
+                            } else if (averageScore >= -1.5) {
+                                averageImageUrl = '/images/moods/notgood.png';
+                            } else {
+                                averageImageUrl = '/images/moods/bad.png';
+                            }
 
-                        modalFooter.innerHTML = `<p class="text-center">Your average mood score is <h4>${averageScore.toFixed(1)}</h4><img src="${averageImageUrl}" alt="Average Mood Image" style="width: 50px; height: auto;"></p>`;
+                            modalFooter.innerHTML = `<p class="text-center">Your average mood score is <h4>${averageScore.toFixed(1)}</h4><img src="${averageImageUrl}" alt="Average Mood Image" style="width: 50px; height: auto;"></p>`;
 
                         } else {
                             modalBody.innerHTML = '<p>No records for this date.</p>';
                             modalFooter.innerHTML = '';
                         }
                         $('#moodModal').modal('show');
+
                     })
                     .catch(error => console.error('Error fetching mood data:', error));
             });
-        }
+        },
 
+        viewDidMount: function (view) {
+            // Set the month and year based on the current view
+            currentMonth = view.view.currentStart.getMonth() + 1; // FullCalendar months are 0-based
+            currentYear = view.view.currentStart.getFullYear();
+            console.log('Initial view month:', currentMonth);
+            console.log('Initial view year:', currentYear);
+            updateFeedbackSection(currentMonth, currentYear);
+        },
+        datesSet: function (info) {
+            // Update the month and year when the view changes
+            currentMonth = info.view.currentStart.getMonth() + 1;
+            currentYear = info.view.currentStart.getFullYear();
+            console.log('Dates set month:', currentMonth);
+            console.log('Dates set year:', currentYear);
+            updateFeedbackSection(currentMonth, currentYear);
+        },
 
     });
     calendar.render();
 
-});
+    // Add event listener for search button
+    // Store the calendar instance in a variable for later use
+    window.myCalendar = calendar;
 
+    document.getElementById('searchButton').addEventListener('click', function () {
+        var dateInput = document.getElementById('dateInput').value;
+        var [year, month] = dateInput.split('-');
+
+        if (year && month) {
+            // Ensure month is 2 digits
+            month = month.padStart(2, '0');
+            var formattedDate = `${year}-${month}-01`;
+
+            calendar.gotoDate(formattedDate);
+        } else {
+            alert('Please enter a valid date in YYYY-MM format.');
+        }
+    });
+
+    function updateFeedbackSection(month, year) {
+
+        if (month === undefined || year === undefined) {
+            console.error('Month or year is undefined');
+            return;
+        }
+
+        console.log('Fetching feedback for month:', month, 'year:', year);
+        fetch(`/api/feedbacks?year=${year}&month=${month}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayFeedback(data);
+            })
+            .catch(error => console.error('Error fetching feedback:', error));
+    }
+
+
+    function displayFeedback(feedback) {
+        var feedbackStatus = document.getElementById('feedback-status');
+        var editFeedbackText = document.getElementById('edit-feedback-text');
+        var newFeedbackText = document.getElementById('new-feedback-text');
+
+        if (!feedbackStatus || !editFeedbackText || !newFeedbackText) {
+            console.error('Feedback elements are missing in the DOM');
+            return;
+        }
+
+        if (feedback.length === 0) {
+            feedbackStatus.innerHTML = 'No feedback yet. &nbsp;&nbsp;<a href="#" class="text-decoration-none feedback" data-bs-toggle="modal" data-bs-target="#feedback-input">Write your feedback of this month</a>';
+            editFeedbackText.value = '';
+            newFeedbackText.value = '';
+        } else {
+            feedbackStatus.innerHTML = `${feedback[0].feedback}`;
+            editFeedbackText.value = feedback[0].feedback;
+            newFeedbackText.value = feedback[0].feedback;
+        }
+    }
+
+    document.getElementById('save-new-feedback')?.addEventListener('click', function (event) {
+        event.preventDefault();
+        var feedbackText = document.getElementById('new-feedback-text').value;
+        saveFeedback(feedbackText, currentMonth, currentYear)
+        var editFeedbackModal = bootstrap.Modal.getInstance(document.getElementById('edit-feedback'));
+        editFeedbackModal.hide();
+    });
+
+    document.getElementById('save-edit-feedback')?.addEventListener('click', function (event) {
+        event.preventDefault();
+        var feedbackText = document.getElementById('edit-feedback-text').value;
+        saveFeedback(feedbackText, currentMonth, currentYear, true);
+    });
+
+    document.getElementById('confirm-delete-feedback')?.addEventListener('click', function (event) {
+        event.preventDefault();
+        deleteFeedback(currentMonth, currentYear);
+    });
+
+    function saveFeedback(feedbackText, month, year, isEdit = false) {
+        console.log('Saving feedback with month:', month, 'year:', year); // Debugging
+
+        if (month === undefined || year === undefined) {
+            console.error('Month or year is undefined');
+            return;
+        }
+
+        var method = isEdit ? 'PATCH' : 'POST';
+        var url = isEdit ? `/api/feedbacks?year=${year}&month=${month}` : '/api/feedbacks';
+
+        console.log('Saving feedback using URL:', url);
+
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({
+                feedback: feedbackText,
+                month: month,
+                year: year
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Feedback saved:', data);
+                alert('Feedback saved successfully!');
+
+                // Get the modal element
+                const myModalEl = document.getElementById('feedback-input');
+                console.log(myModalEl)
+                myModalEl.addEventListener('hidden.bs.modal', event => {
+                    if ($(".modal - backdrop").length >= 1) {
+                        $(".modal - backdrop").remove();
+                    }
+                    console.log('hidden')
+                });
+
+
+                // Optional: Refresh feedback section
+                updateFeedbackSection(month, year);
+            })
+            .catch(error => console.error('Error saving feedback:', error));
+    }
+
+    function deleteFeedback(month, year) {
+        if (month === undefined || year === undefined) {
+            console.error('Month or year is undefined');
+            return;
+        }
+
+        fetch(`/api/feedbacks?year=${year}&month=${month}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Feedback deleted:', data);
+                alert('Feedback deleted successfully!');
+
+                // Get the modal element
+                const myModalEl = document.getElementById('delete-feedback');
+                console.log(myModalEl)
+                myModalEl.addEventListener('hidden.bs.modal', event => {
+                    if ($(".modal - backdrop").length >= 1) {
+                        $(".modal - backdrop").remove();
+                    }
+                    console.log('hidden')
+                });
+
+                // Optional: Refresh feedback section
+                updateFeedbackSection(month, year);
+            })
+            .catch(error => console.error('Error deleting feedback:', error));
+    }
+
+});

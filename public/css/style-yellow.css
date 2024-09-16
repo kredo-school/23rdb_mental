@@ -22,6 +22,7 @@ h1, h2, h3, p, footer {
     align-items: center;
     width: 100%!important;
     text-align: center;
+    position: sticky;
 }
 
 .nav-link {
@@ -232,8 +233,8 @@ h3 {
 
 .btn-login {
     background-color: transparent;
-    color: #e1e1e1;
-    border: 1.5px solid #e1e1e1;
+    color: #fff;
+    border: 1.5px solid #fff;
     width: 85px;
     height: 30px;
     font-size: 16px;
@@ -247,17 +248,17 @@ h3 {
 .btn-login:focus,
 .btn-logout:hover,
 .btn-logout:focus {
-    color: #6C757D;
-    background-color: #e1e1e1;
+    color: #fff;
+    background-color: #b58e0e;
     text-decoration: none;
-    text-shadow: rgb(255, 255, 255) 2px 2px 0;
+    text-shadow: rgb(77, 77, 77) 2px 2px 0;
     border: none;
 }
 
 .btn-logout {
     background-color: transparent;
-    color: #e1e1e1;
-    border: 1.5px solid #e1e1e1;
+    color: #91740b;
+    border: 1.5px solid #91740b;
     width: 85px;
     height: 30px;
     font-size: 16px;
@@ -276,6 +277,16 @@ h3 {
     border-radius: 7px;
     font-family: "Lato", sans-serif;
     margin-right: 20px;
+}
+
+.nav_avatar {
+    font-size: 45px;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #e3ae01;
+    border-radius: 100%;
+    color: #fff;
+    margin-right: 10px;
 }
 
 .mood-icon {
@@ -490,11 +501,14 @@ button.dr-more-details:hover {
     color: #FC6746;
 }
 
+ /* sidebar */
+div.body_sidebar {
+    background-color: #FBBC06;
+    opacity: 0.7;
+}
 
-
-/* quote page */
-.quote-subtextcolor{
-    color:rgb(255, 255, 255);
+a.sidebar_faq {
+    color: #42484D;
 }
 
 /* admin inquiry page */

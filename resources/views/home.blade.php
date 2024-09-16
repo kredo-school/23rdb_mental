@@ -28,26 +28,32 @@
                 {{-- 吹き出し --}}
                 {{-- <div class="col-auto fukidashi-01-13"> --}}
                     {{-- 吹き出し線 --}}
+
                     {{-- <span class="ornament"></span>   --}}
                     
+
                     {{-- <img src="{{ asset('images/main/bubblespeech.png') }}" alt="bubblespeech" class="bubblespeech"> --}}
                 {{-- </div> --}}
 
-                   
+
             {{-- Quote --}}
             <div class="col-8 d-flex align-items-center fade-in-text mx-0 quote-copy-parent">
                 {{-- quote itself --}}
+
                 @if ($quote->exists()) 
                
                 <p name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext text-center ps-3 mx-0 py-auto">
+
                     {{ $quote->quote }}
                 </p>
             </div>
 
             <div class="col-2 align-self-end">
                 {{-- Author --}}
+
                 
                 <p class="text-start mb-0 home-author">By  {{ $quote->author }}</p>
+
 
             </div>
 
@@ -62,7 +68,7 @@
                                         class="fa-solid fa-arrows-rotate"></i></button>
                             </form>
                             <span>change today's quote</span>
-                            
+
                         </div>
                             {{-- Bookmark --}}
                         <div class="col-auto px-0 text-center">
@@ -92,6 +98,7 @@
                             <span>copy</span>
                         </div>
                     </div>
+
             </div>
                
 
@@ -103,6 +110,7 @@
    
             {{-- <div class="col-1"></div> --}}
                 
+
             </div>
         </div>
         <script src="{{ asset('js/quote-copy.js') }}"></script>
@@ -191,39 +199,40 @@
                             </div>
                             <div class="body border-0 bg-white d-flex align-items-center">
                                 {{-- <div class="row"> --}}
-                                    {{-- <div class="col p-0"> --}}
-                                        <div id="graph_div" style="width: 100%; height: 500px;" ></div>
+                                {{-- <div class="col p-0"> --}}
+                                <div id="graph_div" style="width: 100%; height: 500px;"></div>
 
-                                    {{-- </div> --}}
-                                    {{-- <div class="col-auto ps-0 pe-4"> --}}
-                                        <div class="float-end">
-                                            <div>
-                                                <p class="mb-0">&nbsp;</p>
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/notgood.png') }}" alt="great">
-                                            </div>
-                                            <div>
-                                                <img class="mood-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
-                                            </div>
-                                        </div>
+                                {{-- </div> --}}
+                                {{-- <div class="col-auto ps-0 pe-4"> --}}
+                                <div class="float-end">
+                                    <div>
+                                        <p class="mb-0">&nbsp;</p>
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/notgood.png') }}"
+                                            alt="great">
+                                    </div>
+                                    <div>
+                                        <img class="mood-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
+                                    </div>
+                                </div>
 
-                                    {{-- </div> --}}
+                                {{-- </div> --}}
                                 {{-- </div> --}}
 
                             </div>
                             <div class="footer bg-white border-0">
                                 <p class="small px-3 text-center">
-                                   <br><br><br>
+                                    <br><br><br>
                                     It records your mood that you input when you login.
                                 </p>
                             </div>
@@ -254,22 +263,22 @@
                 <div class="row px-5">
                     {{-- Chat Rooms --}}
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-relationship w-100">Relationship</a>
+                        <a href="{{ url('/chat/1') }}" class="btn btn-relationship w-100">Relationship</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-career w-100">Career</a>
+                        <a href="{{ url('/chat/2') }}" class="btn btn-career w-100">Career</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-family w-100">Family</a>
+                        <a href="{{ url('/chat/3') }}" class="btn btn-family w-100">Family</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-health w-100">Health</a>
+                        <a href="{{ url('/chat/4') }}" class="btn btn-health w-100">Health</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-finance w-100">Finance</a>
+                        <a href="{{ url('/chat/5') }}" class="btn btn-finance w-100">Finance</a>
                     </div>
                     <div class="col-2 p-1">
-                        <a href="#" class="btn btn-others w-100">Others</a>
+                        <a href="{{ url('/chat/6') }}" class="btn btn-others w-100">Others</a>
                     </div>
                 </div>
 

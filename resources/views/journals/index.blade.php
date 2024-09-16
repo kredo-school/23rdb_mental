@@ -11,47 +11,52 @@
     @include('components.sidebar')
 @endif
 
-{{--
-<div class="container-mood my-5 py-3">
-    <div class="d-flex mb-3 input-size">
---}}
-
 <div>
-    <div class="mt-4" style="margin-left:200px;">
+    <div class="journal-body mt-4">
         <div class="w-75 mx-auto">
 
             {{-- Add journal --}}
             <div class="input-group mb-3" data-bs-toggle="modal" data-bs-target="#add-post">
-                <i class="fa-solid fa-circle-user fa-3x me-3 avatar"></i>
+                {{-- User Icon --}}
+                @if (Auth::user()->avatar)
+                    <img src="{{ Auth::user()->avatar }}" alt="avatar" class="avatar-sm rounded-circle icon-sm img-fluid">
+                @else
+                    <i class="fa-solid fa-circle-user avatar icon-sm"></i>
+                @endif
                 <input type="text" name="journal_body" id="journal_body" class="form-control rounded-input shadow"
                     placeholder="What's on your mind?" value="" style="border-radius: 25px;">
             </div>
             @include('journals.contents.modals.add')
 
             {{-- Search Section --}}
-            <div class="card input-group mb-3 p-2 shadow">
-                <form action="{{ route('journal.journals') }}" method="get" style="margin-bottom: 0px;">
+            <div class="input-group bg-white rounded shadow mb-3 p-3">
+                <form action="{{ route('journal.journals') }}" method="get" class="journal-form">
                     {{-- Sort --}}
-                    <span class="text-primary">Sort</span>
-                    <select name="sort" id="sort" class="form-control" onchange="this.form.submit()" style="display: inline; width: 150px;">
-                        <option value="date" {{ request('sort') === 'name' ? 'selected' : '' }}>Sorted by Date
+                    <span class="text-primary me-3">Sort</span>
+                    <select name="sort" id="sort" class="journal-search-component form-select shadow" onchange="this.form.submit()">
+                        <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Latest
                         </option>
-                        <option value="like_score" {{ request('sort') === 'like_score' ? 'selected' : '' }}>Sorted by LikeScore
+                        <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Oldest
+                        </option>
+                        <option value="like_score" {{ request('sort') === 'like_score' ? 'selected' : '' }}>Most Liked
                         </option>
                     </select>
                     {{-- Search date --}}
-                    <span class="text-primary me-3" style="display: inline; width: 100px; margin-left: 50px;">Search</span>
-                    <input type="date" name="search_date_start" class="form-control search-date" value="{{ $search_date_start }}" style="display: inline; width: 150px;">
+                    <span class="text-primary ms-5 me-3">Search</span>
+                    <input type="date" name="search_date_start" class="journal-search-component form-control search-date shadow" value="{{ $search_date_start }}">
                     ～
-                    <input type="date" name="search_date_end" class="form-control search-date" value="{{ $search_date_end }}" style="display: inline; width: 150px;">
+                    <input type="date" name="search_date_end" class="journal-search-component form-control search-date shadow" value="{{ $search_date_end }}">
                     {{-- Search keyword --}}
-                    <input type="text" name="search" placeholder="search..." class="form-control" value="{{ $search }}" style="display: inline; width: 150px;">
-                    {{-- @if ($search)
+                    <div class="search_box">
+                            @csrf
+                            <input type="text" name="search" placeholder="search..." class="journal-search-component journal-search-keyword form-control shadow ms-3" value="{{ $search }}">
+                    </div>
+                        {{-- @if ($search)
                         <p class="text-muted mb-4 small">Search results for '<span class="fw-bold">{{ $search }}</span>'</p>
                     @endif --}}
-                    <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
+                    {{-- <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
                         <i class="fa-solid fa-search"></i>
-                      </button>
+                      </button> --}}
                 </form>
             </div>
 
@@ -60,38 +65,38 @@
                 <div class="card mb-3 shadow">
                     <div class="card-body">
                         {{-- Reply Body --}}
-                        @if ($journal->journals_include_replying_journal)
+                        {{-- @if ($journal->journals_include_replying_journal)
                         <div class="text-muted">
-                                <span style="font-size: 16px;">{{ $journal->journals_include_replying_journal->created_at }}</span>
+                                <span class="fs-6">{{ $journal->journals_include_replying_journal->created_at }}</span>
                             <div class="mb-3 fs-5">
                                 {{ $journal->journals_include_replying_journal->body }}
                             </div>
                             <hr>
                         </div>
                         @endif
-                        
+                         --}}
                         {{-- Date, Edit and Delete --}}
                         <div class="text-start">
                             {{-- Date --}}
-                            <span style="font-size: 16px;">{{ $journal->created_at }}</span>
+                            <span class="fs-6">{{ $journal->created_at }}</span>
                             {{-- Delete --}}
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#delete-post-{{ $journal->id }}">
-                                <i class="fa-solid fa-trash-can text-danger icon-sm d-inline float-end"></i>
+                                <i class="fa-solid fa-trash-can delete-icon float-end"></i>
                             </a>
                             @include('journals.contents.modals.delete')
                             {{-- Edit --}}
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-post-{{ $journal->id }}">
-                                <i class="fa-solid fa-pen-to-square text-primary icon-sm d-inline float-end me-2"></i>
+                                <i class="fa-solid fa-pen-to-square edit-icon float-end me-2"></i>
                             </a>
                             @include('journals.contents.modals.edit')
                         </div>
                         {{-- Reply Link--}}
-                        <div class="float-end">
+                        {{-- <div class="float-end">
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-{{ $journal->id }}">
                                 <i class="fa-solid fa-reply text-primary icon-sm"></i>
                                 <span class="text-primary fw-bold">Reply</span>
                             </a>
-                        </div>
+                        </div> --}}
                         @include('journals.contents.modals.reply')
                         {{-- Body --}}
                         <div class="mb-3 fs-4">
@@ -99,31 +104,31 @@
                         </div>
                         {{-- Like Score --}}
                         <div>
-                            <div>
-                                <i id="minus" class="button_minus fa-solid fa-circle-minus text-secondary fa-lg" onclick="decrementLikeScore({{ $journal->id }})" style="cursor: pointer;"></i>
-                                <div class="like-container">
-                                    <i class="like-icon fas fa-heart fa-2x" id="like-icon-{{ $journal->id }}"></i>
-                                    <div class="like-score fs-5" id="like-score-{{ $journal->id }}">{{ $journal->like_score }}</div>
-                                </div>
-                                <i id="plus" class="button_plus fa-solid fa-circle-plus text-secondary fa-lg" onclick="incrementLikeScore({{ $journal->id }})" tyle="cursor: pointer;"></i>
+                            <i id="minus" class="button_minus fa-solid fa-circle-minus text-secondary fa-lg" onclick="decrementLikeScore({{ $journal->id }})"></i>
+                            <div class="like-container">
+                                <i class="like-icon fas fa-heart fa-2x" id="like-icon-{{ $journal->id }}"></i>
+                                <div class="like-score fs-5" id="like-score-{{ $journal->id }}">{{ $journal->like_score }}</div>
                             </div>
+                            <i id="plus" class="button_plus fa-solid fa-circle-plus text-secondary fa-lg" onclick="incrementLikeScore({{ $journal->id }})"></i>
                         </div>
 
                         {{-- Comment Section --}}
-                        <div class="d-inline">
+                        <div class="d-inline my-2">
                             <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#comment-post-{{ $journal->id }}">
-                                <i class="fa-solid fa-pencil text-primary icon-sm"></i>
-                                <span class="text-primary fw-bold">Comment</span>
+                                <i class="fa-solid fa-pencil comment-icon"></i>
+                                <span class="comment-text">Comment</span>
                             </a>
                         </div>
                         @include('journals.contents.modals.comment')
                         <div>
                             @foreach ($journal->comments as $comment)
-                                <div class="card mt-2">
-                                    <div class="card-body">
-                                        {{ $comment->body }}
-                                    </div>
+                            <hr class="my-1">
+                            <div class="text-muted">
+                                    <span style="font-size: 16px;">{{ $comment->created_at }}</span>
+                                <div class="mb-3 fs-5">
+                                    {{ $comment->body }}
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
