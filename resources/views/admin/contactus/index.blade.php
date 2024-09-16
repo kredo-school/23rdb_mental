@@ -57,9 +57,9 @@
                 <div>
 
                     @if ((!empty($keyword)))
-                    <span class="pb-0 mb-0 ms-4 me-5 pe-5">Result for : {{ $keyword }}</span>
+                    <span class="pb-0 mb-0 ms-4 me-5 pe-5 inquiry-subtextcolor">Result for : {{ $keyword }}</span>
                     @endif
-                    <p class="pb-0 mb-0 ms-4 me-5 pe-5 mt-0 pt-0">
+                    <p class="pb-0 mb-0 ms-4 me-5 pe-5 mt-0 pt-0 inquiry-subtextcolor">
 
                         Total :
                         <span>{{ $inquiries_count->total() }}</span>

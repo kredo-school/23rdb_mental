@@ -55,17 +55,21 @@
 
 
                                 </div>
+                               
 
-                                <div class="col-auto pt-3">
+                                <div class="col-1 pt-3 ms-3 text-end">
                                     <p class="text-primary mt-1 pe-0">Search</p>
                                 </div>
-                                <div class="col-auto search_box pt-3">
+                                <div class="col-4 search_box pt-3 ms-3 me-5">
+                                    
+                                    {{-- <p class="text-primary mt-1 pe-0" style="positon:relative; ">Search</p> --}}
                                     <form action="{{ route('quote.index') }}" method="get" class="form-inline">
                                         @csrf
                                         {{-- <input type="search" name="search" placeholder="&#xf002; search..." class="form-control shadow quote-other-btn search_box" value="{{ $search }}"> --}}
                                         <input type="search" name="search" placeholder="search..." class="form-control shadow quote-other-btn" value="{{ $search }}">
                                     </form>
                                 </div> 
+                             
                             </div>
                         </div>
                           

@@ -110,7 +110,7 @@ td {
     color: #979a9b;
     border: 1px solid #979a9b;
     height: 40px;
-    width:200px;
+    /* width:200px; */
     font-size: 16px;
     border-radius: 10px;
     font-family: "Lato", sans-serif;
@@ -262,7 +262,7 @@ td {
     /* background-color: #FF6BA0; */
   }
   .search_box input[type="search"]{
-    width: 200px;
+    /* width: 200px; */
     height:40px;
     font-size: 16px;
     padding: 10px 15px 10px 35px;
