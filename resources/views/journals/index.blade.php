@@ -47,13 +47,16 @@
                     ～
                     <input type="date" name="search_date_end" class="journal-search-component form-control search-date shadow" value="{{ $search_date_end }}">
                     {{-- Search keyword --}}
-                    <input type="text" name="search" placeholder="search..." class="journal-search-component journal-search-keyword form-control shadow ms-3" value="{{ $search }}">
-                    {{-- @if ($search)
+                    <div class="search_box">
+                            @csrf
+                            <input type="text" name="search" placeholder="search..." class="journal-search-component journal-search-keyword form-control shadow ms-3" value="{{ $search }}">
+                    </div>
+                        {{-- @if ($search)
                         <p class="text-muted mb-4 small">Search results for '<span class="fw-bold">{{ $search }}</span>'</p>
                     @endif --}}
-                    <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
+                    {{-- <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
                         <i class="fa-solid fa-search"></i>
-                      </button>
+                      </button> --}}
                 </form>
             </div>
 

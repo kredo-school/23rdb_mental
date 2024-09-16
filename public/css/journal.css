@@ -30,6 +30,7 @@
 
 .journal-search-keyword {
     width: 200px !important;
+    padding-left: 35px !important;
 }
 
 .edit-icon {
@@ -56,6 +57,62 @@
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
+}
+
+
+.search_box{
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+  }
+  .search_box:before{
+    position: absolute;
+    top: 5;
+    bottom: 0;
+    left: 20px;
+    margin: auto;
+    width: 1.5em;
+    height: 1em;
+    /* padding-right: 30px; */
+    text-align: center;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900;
+    content: '\f002';
+    color: #979a9b;
+    /* background-color: #FF6BA0; */
+  }
+  .search_box input[type="search"]{
+    width: 200px;
+    height:40px;
+    font-size: 16px;
+    padding: 10px 15px 10px 100px !important;
+    border-radius: 10px;
+    border: 1px solid #979a9b;
+    /* background: #fff; */
+    /* background-color: aqua; */
+    color: #979a9b;
+    /* box-shadow: 2px 2px 2px 0 #ccc inset; */
+  }
+  /* .search_box input[type="text"]:focus{
+    outline:0;
+  } */
+  .search_box input[type="search"]::placeholder{
+    color: #ccc;
+  }
+
+  
+.journal-other-btn{
+    color: #979a9b;
+    /* border: 1px solid #979a9b; */
+    /* height: 40px; */
+    /* width:200px; */
+    font-size: 18px;
+    /* border-radius: 10px; */
+    /* font-family: "Lato", sans-serif; */
 }
 
 

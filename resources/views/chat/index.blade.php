@@ -77,7 +77,7 @@
                     <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" class="mb-0">
                         <div class="search_box ms-5">
                             @csrf
-                            <input type="text" name="search" placeholder="search..." class="shadow chat-other-btn" value="">
+                            <input type="text" name="search" placeholder="search..." class="chats-search-component chats-search-keyword form-control shadow chat-other-btn ms-4" value="">
                             {{-- <button type="submit">
                                 <i class="fa-solid fa-search chat-other-btn"></i>
                             </button> --}}
