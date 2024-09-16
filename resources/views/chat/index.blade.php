@@ -3,7 +3,7 @@
 
 @extends('layouts.app')
 @extends('components.navbar-each')
-@section('title', 'Journal')
+@section('title', 'Chat')
 
 @section('content')
 @if(Auth::user()->role_id == 1)
@@ -20,7 +20,7 @@
 <body class="">
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-10 py-2 chats-body-size w-75" style="margin-left:200px;">
+            <div class="chat-body col-10 py-2 chats-body-size w-75">
                 {{-- Chat Rooms --}}
                 <div class="row px-5 mb-2">
                     <div class="col-2 p-1">
@@ -51,25 +51,25 @@
                     --}}
                 </div>
 
-                <div style="background-color: aliceblue;">
+                <div class="chat-background">
                 {{-- My User and Search Section --}}
                 <div class="d-flex mb-3 p-2 shadow">
-                    <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" style="margin-bottom: 0px; block: inline;">
-                        {{-- User Icon --}}
-                        @if (Auth::user()->avatar)
-                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
-                        @else
-                            <i class="fa-solid fa-circle-user avatar fa-2x me-3"></i>
-                        @endif
-                        {{-- User Name --}}
-                        <span class="fw-bold me-2">{{ auth()->user()->username }}</span>
-                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-username-{{ auth()->user()->id }}">
-                            <i class="fa-solid fa-pen-to-square text-primary icon-sm d-inline"></i>
-                        </a>
-                        @include('chat.contents.modals.edit_username')
+                    {{-- User Icon --}}
+                    @if (Auth::user()->avatar)
+                        <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
+                    @else
+                        <i class="fa-solid fa-circle-user avatar fa-2x me-3"></i>
+                    @endif
+                    {{-- User Name --}}
+                    <span class="fw-bold me-2">{{ auth()->user()->username }}</span>
+                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-username-{{ auth()->user()->id }}">
+                        <i class="fa-solid fa-pen-to-square text-primary icon-sm d-inline"></i>
+                    </a>
+                    @include('chat.contents.modals.edit_username')
+                    <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" class="chat-form">
                         {{-- Search keyword --}}
-                        <div style="display: flex; align-items: center; flex-grow: 1; max-width: 400px; margin-left: 10px;">
-                            <input type="text" name="search" placeholder="search keyword" class="form-control" value="" style="flex-grow: 1; margin-right: 10px; max-width: 300px;">
+                        <div class="chat-form-search">
+                            <input type="text" id="search" name="search" placeholder="search keyword" class="chat-search-input form-control" value="">
                             <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
                                 <i class="fa-solid fa-search"></i>
                             </button>
@@ -101,7 +101,7 @@
                             @endif
                             <div class="chat-content">
                                 @if ($chat->user_id != auth()->id())
-                                <div style="display: block;">
+                                <div class="chat-user">
                                     @if ($chat->user->avatar)
                                         <img src="{{ $chat->user->avatar }}" alt="avatar" class="rounded-circle avatar">
                                     @else
@@ -114,7 +114,7 @@
                                     {{-- Reply Body --}}
                                     @if ($chat->chats_include_replying_chat)
                                     <div class="text-muted">
-                                            <span style="font-size: 7px;">{{ $chat->chats_include_replying_chat->created_at }}</span>
+                                            <span class="fs-6">{{ $chat->chats_include_replying_chat->created_at }}</span>
                                         <div class="mb-3 fs-6">
                                             {{ $chat->chats_include_replying_chat->body }}
                                         </div>
@@ -140,8 +140,8 @@
                 <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form" class="chat-input">
                         @csrf
                         <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">  <!-- 現在のユーザーIDを送信 -->
-                        <input type="text" id="body" name="body" placeholder="メッセージを入力">
-                        <button type="submit" id="submit">送信</button>
+                        <input type="text" id="body" name="body" placeholder="message">
+                        <button type="submit" id="submit" onclick="sendMessage()">send</button>
                 </form>
                 </div>
             </div>
@@ -154,25 +154,44 @@
 <!-- PusherのJavaScriptライブラリをCDN経由で読み込む -->
 <script src="https://js.pusher.com/7.2.0/pusher.min.js"></script>
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            alert('Page has loaded');
-        });
-
+    document.addEventListener('DOMContentLoaded', function() {
+        // alert('Page has loaded');
+        scrollToBottom();
+    });
 
     function scrollToBottom() {
         var chatMessages = document.getElementById('chat-messages');
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        console.log(chatMessages.scrollHeight); // 要素のスクロール全体の高さ
+        console.log(chatMessages.clientHeight); // 要素の表示部分の高さ
+        console.log(chatMessages.scrollTop);    // 現在のスクロール位置
+
+        if (chatMessages) {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        console.log('Page fully loaded');
-        setTimeout(scrollToBottom, 100);
-    });
+    // 初期表示でスクロールを一番下にする
+    // window.onload = function() {
+    //     console.log('Window has loaded');
+    //     scrollToBottom();
+    // };
+
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     alert('Page has loaded 2');
+    //     console.log('Page fully loaded');
+    //     setTimeout(scrollToBottom, 100);
+    // });
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     console.log('Page fully loaded');
+    //     setTimeout(scrollToBottom, 500);
+    // });
 
     var sendBtn = document.getElementById('send-btn');
     sendBtn.addEventListener('click', function() {
         // メッセージ送信後にスクロールを実行
+        console.log('Scrolling to bottom...');
         scrollToBottom();
+        console.log('scrollTop:', chatMessages.scrollTop);
     });
 
     // echo({{ env('PUSHER_APP_KEY') }});
@@ -190,10 +209,14 @@
     // 新しいメッセージが送信されたときのイベントをリッスン
     channel.bind('new-message', function(data) {
         console.log('Received message:', data); // デバッグ用にデータを確認
+        alert('new-message');
         // メッセージを画面に表示
         const chatMessages = document.getElementById('chat-messages');
         const newMessage = `<div class="chat-message"><strong>${data.username}:</strong><p>${data.message}</p></div>`;
         chatMessages.insertAdjacentHTML('beforeend', newMessage);
+                
+        // メッセージが追加されたらスクロール
+        scrollToBottom();
     });
 
     pusher.connection.bind('state_change', function(states) {
@@ -209,14 +232,20 @@
 });
 
     // メッセージ送信処理
-    document.getElementById('chat-form').addEventListener('submit', function(e) {
+        // function sendMessage() {
+
+        document.getElementById('chat-form').addEventListener('submit', function(e) {
+
+        alert('submit clicked');
         e.preventDefault();
+
+
 
         const user_id = document.getElementById('user_id').value;
         const body = document.getElementById('body').value;
 
         if (body === "") {
-            alert("メッセージを入力してください");
+            alert("Please enter a message.");
             return;
         }
 

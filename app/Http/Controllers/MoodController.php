@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Mood;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -14,10 +15,12 @@ use Carbon\Carbon;
 class MoodController extends Controller
 {
     private $mood;
+    private $feedback;
 
-    public function __construct(Mood $mood)
+    public function __construct(Mood $mood, Feedback $feedback)
     {
         $this->mood = $mood;
+        $this->feedback = $feedback;
     }
 
     public function create1()
@@ -62,7 +65,7 @@ class MoodController extends Controller
         $utcDate = \Carbon\Carbon::createFromFormat('Y-m-d', $date);
         // Fetch mood data for the given date
         $moods = Mood::whereDate('created_at', $utcDate->format('Y-m-d'))
-            ->get();
+            ->where('user_id', Auth::user()->id)->get();
         // Return the data as JSON
         return response()->json($moods);
     }
@@ -107,9 +110,8 @@ class MoodController extends Controller
                 return [
                     'title' => number_format($score, 1), // Display the average score
                     'start' => $date,
-                    'allDay' => true, // Full-day events
-                    // 'color' => $this->getColorForScore($score), // Optional: color based on score
-                    'score' => $score // Ensure score is included
+                    'allDay' => true,
+                    'score' => $score
                 ];
             })->values();
 
@@ -120,19 +122,83 @@ class MoodController extends Controller
         }
     }
 
-    // private function getColorForScore($score)
-    // {
-    //     // Map score to color
-    //     if ($score >= 1.5) {
-    //         return 'green';
-    //     } elseif ($score >= 0.5) {
-    //         return 'yellow';
-    //     } elseif ($score >= -1) {
-    //         return 'orange';
-    //     } elseif ($score >= -1.5) {
-    //         return 'blue';
-    //     } else {
-    //         return 'red';
-    //     }
-    // }
+    public function storeFeedback(Request $request)
+    {
+        $request->validate([
+            'feedback' => 'required|string',
+            'month' => 'required|integer|min:1|max:12',
+            'year' => 'required|integer',
+        ]);
+
+        // Store feedback
+        Feedback::updateOrCreate(
+            ['user_id' => $request->user()->id, 'month' => $request->month, 'year' => $request->year],
+            ['feedback' => $request->feedback]
+        );
+
+        return response()->json(['message' => 'Feedback saved successfully']);
+    }
+
+    public function getFeedbacks(Request $request)
+    {
+        $month = $request->input('month');
+        $year = $request->input('year');
+
+        $feedbacks = Feedback::where('month', $month)
+            ->where('year', $year)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+
+        return response()->json($feedbacks);
+    }
+
+    public function updateFeedback(Request $request)
+    {
+        try {
+            $request->validate([
+                'feedback' => 'required|string',
+                'month' => 'required|integer|min:1|max:12',
+                'year' => 'required|integer',
+            ]);
+
+            Feedback::updateOrCreate(
+                ['user_id' => $request->user()->id, 'month' => $request->month, 'year' => $request->year],
+                ['feedback' => $request->feedback]
+            );
+
+            return response()->json(['message' => 'Feedback saved successfully']);
+        } catch (\Exception $e) {
+            Log::error('Failed: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Failed']);
+        }
+    }
+
+    public function destroyFeedback(Request $request)
+    {
+        try {
+            $month = $request->query('month');
+            $year = $request->query('year');
+
+            if (!$month || !$year) {
+                return response()->json(['error' => 'Month and year are required'], 400);
+            }
+
+            // Assuming user_id is from authenticated user
+            $feedback = Feedback::where('user_id', $request->user()->id)
+                ->where('month', $month)
+                ->where('year', $year)
+                ->first();
+
+            if (!$feedback) {
+                return response()->json(['error' => 'Feedback not found'], 404);
+            }
+
+            $feedback->delete();
+
+            return response()->json(['message' => 'Feedback deleted successfully']);
+        } catch (\Exception $e) {
+            Log::error('Failed to delete feedback: ' . $e->getMessage());
+            return response()->json(['error' => 'Failed to delete feedback'], 500);
+        }
+    }
 }

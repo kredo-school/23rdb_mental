@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Journal;
 use App\Models\JournalComment;
+use Carbon\Carbon;
 
 class JournalController extends Controller
 {
@@ -132,6 +133,8 @@ class JournalController extends Controller
         ]);
         $this->journal_comment->journal_id = $journal_id;
         $this->journal_comment->body = $request->journal_comment;
+        $this->journal_comment->created_at = Carbon::now();
+        $this->journal_comment->updated_at = Carbon::now();
         $this->journal_comment->save();
         
         return redirect()->back();

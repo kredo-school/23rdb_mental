@@ -1,0 +1,26 @@
+/* footer ----------------*/
+.fixed-bottom {
+    background-color: #b4b4b4;
+    opacity: 0.9;
+    width: 100%;
+    min-height: 20px;
+}
+
+.copyright{
+    font-family:  "Lato", sans-serif;
+    color: #42484D;
+    font-weight: 400;
+    font-size: 14px;
+    margin-right: 180px;
+}
+
+.faq{
+    font-family:  "Lato", sans-serif;
+    color: #42484D;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.btn-contact:hover {
+    opacity: 0.8;
+}
