@@ -257,8 +257,8 @@ h3 {
 
 .btn-logout {
     background-color: transparent;
-    color: #42484D;
-    border: 1.5px solid #42484D;
+    color: #91740b;
+    border: 1.5px solid #91740b;
     width: 85px;
     height: 30px;
     font-size: 16px;
@@ -283,7 +283,7 @@ h3 {
     font-size: 45px;
     width: 50px;
     height: 50px;
-    border: 3px solid #b58e0e;
+    border: 3px solid #e3ae01;
     border-radius: 100%;
     color: #fff;
     margin-right: 10px;
@@ -501,8 +501,12 @@ button.dr-more-details:hover {
     color: #FC6746;
 }
 
- /* sidebar backgoundcolor */
+ /* sidebar */
 div.body_sidebar {
     background-color: #FBBC06;
     opacity: 0.7;
+}
+
+a.sidebar_faq {
+    color: #42484D;
 }

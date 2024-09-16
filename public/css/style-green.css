@@ -484,8 +484,12 @@ button.dr-more-details:hover {
     color: #DC568F;
 }
 
- /* sidebar backgoundcolor */
+ /* sidebar */
 div.body_sidebar {
     background-color: #56DCA3;
     opacity: 0.8;
+}
+
+a.sidebar_faq {
+    color: #42484D;
 }
