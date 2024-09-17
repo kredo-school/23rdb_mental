@@ -17,13 +17,13 @@
     @endif
 
     <div class="container-mood my-5 py-3">
-        <div class="d-flex mb-3 input-size">
+        <div class="d-flex mb-3 input-size mx-auto">
 
             {{-- Avatar --}}
             @if (Auth::user()->avatar)
-                <img src="{{ Auth::user()->avatar }}" alt="icon" class="avatar-sm rounded-circle">
+                <img src="{{ Auth::user()->avatar }}" alt="icon" class="mood-avatar-sm rounded-circle">
             @else
-                <i class="fa-solid fa-circle-user avatar icon-sm"></i>
+                <i class="fa-solid fa-circle-user avatar mood-icon-sm"></i>
             @endif
 
             {{-- Mood Input --}}
@@ -118,7 +118,7 @@
 
         </div>
         {{-- search bar --}}
-        <div class="d-flex justify-content-end searchbar">
+        <div class="d-flex justify-content-end searchbar mx-auto">
             @auth {{-- if logged in --}}
                 <div class="search-container mb-0">
                     <input type="text" id="dateInput" placeholder="Search date (e.g., 2024-09)" class="form-control">
@@ -128,7 +128,7 @@
         </div>
 
         {{-- Calendar --}}
-        <div class="card card-mood my-3 pb-3 bg-white shadow">
+        <div class="card card-mood my-3 pb-3 bg-white shadow mx-auto">
             <div class="card-header bg-white border-0">
 
             </div>
@@ -186,7 +186,7 @@
             </div>
         </div>
 
-        <div class="card card-feedback mb-5 px-3 bg-white shadow">
+        <div class="card card-feedback mb-5 px-3 bg-white mx-auto shadow">
             <div class="card-header bg-white">
                 {{-- Title --}}
                 <h3 class="float-start mb-0">Feedback of this Month</h3>
@@ -204,7 +204,8 @@
                     </button>
                 </div>
                 {{-- Modal for edit --}}
-                <div class="modal fade" id="edit-feedback" tabindex="-1" aria-labelledby="edit-feedbackLabel" aria-hidden="true">
+                <div class="modal fade" id="edit-feedback" tabindex="-1" aria-labelledby="edit-feedbackLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
 
@@ -222,14 +223,13 @@
                             <div class="modal-footer border-0 justify-content-center">
                                 {{-- Action buttons --}}
                                 {{-- <form action="#" method="post"> --}}
-                                    {{-- @csrf --}}
-                                    {{-- @method('PATCH') --}}
-                                    {{-- Cancel --}}
-                                    <button type="button" class="btn-cancel me-2"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    {{-- Save --}}
-                                    <button type="button" id="save-edit-feedback" class="btn-submit ms-2"><i
-                                            class="fa-solid fa-circle-check"></i> Save</button>
+                                {{-- @csrf --}}
+                                {{-- @method('PATCH') --}}
+                                {{-- Cancel --}}
+                                <button type="button" class="btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                {{-- Save --}}
+                                <button type="button" id="save-edit-feedback" class="btn-submit ms-2"><i
+                                        class="fa-solid fa-circle-check"></i> Save</button>
                                 {{-- </form> --}}
                             </div>
 
@@ -238,7 +238,8 @@
                 </div>
 
                 {{-- Modal for delete --}}
-                <div class="modal fade modal-delete" id="delete-feedback" tabindex="-1" aria-labelledby="delete-feedbackLabel" aria-hidden="true">
+                <div class="modal fade modal-delete" id="delete-feedback" tabindex="-1"
+                    aria-labelledby="delete-feedbackLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
 
@@ -260,15 +261,14 @@
                             <div class="modal-footer border-0 justify-content-center">
                                 {{-- Action buttons --}}
                                 {{-- <form action="#" method="post"> --}}
-                                    {{-- @csrf --}}
-                                    {{-- @method('DELETE') --}}
-                                    {{-- Cancel --}}
-                                    <button type="button" class="btn-cancel me-2"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    {{-- Save --}}
-                                    <button type="button" id="confirm-delete-feedback" class="btn-delete ms-2"><i
-                                            class="fa-solid fa-trash-can"></i>
-                                        Delete</button>
+                                {{-- @csrf --}}
+                                {{-- @method('DELETE') --}}
+                                {{-- Cancel --}}
+                                <button type="button" class="btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                                {{-- Save --}}
+                                <button type="button" id="confirm-delete-feedback" class="btn-delete ms-2"><i
+                                        class="fa-solid fa-trash-can"></i>
+                                    Delete</button>
                                 {{-- </form> --}}
                             </div>
 
@@ -279,7 +279,8 @@
             <div class="card-body bg-white">
                 <p id="feedback-status"></p>
             </div>
-            <div class="modal fade" id="feedback-input" tabindex="-1" aria-labelledby="new-feedbackLabel" aria-hidden="true">
+            <div class="modal fade" id="feedback-input" tabindex="-1" aria-labelledby="new-feedbackLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
 
@@ -297,12 +298,13 @@
                         <div class="modal-footer border-0 justify-content-center">
                             {{-- Action buttons --}}
                             {{-- <form action="#" method="post"> --}}
-                                {{-- @csrf --}}
-                                {{-- Cancel --}}
-                                <button type="button" class="btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
-                                {{-- Save --}}
-                                <button type="button" id="save-new-feedback" class="btn-submit ms-2"><i class="fa-solid fa-circle-check"></i>
-                                    Save</button>
+                            {{-- @csrf --}}
+                            {{-- Cancel --}}
+                            <button type="button" class="btn-cancel me-2" data-bs-dismiss="modal">Cancel</button>
+                            {{-- Save --}}
+                            <button type="button" id="save-new-feedback" class="btn-submit ms-2"><i
+                                    class="fa-solid fa-circle-check"></i>
+                                Save</button>
                             {{-- </form> --}}
                         </div>
 
@@ -312,5 +314,5 @@
         </div>
 
 
-
-    @endsection
+    </div>
+@endsection

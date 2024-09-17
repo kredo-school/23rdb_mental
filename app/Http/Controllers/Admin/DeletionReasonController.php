@@ -18,7 +18,8 @@ class DeletionReasonController extends Controller
 
     public function index(Request $request)
     {
-        $deletion_reason = $this->deletion_reason;
+        $all_deletion_reasons = $this->deletion_reason->latest()->paginate(20);
+        $deletion_reasons_count = $this->deletion_reason;
 
         // $deletion_reason = $this->deletion_reason;
 
@@ -40,8 +41,9 @@ class DeletionReasonController extends Controller
         //     ->with('deletion_reason', $deletion_reason);
         if ($request->search) {
             //search results
-                $all_deletion_reasons = $this->deletion_reason->where('reason', 'LIKE', '%' . $request->search . '%')->latest()->paginate(10);
+                $all_deletion_reasons = $this->deletion_reason->where('reason', 'LIKE', '%' . $request->search . '%')->latest()->paginate(20);
               //SELECT * FROM deletion_reasons WHERE reason LIKE '%keyword%'
+              $deletion_reasons_count = $all_deletion_reasons;
 
              } else {
             // $all_deletion_reasons = $this->deletion_reason->latest()->paginate(10);
@@ -59,13 +61,14 @@ class DeletionReasonController extends Controller
                 $query->orderBy('created_at', 'asc');
             }
 
-            $all_deletion_reasons = $query->paginate(10);
+            $all_deletion_reasons = $query->paginate(20);
 
+            $deletion_reasons_count = $all_deletion_reasons;
              }
 
              return view('admin.deletion-reasons.index')
                  ->with('all_deletion_reasons', $all_deletion_reasons)
-                 ->with('deletion_reason', $deletion_reason)
+                 ->with('deletion_reasons_count', $deletion_reasons_count)
                  ->with('search', $request->search);
     }
 

@@ -32,14 +32,17 @@
 .container-deletion-reasons {
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: 25%;
+    margin-left: 220px;
     /* width: 800px; */
     /* margin-right: 151px; */
     position: absolute;
 }
 
 table.table-deletion-reasons {
-    width: 800px;
+    width: 65%;
 }
 
+div.search-bar {
+    width: 65%;
+}
 

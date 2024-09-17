@@ -8,28 +8,15 @@
 } */
 
 .container-profile-show {
-    margin-left: 444px;
-    margin-right: 164px;
+    /* margin-left: 40%; */
+    /* margin-right: 40%; */
+    /* margin-right: 164px; */
+    margin-left: 220px;
 }
 
 .card {
-
-    width: 800px;
-
+    width: 65%;
 }
-
-.avatar {
-    font-size: 180px;
-    color: #CED3D5;
-}
-
-img.avatar {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    display: flex;
-}
-
 
 img.selector {
     width: 20px;

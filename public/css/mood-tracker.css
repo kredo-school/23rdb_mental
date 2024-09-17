@@ -1,6 +1,5 @@
 .container-mood {
-    margin-left: 444px;
-    margin-right: 164px;
+    margin-left: 220px;
 }
 
 /* body {
@@ -12,54 +11,33 @@
 } */
 
 .card {
-        width: 800px;
-        margin-left: 152px;
-        margin-right: 152px;
-
-
-}
-
-.icon-sm {
-    font-size: 3rem;
-    color: #CED3D5;
-    display: flex;
-    align-items: center; /* Center icon vertically */
-    margin-right: 10px;
-}
-
-.avatar-sm {
-    width: 3rem;
-    height: 3rem;
-    object-fit: cover;
-    display: flex;
-    align-items: center; /* Center icon vertically */
-    margin-right: 10px;
+        width: 65%;
 }
 
 input {
-    width: 800px;
+    width: 60%;
     border-radius: 40px;
 }
 
 
 .input-size {
-    width: 800;
-    margin-left: 151px;
-    margin-right: 151px;
+    width: 65%;
+    /* margin-left: 151px; */
+    /* margin-right: 151px; */
 }
 
 
-.form-control {
+/* .form-control {
     flex: 1;
-}
+} */
 
 div .rounded-input {
     border-radius: 25px;
 }
 
-.container-mood {
+/* .container-mood {
     width: 800px;
-}
+} */
 
 div.button-edit,
 div.button-delete {
@@ -135,9 +113,9 @@ div.button-delete {
 
 
 
-.form-position {
+/* .form-position {
     margin-right: 151px;
-}
+} */
 
 .mood-icon {
     width: 100px !important;
@@ -152,9 +130,9 @@ div.button-delete {
 
 /* search bar */
 .searchbar {
-    margin-left: 19%;
-    margin-right: 50%;
-    width: 100%;
+    /* margin-left: 19%;
+    margin-right: 50%; */
+    width: 65%;
 }
 
 .search-container {
@@ -201,4 +179,9 @@ div.button-delete {
 }
 .modal {
     z-index: 1050 !important; /* Bootstrap's default modal z-index */
+}
+
+.input-size input::placeholder {
+    font-weight: 300;
+    font-size: 20px;
 }
