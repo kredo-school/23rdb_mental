@@ -1,9 +1,13 @@
 .journal-body {
-    margin-left:200px;
+    margin-left:220px;
+}
+
+.journal-add-area {
+    height: 80px;
 }
 
 .journal-add-input {
-    border-radius: 25px !important;
+    border-radius: 50px !important;
 }
 
 .journal-form{
@@ -156,28 +160,11 @@
     margin-right: 10px;
 }
 
-input {
-    width: 800px;
-    border-radius: 40px;
-}
-
-
-.input-size {
-    width: 800;
-    margin-left: 151px;
-    margin-right: 151px;
-}
-
-
-
-
-.avatar-sm {
-    width: 3rem;
-    height: 50px !important;
-    object-fit: cover;
-    display: flex;
-    align-items: center; 
-    margin-right: 10px;
+.avatar-default {
+    color: #979a9b;
+    background-color: #fff;
+    border: 0px solid  #fff;
+    border-radius: 50% !important;
 }
 
 input {
@@ -191,9 +178,6 @@ input {
     margin-left: 151px;
     margin-right: 151px;
 }
-
-
-
 
 .button_minus {
     cursor: pointer;
@@ -203,6 +187,9 @@ input {
     cursor: pointer;
 }
 
+.comment-create-date-text {
+    font-size: 16px;
+}
 
 
 /*

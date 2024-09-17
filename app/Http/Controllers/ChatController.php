@@ -27,6 +27,7 @@ class ChatController extends Controller
         $currentRoom = ChatRoom::findOrFail($room_id);
         $chats = $currentRoom->chats();
         $user = Auth::user();
+        $search = NULL;
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -34,7 +35,7 @@ class ChatController extends Controller
         }
         $chats = $chats->with('chats_include_replying_chat')->get();
 
-        return view('chat.index', compact('chatRooms', 'currentRoom', 'chats', 'user'));
+        return view('chat.index', compact('chatRooms', 'currentRoom', 'chats', 'user', 'search'));
     }//Index
 
     public function store(Request $request, $room_id)

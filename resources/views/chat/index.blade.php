@@ -52,132 +52,133 @@
                 </div>
 
                 <div class="chat-background">
-                {{-- My User and Search Section --}}
-                <div class="d-flex mb-3 p-2 shadow align-items-center">
-                    {{-- User Icon --}}
-                    @if (Auth::user()->avatar)
-                        <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
-                    @else
-                        <i class="fa-solid fa-circle-user avatar fa-2x me-3"></i>
-                    @endif
-                    {{-- User Name --}}
-                    <span class="fw-bold me-2">
-                        @if (auth()->user()->username)
-                            {{ auth()->user()->username }}
+                    {{-- My User and Search Section --}}
+                    <div class="d-flex mb-3 py-3 px-4 shadow align-items-center">
+                        {{-- User Icon --}}
+                        @if (Auth::user()->avatar)
+                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
                         @else
-                            {{ auth()->user()->name }}
+                            <i class="fa-solid fa-circle-user avatar fa-2x me-3"></i>
                         @endif
-                    </span>
-                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-username-{{ auth()->user()->id }}">
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
-                    </a>
-                    @include('chat.contents.modals.edit_username')
-                    {{-- <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" class="chat-form"> --}}
-                    {{-- Search keyword --}}
-                    <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" class="mb-0">
-                        <div class="search_box ms-5">
-                            @csrf
-                            <input type="text" name="search" placeholder="search..." class="chats-search-component chats-search-keyword form-control shadow chat-other-btn ms-4" value="">
-                            {{-- <button type="submit">
-                                <i class="fa-solid fa-search chat-other-btn"></i>
-                            </button> --}}
-                        </div> 
-                    </form>
+                        {{-- User Name --}}
+                        <span class="fw-bold me-2">
+                            @if (auth()->user()->username)
+                                {{ auth()->user()->username }}
+                            @else
+                                {{ auth()->user()->name }}
+                            @endif
+                        </span>
+                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-username-{{ auth()->user()->id }}">
+                            <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                        </a>
+                        @include('chat.contents.modals.edit_username')
+                        {{-- <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" class="chat-form"> --}}
+                        {{-- Search keyword --}}
+                        <form action="{{ route('chat.chats', $currentRoom->id) }}" method="get" class="mb-0">
+                            <div class="search_box ms-5">
+                                @csrf
+                                <input type="text" name="search" placeholder="search..." class="chats-search-component chats-search-keyword form-control shadow chat-other-btn ms-4" value="{{ $search }}">
+                                {{-- <button type="submit">
+                                    <i class="fa-solid fa-search chat-other-btn"></i>
+                                </button> --}}
+                            </div> 
+                        </form>
 
 
 
-                        {{-- <div class="chat-form-search">
-                            <input type="text" id="search" name="search" placeholder="search keyword" class="chat-search-input form-control" value="">
-                            <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
-                                <i class="fa-solid fa-search"></i>
-                            </button>
-                        </div> --}}
-                        {{-- value ={{ $search }} --}}
-                        {{-- @if ($search)
-                            <p class="text-muted mb-4 small">Search results for '<span class="fw-bold">{{ $search }}</span>'</p>
-                        @endif --}}
+                            {{-- <div class="chat-form-search">
+                                <input type="text" id="search" name="search" placeholder="search keyword" class="chat-search-input form-control" value="">
+                                <button type="submit" class="btn bg-none btn-outline-secondary btn-lg">
+                                    <i class="fa-solid fa-search"></i>
+                                </button>
+                            </div> --}}
+                            {{-- value ={{ $search }} --}}
+                            {{-- @if ($search)
+                                <p class="text-muted mb-4 small">Search results for '<span class="fw-bold">{{ $search }}</span>'</p>
+                            @endif --}}
 
-                    {{-- </form> --}}
-                </div>
+                        {{-- </form> --}}
+                    </div>
 
-                {{-- Chats Section --}}
-                <div id="chat-messages" class="chat-messages">
-                    @foreach ($chats as $chat)
-                        <div id="chat-message" class="chat-message {{ $chat->user_id == auth()->id() ? 'my-message' : 'other-message' }}">
-                            {{-- User avatar and name (only other's chat) --}}
-                            <div class="chat-content">
-                                @if ($chat->user_id != auth()->id())
-                                <div class="chat-user">
-                                    {{-- avatar --}}
-                                    @if ($chat->user->avatar)
-                                        <img src="{{ $chat->user->avatar }}" alt="avatar" class="rounded-circle avatar">
-                                    @else
-                                        <i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>
-                                    @endif
-                                    {{-- username --}}
-                                    @if ($chat->user->username)
-                                        <span class="me-1">{{ $chat->user->username }}</span>
-                                    @else
-                                        <span class="me-1">{{ $chat->user->name }}</span>
-                                    @endif
-                                </div>
-                                @endif
-                            </div>
-                            {{-- Chat Body --}}
-                            <div class="bubble">
-                                {{-- Reply Body --}}
-                                @if ($chat->chats_include_replying_chat)
-                                    <div class="text-muted">
-                                            <span class="fs-6">{{ $chat->chats_include_replying_chat->created_at }}</span>
-                                        <div class="mb-3 fs-6">
-                                            {{ $chat->chats_include_replying_chat->body }}
-                                        </div>
-                                        <hr>
+                    {{-- Chats Section --}}
+                    <div id="chat-messages" class="chat-messages px-5">
+                        @foreach ($chats as $chat)
+                            <div id="chat-message" class="chat-message {{ $chat->user_id == auth()->id() ? 'my-message' : 'other-message' }}">
+                                {{-- User avatar and name (only other's chat) --}}
+                                <div class="chat-content">
+                                    @if ($chat->user_id != auth()->id())
+                                    <div class="chat-user">
+                                        {{-- avatar --}}
+                                        @if ($chat->user->avatar)
+                                            <img src="{{ $chat->user->avatar }}" alt="avatar" class="rounded-circle avatar">
+                                        @else
+                                            <i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>
+                                        @endif
+                                        {{-- username --}}
+                                        @if ($chat->user->username)
+                                            <span class="me-1">{{ $chat->user->username }}</span>
+                                        @else
+                                            <span class="me-1">{{ $chat->user->name }}</span>
+                                        @endif
                                     </div>
-                                @endif
-                                {{-- Body --}}
-                                <p>{{ $chat->body }}</p>
-                            </div>
-                            {{-- Chat Info --}}
-                            <div class="message-info-area">
-                                {{-- Reply Link--}}
-                                <div class="d-flex flex-wrap">
-                                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-{{ $chat->id }}">
-                                        <i class="fa-solid fa-reply reply-icon"></i>
-                                        <span class="reply-text">Reply</span>
-                                    </a>
-                                    @include('chat.contents.modals.reply')
-                                </div>
-                                {{-- Chat DateTime --}}
-                                <div class="message-time">{{ $chat->created_at->format('m/d H:i') }}</div>
-                                {{-- Chat Icons --}}
-                                <div class="chat-icons-area d-flex">
-                                    @if ($chat->user_id == auth()->id())
-                                        <div class="d-flex flex-wrap">
-                                            {{-- Edit (only my chat) --}}
-                                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-post-{{ $chat->id }}">
-                                                <i class="fa-regular fa-pen-to-square edit-icon icon-sm"></i>
-                                            </a>
-                                            @include('chat.contents.modals.edit')
-                                            {{-- Delete (only my chat) --}}
-                                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#delete-post-{{ $chat->id }}">
-                                                <i class="fa-regular fa-trash-can delete-icon icon-sm"></i>
-                                            </a>
-                                            @include('chat.contents.modals.delete')
-                                        </div>
                                     @endif
                                 </div>
+                                {{-- Chat Body --}}
+                                <div class="bubble">
+                                    {{-- Reply Body --}}
+                                    @if ($chat->chats_include_replying_chat)
+                                        <div class="text-muted">
+                                                <span class="fs-6">{{ $chat->chats_include_replying_chat->created_at }}</span>
+                                            <div class="mb-3 fs-6">
+                                                {{ $chat->chats_include_replying_chat->body }}
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    @endif
+                                    {{-- Body --}}
+                                    <p>{{ $chat->body }}</p>
+                                </div>
+                                {{-- Chat Info --}}
+                                <div class="message-info-area">
+                                    {{-- Reply Link--}}
+                                    <div class="d-flex flex-wrap">
+                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-{{ $chat->id }}">
+                                            <i class="fa-solid fa-reply reply-icon"></i>
+                                            <span class="reply-text">Reply</span>
+                                        </a>
+                                        @include('chat.contents.modals.reply')
+                                    </div>
+                                    {{-- Chat DateTime --}}
+                                    <div class="message-time">{{ $chat->created_at->format('m/d H:i') }}</div>
+                                    {{-- Chat Icons --}}
+                                    <div class="chat-icons-area d-flex">
+                                        @if ($chat->user_id == auth()->id())
+                                            <div class="d-flex flex-wrap">
+                                                {{-- Edit (only my chat) --}}
+                                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-post-{{ $chat->id }}">
+                                                    <i class="fa-regular fa-pen-to-square edit-icon icon-sm"></i>
+                                                </a>
+                                                @include('chat.contents.modals.edit')
+                                                {{-- Delete (only my chat) --}}
+                                                <a href="#" class="text-decoration-none ms-2" data-bs-toggle="modal" data-bs-target="#delete-post-{{ $chat->id }}">
+                                                    <i class="fa-regular fa-trash-can delete-icon icon-sm"></i>
+                                                </a>
+                                                @include('chat.contents.modals.delete')
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+            
+                    <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form" class="chat-input-area">
+                            @csrf
+                            <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
+                            <input type="text" id="body" name="body" placeholder="message" class="chat-input">
+                            <button type="submit" id="submit" onclick="sendMessage()">Send</button>
+                    </form>
                 </div>
-        
-                <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form" class="chat-input">
-                        @csrf
-                        <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">  <!-- 現在のユーザーIDを送信 -->
-                        <input type="text" id="body" name="body" placeholder="message">
-                        <button type="submit" id="submit" onclick="sendMessage()">send</button>
-                </form>
             </div>
         </div>
     </div>
