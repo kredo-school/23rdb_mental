@@ -18,12 +18,15 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $user = $this->user;
+        $all_users = $this->user->withTrashed()->orderBy('name')->paginate(20);
+        $users_count = $this->user;
 
         if ($request->search) {
             //search results
-            $all_users = $this->user->where('name', 'LIKE', '%' . $request->search . '%')->orderBy('name')->withTrashed()->paginate(10);
+            $all_users = $this->user->where('name', 'LIKE', '%' . $request->search . '%')->orderBy('name')->withTrashed()->paginate(20);
             //SELECT * FROM users WHERE username LIKE '%keyword%'
+
+            $users_count = $all_users;
 
         } else {
             $sort = $request->input('sort', 'name');
@@ -37,12 +40,14 @@ class UserController extends Controller
                 $query->orderBy('id');
             }
 
-            $all_users = $query->withTrashed()->paginate(10);
+            $all_users = $query->withTrashed()->paginate(20);
+
+            $users_count = $all_users;
         }
 
         return view('admin.users.index')
             ->with('all_users', $all_users)
-            ->with('user', $user)
+            ->with('users_count', $users_count)
             ->with('search', $request->search);
     }
 

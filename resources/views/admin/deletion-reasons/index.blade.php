@@ -26,6 +26,7 @@
                                     </option>
                                 </select>
                             </div>
+                        </form>
                             {{-- <button
                             class="btn dropdown-toggle btn-link text-decoration-none text-muted quote-other-btn w-75 bg-white shadow"
                             type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">Latest
@@ -40,24 +41,28 @@
                         @auth
                             <form action="{{ route('deletion-reasons.index') }}" method="get">
                                 <input type="text" name="search" placeholder="search..." class="form-control w-100 shadow value="{{ $search }}">
+                            </form>
                         @endauth
-
-                            @if ($search)
-                                <p class="text-muted mb-4 small">Search results for '<span
-                                        class="fw-bold">{{ $search }}</span>'</p>
-                            @endif
-                        </form>
-
                     </div>
+                </div><div class="search-bar">
+                    @if ($search)
+                        <p class="my-0 py-0 admin-drs-text">Result for :
+                            {{ $search }}</p>
+                    @endif
+                    <p class="my-0 py-0 admin-drs-text">
+
+                        Total :
+                        <span>{{ $deletion_reasons_count->total() }}</span>
+                        Users
+                    </p>
                 </div>
+
 
                 <table class="table align-middle bg-white mt-0 table-bordered table-hover table-deletion-reasons">
                     <thead class="small table-secondary border">
                         <tr class="">
                             <th class="text-center col-date">Date</th>
-                            <th class="text-center col-reason">Deletion Reasons <span class="small text-muted total-number">
-                                (Total : {{ $deletion_reason->count() }})
-                            </span></th>
+                            <th class="text-center col-reason">Deletion Reasons</th>
                         </tr>
                     </thead>
 

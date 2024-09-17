@@ -307,6 +307,10 @@ h3 {
     margin-right: 10px;
 }
 
+.mood-cancel a {
+    color: #DC568F;
+}
+
 #modal-calendar {
     display: none; /* Hidden by default */
     position: fixed;
@@ -416,6 +420,34 @@ a #calendar-container .fc-toolbar-title {
 }
 
 /* profile.show */
+.profile-avatar {
+    font-size: 400px;
+    color: #33a071;
+}
+
+img.profile-avatar {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    display: flex;
+    border: 3px solid #33a071;
+    border-radius: 100%;
+}
+
+.modal-profile-avatar {
+    font-size: 200px;
+    color: #33a071;
+}
+
+img.modal-profile-avatar {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: flex;
+    border: 3px solid #33a071;
+    border-radius: 100%;
+}
+
 div .btn-delete-account {
     color: #DC568F;
 }
@@ -445,6 +477,28 @@ a.mood {
 }
 
 /* mood.index */
+.mood-icon-sm {
+    font-size: 50px;
+    color: #fff;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+    border: 3px solid #33a071;
+    border-radius: 100%;
+}
+
+
+.mood-avatar-sm {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+    border: 3px solid #33a071;
+    border-radius: 100%;
+    /* margin-right: 15px; */
+}
 button.button-feedback-edit {
     color: #24AC72;
 
@@ -467,7 +521,25 @@ p a.feedback {
 /* admin/users.index */
 input:checked + .user-slider {
     background-color: #24AC72;
-  }
+}
+
+.admin-users-text {
+    color: #42484D;
+
+}
+
+.users-icon-sm {
+    font-size: 2rem;
+    color: #56DCA3;
+}
+
+.users-avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid #56DCA3;
+    border-radius: 100%;
+}
 
  /* admin/deletion-reasons.index */
 button.dr-more-details {
@@ -483,6 +555,11 @@ button.dr-more-details:hover {
 .dr-modal-cancel {
     color: #DC568F;
 }
+
+.admin-drs-text {
+    color: #42484d;
+}
+
 
  /* sidebar */
 div.body_sidebar {
