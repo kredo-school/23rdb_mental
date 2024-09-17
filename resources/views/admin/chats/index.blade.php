@@ -67,7 +67,7 @@
                     </form>
                 </div>
                 <div>
-                    <p class="pb-0 mb-0 ms-4">
+                    <p class="total-count-chats pb-0 mb-0 ms-4">
                         Total : 
                         <span>{{ $chats_count }}</span>
                         Chats
