@@ -36,7 +36,7 @@
                 {{-- <div class="container-mood"> --}}
                 <div class="modal-content bg-white">
                     <div class="modal-header border-0 mt-3">
-                        <div class="row d-flex">
+                        <div class="row d-flex w-100">
                             <div class="col-auto">
                                 {{-- Remichan --}}
                                 <div class="remi">
@@ -53,7 +53,7 @@
                                     <div class="col-1 text-end">
                                         {{-- <div class="text-end"> --}}
                                         <button type="button" class="btn border-0 btn-lg" data-bs-dismiss="modal">
-                                            <i class="fa-regular  fa-circle-xmark mood-modal-cancel"></i>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalButton"></button>
                                         </button>
                                         {{-- </div> --}}
                                     </div>
