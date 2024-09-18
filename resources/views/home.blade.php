@@ -287,11 +287,11 @@
     </div>
 
     {{-- Option --}}
-    <div class="container-option m-5">
+    {{-- <div class="container-option m-5">
         <div class="card bg-white py-3 px-5 border-0">
             <p class="text-center">Option</p>
         </div>
-    </div>
+    </div> --}}
 
     <script>
         $(document).ready(function() {
@@ -300,7 +300,7 @@
     </script>
 
     {{-- Footer --}}
-    @extends('components.footer')
+    @include('components.footer')
 
 
 @endsection
