@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="{{ asset('css/users.css') }}">
 <script src="{{ asset('js/deletion-reason.js') }}"></script>
+@admin
+    @extends('layouts.app')
 
-@extends('layouts.app')
+    @extends('components.navbar-each')
 
-@extends('components.navbar-each')
-
-@section('title', 'Admin: User List')
+    @section('title', 'Admin: User List')
 
 @section('content')
 
@@ -46,7 +46,7 @@
                 <p class="my-0 py-0 admin-users-text">
 
                     Total :
-                    <span>{{ $users_count->total() }}</span>{{ $users_count->total()==1 ? ' User' : ' Users' }}
+                    <span>{{ $users_count->total() }}</span>{{ $users_count->total() == 1 ? ' User' : ' Users' }}
                 </p>
             </div>
 
@@ -114,3 +114,4 @@
     </div>
 
 @endsection
+@endadmin
