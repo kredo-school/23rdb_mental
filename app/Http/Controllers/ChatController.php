@@ -47,10 +47,13 @@ class ChatController extends Controller
                 'body' => 'required|string|max:500',
             ]);
 
+            $replyChatId = $request->filled('replying_chat_id') ? $request->input('replying_chat_id') : null;
+
             $chat = Chat::create([
                 'room_id' => $room_id,
                 'user_id' => $validated['user_id'],
                 'body' => $validated['body'],
+                'replying_chat_id' => $replyChatId, 
             ]);
             // dd($chat);
 
@@ -75,7 +78,7 @@ class ChatController extends Controller
                 // 'replying_body' => $chat->chats_include_replying_chat->body,
             ];
             if ($chat->replying_chat_id) {
-                $data['replying_created_at'] = Chat::where('id', $chat->replying_chat_id)->first()->created_at;
+                $data['replying_created_at'] = Chat::where('id', $chat->replying_chat_id)->first()->created_at->format('m/d H:i');
                 $data['replying_body'] = Chat::where('id', $chat->replying_chat_id)->first()->body;
             }
             $pusher->trigger('chat-room-' . $room_id, 'new-message', $data);

@@ -128,7 +128,7 @@
                                     {{-- Reply Body --}}
                                     @if ($chat->chats_include_replying_chat)
                                         <div class="text-muted">
-                                                <span class="fs-6">{{ $chat->chats_include_replying_chat->created_at }}</span>
+                                                <span class="fs-6">{{ $chat->chats_include_replying_chat->created_at->format('m/d H:i') }}</span>
                                             <div class="mb-3 fs-6">
                                                 {{ $chat->chats_include_replying_chat->body }}
                                             </div>
@@ -142,11 +142,11 @@
                                 <div class="message-info-area">
                                     {{-- Reply Link--}}
                                     <div class="d-flex flex-wrap">
-                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-{{ $chat->id }}">
+                                        <a href="#" class="text-decoration-none" data-chat-id="{{ $chat->id }}" onclick="setReply('{{ $chat->id }}', '{{ $chat->body }}')">
                                             <i class="fa-solid fa-reply reply-icon"></i>
                                             <span class="reply-text">Reply</span>
                                         </a>
-                                        @include('chat.contents.modals.reply')
+                                        {{-- @include('chat.contents.modals.reply') --}}
                                     </div>
                                     {{-- Chat DateTime --}}
                                     <div class="message-time">{{ $chat->created_at->format('m/d H:i') }}</div>
@@ -172,11 +172,19 @@
                         @endforeach
                     </div>
             
-                    <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form" class="chat-input-area">
-                            @csrf
-                            <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
-                            <input type="text" id="body" name="body" placeholder="message" class="chat-input">
-                            <button type="submit" id="submit" onclick="sendMessage()">Send</button>
+                    <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form">
+                        @csrf
+                        <div class="chat-input-area">
+                            <div id="reply-to-message" class="chat-input-area-reply">
+                                <p id="reply-to-body"></p>
+                                <input type="hidden" id="replying_chat_id" name="replying_chat_id" value="">
+                            </div>
+                            <div class="chat-input-area-message">
+                                <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
+                                <input type="text" id="body" name="body" placeholder="message" class="chat-input">
+                                <button type="submit" id="submit" onclick="sendMessage()">Send</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -244,7 +252,7 @@
             if (data.replying_body) {
                 newMessage += `        {{-- Reply Body --}}`;
                 newMessage += `            <div class="text-muted">`;
-                newMessage += `                    <span class="fs-6">${data.replying_created_at}/span>`;
+                newMessage += `                    <span class="fs-6">${data.replying_created_at}</span>`;
                 newMessage += `                <div class="mb-3 fs-6">`;
                 newMessage += `                    ${data.replying_body}`;
                 newMessage += `                </div>`;
@@ -438,5 +446,16 @@
             alert('An error occurred while sending the message.');
         });
     });
+
+    function setReply(chatId, chatBody) {
+        const replyToMessage = document.getElementById('reply-to-message');
+        const replyToBody = document.getElementById('reply-to-body');
+        
+        replyToMessage.style.display = 'block';
+        replyToBody.innerText = chatBody;
+
+        document.getElementById('replying_chat_id').value = chatId;
+    }
+
 </script>
 @endsection
