@@ -19,7 +19,6 @@ use App\Http\Controllers\Admin\ChatsController;
 use App\Http\Controllers\Admin\DeletionReasonController;
 use App\Http\Controllers\Admin\UserController;
 
-use App\Models\User;
 
 
 Route::get('/', function () {
@@ -159,11 +158,6 @@ Route::patch('/chat/{id}/update', [ChatController::class, 'update'])->name('chat
 Route::delete('/chat/{id}/destroy', [ChatController::class, 'destroy'])->name('chat.destroy');
 Route::patch('/chat/{id}/reply', [ChatController::class, 'reply'])->name('chat.reply');
 Route::patch('/chat/user/{id}/update', [ChatController::class, 'update_username'])->name('chat.update.username');
-
-Route::get('/user-avatar/{id}', function ($id) {
-    $user = User::find($id);
-    return response()->json(['avatar' => $user->avatar]);
-});
 
 /**
  * route related to contactus
