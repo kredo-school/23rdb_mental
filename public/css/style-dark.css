@@ -289,6 +289,11 @@ h3 {
     margin-right: 10px;
 }
 
+/* login mood entry */
+.mood-cancel a {
+    color: #FC4646;
+}
+
 
 /* CALENDAR */
 
@@ -402,6 +407,33 @@ a #calendar-container .fc-toolbar-title {
 
 
 /* profile.show */
+.profile-avatar {
+    font-size: 400px;
+    color: #6f7172;
+}
+
+img.profile-avatar {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    display: flex;
+    border: 3px solid #6f7172;
+    border-radius: 100%;
+}
+
+.modal-profile-avatar {
+    font-size: 200px;
+    color: #6f7172;
+}
+
+img.modal-profile-avatar {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: flex;
+    border: 3px solid #6f7172;
+    border-radius: 100%;
+}
 div .btn-delete-account {
     color: #FC4646;
 }
@@ -430,6 +462,29 @@ a.mood {
 }
 
 /* mood.index */
+.mood-icon-sm {
+    font-size: 50px;
+    color: #fff;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+    border: 3px solid #6f7172;
+    border-radius: 100%;
+}
+
+
+.mood-avatar-sm {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+    border: 3px solid #6f7172;
+    border-radius: 100%;
+    /* margin-right: 15px; */
+}
+
 button.button-feedback-edit {
     color: #0068E2;
 
@@ -454,6 +509,23 @@ input:checked + .user-slider {
     background-color: #0068E2;
 }
 
+.admin-users-text {
+    color: #fff;
+}
+
+.users-icon-sm {
+    font-size: 2rem;
+    color: #343434;
+}
+
+.users-avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid #343434;
+    border-radius: 100%;
+}
+
 /* admin/deletion-reasons.index */
 button.dr-more-details {
     color: #0068E2;
@@ -467,6 +539,10 @@ button.dr-more-details:hover {
 
 .dr-modal-cancel {
     color: #FC4646;
+}
+
+.admin-drs-text {
+    color: #fff;
 }
 
  /* sidebar */
@@ -483,3 +559,4 @@ a.sidebar_faq {
 .total-count-chats {
     color: #fff;
 }
+

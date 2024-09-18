@@ -324,6 +324,11 @@ h3 {
     background-image: url('/images/moods/default.png'); /* Fallback image */
 }
 
+/* login mood entry */
+.mood-cancel a {
+    color: #FC6746;
+}
+
 #modal-calendar {
     display: none; /* Hidden by default */
     position: fixed;
@@ -433,6 +438,34 @@ a #calendar-container .fc-toolbar-title {
 }
 
 /* profile.show */
+.profile-avatar {
+    font-size: 400px;
+    color: #e3ae01;
+}
+
+img.profile-avatar {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    display: flex;
+    border: 3px solid #e3ae01;
+    border-radius: 100%;
+}
+
+.modal-profile-avatar {
+    font-size: 200px;
+    color: #e3ae01;
+}
+
+img.modal-profile-avatar {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: flex;
+    border: 3px solid #e3ae01;
+    border-radius: 100%;
+}
+
 div .btn-delete-account {
     color: #FC6746;
 }
@@ -462,6 +495,28 @@ a.mood {
 }
 
 /* mood.index */
+.mood-icon-sm {
+    font-size: 50px;
+    color: #fff;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+    border: 3px solid #e3ae01;
+    border-radius: 100%;
+}
+
+
+.mood-avatar-sm {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+    border: 3px solid #e3ae01;
+    border-radius: 100%;
+}
+
 button.button-feedback-edit {
     color: #5D84F4;
 
@@ -486,6 +541,23 @@ input:checked + .user-slider {
     background-color: #5D84F4;
 }
 
+.admin-users-text {
+    color: #fff;
+}
+
+.users-icon-sm {
+    font-size: 2rem;
+    color: #FBBC06;
+}
+
+.users-avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid #FBBC06;
+    border-radius: 100%;
+}
+
   /* admin/deletion-reasons.index */
 button.dr-more-details {
     color: #5D84F4;
@@ -499,6 +571,10 @@ button.dr-more-details:hover {
 
 .dr-modal-cancel {
     color: #FC6746;
+}
+
+.admin-drs-text {
+    color: #fff;
 }
 
  /* sidebar */

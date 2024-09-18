@@ -62,7 +62,7 @@ a.sidebar_contact {
 }
 
 .sidebar_faq{
-    font-family:  inherit;
+    font-family: inherit;
     font-size: 16px;
     color: #42484D;
     font-weight: 400;
@@ -77,8 +77,13 @@ a.sidebar_contact {
     list-style: none;
 }
 
-/* sidebar admin ---------------*/
+.sidebar a:hover,
+.sidebar_icon a:hover,
+.ls_sidebar_item a:hover {
+    opacity: 0.6;
+}
 
+/* sidebar admin ---------------*/
 ul.ls_sidebar_admin {
     position: relative;
 }
@@ -95,56 +100,32 @@ ul.ls_sidebar_admin {
     line-height: 2;
 }
 
-.ls_sidebar_item a:hover {
-    font-family: inherit;
-    color: #f9f9f9;
-    text-decoration: none;
-    background:  rgba(52, 52, 52, 0.5);
-} 
-
-/* Active Page Function main menu---------------*/
-p.Mood.Tracking_mood{
+/* Active Page Function main menu---------*/
+p.Mood.Tracking_mood,
+p.Chat_chat,
+p.Journal_journal,
+p.Quote_quote {
     background-color: rgb(137, 129, 129);
     color: white;
-    width: 190px;
+    width: 180px;
     height: 40px;
     border-radius: 5px;
 }
 
-p.Journal_journal{
-    background-color: rgb(137, 129, 129);
-    color: white;
-    width: 210px;
-    height: 40px;
-    border-radius: 5px;
-}
-
-/* p.Admin.Quotes_quote{
-    background-color: rgb(137, 129, 129);
-    color: white;
-    width: 220px;
-    height: 40px;
-    border-radius: 5px;
-} */
-
-p.Chat_chat{
-    background-color: rgb(137, 129, 129);
-    color: white;
-    width: 210px;
-    height: 40px;
-    border-radius: 5px;
-}
-
-/* Active Page Function of admin menu ---------------*/
-#users_active :target,
-#quote_active :target,
-#chat_active :target,
-#inquiry_active :target,
-#deletion_active :target {
+/* Active Page Function of admin menu ------*/
+.selected_sb_admin {
     background-color: rgb(137, 129, 129);
     color: white;
     font-weight: 400;
-    width: 180px;
-    height: 20px;
+    width: 150px;
     border-radius: 5px;
+}
+
+.selected_sb_admin:before {
+    background-color: rgb(137, 129, 129);
+    z-index: -1;
+}
+
+.selected_sb_admin a {
+    color: white;
 }

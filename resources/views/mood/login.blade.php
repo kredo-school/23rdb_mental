@@ -12,9 +12,9 @@
             <div class="card p-5 bg-white shadow-lg">
                 {{-- Cancel Button --}}
                 <div class="row mb-3">
-                    <div class="col-11"></div>
-                    <div class="col-auto ms-end">
-                        <a href="{{ route('home') }}"><i class="fa-regular fa-circle-xmark small"></i></a>
+                    <div class="col-10"></div>
+                    <div class="col-2 pe-0 align-self-end me-0 mood-cancel">
+                        <a href="{{ route('home') }}" class="text-decoration-none"><i class="fa-solid fa-angles-right"></i> Skip</a>
                     </div>
                 </div>
                 <div class="row">
