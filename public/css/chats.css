@@ -436,6 +436,8 @@ body {
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
+    vertical-align: middle;
+    
 }
 
 /* Chat Body */

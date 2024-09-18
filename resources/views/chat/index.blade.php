@@ -172,7 +172,8 @@
                         @endforeach
                     </div>
             
-                    <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form">
+                    {{-- <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form"> --}}
+                    <form action="#" id="chat-form">
                         @csrf
                         <div class="chat-input-area">
                             <div id="reply-to-message" class="chat-input-area-reply">
@@ -181,6 +182,7 @@
                             </div>
                             <div class="chat-input-area-message">
                                 <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
+                                <input type="hidden" id="room_id" name="room_id" value="{{ $currentRoom->id }}">
                                 <input type="text" id="body" name="body" placeholder="message" class="chat-input">
                                 <button type="submit" id="submit" onclick="sendMessage()">Send</button>
                             </div>
@@ -267,7 +269,7 @@
             newMessage += `    <div class="message-info-area">`;
             newMessage += `        {{-- Reply Link--}}`;
             newMessage += `        <div class="d-flex flex-wrap">`;
-            newMessage += `            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-${data.id}">`;
+            newMessage += `            <a href="#" class="text-decoration-none" data-chat-id="${data.id}" onclick="setReply('${data.id}', '${data.message}')">`;
             newMessage += `                <i class="fa-solid fa-reply reply-icon"></i>`;
             newMessage += `                <span class="reply-text">Reply</span>`;
             newMessage += `            </a>`;
@@ -303,7 +305,6 @@
         },
             error: function(xhr) {
                 console.log('Error fetching avatar:', xhr);
-                newMessage += `<i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>`;
             }
         });
     });
@@ -447,6 +448,10 @@
         });
     });
 
+
+
+
+
     function setReply(chatId, chatBody) {
         const replyToMessage = document.getElementById('reply-to-message');
         const replyToBody = document.getElementById('reply-to-body');
@@ -456,6 +461,37 @@
 
         document.getElementById('replying_chat_id').value = chatId;
     }
+
+
+    function sendMessage() {
+        
+        let user_id = document.getElementById('user_id').value;
+        let body = document.getElementById('body').value;
+        let replying_chat_id = document.getElementById('replying_chat_id') ? document.getElementById('replying_chat_id').value : null;
+        let room_id = document.getElementById('room_id').value;
+
+        fetch(`/chat/${room_id}/send`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ user_id, body, replying_chat_id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                console.log(data.status);
+            } else if (data.error) {
+                console.error(data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+
 
 </script>
 @endsection

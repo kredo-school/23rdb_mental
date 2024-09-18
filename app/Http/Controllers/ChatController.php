@@ -89,7 +89,10 @@ class ChatController extends Controller
             \Log::info('test ' . $chat->user->name);
 
             // return response()->json(['status' => 'Message sent successfully!']);
-            return redirect()->route('chat.chats', $room_id);
+
+            // return redirect()->route('chat.chats', $room_id);
+            return response()->json(['status' => 'Message sent successfully!', 'chat' => $chat]);
+
             // return response()->json(['status' => 'Message sent successfully!', 'chat' => $chat]);
 
             //code...
