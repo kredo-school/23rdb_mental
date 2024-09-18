@@ -56,9 +56,9 @@
                     <div class="d-flex mb-3 py-3 px-4 shadow align-items-center">
                         {{-- User Icon --}}
                         @if (Auth::user()->avatar)
-                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
+                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar users-avatar-sm">
                         @else
-                            <i class="fa-solid fa-circle-user avatar fa-2x me-3"></i>
+                            <i class="fa-solid fa-circle-user avatar fa-2x me-3 users-icon-sm"></i>
                         @endif
                         {{-- User Name --}}
                         <span class="fw-bold me-2">
@@ -110,9 +110,9 @@
                                     <div class="chat-user">
                                         {{-- avatar --}}
                                         @if ($chat->user->avatar)
-                                            <img src="{{ $chat->user->avatar }}" alt="avatar" class="rounded-circle avatar">
+                                            <img src="{{ $chat->user->avatar }}" alt="avatar" class="rounded-circle avatar users-avatar-sm">
                                         @else
-                                            <i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>
+                                            <i class="fa-solid fa-circle-user avatar fa-2x me-1 users-icon-sm"></i>
                                         @endif
                                         {{-- username --}}
                                         @if ($chat->user->username)
@@ -198,6 +198,8 @@
 @section('scripts')
 <!-- PusherのJavaScriptライブラリをCDN経由で読み込む -->
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+{{-- <script src="{{ asset('js/chats.js') }}"></script> --}}
+
 <script>
 
     //  Pusher.logToConsole = true;
@@ -234,9 +236,9 @@
                 newMessage += `        <div class="chat-user">`;
 
                 if (response.avatar) {
-                        newMessage += `<img src="${response.avatar}" alt="avatar" class="rounded-circle avatar">`;
+                        newMessage += `<img src="${response.avatar}" alt="avatar" class="rounded-circle avatar users-avatar-sm">`;
                     } else {
-                        newMessage += `<i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>`;
+                        newMessage += `<i class="fa-solid fa-circle-user avatar fa-2x me-1 users-icon-sm"></i>`;
                     }
 
                 if (data.username) {
@@ -313,6 +315,20 @@
     document.addEventListener('DOMContentLoaded', function() {
         // alert('Page has loaded');
         scrollToBottom();
+
+        const chats = @json($chats);
+        if (Array.isArray(chats) && chats.length > 0) {
+            chats.forEach(chat => {
+                $('#edit-post-' + chat.id).on('shown.bs.modal', function () {
+                    $('#chat_body_edit_' + chat.id).trigger('focus');
+                });
+            });
+        } else {
+            console.error("chats is not an array or it's empty");
+        }
+        $('#edit-username-' + document.getElementById('user_id').value).on('shown.bs.modal', function () {
+            $('#chat_username').trigger('focus');
+        });
     });
 
     function scrollToBottom() {

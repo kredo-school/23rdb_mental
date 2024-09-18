@@ -11,7 +11,7 @@
                 @method('PATCH')
                 <div class="modal-body">
                     <div class="mt-3">
-                        <input type="text" name="chat_body" id="chat_body" class="form-control rounded-3" placeholder="What's on your mind?" value="{{ $chat->body }}">
+                        <input type="text" name="chat_body" id="chat_body_edit_{{ $chat->id }}" class="form-control rounded-3" placeholder="What's on your mind?" value="{{ $chat->body }}">
                     </div>
                 </div>
                 <div class="modal-footer border-0">
