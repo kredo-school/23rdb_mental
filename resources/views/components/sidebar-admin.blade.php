@@ -15,7 +15,7 @@
                     <p class="sidebar_icon @yield('title')_mood"><img src="{{ asset('images/navigation/mood_side_icon.png') }}" alt="MoodTracking">Mood Tracking</p>
                 </a>
                 <a href="{{ route('journal.journals') }}" class="sidebar_icon">
-                    <p class="sidebar_icon @yield('title')_journal"><img src="{{ asset('images/navigation/journaling_side_icon.png') }}" alt="Journal">Journal</p>
+                    <p class="sidebar_icon @yield('title')_journal"><img src="{{ asset('images/navigation/journaling_side_icon.png') }}" alt="Journal">Journaling</p>
                 </a>
                 {{-- <a href="{{ route('quote.index') }}" class="sidebar_icon">
                     <p class="sidebar_icon @yield('title')_quote"><img src="{{ asset('images/navigation/quote_side_icon.png') }}" alt="Quote">Quote</p>
