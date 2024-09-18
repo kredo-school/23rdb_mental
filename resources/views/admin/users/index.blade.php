@@ -47,6 +47,7 @@
 
                     Total :
                     <span>{{ $users_count->total() }}</span>{{ $users_count->total() == 1 ? ' User' : ' Users' }}
+                    
                 </p>
             </div>
 
