@@ -30,7 +30,7 @@
                     {{-- 吹き出し線 --}}
 
                     {{-- <span class="ornament"></span>   --}}
-                    
+
 
                     {{-- <img src="{{ asset('images/main/bubblespeech.png') }}" alt="bubblespeech" class="bubblespeech"> --}}
                 {{-- </div> --}}
@@ -40,8 +40,8 @@
             <div class="col-8 d-flex align-items-center fade-in-text mx-0 quote-copy-parent">
                 {{-- quote itself --}}
 
-                @if ($quote->exists()) 
-               
+                @if ($quote->exists())
+
                 <p name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext text-center ps-3 mx-0 py-auto">
 
                     {{ $quote->quote }}
@@ -51,7 +51,7 @@
             <div class="col-2 align-self-end">
                 {{-- Author --}}
 
-                
+
                 <p class="text-start mb-0 home-author">By  {{ $quote->author }}</p>
 
 
@@ -100,16 +100,16 @@
                     </div>
 
             </div>
-               
+
 
             @else
             <div>
-                   <p>Coming soon....</p>    
-            </div>   
+                   <p>Coming soon....</p>
+            </div>
             @endif
-   
+
             {{-- <div class="col-1"></div> --}}
-                
+
 
             </div>
         </div>
@@ -209,20 +209,20 @@
                                         <p class="mb-0">&nbsp;</p>
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/notgood.png') }}"
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/notgood.png') }}"
                                             alt="great">
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
                                     </div>
                                 </div>
 

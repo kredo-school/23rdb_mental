@@ -60,8 +60,32 @@ body {
        -moz-filter: none;
             filter: none;
 
-    width: 120px;
-    height: 120px;
+    width: 45px;
+    height: 45px;
+}
+
+@media(min-width: 950px) {
+    .selectors input:checked +.selector {
+        width: 55px; height: 55px;
+    }
+}
+
+@media(min-width: 1200px) {
+    .selectors input:checked +.selector {
+        width: 70px; height: 70px;
+    }
+}
+
+@media(min-width: 1465px) {
+    .selectors input:checked +.selector {
+        width: 100px; height: 100px;
+    }
+}
+
+@media(min-width: 1600px) {
+    .selectors input:checked +.selector {
+        width: 120px; height: 120px;
+    }
 }
 
 .selector{
@@ -69,7 +93,7 @@ body {
     background-size:contain;
     background-repeat:no-repeat;
     /* display:inline-block; */
-    width: 100px; height:100px;
+    width: 40px; height:40px;
     -webkit-transition: all 100ms ease-in;
        -moz-transition: all 100ms ease-in;
             transition: all 100ms ease-in;
@@ -77,6 +101,31 @@ body {
        -moz-filter: brightness(1) grayscale(0) opacity(.9);
             filter: brightness(1) grayscale(0) opacity(.9);
 }
+
+@media(min-width: 950px) {
+    .selector {
+        width: 50px; height: 50px;
+    }
+}
+
+@media(min-width: 1200px) {
+    .selector {
+        width: 60px; height: 60px;
+    }
+}
+
+@media(min-width: 1465px) {
+    .selector {
+        width: 80px; height: 80px;
+    }
+}
+
+@media(min-width: 1600px) {
+    .selector {
+        width: 100px; height: 100px;
+    }
+}
+
 
 .selector:hover{
     -webkit-filter: brightness(1.2) grayscale(.5) opacity(1);
