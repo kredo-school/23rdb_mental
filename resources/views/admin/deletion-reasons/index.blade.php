@@ -52,8 +52,7 @@
                     <p class="my-0 py-0 admin-drs-text">
 
                         Total :
-                        <span>{{ $deletion_reasons_count->total() }}</span>
-                        Users
+                        <span>{{ $deletion_reasons_count->total() }}</span>{{ $deletion_reasons_count->total()==1 ? ' Deletion Reason' : ' Deletion Reasons' }}
                     </p>
                 </div>
 

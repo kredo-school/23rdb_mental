@@ -46,8 +46,7 @@
                 <p class="my-0 py-0 admin-users-text">
 
                     Total :
-                    <span>{{ $users_count->total() }}</span>
-                    Users
+                    <span>{{ $users_count->total() }}</span>{{ $users_count->total()==1 ? ' User' : ' Users' }}
                 </p>
             </div>
 
