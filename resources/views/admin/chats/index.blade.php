@@ -72,6 +72,9 @@
                         Total :
                         <span>{{ $chats_count }}</span>
                         Chats
+                    <p class="total-count-chats pb-0 mb-0 ms-4">
+                        Total :
+                        <span>{{ $chats_count }}</span>{{ $chats_count == 1 ? ' Chat' : ' Chats' }}
                     </p>
                 </div>
                 <table class="table align-middle bg-white chats-table mt-0">

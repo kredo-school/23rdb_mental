@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 @extends('components.navbar-each')
-@section('title', 'Journal')
+@section('title', 'Journaling')
 
 @section('content')
 @if(Auth::user()->role_id == 1)
@@ -121,7 +121,7 @@
                                 </a>
                             </div>
                             @include('journals.contents.modals.comment')
-                            <div class="ms-4 mt-3 w-100">
+                            <div class="ms-4 mt-3 w-75">
                                 @foreach ($journal->comments as $comment)
                                 <hr class="my-1">
                                 <div class="text-muted">
@@ -137,7 +137,7 @@
                 </div>
             @empty
                 <div class="lead text-muted text-center">
-                    No Journal Found.
+                    No Journaling Found.
                 </div>
             @endforelse
         </div>

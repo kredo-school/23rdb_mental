@@ -199,82 +199,106 @@
     var channelTest = pusherTest.subscribe('chat-room-{{ $currentRoom->id }}');
     channelTest.bind('new-message', function(data) {
         // alert(JSON.stringify(data));
-        console.log(data);
+        // console.log(data);
+
         const chatMessages = document.getElementById('chat-messages');
         var newMessage = ``;
-        newMessage += `<div id="chat-message" class="chat-message {{ $chat->user_id == auth()->id() ? 'my-message' : 'other-message' }}">`;
+
+        const authUserId = {{ auth()->id() }};
+
+        if (data.user_id === authUserId) {
+            newMessage += `<div id="chat-message" class="chat-message my-message">`;
+        } else {
+            newMessage += `<div id="chat-message" class="chat-message other-message">`;
+        }
+
         newMessage += `    {{-- User avatar and name (only other's chat) --}}`;
         newMessage += `    <div class="chat-content">`;
-        newMessage += `        @if ($chat->user_id != auth()->id())`;
-        newMessage += `        <div class="chat-user">`;
-        newMessage += `            {{-- avatar --}}`;
-        newMessage += `            @if ($chat->user->avatar)`;
-        newMessage += `                <img src="{{ $chat->user->avatar }}" alt="avatar" class="rounded-circle avatar">`;
-        newMessage += `            @else`;
-        newMessage += `                <i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>`;
-        newMessage += `            @endif`;
-        newMessage += `            {{-- username --}}`;
-        newMessage += `            @if ($chat->user->username)`;
-        newMessage += `                <span class="me-1">${data.username}</span>`;
-        newMessage += `            @else`;
-        newMessage += `                <span class="me-1">${data.name}</span>`;
-        newMessage += `            @endif`;
-        newMessage += `        </div>`;
-        newMessage += `        @endif`;
-        newMessage += `    </div>`;
-        newMessage += `    {{-- Chat Body --}}`;
-        newMessage += `    <div class="bubble">`;
-        newMessage += `        {{-- Reply Body --}}`;
-        newMessage += `        @if ($chat->chats_include_replying_chat)`;
-        newMessage += `            <div class="text-muted">`;
-        newMessage += `                    <span class="fs-6">{{ $chat->chats_include_replying_chat->created_at }}</span>`;
-        newMessage += `                <div class="mb-3 fs-6">`;
-        newMessage += `                    {{ $chat->chats_include_replying_chat->body }}`;
-        newMessage += `                </div>`;
-        newMessage += `                <hr>`;
-        newMessage += `            </div>`;
-        newMessage += `        @endif`;
-        newMessage += `        {{-- Body --}}`;
-        newMessage += `        <p>${data.message}</p>`;
-        newMessage += `    </div>`;
-        newMessage += `    {{-- Chat Info --}}`;
-        newMessage += `    <div class="message-info-area">`;
-        newMessage += `        {{-- Reply Link--}}`;
-        newMessage += `        <div class="d-flex flex-wrap">`;
-        newMessage += `            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-${data.id}">`;
-        newMessage += `                <i class="fa-solid fa-reply reply-icon"></i>`;
-        newMessage += `                <span class="reply-text">Reply</span>`;
-        newMessage += `            </a>`;
-        newMessage += `            @include('chat.contents.modals.reply')`;
-        newMessage += `        </div>`;
-        newMessage += `        {{-- Chat DateTime --}}`;
-        newMessage += `        <div class="message-time">{{ $chat->created_at->format('m/d H:i') }}</div>`;
-        newMessage += `        {{-- Chat Icons --}}`;
-        newMessage += `        <div class="chat-icons-area d-flex">`;
-        newMessage += `            @if ($chat->user_id == auth()->id())`;
-        newMessage += `                <div class="d-flex flex-wrap">`;
-        newMessage += `                    {{-- Edit (only my chat) --}}`;
-        newMessage += `                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-post-${data.id}">`;
-        newMessage += `                        <i class="fa-regular fa-pen-to-square edit-icon icon-sm"></i>`;
-        newMessage += `                    </a>`;
-        newMessage += `                    @include('chat.contents.modals.edit')`;
-        newMessage += `                    {{-- Delete (only my chat) --}}`;
-        newMessage += `                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#delete-post-${data.id}">`;
-        newMessage += `                        <i class="fa-regular fa-trash-can delete-icon icon-sm"></i>`;
-        newMessage += `                    </a>`;
-        newMessage += `                    @include('chat.contents.modals.delete')`;
-        newMessage += `                </div>`;
-        newMessage += `            @endif`;
-        newMessage += `        </div>`;
-        newMessage += `    </div>`;
-        newMessage += `</div>`;
-        chatMessages.insertAdjacentHTML('beforeend', newMessage);
-                
-        // メッセージが追加されたらスクロール
-        scrollToBottom();
+ 
+        $.ajax({
+            url: `/user-avatar/${data.user_id}`,
+            method: 'GET',
+            success: function(response) {
+
+            if (data.user_id != authUserId) {
+                newMessage += `        <div class="chat-user">`;
+
+                if (response.avatar) {
+                        newMessage += `<img src="${response.avatar}" alt="avatar" class="rounded-circle avatar">`;
+                    } else {
+                        newMessage += `<i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>`;
+                    }
+
+                if (data.username) {
+                    newMessage += `                <span class="me-1">${data.username}</span>`;
+                } else {
+                    newMessage += `                <span class="me-1">${data.name}</span>`;
+                }
+                newMessage += `        </div>`;
+            }
+
+            newMessage += `    </div>`;
+            newMessage += `    {{-- Chat Body --}}`;
+            newMessage += `    <div class="bubble">`;
+
+            if (data.replying_body) {
+                newMessage += `        {{-- Reply Body --}}`;
+                newMessage += `            <div class="text-muted">`;
+                newMessage += `                    <span class="fs-6">${data.replying_created_at}/span>`;
+                newMessage += `                <div class="mb-3 fs-6">`;
+                newMessage += `                    ${data.replying_body}`;
+                newMessage += `                </div>`;
+                newMessage += `                <hr>`;
+                newMessage += `            </div>`;
+            }
+
+            newMessage += `        {{-- Body --}}`;
+            newMessage += `        <p>${data.message}</p>`;
+            newMessage += `    </div>`;
+            newMessage += `    {{-- Chat Info --}}`;
+            newMessage += `    <div class="message-info-area">`;
+            newMessage += `        {{-- Reply Link--}}`;
+            newMessage += `        <div class="d-flex flex-wrap">`;
+            newMessage += `            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-${data.id}">`;
+            newMessage += `                <i class="fa-solid fa-reply reply-icon"></i>`;
+            newMessage += `                <span class="reply-text">Reply</span>`;
+            newMessage += `            </a>`;
+            newMessage += `            @include('chat.contents.modals.reply')`;
+            newMessage += `        </div>`;
+            newMessage += `        {{-- Chat DateTime --}}`;
+            newMessage += `        <div class="message-time">${data.created_at}</div>`;
+            newMessage += `        {{-- Chat Icons --}}`;
+            newMessage += `        <div class="chat-icons-area d-flex">`;
+
+            if (data.user_id === authUserId) {
+                newMessage += `                <div class="d-flex flex-wrap">`;
+                newMessage += `                    {{-- Edit (only my chat) --}}`;
+                newMessage += `                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#edit-post-${data.id}">`;
+                newMessage += `                        <i class="fa-regular fa-pen-to-square edit-icon icon-sm"></i>`;
+                newMessage += `                    </a>`;
+                newMessage += `                    @include('chat.contents.modals.edit')`;
+                newMessage += `                    {{-- Delete (only my chat) --}}`;
+                newMessage += `                    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#delete-post-${data.id}">`;
+                newMessage += `                        <i class="fa-regular fa-trash-can delete-icon icon-sm"></i>`;
+                newMessage += `                    </a>`;
+                newMessage += `                    @include('chat.contents.modals.delete')`;
+                newMessage += `                </div>`;
+            }
+
+            newMessage += `        </div>`;
+            newMessage += `    </div>`;
+            newMessage += `</div>`;
+            chatMessages.insertAdjacentHTML('beforeend', newMessage);
+                    
+            // メッセージが追加されたらスクロール
+            scrollToBottom();
+        },
+            error: function(xhr) {
+                console.log('Error fetching avatar:', xhr);
+                newMessage += `<i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>`;
+            }
+        });
     });
-
-
 
 
     document.addEventListener('DOMContentLoaded', function() {
