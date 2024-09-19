@@ -22,33 +22,27 @@
         <div class="row justify-content-center">
             <div class="chat-body col-10 py-2 chats-body-size w-75">
                 {{-- Chat Rooms --}}
-                <div class="row px-5 mb-2">
-                    <div class="col-2 p-1">
-                        <a href="{{ url('/chat/1') }}" class="btn btn-relationship w-100 {{ request()->is('chat/1') ? 'active-room' : 'inactive-room' }}">Relationship</a>
+                <div class="mx-3 mb-3">
+                    <div class="row">
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/1') }}" class="btn btn-relationship w-100">Relationship</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/2') }}" class="btn btn-career w-100">Career</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/3') }}" class="btn btn-family w-100">Family</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/4') }}" class="btn btn-health w-100">Health</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/5') }}" class="btn btn-finance w-100">Finance</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/6') }}" class="btn btn-others w-100">Others</a>
+                        </div>
                     </div>
-                    <div class="col-2 p-1">
-                        <a href="{{ url('/chat/2') }}" class="btn btn-career w-100 {{ request()->is('chat/2') ? 'active-room' : 'inactive-room' }}">Career</a>
-                    </div>
-                    <div class="col-2 p-1">
-                        <a href="{{ url('/chat/3') }}" class="btn btn-family w-100 {{ request()->is('chat/3') ? 'active-room' : 'inactive-room' }}">Family</a>
-                    </div>
-                    <div class="col-2 p-1">
-                        <a href="{{ url('/chat/4') }}" class="btn btn-health w-100 {{ request()->is('chat/4') ? 'active-room' : 'inactive-room' }}">Health</a>
-                    </div>
-                    <div class="col-2 p-1">
-                        <a href="{{ url('/chat/5') }}" class="btn btn-finance w-100 {{ request()->is('chat/5') ? 'active-room' : 'inactive-room' }}">Finance</a>
-                    </div>
-                    <div class="col-2 p-1">
-                        <a href="{{ url('/chat/6') }}" class="btn btn-others w-100 {{ request()->is('chat/6') ? 'active-room' : 'inactive-room' }}">Others</a>
-                    </div>
-                    {{--
-                    <h1>{{ $currentRoom->name }}</h1>
-                    <div class="chat-room-links">
-                        @foreach($chatRooms as $room)
-                            <a href="{{ url('/chat/' . $room->id) }}">{{ $room->name }}</a>
-                        @endforeach
-                    </div>
-                    --}}
                 </div>
 
                 <div class="chat-background">
