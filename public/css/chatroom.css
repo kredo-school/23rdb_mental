@@ -1,5 +1,104 @@
-/* Chat Room Links */
 a.btn-relationship {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;        
+    font-size: 1.7vw;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #F76F51;
+    align-items: center;
+}
+
+a.btn-career {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;      
+    font-size: 1.7vw;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #F1935E;
+    align-items: center;
+}
+
+a.btn-family {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;       
+    font-size: 1.7vw;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #F3B336;
+    align-items: center;
+}
+
+a.btn-health {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;        
+    font-size: 1.7vw;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #75CF73;
+    align-items: center;
+}
+
+a.btn-finance {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;      
+    font-size: 1.7vw;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #AF84F6;
+    align-items: center;
+}
+
+a.btn-others {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;        
+    font-size: 1.7vw;
+    text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
+    font-family: "Lato", sans-serif;
+    display: inline-block;
+    font-weight: 650;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #F588EA;
+    align-items: center;
+}
+
+
+
+
+/* Chat Room Links */
+/* a.btn-relationship {
     border-radius: 10px;
     font-size: 20px;
     text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
@@ -131,4 +230,4 @@ a.btn-others:focus {
     background-color: #ffd4fb;
     text-shadow: rgb(255, 255, 255) 2px 2px 0;
     text-decoration: none;
-}
+} */

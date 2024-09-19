@@ -11,7 +11,8 @@
                 @method('PATCH')
                 <div class="modal-body">
                     <div class="mt-3">
-                        <input type="text" name="journal_body" id="journal_body_edit_{{ $journal->id }}" class="form-control rounded-3" placeholder="What's on your mind?" value="{{ $journal->body }}">
+                        {{-- <input type="text" name="journal_body" id="journal_body_edit_{{ $journal->id }}" class="form-control rounded-3" placeholder="What's on your mind?" value="{{ $journal->body }}"> --}}
+                        <textarea name="journal_body" id="journal_body_edit_{{ $journal->id }}" class="form-control rounded-3" placeholder="What's on your mind?" rows="5">{{ $journal->body }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer border-0">

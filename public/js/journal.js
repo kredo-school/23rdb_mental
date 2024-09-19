@@ -1,7 +1,6 @@
 $(function () {
     let like = $('.button_plus'); //button_plusのついたiタグを取得し代入。
     like.on('click', function () {
-      alert("テスト");
     });
 
     // let like = $('.button_plus'); //button_plusのついたiタグを取得し代入。
