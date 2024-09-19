@@ -319,7 +319,6 @@
 
     {{-- Footer --}}
     @include('components.footer')
-    @include('components.footer')
 
 
 @endsection
