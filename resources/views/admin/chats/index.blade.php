@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/chats.css') }}">
 <link rel="stylesheet" href="{{ asset('css/chatroom.css') }}">
 
+@admin
 @extends('layouts.app')
 @extends('components.navbar-each')
 @section('title', 'Admin: Chats')
@@ -68,9 +69,12 @@
                 </div>
                 <div>
                     <p class="pb-0 mb-0 ms-4">
-                        Total : 
+                        Total :
                         <span>{{ $chats_count }}</span>
                         Chats
+                    <p class="total-count-chats pb-0 mb-0 ms-4">
+                        Total :
+                        <span>{{ $chats_count }}</span>{{ $chats_count == 1 ? ' Chat' : ' Chats' }}
                     </p>
                 </div>
                 <table class="table align-middle bg-white chats-table mt-0">
@@ -123,7 +127,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm switch base hide-switch">
                                                     <span class="circle circle-move px-2"></span>
-                                                        Hide 
+                                                        Hide
                                                 </button>
                                             </form>
                                         @endif
@@ -135,7 +139,7 @@
                                     </button>
                                 </div>
                                 @include('admin.chats.modals.delete') --}}
-                            </td>    
+                            </td>
                         </tr>
                         @empty
                             <tr>
@@ -147,9 +151,10 @@
 
                 <div class="d-flex justify-content-center">
                     {{ $all_chats->links() }}
-                </div>    
+                </div>
             </div>
         </div>
     </div>
 </body>
 @endsection
+@endadmin

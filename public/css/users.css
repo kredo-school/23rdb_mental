@@ -18,29 +18,20 @@
     width: auto;
 }
 
-.icon-sm {
-    font-size: 2rem;
-    color: #CED3D5;
-}
-
-.avatar-sm {
-    width: 2rem;
-    height: 2rem;
-    object-fit: cover;
-    /* border-radius: 50%; */
-}
-
 .container-users {
     padding-left: 0px;
     padding-right: 0px;
-    margin-left: 25%;
+    margin-left: 220px;
     position: absolute;
 }
 
 table.table-users {
-    width: 800px;
+    width: 65%;
 }
 
+div.search-bar {
+    width: 65%;
+}
 /* .table-users td {
     border: 1px solid #CED3D5;;
 }

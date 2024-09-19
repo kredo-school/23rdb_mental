@@ -9,7 +9,7 @@
 .chats-body{
     padding-right: 164px;
     padding-left: 164px;
-    margin-left: 200px;
+    margin-left: 220px;
 }
 
 .chats-form{
@@ -271,7 +271,7 @@ body {
 }
 
 .chat-body{
-    margin-left: 200px;
+    margin-left: 220px;
 }
 
 .chat-background{
@@ -436,6 +436,8 @@ body {
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
+    vertical-align: middle;
+    
 }
 
 /* Chat Body */
@@ -491,11 +493,33 @@ body {
     cursor: pointer;
 }
 
-.chat-input {
-    display: flex;
-    justify-content: space-between;
+.chat-input-area {
     padding: 10px;
     border-top: 1px solid #ddd;
+}
+
+.chat-input-area-reply {
+    display: none;
+    padding: 10px;
+    margin: 0 1px 0 1px;
+}
+
+#reply-to-body {
+    color: gray !important;
+    margin-bottom: 0px;
+}
+
+.chat-input-area-message {
+    display: flex;
+    justify-content: space-between;
+}
+
+.chat-input {
+    padding-left: 30px !important;
+}
+
+.chat-input::placeholder {
+    color: #ccc;
 }
 
 #body {
@@ -513,6 +537,7 @@ body {
     border-radius: 20px;
     cursor: pointer;
     margin-left: 10px;
+    width: 130px;
 }
 
 #send-btn:hover {
@@ -524,7 +549,8 @@ body {
 }
 
 .inactive-room {
-    opacity: 0.5;
+    opacity: 0.7;
+    /* background-color: gray !important; */
 }
 
 

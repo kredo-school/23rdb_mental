@@ -30,7 +30,7 @@
                     {{-- 吹き出し線 --}}
 
                     {{-- <span class="ornament"></span>   --}}
-                    
+
 
                     {{-- <img src="{{ asset('images/main/bubblespeech.png') }}" alt="bubblespeech" class="bubblespeech"> --}}
                 {{-- </div> --}}
@@ -126,7 +126,7 @@
                 @endif
    
             {{-- <div class="col-1"></div> --}}
-                
+
 
             </div>
         </div>
@@ -226,20 +226,20 @@
                                         <p class="mb-0">&nbsp;</p>
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/great.png') }}" alt="great">
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/good.png') }}" alt="great">
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/ok.png') }}" alt="great">
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/notgood.png') }}"
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/notgood.png') }}"
                                             alt="great">
                                     </div>
                                     <div>
-                                        <img class="mood-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
+                                        <img class="mood-graph-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
                                     </div>
                                 </div>
 
@@ -305,6 +305,7 @@
 
     {{-- Option --}}
     {{-- <div class="container-option m-5">
+    {{-- <div class="container-option m-5">
         <div class="card bg-white py-3 px-5 border-0">
             <p class="text-center">Option</p>
         </div>
@@ -317,6 +318,7 @@
     </script>
 
     {{-- Footer --}}
+    @include('components.footer')
     @include('components.footer')
 
 

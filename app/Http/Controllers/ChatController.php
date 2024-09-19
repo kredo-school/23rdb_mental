@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Events\MessageSent;
 use App\Models\Message;
 use App\Models\Chat;
@@ -27,6 +28,7 @@ class ChatController extends Controller
         $currentRoom = ChatRoom::findOrFail($room_id);
         $chats = $currentRoom->chats();
         $user = Auth::user();
+        $search = NULL;
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -34,7 +36,7 @@ class ChatController extends Controller
         }
         $chats = $chats->with('chats_include_replying_chat')->get();
 
-        return view('chat.index', compact('chatRooms', 'currentRoom', 'chats', 'user'));
+        return view('chat.index', compact('chatRooms', 'currentRoom', 'chats', 'user', 'search'));
     }//Index
 
     public function store(Request $request, $room_id)
@@ -45,10 +47,13 @@ class ChatController extends Controller
                 'body' => 'required|string|max:500',
             ]);
 
+            $replyChatId = $request->filled('replying_chat_id') ? $request->input('replying_chat_id') : null;
+
             $chat = Chat::create([
                 'room_id' => $room_id,
                 'user_id' => $validated['user_id'],
                 'body' => $validated['body'],
+                'replying_chat_id' => $replyChatId, 
             ]);
             // dd($chat);
 
@@ -60,26 +65,34 @@ class ChatController extends Controller
                 ['cluster' => config('broadcasting.connections.pusher.options.cluster')]
             );
 
-            $pusher->trigger('chat-room-' . $room_id, 'new-message', [
+            $data = [
                 'id' => $chat->id,
                 'message' => $chat->body,
                 'user_id' => $chat->user->id,
-                'auth_user_id' => auth()->id(),
                 'username' => $chat->user->username,
+                'name' => $chat->user->name,
+                'created_at' => Carbon::parse($chat->created_at)->format('m/d H:i'),
                 // 'user_avatar' => $chat->user->avatar,
-                'created_at' => $chat->created_at,
                 // 'replying_created_at' => $chat->with('chats_include_replying_chat')->created_at,
                 // 'replying_created_at' => $chat->chats_include_replying_chat->created_at,
                 // 'replying_body' => $chat->chats_include_replying_chat->body,
-                
-            ]);
+            ];
+            if ($chat->replying_chat_id) {
+                $data['replying_created_at'] = Chat::where('id', $chat->replying_chat_id)->first()->created_at->format('m/d H:i');
+                $data['replying_body'] = Chat::where('id', $chat->replying_chat_id)->first()->body;
+            }
+            $pusher->trigger('chat-room-' . $room_id, 'new-message', $data);
+
 
             // broadcast(new \App\Events\MessageSent($chat));
             broadcast(new MessageSent($chat))->toOthers();
             \Log::info('test ' . $chat->user->name);
 
             // return response()->json(['status' => 'Message sent successfully!']);
-            return redirect()->route('chat.chats', $room_id);
+
+            // return redirect()->route('chat.chats', $room_id);
+            return response()->json(['status' => 'Message sent successfully!', 'chat' => $chat]);
+
             // return response()->json(['status' => 'Message sent successfully!', 'chat' => $chat]);
 
             //code...

@@ -36,9 +36,9 @@
     /* line-height:120% !important; */
     /* white-space: pre-line; */
     font-size: 20px;
-    color: #42484D !important; 
+    color: #42484D !important;
     font-family: "Lato", sans-serif;
-    font-weight: 500; 
+    font-weight: 500;
     /* text-align:center !important;  */
     line-height: 1em !important;
 }
@@ -73,7 +73,7 @@
     height: 30px;
     margin-top: 15px;
   }
-  
+
   @keyframes fuwafuwa {
     0% {
       transform:translate(0, 0) rotate(-10deg);
@@ -85,8 +85,8 @@
       transform:translate(0, 0) rotate(10deg);
     }
   }
-  
-  
+
+
   /* fade in today's quote */
   .fade-in-text {
       position: relative;
@@ -95,7 +95,7 @@
       transform: translateY(100%); /* 下からスライドするために位置を下に設定 */
       animation: fadeInFromBottom 1s forwards; /* フェードインアニメーションの設定 */
     }
-    
+
     @keyframes fadeInFromBottom {
       to {
         opacity: 1; /* アニメーション終了時に完全に表示 */
@@ -134,7 +134,7 @@
     background-color: #42484D;
   }
 
- 
+
   .fukidashi-01-13 > .ornament {
     position: absolute;
     top: 0;
@@ -209,7 +209,7 @@
     visibility: visible;
     opacity: 1;
 }
-  
+
 
 /* Journaling */
 .remichan_circle img {
@@ -390,9 +390,34 @@ a.btn-others:focus {
 #bad { background-image: url('../images/moods/bad.png'); top: 100px; left: 50px; } */
 
 .mood-icon {
-    width: 70px;
-    height: 70px;
+    width: 70px !important;
+    height: 70px !important;
 }
 
+@media(min-width: 865px) {
+    .mood-icon {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+@media(min-width: 1150px) {
+    .mood-icon {
+        width: 50px !important;
+        height: 50px !important;
+    }
+}
+
+@media(min-width: 1450px) {
+    .mood-icon {
+        width: 70px !important;
+        height: 70px !important;
+    }
+}
+
+.mood-graph-icon {
+    width: 70px !important;
+    height: 70px !important;
+}
 
 

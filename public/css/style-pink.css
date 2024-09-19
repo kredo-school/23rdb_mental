@@ -326,6 +326,11 @@ h3 {
     background-image: url('/images/moods/default.png'); /* Fallback image */
 }
 
+/* login mood entry */
+.mood-cancel a {
+    color: #FF5894;
+}
+
 #modal-calendar {
     display: none; /* Hidden by default */
     position: fixed;
@@ -435,6 +440,34 @@ a #calendar-container .fc-toolbar-title {
 }
 
 /* profile.show */
+.profile-avatar {
+    font-size: 400px;
+    color: #fc65b8;
+}
+
+img.profile-avatar {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    display: flex;
+    border: 3px solid #fc65b8;
+    border-radius: 100%;
+}
+
+.modal-profile-avatar {
+    font-size: 200px;
+    color: #fc65b8;
+}
+
+img.modal-profile-avatar {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    display: flex;
+    border: 3px solid #fc65b8;
+    border-radius: 100%;
+}
+
 div .btn-delete-account {
     color: #FF5894;
 }
@@ -464,6 +497,29 @@ a.mood {
 }
 
 /* mood.index */
+.mood-icon-sm {
+    font-size: 50px;
+    color: #fff;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+    border: 3px solid #fc65b8;
+    border-radius: 100%;
+}
+
+
+.mood-avatar-sm {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    display: flex;
+    align-items: center; /* Center icon vertically */
+    margin-right: 10px;
+    border: 3px solid #fc65b8;
+    border-radius: 100%;
+    /* margin-right: 15px; */
+}
+
 button.button-feedback-edit {
     color: #5DAEF2;
 
@@ -488,6 +544,23 @@ input:checked + .user-slider {
     background-color: #5DAEF2;
 }
 
+.admin-users-text {
+    color: #42484D;
+}
+
+.users-icon-sm {
+    font-size: 2rem;
+    color: #FC9DD2;
+}
+
+.users-avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid #FC9DD2;
+    border-radius: 100%;
+}
+
 /* admin/deletion-reasons.index */
 button.dr-more-details {
     color: #5DAEF2;
@@ -501,6 +574,10 @@ button.dr-more-details:hover {
 
 .dr-modal-cancel {
     color: #FF5894;
+}
+
+.admin-drs-text {
+    color: #42484D;
 }
 
  /* sidebar */

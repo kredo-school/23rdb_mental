@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/contactus.css') }}">
 
+@admin
 @extends('layouts.app')
 
 @extends('components.navbar-each')
@@ -51,12 +52,12 @@
                                             </a>
                                         @endif
                                         </form>
-                                            
+
                             </div>
-                            
+
                         </div>
                     </div>
-                
+
                 </div>
                 <div>
 
@@ -153,3 +154,4 @@
 
 
 @endsection
+@endadmin

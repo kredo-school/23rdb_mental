@@ -2,7 +2,7 @@
 
 @extends('layouts.app')
 @extends('components.navbar-each')
-@section('title', 'Journal')
+@section('title', 'Journaling')
 
 @section('content')
 @if(Auth::user()->role_id == 1)
@@ -16,15 +16,15 @@
         <div class="w-75 mx-auto">
 
             {{-- Add journal --}}
-            <div class="input-group mb-3" data-bs-toggle="modal" data-bs-target="#add-post">
+            <div class="journal-add-area input-group mb-3" data-bs-toggle="modal" data-bs-target="#add-post">
                 {{-- User Icon --}}
                 @if (Auth::user()->avatar)
-                    <img src="{{ Auth::user()->avatar }}" alt="avatar" class="avatar-sm rounded-circle icon-sm img-fluid">
+                    <img src="{{ Auth::user()->avatar }}" alt="avatar" class="avatar-sm rounded-circle icon-sm img-fluid my-auto mx-auto users-avatar-sm">
                 @else
-                    <i class="fa-solid fa-circle-user avatar icon-sm"></i>
+                    <i class="fa-solid fa-circle-user avatar avatar-default fa-2x my-auto mx-auto users-icon-sm"></i>
                 @endif
-                <input type="text" name="journal_body" id="journal_body" class="form-control rounded-input shadow"
-                    placeholder="What's on your mind?" value="" style="border-radius: 25px;">
+                <input type="text" name="journal_body" id="journal_body" class="journal-add-input form-control rounded-input shadow ms-2"
+                    placeholder="What's on your mind?" value="">
             </div>
             @include('journals.contents.modals.add')
 
@@ -32,7 +32,7 @@
             <div class="input-group bg-white rounded shadow mb-3 p-3">
                 <form action="{{ route('journal.journals') }}" method="get" class="journal-form">
                     {{-- Sort --}}
-                    <span class="text-primary me-3">Sort</span>
+                    <span class="text-primary ms-4 me-3">Sort</span>
                     <select name="sort" id="sort" class="journal-search-component form-select shadow" onchange="this.form.submit()">
                         <option value="latest" {{ request('sort') === 'latest' ? 'selected' : '' }}>Latest
                         </option>
@@ -62,7 +62,7 @@
 
             {{-- Journal Contents Section --}}
             @forelse ($all_journals as $journal)
-                <div class="card mb-3 shadow">
+                <div class="card mb-3 px-4 py-2 shadow">
                     <div class="card-body">
                         {{-- Reply Body --}}
                         {{-- @if ($journal->journals_include_replying_journal)
@@ -113,29 +113,31 @@
                         </div>
 
                         {{-- Comment Section --}}
-                        <div class="d-inline my-2">
-                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#comment-post-{{ $journal->id }}">
-                                <i class="fa-solid fa-pencil comment-icon"></i>
-                                <span class="comment-text">Comment</span>
-                            </a>
-                        </div>
-                        @include('journals.contents.modals.comment')
-                        <div>
-                            @foreach ($journal->comments as $comment)
-                            <hr class="my-1">
-                            <div class="text-muted">
-                                    <span style="font-size: 16px;">{{ $comment->created_at }}</span>
-                                <div class="mb-3 fs-5">
-                                    {{ $comment->body }}
-                                </div>
+                        <div class="d-flex">
+                            <div class="d-inline my-2">
+                                <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#comment-post-{{ $journal->id }}">
+                                    <i class="fa-solid fa-pencil comment-icon"></i>
+                                    <span class="comment-text">Comment</span>
+                                </a>
                             </div>
-                            @endforeach
+                            @include('journals.contents.modals.comment')
+                            <div class="ms-4 mt-3 w-75">
+                                @foreach ($journal->comments as $comment)
+                                <hr class="my-1">
+                                <div class="text-muted">
+                                        <span class="comment-create-date-text">{{ $comment->created_at }}</span>
+                                    <div class="mb-3 fs-5">
+                                        {{ $comment->body }}
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
             @empty
                 <div class="lead text-muted text-center">
-                    No Journal Found.
+                    No Journaling Found.
                 </div>
             @endforelse
         </div>

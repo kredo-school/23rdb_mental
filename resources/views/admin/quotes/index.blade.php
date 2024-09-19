@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/quote_style.css') }}">
 
+@admin
 @extends('layouts.app')
 
 @extends('components.navbar-each')
@@ -21,19 +22,19 @@
         <div class="row justify-content-center">
 {{-- side bar space --}}
             <div class="col-2">
-            
+
             </div>
 
 {{-- body space --}}
             <div class="col-10 mt-5 quote-body-size">
                 {{-- div for head space --}}
-                <div class="row mx-5 my-4"> 
-                  
+                <div class="row mx-5 my-4">
+
                     <div class="col-9">
                         {{-- div for sort and search section --}}
                         <div class="row bg-white rounded ps-5">
-                         
-                                
+
+
                                 {{-- sort area --}}
                                 <div class="col-1 pt-3 ms-3">
                                     <p class="text-primary text-end mt-1">Sort</p>
@@ -41,7 +42,7 @@
 
 
                                 <div class="col-4 pt-3">
-                                    
+
                                             <form method="get" action="{{ route('quote.index') }}">
                                                 <div class="form-group">
                                                     <select name="sort" id="sort" class="form-select text-decoration-none text-muted quote-other-btn pb-1 shadow" onchange="this.form.submit()">
@@ -76,7 +77,7 @@
                              
                             </div>
                         </div>
-                          
+
 
                     <div class="col-3">
 
@@ -86,7 +87,7 @@
                                     <button type="button" class="btn-submit" data-bs-toggle="modal" data-bs-target="#create-quote">
                                         <i class="fa-solid fa-circle-check"></i> Add quote
                                     </button>
-            
+
                                 </div>
 
                         @include('admin.quotes.modals.action')
@@ -96,7 +97,7 @@
 
                 </div>
                 <div>
-        
+
                     @if($search)
                     <span class="pb-0 mb-0 ms-4 me-5 pe-5 quote-subtextcolor">Result for : {{ $search }}</span>  
                     {{-- <a href="{{ route('quote.index') }}" class="ms-2 quote-subtextcolor"><i class="fa-solid fa-circle-xmark"></i></a>   --}}
@@ -111,7 +112,7 @@
                 <table class="table align-middle bg-white quote-table mt-0 shadow" id="table1">
                     <thead class="small table-secondary border">
                         <tr class="">
-                            
+
                             <th colspan=6 class="text-center py-2">Quote</th>
                             <th colspan=3 class="text-center py-2">Auther</th>
                             <th colspan=3 class="text-center py-2">Display</th>
@@ -145,16 +146,16 @@
                                         @csrf
                                         @method('DELETE')
                                             <button type="submit" class="btn px-0 pt-0">
-                                            <i class="fa-solid fa-bookmark quote-bookmark-store"></i></button> 
+                                            <i class="fa-solid fa-bookmark quote-bookmark-store"></i></button>
                                     </form>
-                                        
+
                                     @else
 
                                     <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
                                         @csrf
                                             <button type="submit" class="btn px-0 pt-0"><i class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
                                     </form>
-                                        
+
                                     @endif
                                 </div> --}}
 
@@ -168,7 +169,7 @@
                                     </div>
                                 @include('admin.quotes.modals.edit')
 
-                                  
+
 
                                 {{-- status --}}
 
@@ -187,7 +188,7 @@
                                         <form action="{{ route('quote.unhide', $quote->id) }}" method="post" class="switch_label">
                                                 @csrf
                                                 @method('PATCH')
-                                                
+
                                                 <button type="submit" class="btn btn-sm switch base unhide-switch">
                                                     <span class="circle"></span>
                                                     Unhide
@@ -232,11 +233,11 @@
                                     <form action="{{ route('quote.hide', $quote->id) }}" method="post" class="switch_label">
                                                 @csrf
                                                 @method('DELETE')
-                                                
+
                                                 <button type="submit" class="btn btn-sm switch base hide-switch">
                                                     {{-- <span class="base"></span> --}}
                                                     <span class="circle circle-move px-2"></span>
-                                                     Hide 
+                                                     Hide
                                                 </button>
                                             </form>
 
@@ -248,26 +249,26 @@
 
                                         {{-- <div class="form-check form-switch form-check-inline quote-switch">
                                         @if ($quote->trashed())
-                                        
+
                                         <form action="{{ route('quote.unhide', $quote->id) }}" method="post">
                                             @csrf
                                             @method('PATCH')
                                             <input type="checkbox" class="btn btn-secondary btn-sm form-check-input" style="width:100px" role="switch">Unhide</input>
-                                            
+
                                         </form>
                                     @else
-                                    
+
 
                                         <form action="{{ route('quote.hide', $quote->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <input type="checkbox" class="btn btn-primary btn-sm form-check-input" style="width:100px;" role="switch" checked>Hide</input>
                                         </form>
-                                        
+
                                     @endif
                                          --}}
-                            
-                                    
+
+
 
 
                                 </div>
@@ -279,7 +280,7 @@
                                         <i class="fa-solid fa-trash quote-delete-icon"></i>
                                     </button>
                                 </div>
-                               
+
                                  </div>
                                  @include('admin.quotes.modals.delete')
                                 </div>
@@ -288,23 +289,23 @@
                             
                         </tr>
 
-                      
+
                         @empty
                             <tr>
                                 <td colspan="12" class="lead text-muted text-center py-3">No Quote yet.</td>
                             </tr>
 
 
-                        
+
                         @endforelse
-                        
+
                     </tbody>
 
                 </table>
 
                 <div class="d-flex justify-content-center">
                     {{ $all_quotes->links() }}
-                </div>    
+                </div>
                 @include('admin.quotes.modals.action')
             </div>
         </div>
@@ -312,9 +313,10 @@
 
 
     <script src="{{ asset('js/quote-editmodal.js') }}"></script>
-    
+
 </body>
 
 
 
 @endsection
+@endadmin

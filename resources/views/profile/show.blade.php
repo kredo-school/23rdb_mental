@@ -11,9 +11,9 @@
         @include('components.sidebar')
     @endif
 
-    <div class="container-profile-show my-5">
+    <div class="container-profile-show my-5 pb-5">
         {{-- Profile Section --}}
-        <div class="card card-profile mb-5 mx-auto py-3 px-5 bg-white">
+        <div class="card card-profile mb-5 py-3 px-5 mx-auto bg-white">
             <div class="card-header bg-white border-0">
                 <h1>Profile</h1>
             </div>
@@ -21,9 +21,9 @@
                 <div class="row d-flex justify-content-center mb-3">
                     <div class="col-auto">
                         @if ($user->avatar)
-                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
+                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle profile-avatar">
                         @else
-                            <i class="fa-solid fa-circle-user avatar"></i>
+                            <i class="fa-solid fa-circle-user profile-avatar"></i>
                         @endif
                     </div>
                     <div class="col align-self-center">
@@ -47,10 +47,6 @@
                             @endif
                         </p>
                         <hr class="mt-0">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
                         <p class="mb-0 small">Birthday:&nbsp;&nbsp;&nbsp;
                             @if ($user->birthday)
                                 {{ $user->birthday }}
@@ -67,12 +63,34 @@
                             @endif
                         </p>
                         <hr class="mt-0">
+                        <br><br><br>
+                        <p class="text-end mb-2">
+                            <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#edit-profile"><i
+                            class="fa-regular fa-pen-to-square"></i> Edit</button>
+                        </p>
                     </div>
+                </div>
+                <div class="row">
+                    {{-- <div class="col-6">
+                        <p class="mb-0 small">Birthday:&nbsp;&nbsp;&nbsp;
+                            @if ($user->birthday)
+                                {{ $user->birthday }}
+                            @else
+                                Not Registered
+                            @endif
+                        </p>
+                        <hr class="mt-0">
+                        <p class="mb-0 small">Location:&nbsp;&nbsp;&nbsp;
+                            @if ($user->location)
+                                {{ $user->location }}
+                            @else
+                                Not Registered
+                            @endif
+                        </p>
+                        <hr class="mt-0">
+                    </div> --}}
                     <div class="col-3"></div>
-                    <div class="col-3 align-self-end mb-2">
-                        <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#edit-profile"><i
-                                class="fa-regular fa-pen-to-square"></i> Edit</button>
-                    </div>
+
                     {{-- Edit Modal --}}
                     <div class="modal fade" id="edit-profile">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -80,7 +98,8 @@
                                 <div class="modal-header border-0 d-flex justify-content-between align-items-center">
                                     {{-- title --}}
                                     <h1 class="float-start">Edit Profile</h1>
-                                    <button type="button" data-bs-dismiss="modal" class="btn btn-profile-edit-dismiss border-0"><i
+                                    <button type="button" data-bs-dismiss="modal"
+                                        class="btn btn-profile-edit-dismiss border-0"><i
                                             class="fa-solid fa-xmark"></i></button>
                                 </div>
                                 <div class="modal-body">
@@ -94,9 +113,9 @@
                                                     <div class="col-9">
                                                         @if (Auth::user()->avatar)
                                                             <img src="{{ Auth::user()->avatar }}" alt="avatar"
-                                                                class="rounded-circle avatar text-center ">
+                                                                class="rounded-circle modal-profile-avatar text-center ">
                                                         @else
-                                                            <i class="fa-solid fa-circle-user avatar text-center"></i>
+                                                            <i class="fa-solid fa-circle-user modal-profile-avatar text-center"></i>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -270,7 +289,7 @@
 
 
         {{-- Quote Section --}}
-        <div class="card card-quotes mx-auto px-5 py-3 bg-white">
+        <div class="card card-quotes px-5 py-3 bg-white mb-5 mx-auto">
             <div class="card-header bg-white border-0 ">
                 <h1>Favorite Quotes</h1>
             </div>
@@ -294,40 +313,40 @@
 
                         @forelse($bookmarked_quotes as $quote)
                             @if ($quote->isBookmarked())
+                                <tr>
+                                    <td colspan=7 class="h4 text-center w-50 py-4 ps-4" value="showquote-quote">
+                                        " {{ $quote->quote }} "
+                                    </td>
+
+                                    <td colspan="3" class="text-center py-4">
+                                        {{ $quote->author }}
+                                    </td>
 
 
-                            <tr>
-                                <td colspan=7 class="h4 text-center w-50 py-4 ps-4" value="showquote-quote">
-                                    " {{ $quote->quote }} "
-                                </td>
-
-                                <td colspan="3" class="text-center py-4">
-                                    {{ $quote->author }}
-                                </td>
-
-
-                                <td colspan="2" class="text-center">
-                                    {{-- cancel the bookmark --}}
-                                    <div class="quote-switch text-center">
-                                        @if ($quote->isBookmarked())
-                                            <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn py-5">
-                                                    <i
-                                                        class="fa-solid fa-bookmark text-warning quote-bookmark-store favorite-quote-icon pt-4"></i></button>
-                                            @else
-                                                <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
+                                    <td colspan="2" class="text-center">
+                                        {{-- cancel the bookmark --}}
+                                        <div class="quote-switch text-center">
+                                            @if ($quote->isBookmarked())
+                                                <form action="{{ route('bookmark.destroy', $quote->id) }}"
+                                                    method="post">
                                                     @csrf
-                                                    <button type="submit" class="btn py-3"><i
-                                                            class="fa-regular fa-bookmark quote-bookmark-cancel favorite-quote-icon pt-4"></i></button>
-                                                </form>
-                                        @endif
-                                    </div>
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn py-5">
+                                                        <i
+                                                            class="fa-solid fa-bookmark text-warning quote-bookmark-store favorite-quote-icon pt-4"></i></button>
+                                                @else
+                                                    <form action="{{ route('bookmark.store', $quote->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn py-3"><i
+                                                                class="fa-regular fa-bookmark quote-bookmark-cancel favorite-quote-icon pt-4"></i></button>
+                                                    </form>
+                                            @endif
+                                        </div>
 
 
-                                </td>
-                                @endif
+                                    </td>
+                            @endif
                             </tr>
 
 
