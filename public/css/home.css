@@ -10,6 +10,47 @@
 } */
 
 /* Styling of this page */
+.container-home {
+    background-color: #fff;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.card-home {
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 20px;
+}
+
+.card-header-home {
+    padding: 15 0 0 15;
+    margin-bottom: 0;
+    color: var(--bs-card-cap-color);
+    background-color: var(--bs-card-cap-bg);
+    /* border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color); */
+}
+
+.form-control-home {
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    margin: 8 0 15 8;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
 .card {
     width: 90%;
     margin-right: auto;
@@ -212,6 +253,17 @@
 
 
 /* Journaling */
+.fuwafuwa2 {
+    animation: fuwafuwa 3s ease-in-out infinite alternate;
+    background: url(../img/ico-apple.svg) no-repeat center center / 60px auto;
+    display: inline-block;
+    transition: 1s ease-in-out;
+    width: 20px;
+    height: 30px;
+    margin-top: 0px;
+    margin-left: -80px;
+  }
+
 .remichan_circle img {
     width: 150px;
     height: auto;
@@ -219,6 +271,11 @@
 
 input {
     height: 80px;
+}
+
+.remichan-speaking {
+    margin-left: 30px;
+    color: rgb(245, 141, 210);
 }
 
 /* Create Journaling */
@@ -245,7 +302,9 @@ input {
 /* Chat Room Links */
 a.btn-relationship {
     border-radius: 10px;
-    font-size: 20px;
+    width: 100%;
+    height: auto;        
+    font-size: 1.7vw;
     text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
     font-family: "Lato", sans-serif;
     display: inline-block;
@@ -255,12 +314,13 @@ a.btn-relationship {
     color: #fff;
     background-color: #F76F51;
     align-items: center;
-    padding-bottom: 10px;
 }
 
 a.btn-career {
     border-radius: 10px;
-    font-size: 20px;
+    width: 100%;
+    height: auto;      
+    font-size: 1.7vw;
     text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
     font-family: "Lato", sans-serif;
     display: inline-block;
@@ -274,7 +334,9 @@ a.btn-career {
 
 a.btn-family {
     border-radius: 10px;
-    font-size: 20px;
+    width: 100%;
+    height: auto;       
+    font-size: 1.7vw;
     text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
     font-family: "Lato", sans-serif;
     display: inline-block;
@@ -284,12 +346,13 @@ a.btn-family {
     color: #fff;
     background-color: #F3B336;
     align-items: center;
-
 }
 
 a.btn-health {
     border-radius: 10px;
-    font-size: 20px;
+    width: 100%;
+    height: auto;        
+    font-size: 1.7vw;
     text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
     font-family: "Lato", sans-serif;
     display: inline-block;
@@ -303,7 +366,9 @@ a.btn-health {
 
 a.btn-finance {
     border-radius: 10px;
-    font-size: 20px;
+    width: 100%;
+    height: auto;      
+    font-size: 1.7vw;
     text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
     font-family: "Lato", sans-serif;
     display: inline-block;
@@ -317,7 +382,9 @@ a.btn-finance {
 
 a.btn-others {
     border-radius: 10px;
-    font-size: 20px;
+    width: 100%;
+    height: auto;        
+    font-size: 1.7vw;
     text-shadow: rgba(0,0,0,0.5) 2px 2px 0;
     font-family: "Lato", sans-serif;
     display: inline-block;
@@ -415,9 +482,25 @@ a.btn-others:focus {
     }
 }
 
+/* Mood Tracking */
 .mood-graph-icon {
     width: 70px !important;
     height: 70px !important;
 }
 
-
+.box-mood {
+    display: block;
+    width: 100%;
+    padding: 15 0 15 3;
+    margin: 8 30 15 30;
+    line-height: 1.6;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
