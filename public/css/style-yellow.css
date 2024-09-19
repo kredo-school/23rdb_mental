@@ -587,6 +587,24 @@ a.sidebar_faq {
     color: #42484D;
 }
 
+/* admin inquiry page */
+.inquiry-subtextcolor{
+    color:rgb(255, 255, 255);
+}
+
+.inquiries-icon-sm {
+    font-size: 2rem;
+    color: #FBBC06;
+}
+.inquiries-avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid #FBBC06;
+    border-radius: 100%;
+    margin-left: 23px;
+}
+
 /* chats */
 .total-count-chats {
     color: #fff;

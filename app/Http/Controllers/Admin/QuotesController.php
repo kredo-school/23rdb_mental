@@ -131,7 +131,8 @@ public function index(Request $request){
         'author' => 'nullable|max:250',
     ]);
      #save the quote data
-     $quote = $this->quote->findOrFail($id);
+    //  $quote = $this->quote->findOrFail($id);
+    $quote = $this->quote->withTrashed()->findOrFail($id);
      $quote->quote = $request->quote;
      $quote->author = $request->author;
      
@@ -143,8 +144,9 @@ public function index(Request $request){
  }
 
  /** delete */
- public function destroy($id){
-    $quote = $this->quote->findOrFail($id);
+ public function destroy($id){  
+    // $quote = $this->quote->findOrFail($id);
+    $quote = $this->quote->withTrashed()->findOrFail($id);
     $quote->forceDelete();
     return redirect()->back();
    

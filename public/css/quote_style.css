@@ -33,6 +33,10 @@
     font-size: 20px;
 }
 
+#table1 tr:hover td {
+  background-color: #dddddd;
+}
+
 th {
     color: #42484D !important; 
     font-family: "Lato", sans-serif;
@@ -95,6 +99,10 @@ td {
     display: inline-block;
 }
 
+.quote-hide{
+  color: #9a9999 !important; 
+}
+
 
 /* icon */
 
@@ -110,7 +118,7 @@ td {
     color: #979a9b;
     border: 1px solid #979a9b;
     height: 40px;
-    width:200px;
+    /* width:200px; */
     font-size: 16px;
     border-radius: 10px;
     font-family: "Lato", sans-serif;
@@ -145,7 +153,7 @@ td {
     display: flex;
     align-items: center;
   }
-  
+
 /* .button[type='submit'] {
     position: absolute;
     width: 0;
@@ -212,10 +220,11 @@ td {
 
 
   .unhide-switch {
-    background-color: #ddd;
+    background-color: #979a9b;
     /* transform: scale(1.1); */
     width: 85px !important;
     height: 30px !important;
+    color: white;
   }
 
   .unhide-switch:hover {
@@ -261,8 +270,8 @@ td {
     color: #979a9b;
     /* background-color: #FF6BA0; */
   }
-  .search_box input[type="search"]{
-    width: 200px;
+  .search_box input[type="text"]{
+    /* width: 200px; */
     height:40px;
     font-size: 16px;
     padding: 10px 15px 10px 35px;
@@ -277,7 +286,6 @@ td {
   /* .search_box input[type="text"]:focus{
     outline:0;
   } */
-  .search_box input[type="search"]::placeholder{
+  .search_box input[type="text"]::placeholder{
     color: #ccc;
   }
-  

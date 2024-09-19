@@ -15,6 +15,10 @@ table {
     table-layout:fixed;
 }
 
+#table1 tr:hover td {
+    background-color: #dddddd;
+  }
+
 th {
     color: #42484D !important;
     font-family: "Lato", sans-serif;
@@ -129,7 +133,7 @@ td {
     width: 400px;
 }
 
-.avatar-lg{
+/* .avatar-lg{
     width: 2rem;
     height: 2rem;
     object-fit: cover;
@@ -137,7 +141,22 @@ td {
     font-size: 36px;
     margin-left: 25px;
 
+} */
+
+/* .inquiries-icon-sm {
+    font-size: 2rem;
+    color: #6C757D;
 }
+.inquiries-avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid #6C757D;
+    border-radius: 100%;
+    margin-left: 23px;
+} */
+
+
 
 
 
@@ -166,8 +185,7 @@ td {
     color: #979a9b;
     /* background-color: #FF6BA0; */
   }
-  .inquiry-search_box input[type="search"]{
-    width: 200px;
+  .inquiry-search_box input[type="text"]{
     height: 40px;
     font-size: 16px;
     padding: 10px 15px 10px 35px;
@@ -182,7 +200,7 @@ td {
   /* .search_box input[type="text"]:focus{
     outline:0;
   } */
-  .inquiry-search_box input[type="search"]::placeholder{
+  .inquiry-search_box input[type="text"]::placeholder{
     color: #ccc;
   }
-  
+

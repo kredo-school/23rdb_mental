@@ -37,42 +37,45 @@
 
 
             {{-- Quote --}}
-            <div class="col-8 d-flex align-items-center fade-in-text mx-0 quote-copy-parent">
+            @if ($quote && $quote->exists())
+                <div class="col-8 d-flex align-items-center fade-in-text mx-0 quote-copy-parent">
                 {{-- quote itself --}}
 
-                @if ($quote->exists())
+                    
+               
+                        <p name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext text-center ps-3 mx-0 py-auto copyTarget">
 
-                <p name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext text-center ps-3 mx-0 py-auto">
+                                 {{ $quote->quote }}
+                        </p>        
+                </div>
 
-                    {{ $quote->quote }}
-                </p>
-            </div>
-
-            <div class="col-2 align-self-end">
+                <div class="col-2 align-self-end">
                 {{-- Author --}}
 
+                
+                    <p class="text-start mb-0 home-author">By  {{ $quote->author }}</p>
 
-                <p class="text-start mb-0 home-author">By  {{ $quote->author }}</p>
 
-
-            </div>
+                </div>
 
                 {{-- Action Buttons --}}
-            <div class="col-1">
+                <div class="col-1">
                     <div class="row">
-                        <div class="col-auto px-0 text-end tooltip-002">
+                        {{-- <div class="col-auto px-0 text-end tooltip-002"> --}}
                             {{-- Refresh --}}
-                            <form action="{{ route('home.quote.change') }}" method="post">
+                            {{-- <form action="{{ route('home.quote.change') }}" method="post">
                                 @csrf
                                 <button type="submit" name="change" id ="change" class="btn btn-lg p-1"><i
                                         class="fa-solid fa-arrows-rotate"></i></button>
                             </form>
                             <span>change today's quote</span>
 
-                        </div>
-                            {{-- Bookmark --}}
-                        <div class="col-auto px-0 text-center">
-                            <div class="quote-switch tooltip-002">
+                        </div> --}}
+                          
+                       {{-- Bookmark --}}
+                        <div class="col-auto px-0 text-center quote-switch tooltip-002">
+                             
+                            {{-- <div class="quote-switch tooltip-002"> --}}
                                 @if ($quote->isBookmarked())
                                     <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
                                         @csrf
@@ -81,33 +84,47 @@
                                             <i class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button>
                                     </form>
                                     <span>delete from bookmark list</span>
+                            
                                 @else
-                                        <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
+                                    <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-lg p-1"><i
                                                     class="fa-regular fa-bookmark quote-bookmark-cancel"></i></button>
-                                        </form>
-                                        <span>see all bookmarked quotes on your profile</span>
+                                    </form>
+                                    <span>see all bookmarked quotes on your profile</span>
                                 @endif
-                            </div>
+                            {{-- </div> --}}
                         </div>
+
+                        {{-- Refresh --}}
+                        <div class="col-auto px-0 text-end tooltip-002">
+                            
+                            <form action="{{ route('home.quote.change', $quote->id) }}" method="post">
+                                @csrf
+                                <button type="submit" name="change" id ="change" class="btn btn-lg p-1"><i
+                                        class="fa-solid fa-arrows-rotate"></i></button>
+                            </form>
+                            <span>change today's quote</span>
+
+                        </div>
+
+                         {{-- Copy --}}
                         <div class="col-auto px-0 text-start tooltip-002">
-                            {{-- Copy --}}
-                            <button type="submit" class="btn btn-lg p-1 js-copy-btn" id="btn-copy-quote" data-copy><i
-                                    class="fa-regular fa-clone"></i></button>
-                            <span>copy</span>
+                           
+                            <button type="submit" class="btn btn-lg p-1 js-copy-btn copyBtn" id="btn-copy-quote" data-copy onclick="copyButton('order-quote-copy')"><i class="fa-regular fa-clone"></i></button>
+                            <span>copy today's quote</span>
                         </div>
                     </div>
 
-            </div>
+                </div>
+               
 
-
-            @else
-            <div>
-                   <p>Coming soon....</p>
-            </div>
-            @endif
-
+                @else
+                <div class="col-8 d-flex justify-content-center align-items-center fade-in-text mx-0 quote-copy-parent">
+                   <p class="text-center">Coming soon....</p>    
+                </div>   
+                @endif
+   
             {{-- <div class="col-1"></div> --}}
 
 
@@ -287,6 +304,7 @@
     </div>
 
     {{-- Option --}}
+    {{-- <div class="container-option m-5">
     {{-- <div class="container-option m-5">
         <div class="card bg-white py-3 px-5 border-0">
             <p class="text-center">Option</p>

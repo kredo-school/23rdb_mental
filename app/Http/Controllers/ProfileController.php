@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\DB;
 class ProfileController extends Controller
 {
     private $user;
+    private $bookmark;
+    private $quote;
 
     public function __construct(User $user, Bookmark $bookmark, Quote $quote)
     {

@@ -570,3 +570,17 @@ div.body_sidebar {
 a.sidebar_faq {
     color: #42484D;
 }
+
+/* inquiries avatar color */
+.inquiries-icon-sm {
+    font-size: 2rem;
+    color: #24AC72;
+}
+.inquiries-avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid #24AC72;
+    border-radius: 100%;
+    margin-left: 23px;
+}

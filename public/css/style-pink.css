@@ -590,3 +590,17 @@ a.sidebar_faq {
     color: #42484D;
 }
 
+/* inquiries avatar color */
+.inquiries-icon-sm {
+    font-size: 2rem;
+    color: #FC9DD2;
+}
+.inquiries-avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid #FC9DD2;
+    border-radius: 100%;
+    margin-left: 23px;
+}
+
