@@ -10,11 +10,10 @@
 
 <footer class="footer d-flex justify-content-md-end align-items-center p-3">
     <div class="footer_container">
-      <a href="#" class="faq me-4">FAQ</a>
+      <a href="{{ url('faq') }}" class="faq me-4">FAQ</a>
       <button class="btn-contact me-2" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</button>
     </div>
 </footer>
 
     @include('contactus.modals.inquiry')
     @include('contactus.modals.submitcomplete')
-
