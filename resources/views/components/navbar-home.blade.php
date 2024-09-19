@@ -17,7 +17,7 @@
             <div class="nav_inner d-flex justify-content-center">
                 <a href="{{ route('home') }}" class="text-decoration-none"><p class="nav_icon"><img src="{{ asset('images/navigation/home_icon.png') }}" alt="home"><br>Home</p></a>
                 <a href="{{ route('mood.index') }}" class="text-decoration-none"><p class="nav_icon"><img src="{{ asset('images/navigation/mood_icon.png') }}" alt="MoodTracking"><br>Mood_Tracking</p></a>
-                <a href="{{ route('journal.journals') }}" class="text-decoration-none"><p class="nav_icon"><img src="{{ asset('images/navigation/journaling_icon.png') }}" alt="Journaling"><br>Journal</p></a>
+                <a href="{{ route('journal.journals') }}" class="text-decoration-none"><p class="nav_icon"><img src="{{ asset('images/navigation/journaling_icon.png') }}" alt="Journaling"><br>Journaling</p></a>
                 {{-- <a href="{{ route('quote.index') }}" class="text-decoration-none"><p class="nav_icon"><img src="{{ asset('images/navigation/quote_icon.png') }}" alt="Quote"><br>Quote</p></a> --}}
                 <a href="{{ route('chat.chats', '1') }}" class="text-decoration-none"><p class="nav_icon"><img src="{{ asset('images/navigation/chat_icon.png') }}" alt="Chat"><br>Chat</p></a>
             </div>

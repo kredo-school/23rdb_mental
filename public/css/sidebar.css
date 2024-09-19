@@ -103,7 +103,7 @@ ul.ls_sidebar_admin {
 /* Active Page Function main menu---------*/
 p.Mood.Tracking_mood,
 p.Chat_chat,
-p.Journal_journal,
+p.Journaling_journal,
 p.Quote_quote {
     background-color: rgb(137, 129, 129);
     color: white;
