@@ -17,4 +17,12 @@ $(document).ready(function () {
             }
         });
     });
+    const myModalEl = document.getElementById('completeInquiry'); 
+    console.log(myModalEl) 
+    myModalEl.addEventListener('hidden.bs.modal', event => { 
+        if ($(".modal-backdrop").length >= 1) {
+             $(".modal-backdrop").remove();
+            } 
+            console.log('hidden') 
+        }); 
 });

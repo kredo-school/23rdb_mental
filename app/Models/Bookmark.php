@@ -11,7 +11,8 @@ class Bookmark extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;   
+    public $timestamps = false;    
+    protected $fillable = ['quote_id']; // ???
 
 
     // use this method to get the bookmarks of a quote

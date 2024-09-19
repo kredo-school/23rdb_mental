@@ -13,6 +13,7 @@
                         <h1 class="modal-title">
                             Delete the Quote
                         </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <div class="modal-body">
@@ -61,7 +62,7 @@
                         
                             <div class="mb-2">
                                 <button type="button" class="btn btn-cancel me-4" data-bs-dismiss="modal"> Cancel </button>
-                                <button class="btn btn-delete">
+                                <button class="btn btn-delete" type="submit">
                                     <i class="fa-solid fa-trash-can"></i> 
                                     Delete</button>
                                 

@@ -19,7 +19,7 @@
             {{-- Remi-chan --}}
             <img src="{{ asset('images/main/circle_remichan.png') }}" alt="Remichan" class="w-50 h-50"></div>
             <p class="text-center mt-2">We update the FAQ page regularly.&nbsp;&nbsp; <br> If you can't find answers,
-                <a class="" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>.
+                <a class="faq-contactus" data-bs-toggle="modal" data-bs-target="#ContactUs">Contact Us</a>.
             </p>
         <br>
     </div>
@@ -113,7 +113,8 @@
             <details class="qa-7">
                 <summary>What I write on Journaling? </summary>
                 <p>
-                You can write whatever you come up in your mind now and vent your feelings.
+                You can write whatever you come up in your mind now and vent your emotions. <br>
+                You can also reply your previous posts to add comments to yourself. 
                 </p>
             </details>
 
@@ -121,22 +122,18 @@
             <details class="qa-7">
                 <summary>What is mood face icon?</summary>
                 <p>
-
-                1. Click <strong>your avator icon</strong> <br>
-                2. Click <strong>edit</strong> button on profile page <br>
-                3. Change theme color <br>
-                4. If you finish, click <strong>save</strong> button
+                    Each face icon represents your mood by 5 segments; GREAT, GOOD, OK, NOT GOOD, and BAD. <br>
+                    Mood Calender shows the average score and and mood of the day. <br>
+                    Mood Graph shows the score over the last 7 days, and you can see how your mood is moving up and down. 
                 </p>
             </details>
 
             <h3 class="mt-5">Chat Room</h3>
             <details class="qa-7">
-                <summary>How do I change the theme color?</summary>
+                <summary>How do I use Chat Room? &nbsp; Why there are 6 rooms? </summary>
                 <p>
-                1. Click <strong>your avator icon</strong> <br>
-                2. Click <strong>edit</strong> button on profile page <br>
-                3. Change theme color <br>
-                4. If you finish, click <strong>save</strong> button
+                You can use chat room when you want to talk to someone. <br>
+                You choose appropriate room related to your subject, and you connect with others.
                 </p>
             </details>
 

@@ -508,3 +508,18 @@ button.dr-more-details:hover {
 div.body_sidebar {
     background-color: rgba(93, 170, 234, 0.5);
 }
+
+
+/* inquiries avatar color */
+.inquiries-icon-sm {
+    font-size: 2rem;
+    color: #5DAAEA;
+}
+.inquiries-avatar-sm {
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    border: 1px solid #5DAAEA;
+    border-radius: 100%;
+    margin-left: 23px;
+}

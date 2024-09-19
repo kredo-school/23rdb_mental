@@ -38,53 +38,24 @@ class HomeController extends Controller
     // public function index()
     // {
 
-    //     $now = Carbon::now(); 
-    //     $now_format = $now->format('H:i:s');  // ex)21:22:23
-    //         $hour = 0;
-    //         $minute = 0;
-    //         $second = 0;
-    //         $auto_changequote = Carbon::createFromTime($hour, $minute, $second); 
-    //         $autoset_format = $auto_changequote->format('H:i:s'); //00:00:00
+            // $today = Carbon::today()->timestamp; //today's date is collected
+            // $quote = Quote::inRandomOrder($today)->first(); // randamly get a data
 
-    //         do{
-    //         $today_quote = Quote::inRandomOrder()->select('quote', 'author')->first();
-    //         }while ($now == $autoset_format);
-            
-    //     return view('home')
-    //     ->with('today_quote', $today_quote)
-    //     ->with('now_format', $now_format)
-    //     ->with('autoset_format', $autoset_format);
-    // } 
-
-
-    // try1 
-
-    public function index()
-    {
-
-        // $now = Carbon::now(); 
-        // $now_format = $now->format('H:i:s');  // ex)21:22:23
-        //     $hour = 0;
-        //     $minute = 0;
-        //     $second = 0;
-        //     $auto_changequote = Carbon::createFromTime($hour, $minute, $second); 
-        //     $autoset_format = $auto_changequote->format('H:i:s'); //00:00:00
-
-        //     do{
-        //     $quote = Quote::inRandomOrder()->first();
-        //     }while ($now == $autoset_format);
-            
-            $today = Carbon::today()->timestamp;
-
-            $quote = Quote::inRandomOrder($today)->first();
-
+//             $today = Carbon::today()->format('Y-m-d');
+//             $hash = md5($today);
+// $index = hexdec(substr($hash, 0, 8));
+// // 格言の総数を取得
+// $totalQuotes = Quote::count();
+// // ランダムインデックスを計算
+// $randomIndex = $index % $totalQuotes;
+// $quote = Quote::skip($randomIndex)->first();
 
             
-        return view('home')
-        ->with('quote', $quote);
+        // return view('home')
+        // ->with('quote', $quote);
         // ->with('now_format', $now_format)
         // ->with('autoset_format', $autoset_format);
-    } 
+    // } 
 
     // public function change(){
     //     $quote = Quote::inRandomOrder()->select('quote', 'author')->first();
@@ -94,14 +65,32 @@ class HomeController extends Controller
 
     // }
 
-    public function change(Request $request) {
-        // if ($request->has('change')) {
-            $quote = Quote::inRandomOrder()->first();
-            return view('home')
-             ->with('quote', $quote);
-
-
+    public function index(Request $request)
+    {
+        // セッションから変更された格言を取得、ない場合は新しい格言を取得
+        if ($request->session()->has('quote_id')) {
+            $quote = Quote::find($request->session()->get('quote_id'));
+        } else {
+            $quote = $this->getRandomQuote();
+            $request->session()->put('quote_id', $quote->id);
         }
+
+        return view('home', compact('quote'));
+    }
+
+    public function change(Request $request)
+    {
+        // 新しいランダムな格言を取得
+        $quote = $this->getRandomQuote();
+        $request->session()->put('quote_id', $quote->id);
+
+        return redirect()->route('home');
+    }
+
+    private function getRandomQuote()
+    {
+        return Quote::inRandomOrder()->first();
+    }
 
     
 }
