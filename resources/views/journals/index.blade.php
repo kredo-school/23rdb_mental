@@ -19,9 +19,9 @@
             <div class="journal-add-area input-group mb-3" data-bs-toggle="modal" data-bs-target="#add-post">
                 {{-- User Icon --}}
                 @if (Auth::user()->avatar)
-                    <img src="{{ Auth::user()->avatar }}" alt="avatar" class="avatar-sm rounded-circle icon-sm img-fluid my-auto mx-auto">
+                    <img src="{{ Auth::user()->avatar }}" alt="avatar" class="avatar-sm rounded-circle icon-sm img-fluid my-auto mx-auto users-avatar-sm">
                 @else
-                    <i class="fa-solid fa-circle-user avatar avatar-default fa-2x my-auto mx-auto"></i>
+                    <i class="fa-solid fa-circle-user avatar avatar-default fa-2x my-auto mx-auto users-icon-sm"></i>
                 @endif
                 <input type="text" name="journal_body" id="journal_body" class="journal-add-input form-control rounded-input shadow ms-2"
                     placeholder="What's on your mind?" value="">

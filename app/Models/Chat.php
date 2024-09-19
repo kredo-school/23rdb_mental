@@ -10,7 +10,7 @@ class Chat extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['room_id', 'user_id', 'body'];
+    protected $fillable = ['room_id', 'user_id', 'body', 'replying_chat_id'];
 
     public function user(){
         return $this->belongsTo(User::class)->withTrashed();

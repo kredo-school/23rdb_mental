@@ -56,9 +56,9 @@
                     <div class="d-flex mb-3 py-3 px-4 shadow align-items-center">
                         {{-- User Icon --}}
                         @if (Auth::user()->avatar)
-                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar">
+                            <img src="{{ Auth::user()->avatar }}" alt="avatar" class="rounded-circle avatar users-avatar-sm">
                         @else
-                            <i class="fa-solid fa-circle-user avatar fa-2x me-3"></i>
+                            <i class="fa-solid fa-circle-user avatar fa-2x me-3 users-icon-sm"></i>
                         @endif
                         {{-- User Name --}}
                         <span class="fw-bold me-2">
@@ -110,9 +110,9 @@
                                     <div class="chat-user">
                                         {{-- avatar --}}
                                         @if ($chat->user->avatar)
-                                            <img src="{{ $chat->user->avatar }}" alt="avatar" class="rounded-circle avatar">
+                                            <img src="{{ $chat->user->avatar }}" alt="avatar" class="rounded-circle avatar users-avatar-sm">
                                         @else
-                                            <i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>
+                                            <i class="fa-solid fa-circle-user avatar fa-2x me-1 users-icon-sm"></i>
                                         @endif
                                         {{-- username --}}
                                         @if ($chat->user->username)
@@ -128,7 +128,7 @@
                                     {{-- Reply Body --}}
                                     @if ($chat->chats_include_replying_chat)
                                         <div class="text-muted">
-                                                <span class="fs-6">{{ $chat->chats_include_replying_chat->created_at }}</span>
+                                                <span class="fs-6">{{ $chat->chats_include_replying_chat->created_at->format('m/d H:i') }}</span>
                                             <div class="mb-3 fs-6">
                                                 {{ $chat->chats_include_replying_chat->body }}
                                             </div>
@@ -142,11 +142,11 @@
                                 <div class="message-info-area">
                                     {{-- Reply Link--}}
                                     <div class="d-flex flex-wrap">
-                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-{{ $chat->id }}">
+                                        <a href="#" class="text-decoration-none" data-chat-id="{{ $chat->id }}" onclick="setReply('{{ $chat->id }}', '{{ $chat->body }}')">
                                             <i class="fa-solid fa-reply reply-icon"></i>
                                             <span class="reply-text">Reply</span>
                                         </a>
-                                        @include('chat.contents.modals.reply')
+                                        {{-- @include('chat.contents.modals.reply') --}}
                                     </div>
                                     {{-- Chat DateTime --}}
                                     <div class="message-time">{{ $chat->created_at->format('m/d H:i') }}</div>
@@ -172,11 +172,21 @@
                         @endforeach
                     </div>
             
-                    <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form" class="chat-input-area">
-                            @csrf
-                            <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
-                            <input type="text" id="body" name="body" placeholder="message" class="chat-input">
-                            <button type="submit" id="submit" onclick="sendMessage()">Send</button>
+                    {{-- <form action="{{ route('chat.store', $currentRoom->id) }}" method="post" id="chat-form"> --}}
+                    <form action="#" id="chat-form">
+                        @csrf
+                        <div class="chat-input-area">
+                            <div id="reply-to-message" class="chat-input-area-reply">
+                                <p id="reply-to-body"></p>
+                                <input type="hidden" id="replying_chat_id" name="replying_chat_id" value="">
+                            </div>
+                            <div class="chat-input-area-message">
+                                <input type="hidden" id="user_id" name="user_id" value="{{ auth()->user()->id }}">
+                                <input type="hidden" id="room_id" name="room_id" value="{{ $currentRoom->id }}">
+                                <input type="text" id="body" name="body" placeholder="message" class="chat-input">
+                                <button type="submit" id="submit" onclick="sendMessage()">Send</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -188,6 +198,8 @@
 @section('scripts')
 <!-- PusherのJavaScriptライブラリをCDN経由で読み込む -->
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+{{-- <script src="{{ asset('js/chats.js') }}"></script> --}}
+
 <script>
 
     //  Pusher.logToConsole = true;
@@ -224,9 +236,9 @@
                 newMessage += `        <div class="chat-user">`;
 
                 if (response.avatar) {
-                        newMessage += `<img src="${response.avatar}" alt="avatar" class="rounded-circle avatar">`;
+                        newMessage += `<img src="${response.avatar}" alt="avatar" class="rounded-circle avatar users-avatar-sm">`;
                     } else {
-                        newMessage += `<i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>`;
+                        newMessage += `<i class="fa-solid fa-circle-user avatar fa-2x me-1 users-icon-sm"></i>`;
                     }
 
                 if (data.username) {
@@ -244,7 +256,7 @@
             if (data.replying_body) {
                 newMessage += `        {{-- Reply Body --}}`;
                 newMessage += `            <div class="text-muted">`;
-                newMessage += `                    <span class="fs-6">${data.replying_created_at}/span>`;
+                newMessage += `                    <span class="fs-6">${data.replying_created_at}</span>`;
                 newMessage += `                <div class="mb-3 fs-6">`;
                 newMessage += `                    ${data.replying_body}`;
                 newMessage += `                </div>`;
@@ -259,7 +271,7 @@
             newMessage += `    <div class="message-info-area">`;
             newMessage += `        {{-- Reply Link--}}`;
             newMessage += `        <div class="d-flex flex-wrap">`;
-            newMessage += `            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#reply-post-${data.id}">`;
+            newMessage += `            <a href="#" class="text-decoration-none" data-chat-id="${data.id}" onclick="setReply('${data.id}', '${data.message}')">`;
             newMessage += `                <i class="fa-solid fa-reply reply-icon"></i>`;
             newMessage += `                <span class="reply-text">Reply</span>`;
             newMessage += `            </a>`;
@@ -295,7 +307,6 @@
         },
             error: function(xhr) {
                 console.log('Error fetching avatar:', xhr);
-                newMessage += `<i class="fa-solid fa-circle-user avatar fa-2x me-1"></i>`;
             }
         });
     });
@@ -304,6 +315,20 @@
     document.addEventListener('DOMContentLoaded', function() {
         // alert('Page has loaded');
         scrollToBottom();
+
+        const chats = @json($chats);
+        if (Array.isArray(chats) && chats.length > 0) {
+            chats.forEach(chat => {
+                $('#edit-post-' + chat.id).on('shown.bs.modal', function () {
+                    $('#chat_body_edit_' + chat.id).trigger('focus');
+                });
+            });
+        } else {
+            console.error("chats is not an array or it's empty");
+        }
+        $('#edit-username-' + document.getElementById('user_id').value).on('shown.bs.modal', function () {
+            $('#chat_username').trigger('focus');
+        });
     });
 
     function scrollToBottom() {
@@ -438,5 +463,51 @@
             alert('An error occurred while sending the message.');
         });
     });
+
+
+
+
+
+    function setReply(chatId, chatBody) {
+        const replyToMessage = document.getElementById('reply-to-message');
+        const replyToBody = document.getElementById('reply-to-body');
+        
+        replyToMessage.style.display = 'block';
+        replyToBody.innerText = chatBody;
+
+        document.getElementById('replying_chat_id').value = chatId;
+    }
+
+
+    function sendMessage() {
+        
+        let user_id = document.getElementById('user_id').value;
+        let body = document.getElementById('body').value;
+        let replying_chat_id = document.getElementById('replying_chat_id') ? document.getElementById('replying_chat_id').value : null;
+        let room_id = document.getElementById('room_id').value;
+
+        fetch(`/chat/${room_id}/send`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ user_id, body, replying_chat_id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                console.log(data.status);
+            } else if (data.error) {
+                console.error(data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+
+
 </script>
 @endsection

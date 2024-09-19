@@ -436,6 +436,8 @@ body {
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
+    vertical-align: middle;
+    
 }
 
 /* Chat Body */
@@ -492,10 +494,24 @@ body {
 }
 
 .chat-input-area {
-    display: flex;
-    justify-content: space-between;
     padding: 10px;
     border-top: 1px solid #ddd;
+}
+
+.chat-input-area-reply {
+    display: none;
+    padding: 10px;
+    margin: 0 1px 0 1px;
+}
+
+#reply-to-body {
+    color: gray !important;
+    margin-bottom: 0px;
+}
+
+.chat-input-area-message {
+    display: flex;
+    justify-content: space-between;
 }
 
 .chat-input {
