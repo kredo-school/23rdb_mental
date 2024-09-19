@@ -7,9 +7,9 @@
             
                 <div class="modal-header mt-3 mb-4 border-0 complete-modal-header"> 
 
-                    <div class="justify-content-end w-100">
+                    {{-- <div class="justify-content-end w-100">
                         <button type="button" class="btn text-decoration-none complete-modal-xmark" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
-                    </div> 
+                    </div>  --}}
                     
                 </div>
 
@@ -30,7 +30,7 @@
                            
                             <div class="mx-auto">
                                 
-                                <button class="btn-home" data-bs-dismiss="modal">Go Back to Home</button>
+                                <button class="btn-home" data-bs-dismiss="modal">Close</button>
                             </div>
                 </div>
             
