@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/deletion-reason.css') }}">
 <script src="{{ asset('js/deletion-reason.js') }}"></script>
 
+@admin
 @extends('layouts.app')
 @extends('components.navbar-each')
 
@@ -138,3 +139,4 @@
     </div>
 
 @endsection
+@endadmin

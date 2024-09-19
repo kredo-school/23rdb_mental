@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('css/contactus.css') }}">
 
+@admin
 @extends('layouts.app')
 
 @extends('components.navbar-each')
@@ -37,22 +38,22 @@
                              {{-- search bar --}}
                             <div class="col-auto ps-5">
                                         <p class="text-primary mt-1 pt-3">Search</p>
-                                 
+
                             </div>
 
-                                        
+
                             <div class="col-auto inquiry-search_box pt-3">
                                         <form action="{{ route('admin.inquiries') }}" method="get" class="form-inline">
                                             @csrf
                                             <input type="search" name="keyword" placeholder="keyword....." class="form-control shadow">
-                                        
+
                                         </form>
-                                            
+
                             </div>
-                            
+
                         </div>
                     </div>
-                
+
                 </div>
                 <div>
 
@@ -149,3 +150,4 @@
 
 
 @endsection
+@endadmin

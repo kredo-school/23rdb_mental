@@ -83,7 +83,7 @@ class ProfileController extends Controller
             return view('profile.show')
             ->with('user', $user_a)
             ->with('bookmarked_quotes', $bookmarked_quotes);
-            
+
         } else {
             return redirect()->route('home')->with('error', 'Unauthorized access.');
         }
@@ -164,7 +164,7 @@ class ProfileController extends Controller
                 'email'           => 'required|max:50|email|unique:users,email,' . Auth::user()->id,
                 // Adding: unique:<table>, <column>
                 //Updating: unique:<table>, <column>, <id>
-                'username'        => 'max:50',
+                // 'username'        => 'max:50',
                 'theme_color'     => 'required|digits_between :1, 6',
                 'location'        => 'max:50',
                 'birthday'        => 'nullable',
@@ -176,7 +176,7 @@ class ProfileController extends Controller
 
             $user_a->name         = $request->name;
             $user_a->email        = $request->email;
-            $user_a->username     = $request->username;
+            // $user_a->username     = $request->username;
             $user_a->theme_color  = $request->theme_color;
             $user_a->location     = $request->location;
             $user_a->birthday     = $request->birthday;
