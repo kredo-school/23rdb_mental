@@ -5,13 +5,12 @@
 } */
 
 .container-faq-show {
-    margin-left: 444px;
-    margin-right: 164px;
+    margin-left: 220px;
     /* background-color: #ff8d8d; */
 }
 
 .card {
-    width: 800px;
+    width: 65%;
 }
 
 .faq-contactus{
