@@ -149,18 +149,19 @@
 
             <div class="card-body">
                 <div class="row ps-3">
-                    <div class="col-8 align-self-center p-0">
+                    <div class="col-9 align-self-center p-0">
                         {{-- Journaling create --}}
                         <input type="text" name="journaling" id="journaling"
-                            class="form-control-home custom-placeholder shadow" placeholder="What's on your mind?"
+                            class="form-control-home custom-placeholder shadow" placeholder="What's on your mind?    ... Click here to add journaling"
                             data-bs-toggle="modal" data-bs-target="#add-post">
                     </div>
                     @include('journals.contents.modals.add')
 
                     <div class="col p-0">
                         {{-- Remi-chan speaking --}}
-                        <p class="fs-6 text-start fw-medium remichan-speaking">
-                            Write down anything that is in your mind!<br>
+                        <p class="fs-5 text-start fw-medium remichan-speaking">
+                            Write down anything <br>
+                            that is in your mind!<br>
                             Journaling helps reduce stress <br>
                             and organize your thoughts.
                         </p>
@@ -187,12 +188,12 @@
                 {{-- Title --}}
                 <div class="d-flex align-items-end ms-3 mt-2 mb-3">
                     <h2>Mood Tracking</h2>
-                    <span class="fs-5 ms-4 align-self-center float-startr">Here is a short explanation of Mood Tracking</span>
+                    <span class="fs-5  ms-4 align-self-center float-startr">Your average mood of the day on the calendar <br>and see your mood swing of the day on the right side.</span>
                 </div>
-                <hr>
+                <hr class="ms-3 me-3">
             </div>
 
-            <div class="card-body mb-5">
+            <div class="card-body mb-3">
 
                 <div class="row">
                     {{-- Left: Calendar --}}
@@ -249,10 +250,6 @@
                                         <img class="mood-graph-icon" src="{{ asset('images/moods/bad.png') }}" alt="great">
                                     </div>
                                 </div>
-
-                                {{-- </div> --}}
-                                {{-- </div> --}}
-
                             </div>
                             <div class="footer bg-light border-0 mt-3">
                                 <p class="small px-5 text-center">
@@ -262,12 +259,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-            <hr>
+            <hr class="ms-3 me-3">
             <div class="card-footer bg-white text-end me-4">
                 <p class="fs-5">Do you want to record your mood more precisely?
-                    <a href="{{ route('mood.index') }}" class="mood ms-2 fw-medium fs-4"><i class="fa-solid fa-link me-1"></i>Go to the page</a>
+                    <a href="{{ route('mood.index') }}" class="mood ms-2 fw-medium fs-5"><i class="fa-solid fa-link me-1"></i>Go Mood Tracking Page</a>
                 </p>
             </div>
         </div>
@@ -276,40 +272,41 @@
     {{-- Chat Room Section --}}
     <div class="container-home mt-4 mb-5">
         <div class="card-home bg-white pt-2 pb-4 py-2 px-3 border-0">
-            {{-- <div class="card-header bg-white"> --}}
 
                 {{-- Title --}}
-                <div class="d-flex align-items-end ms-3 mt-2 mb-3">
-                    <h2>Chat room</h2>
-                    <span class="fs-5 ms-4 align-self-center float-startr">Please choose the room you may concern</span>
+                <div class="d-flex ms-3 mt-2 mb-3">
+                    <h2>Chat Room<i class="fa-regular ms-2 fa-comments"></i></h2>
+                    <span class="fs-5 ms-4 align-self-center float-startr">You can chat anonymously in 6 different categories. Feel free to chat casually!</span>
                 </div>
 
 
-                <div class="mx-3 mb-3">
+                <div class="mx-3">
                     <div class="row">
                         {{-- Chat Rooms --}}
-                            <div class="col-4 col-md-2 p-1">
-                                <a href="{{ url('/chat/1') }}" class="btn btn-relationship w-100">Relationship</a>
-                            </div>
-                            <div class="col-4 col-md-2 p-1">
-                                <a href="{{ url('/chat/2') }}" class="btn btn-career w-100">Career</a>
-                            </div>
-                            <div class="col-4 col-md-2 p-1">
-                                <a href="{{ url('/chat/3') }}" class="btn btn-family w-100">Family</a>
-                            </div>
-                            <div class="col-4 col-md-2 p-1">
-                                <a href="{{ url('/chat/4') }}" class="btn btn-health w-100">Health</a>
-                            </div>
-                            <div class="col-4 col-md-2 p-1">
-                                <a href="{{ url('/chat/5') }}" class="btn btn-finance w-100">Finance</a>
-                            </div>
-                            <div class="col-4 col-md-2 p-1">
-                                <a href="{{ url('/chat/6') }}" class="btn btn-others w-100">Others</a>
-                            </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/1') }}" class="btn btn-relationship w-100">Relationship</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/2') }}" class="btn btn-career w-100">Career</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/3') }}" class="btn btn-family w-100">Family</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/4') }}" class="btn btn-health w-100">Health</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/5') }}" class="btn btn-finance w-100">Finance</a>
+                        </div>
+                        <div class="col-4 col-md-2 p-1">
+                            <a href="{{ url('/chat/6') }}" class="btn btn-others w-100">Others</a>
+                        </div>
                     </div>
                 </div>
-                
-            {{-- </div> --}}
+        </div>
+        {{-- Chat Rooms footer --}}
+        <div class="card-footer text-end me-4 pb-3">
+            <a href="{{ route('chat.chats', '1') }}" class="fs-5 fw-medium text-decoration-none"><i class="fa-solid fa-link me-1"></i>Go Chat Room page</a>
         </div>
     </div>
 
