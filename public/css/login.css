@@ -24,3 +24,56 @@ body {
   .link {
     color: #5DAAEA;
   }
+
+  form label {
+    font-size: 10px !important;
+  }
+
+@media (min-width: 1197px) {
+    form label {
+        font-size: 11px !important; /* Slightly larger for small devices */
+    }
+}
+
+@media (min-width: 1251px) {
+    form label {
+        font-size: 12px !important; /* Slightly larger for small devices */
+    }
+}
+
+@media (min-width: 1305px) {
+    form label {
+        font-size: 13px !important; /* Slightly larger for small devices */
+    }
+}
+
+@media (min-width: 1361px) {
+    form label {
+        font-size: 14px !important; /* Slightly larger for small devices */
+    }
+}
+
+@media (min-width: 1416px) {
+    form label {
+        font-size: 15px !important; /* Slightly larger for small devices */
+    }
+}
+
+@media (min-width: 1470px) {
+    form label {
+        font-size: 16px !important; /* Slightly larger for small devices */
+    }
+}
+
+@media (min-width: 1580px) {
+    form label {
+        font-size: 18px !important; /* Larger for medium devices */
+    }
+}
+
+@media(min-width: 1690px) {
+    form label {
+    font-size: 20px !important;
+  }
+}
+
