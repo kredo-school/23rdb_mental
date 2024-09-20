@@ -197,7 +197,7 @@
                                             <div class="selectors d-flex">
                                                 <div class="col-2">
                                                     <input type="radio" name="theme_color" id="img1"
-                                                        value="1" checked>
+                                                        value="1">
                                                     <label for="img1" class="selector default"></label>
                                                 </div>
                                                 <div class="col-2">
