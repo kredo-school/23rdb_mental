@@ -161,7 +161,7 @@
                         {{-- Remi-chan speaking --}}
                         <p class="fs-5 text-start fw-medium remichan-speaking">
                             Write down anything <br>
-                            that is in your mind!<br>
+                            that is on your mind!<br>
                             Journaling helps reduce stress <br>
                             and organize your thoughts.
                         </p>
