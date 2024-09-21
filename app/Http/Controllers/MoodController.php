@@ -12,6 +12,7 @@ use Carbon\Carbon;
 
 
 
+
 class MoodController extends Controller
 {
     private $mood;
@@ -84,12 +85,15 @@ class MoodController extends Controller
         return response()->json($scores);
     }
 
-    public function moodCalendar()
+    public function moodCalendar(Request $request)
     {
         try {
             // Get the start and end of the current month
-            $startOfMonth = now()->startOfMonth();
-            $endOfMonth = now()->endOfMonth();
+            // $startOfMonth = now()->startOfMonth();
+            // $endOfMonth = now()->endOfMonth();
+
+            $startOfMonth = $request->query('start');
+            $endOfMonth = $request->query('end');
 
             $userId = Auth::id();
 

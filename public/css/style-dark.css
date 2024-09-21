@@ -477,7 +477,6 @@ a.mood {
     border-radius: 100%;
 }
 
-
 .mood-avatar-sm {
     width: 50px;
     height: 50px;
@@ -488,6 +487,10 @@ a.mood {
     border: 3px solid #6f7172;
     border-radius: 100%;
     /* margin-right: 15px; */
+}
+
+.fa-magnifying-glass {
+    color: #fff;
 }
 
 button.button-feedback-edit {
