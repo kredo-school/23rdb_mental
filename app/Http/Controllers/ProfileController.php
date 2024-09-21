@@ -124,7 +124,7 @@ class ProfileController extends Controller
     {
         try {
             $request->validate([
-                'avatar'          => 'mimes:jpeg,jpg,png.gif',
+                'avatar'          => 'mimes:jpeg,jpg,png,gif',
                 // 'name'            => 'required|max:50',
                 // 'email'           => 'required|max:50|email|unique:users,email,' . Auth::user()->id,
                 //Adding: unique:<table>, <column>
