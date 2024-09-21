@@ -66,7 +66,7 @@
                         <br><br><br>
                         <p class="text-end mb-2">
                             <button type="button" class="btn-edit" data-bs-toggle="modal" data-bs-target="#edit-profile"><i
-                            class="fa-regular fa-pen-to-square"></i> Edit</button>
+                                    class="fa-regular fa-pen-to-square"></i> Edit</button>
                         </p>
                     </div>
                 </div>
@@ -115,7 +115,8 @@
                                                             <img src="{{ Auth::user()->avatar }}" alt="avatar"
                                                                 class="rounded-circle modal-profile-avatar text-center ">
                                                         @else
-                                                            <i class="fa-solid fa-circle-user modal-profile-avatar text-center"></i>
+                                                            <i
+                                                                class="fa-solid fa-circle-user modal-profile-avatar text-center"></i>
                                                         @endif
                                                     </div>
                                                 </div>
@@ -124,6 +125,11 @@
                                                         <label for="avatar" class="form-label">Avatar</label>
                                                         <input type="file" name="avatar" id="avatar"
                                                             class="form-control">
+                                                        @if (Auth::user()->avatar)
+                                                            <button type="submit" name="remove_avatar"
+                                                                class="btn btn-sm remove-avatar" value="1">Remove
+                                                                Avatar</button>
+                                                        @endif
                                                     </div>
                                                     @error('avatar')
                                                         <p class="text-danger small">{{ $message }}</p>
@@ -197,32 +203,38 @@
                                             <div class="selectors d-flex">
                                                 <div class="col-2">
                                                     <input type="radio" name="theme_color" id="img1"
-                                                        value="1" checked>
+                                                        value="1"
+                                                        {{ old('theme_color', $user->theme_color) == 1 ? 'checked' : '' }}>
                                                     <label for="img1" class="selector default"></label>
                                                 </div>
                                                 <div class="col-2">
                                                     <input type="radio" name="theme_color" id="img2"
-                                                        value="2">
+                                                        value="2"
+                                                        {{ old('theme_color', $user->theme_color) == 2 ? 'checked' : '' }}>
                                                     <label for="img2" class="selector green"></label>
                                                 </div>
                                                 <div class="col-2">
                                                     <input type="radio" name="theme_color" id="img3"
-                                                        value="3">
+                                                        value="3"
+                                                        {{ old('theme_color', $user->theme_color) == 3 ? 'checked' : '' }}>
                                                     <label for="img3" class="selector blue"></label>
                                                 </div>
                                                 <div class="col-2">
                                                     <input type="radio" name="theme_color" id="img4"
-                                                        value="4">
+                                                        value="4"
+                                                        {{ old('theme_color', $user->theme_color) == 4 ? 'checked' : '' }}>
                                                     <label for="img4" class="selector pink"></label>
                                                 </div>
                                                 <div class="col-2">
                                                     <input type="radio" name="theme_color" id="img5"
-                                                        value="5">
+                                                        value="5"
+                                                        {{ old('theme_color', $user->theme_color) == 5 ? 'checked' : '' }}>
                                                     <label for="img5" class="selector yellow"></label>
                                                 </div>
                                                 <div class="col-2">
                                                     <input type="radio" name="theme_color" id="img6"
-                                                        value="6">
+                                                        value="6"
+                                                        {{ old('theme_color', $user->theme_color) == 6 ? 'checked' : '' }}>
                                                     <label for="img6" class="selector dark"></label>
                                                 </div>
                                                 @error('theme_color')

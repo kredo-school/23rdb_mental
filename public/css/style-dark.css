@@ -434,7 +434,12 @@ img.modal-profile-avatar {
     border: 3px solid #6f7172;
     border-radius: 100%;
 }
+
 div .btn-delete-account {
+    color: #FC4646;
+}
+
+div .remove-avatar {
     color: #FC4646;
 }
 

@@ -41,18 +41,18 @@
                 <div class="col-8 d-flex align-items-center fade-in-text mx-0 quote-copy-parent">
                 {{-- quote itself --}}
 
-                    
-               
+
+
                         <p name="order-quote-copy" id="order-quote-copy" class="quote-copy form-control-plaintext text-center ps-3 mx-0 py-auto copyTarget">
 
                                  {{ $quote->quote }}
-                        </p>        
+                        </p>
                 </div>
 
                 <div class="col-2 align-self-end">
                 {{-- Author --}}
 
-                
+
                     <p class="text-start mb-0 home-author">By  {{ $quote->author }}</p>
 
 
@@ -71,10 +71,10 @@
                             <span>change today's quote</span>
 
                         </div> --}}
-                          
+
                        {{-- Bookmark --}}
                         <div class="col-auto px-0 text-center quote-switch tooltip-002">
-                             
+
                             {{-- <div class="quote-switch tooltip-002"> --}}
                                 @if ($quote->isBookmarked())
                                     <form action="{{ route('bookmark.destroy', $quote->id) }}" method="post">
@@ -84,7 +84,7 @@
                                             <i class="fa-solid fa-bookmark text-warning quote-bookmark-store"></i></button>
                                     </form>
                                     <span>delete from bookmark list</span>
-                            
+
                                 @else
                                     <form action="{{ route('bookmark.store', $quote->id) }}" method="post">
                                             @csrf
@@ -98,7 +98,7 @@
 
                         {{-- Refresh --}}
                         <div class="col-auto px-0 text-end tooltip-002">
-                            
+
                             <form action="{{ route('home.quote.change', $quote->id) }}" method="post">
                                 @csrf
                                 <button type="submit" name="change" id ="change" class="btn btn-lg p-1"><i
@@ -110,21 +110,21 @@
 
                          {{-- Copy --}}
                         <div class="col-auto px-0 text-start tooltip-002">
-                           
+
                             <button type="submit" class="btn btn-lg p-1 js-copy-btn copyBtn" id="btn-copy-quote" data-copy onclick="copyButton('order-quote-copy')"><i class="fa-regular fa-clone"></i></button>
                             <span>copy today's quote</span>
                         </div>
                     </div>
 
                 </div>
-               
+
 
                 @else
                 <div class="col-8 d-flex justify-content-center align-items-center fade-in-text mx-0 quote-copy-parent">
-                   <p class="text-center">Coming soon....</p>    
-                </div>   
+                   <p class="text-center">Coming soon....</p>
+                </div>
                 @endif
-   
+
             {{-- <div class="col-1"></div> --}}
 
 
@@ -161,14 +161,14 @@
                         {{-- Remi-chan speaking --}}
                         <p class="fs-5 text-start fw-medium remichan-speaking">
                             Write down anything <br>
-                            that is in your mind!<br>
+                            that is on your mind!<br>
                             Journaling helps reduce stress <br>
                             and organize your thoughts.
                         </p>
                     </div>
                     <div class="col-auto me-6">
                         <div class="remichan_circle">
-                            {{-- Remi-chan --}}                    
+                            {{-- Remi-chan --}}
                             <span class="fuwafuwa2 pt-0">
                                 <img src="{{ asset('images/main/circle_remichan.png') }}" alt="Remichan">
                             </span>
@@ -262,7 +262,7 @@
             </div>
             <hr class="ms-3 me-3">
             <div class="card-footer bg-white text-end me-4">
-                <p class="fs-5">Do you want to record your mood more precisely?
+                <p class="fs-5">
                     <a href="{{ route('mood.index') }}" class="mood ms-2 fw-medium fs-5"><i class="fa-solid fa-link me-1"></i>Go Mood Tracking Page</a>
                 </p>
             </div>

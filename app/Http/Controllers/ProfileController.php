@@ -14,6 +14,7 @@ use App\Models\Quote;
 use Illuminate\Support\Facades\Log;
 use App\Models\DeletionReason;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProfileController extends Controller
@@ -123,7 +124,7 @@ class ProfileController extends Controller
     {
         try {
             $request->validate([
-                'avatar'          => 'mimes:jpeg,jpg,png.gif',
+                'avatar'          => 'mimes:jpeg,jpg,png,gif',
                 // 'name'            => 'required|max:50',
                 // 'email'           => 'required|max:50|email|unique:users,email,' . Auth::user()->id,
                 //Adding: unique:<table>, <column>
@@ -161,7 +162,7 @@ class ProfileController extends Controller
         try {
 
             $request->validate([
-                'avatar'          => 'mimes:jpeg,jpg,png,gif',
+                'avatar'          => 'mimes:jpeg,jpg,png,gif|nullable',
                 'name'            => 'required|max:50',
                 'email'           => 'required|max:50|email|unique:users,email,' . Auth::user()->id,
                 // Adding: unique:<table>, <column>
@@ -185,6 +186,14 @@ class ProfileController extends Controller
 
             if ($request->avatar) {
                 $user_a->avatar   = 'data:image/' . $request->avatar->extension() . ';base64,' . base64_encode(file_get_contents($request->avatar));
+            }
+
+            if ($request->input('remove_avatar')) {
+                // Remove the existing avatar file from storage
+                if ($user_a->avatar) {
+                    Storage::disk('public')->delete($user_a->avatar);
+                    $user_a->avatar = null; // Set the avatar field to null
+                }
             }
 
             $user_a->save();
